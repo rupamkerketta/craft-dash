@@ -1,0 +1,29 @@
+{
+  "name": "craft-dash",
+  "version": "1.0.0",
+  "description": "Brain Storming Web App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "cd src && nodemon server.js"
+  },
+  "author": "Rupam Kerketta",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "chalk": "^4.1.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.18",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "10.15.3"
+  }
+}

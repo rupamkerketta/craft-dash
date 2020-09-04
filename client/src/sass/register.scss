@@ -1,0 +1,115 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.register {
+    form {
+        width: 800px;
+        margin: auto;
+        margin-top: 40px;
+
+        .row-1 {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .row-4 {
+            text-align: center;
+
+            #submit-btn {
+                width: 450px;
+                border: 0;
+                border-radius: 4px;
+                background-color: transparent;
+                border: 1px solid $signup-btn-color;
+                font-family: $theme-font;
+                font-weight: 300;
+                font-size: 1em;
+                color: $signup-btn-color;
+                cursor: pointer;
+                padding-top: 7px;
+                padding-bottom: 7px;
+                margin-top: 30px;
+                transition: .2s all ease-in;
+                outline: none;
+            }
+
+            #submit-btn:hover {
+                background-color: $signup-btn-color;
+                color: $theme-color;
+            }
+        }
+
+        .row-5 {
+            text-align: center;
+
+            p {
+                margin-top: 20px;
+                font-family: $theme-font;
+                color: $label-color;
+                font-size: 0.9em;
+                font-weight: 200;
+
+                span.login-link {
+                    color: $login-btn-color;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        .input-group {
+            position: relative;
+            margin-top: 20px;
+
+            label {
+                display: block;
+                width: 100%;
+                font-family: $theme-font;
+                font-weight: 200;
+                font-size: 1.2em;
+                font-size: 1em;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                color: $label-color;
+
+                .asterisk {
+                    color: $danger;
+                    font-weight: 300;
+                }
+            }
+
+            input {
+                width: 370px;
+                border: 0;
+                border-radius: 4px;
+                background: $reg-input-box-color;
+                font-family: $theme-font;
+                font-size: 1.2em;
+                color: #ffffff;
+                font-weight: 40;
+                // padding
+                padding: 7px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                outline: none;
+            }
+
+            .error-msg-wrapper {
+                width: fit-content;
+                height: 30px;
+                margin-top: 5px;
+
+                .error-msg {
+                    padding-left: 7px;
+                    padding-right: 7px;
+                    border-radius: 3px;
+                    background-color: #f52d7a31;
+                    color: $danger;
+                    font-family: $theme-font;
+                    font-weight: 400;
+                    font-size: 0.9em;
+                }
+            }
+        }
+    }
+}

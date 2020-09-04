@@ -4,8 +4,10 @@
   "description": "Brain Storming Web App",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "cd src && nodemon server.js"
+    "start": "cd src && node server.js",
+    "server": "cd src && nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Rupam Kerketta",
   "license": "ISC",
@@ -18,9 +20,11 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.18",
+    "node-sass": "^4.14.1",
     "validator": "^13.0.0"
   },
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "nodemon": "^2.0.4"
   },
   "engines": {

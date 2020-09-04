@@ -1,0 +1,172 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.dashboard {
+    .top-nav {
+        position: relative;
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+
+        .brand-logo-wrapper {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            width: 170px;
+        }
+
+        .add-btn {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            // border: 1px solid white;
+            width: 47px;
+            height: 47px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            border-radius: 50%;
+
+            img {
+                width: 30px;
+            }
+
+            cursor: pointer;
+            transition: .2s all ease;
+        }
+
+        .add-btn:hover {
+            background-color: #ffffff2a;
+        }
+
+        .user-wrapper {
+            border: 1px solid white;
+            position: absolute;
+            display: block;
+            width: 70px;
+            height: 70px;
+            right: 50px;
+        }
+    }
+
+    .ideaboard-modal {
+        .ideaboard-header {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: auto;
+            margin-top: 20px;
+
+            img {
+                width: 30px;
+            }
+
+            .ideaboard-title {
+                margin-left: 4px;
+                font-family: $theme-font;
+                font-weight: 300;
+                font-size: 1.2em;
+            }
+        }
+
+        .input-group {
+            width: fit-content;
+            margin: auto;
+            position: relative;
+            margin-top: 20px;
+
+            label {
+                display: block;
+                width: 100%;
+                font-family: $theme-font;
+                font-weight: 300;
+                font-size: 1em;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                color: $theme-color;
+
+                .asterisk {
+                    color: $danger;
+                    font-weight: 300;
+                }
+            }
+
+            input,
+            textarea {
+                width: 300px;
+                border: 0;
+                border-radius: 4px;
+                background: $modal-field-color;
+                font-family: $theme-font;
+                font-size: 1.2em;
+                color: $top-nav-color;
+                font-weight: 300;
+                outline: none;
+            }
+
+            input {
+                // padding
+                padding: 7px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                outline: none;
+            }
+
+            textarea {
+                padding: 4px;
+                padding-left: 7px;
+                height: 100px;
+                resize: none;
+            }
+
+            .error-msg-wrapper {
+                width: fit-content;
+                height: 30px;
+                margin-top: 5px;
+
+                .error-msg {
+                    padding-left: 7px;
+                    padding-right: 7px;
+                    border-radius: 3px;
+                    background-color: #f52d7a31;
+                    color: $danger;
+                    font-family: $theme-font;
+                    font-weight: 400;
+                    font-size: 0.9em;
+                }
+            }
+        }
+
+        .create-btn {
+            width: fit-content;
+            margin: auto;
+            margin-top: 20px;
+
+            button {
+                border: 0;
+                border: 1px solid #0087cc;
+                border-radius: 4px;
+                width: 300px;
+                font-family: $theme-font;
+                font-size: 1em;
+                font-weight: 300;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: transparent;
+                color: #0087cc;
+                cursor: pointer;
+                outline: none;
+                transition: .2s all ease;
+            }
+
+            button:hover {
+                background-color: #0087cc;
+                color: #ffffff;
+            }
+        }
+    }
+}

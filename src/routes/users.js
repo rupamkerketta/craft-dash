@@ -7,23 +7,16 @@ const auth = require('../middlewares/auth')
 // Models
 const User = require('../models/user')
 
-// Chalk
-const chalk = require('chalk')
-const error = chalk.redBright.bold
-const info = chalk.yellowBright.bold
+// Error message formatter
+const printErrMsg = require('../utils/format-err-msg')
 
-// Function for printing the error message
-printErrMsg = (url, method, stack) => {
-	console.log(error(`[ERROR] ${url} ${method} `))
-	console.log(info(stack))
-}
-
-// Creating a new user
+// Creating a new user 🆕
 router.post('/create-new-user', async (req, res) => {
 	try {
 		const user = new User(req.body)
 		const token = await user.getAuthToken()
-		// res.cookie('token', `Bearer ${token}`, { httpOnly: true })
+
+		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
 		res.send({ user, token })
 	} catch (e) {
 		printErrMsg(req.url, req.method, e.stack)
@@ -43,6 +36,7 @@ router.post('/login', async (req, res) => {
 		const user = await User.findByCredentials(req.body.username, req.body.password)
 		const token = await user.getAuthToken()
 
+		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
 		res.send({ message: 'Logged-In Successfully', token })
 	} catch (e) {
 		printErrMsg(req.url, req.method, e.stack)

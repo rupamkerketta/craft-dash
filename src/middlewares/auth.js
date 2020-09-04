@@ -4,8 +4,9 @@ const User = require('../models/user')
 // Auth middleware
 const auth = async (req, res, next) => {
 	try {
-		const token = req.headers['authorization'].replace('Bearer ', '')
-		console.log(token)
+		// console.log(`[auth] cookie-test req.cookies.token : ${req.cookies.token}`)
+		const token = req.cookies.token.replace('Bearer ', '')
+
 		const decoded = jwt.verify(token, process.env.SIGNATURE)
 
 		const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })

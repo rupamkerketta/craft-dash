@@ -1,13 +1,15 @@
 import React from 'react'
-import './App.css'
+import './sass/App.scss'
 
-// Temp Component
-import Temp from './components/temp/temp'
+// Components
+import Register from './components/auth/register'
+import Login from './components/auth/login'
+import Dashboard from './components/dashboard/dashboard'
 
 function App() {
 	return (
 		<div className='App'>
-			<Temp />
+			<Dashboard />
 		</div>
 	)
 }

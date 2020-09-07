@@ -1,0 +1,16 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.dashboard-cards {
+    .title {
+        width: fit-content;
+        border-bottom: 1px solid white;
+
+        h1 {
+            font-family: $theme-font;
+            font-weight: 200;
+            font-size: 1.2em;
+            color: #ffffff;
+        }
+    }
+}

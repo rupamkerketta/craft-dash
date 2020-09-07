@@ -8,6 +8,7 @@ import 'rodal/lib/rodal.css'
 
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
+import DashboardCards from './dashboard-cards/dashboard-cards'
 
 // Logos
 import AddBtn from '../../img/add-button.svg'
@@ -51,12 +52,16 @@ function Dashboard() {
 				<div className='brand-logo-wrapper'>
 					<BrandLogo fontStyles={{ fontSize: '1.4em', marginLeft: '10px' }} logoStyles={{ width: '30px' }} />
 				</div>
-				<div className='add-btn' onClick={() => setVisible(true)}>
-					<img src={AddBtn} alt='Create New Idea Board' />
+				<div className='add-btn'>
+					<img src={AddBtn} onClick={() => setVisible(true)} alt='Create New Idea Board' />
 				</div>
 				<div className='user-wrapper'>
 					<h1>User</h1>
 				</div>
+			</div>
+
+			<div className='dashboard-cards-wrapper'>
+				<DashboardCards />
 			</div>
 
 			<Rodal

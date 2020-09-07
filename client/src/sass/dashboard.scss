@@ -3,53 +3,63 @@
 
 .dashboard {
     .top-nav {
-        position: relative;
-        width: 100%;
-        margin: auto;
-        margin-top: 10px;
+        position: absolute;
+        width: 1366px;
+        height: 10vh;
+        left: 50%;
+        transform: translate(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
 
         .brand-logo-wrapper {
-            position: absolute;
-            top: 10px;
-            left: 50px;
             width: 170px;
         }
 
         .add-btn {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            // border: 1px solid white;
-            width: 47px;
-            height: 47px;
+            width: 170px;
+            height: 50px;
 
             display: flex;
             align-items: center;
             justify-content: space-around;
 
-            border-radius: 50%;
 
             img {
-                width: 30px;
+                border-radius: 10px;
+                padding: 10px;
+                width: 50px;
+                transition: .2s all ease
             }
 
             cursor: pointer;
-            transition: .2s all ease;
+            transition: .4s all ease;
         }
 
         .add-btn:hover {
-            background-color: #ffffff2a;
+            img {
+                background-color: #ffffff2a;
+            }
         }
 
         .user-wrapper {
-            border: 1px solid white;
-            position: absolute;
-            display: block;
-            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 170px;
             height: 70px;
-            right: 50px;
         }
+    }
+
+    .dashboard-cards-wrapper {
+        position: absolute;
+        width: 1080px;
+        top: 10vh;
+        left: 50%;
+        height: 90vh;
+        transform: translateX(-50%);
+
     }
 
     .ideaboard-modal {

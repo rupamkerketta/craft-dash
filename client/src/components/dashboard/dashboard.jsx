@@ -60,7 +60,21 @@ function Dashboard() {
 				</div>
 			</div>
 
+			<div className='dashboard-title'>
+				<h1>Dashboard</h1>
+			</div>
+
 			<div className='dashboard-cards-wrapper'>
+				<DashboardCards title='My App' />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
+				<DashboardCards />
 				<DashboardCards />
 			</div>
 

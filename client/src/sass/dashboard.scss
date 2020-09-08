@@ -52,15 +52,67 @@
         }
     }
 
-    .dashboard-cards-wrapper {
+    .dashboard-title {
         position: absolute;
-        width: 1080px;
+        width: 1000px;
         top: 10vh;
         left: 50%;
-        height: 90vh;
+        transform: translateX(-50%);
+        height: 4vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+
+        h1 {
+            font-family: $theme-font;
+            font-weight: 200;
+            font-size: 1em;
+            color: #ffffff;
+        }
+    }
+
+    .dashboard-cards-wrapper {
+        // border: 1px solid white;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        width: 1080px;
+        top: 14vh;
+        left: 50%;
+        height: 86vh;
         transform: translateX(-50%);
 
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding-left: 30px;
+        padding-right: 30px;
     }
+
+    // .dashboard-cards-wrapper
+
+    /* width */
+    .dashboard-cards-wrapper::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    /* Track */
+    .dashboard-cards-wrapper::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.123);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    .dashboard-cards-wrapper::-webkit-scrollbar-thumb {
+        background: #29e4968e;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    .dashboard-cards-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #0cff9a;
+    }
+
+
 
     .ideaboard-modal {
         .ideaboard-header {

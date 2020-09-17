@@ -9,4 +9,6 @@ printErrMsg = (url, method, stack) => {
 	console.log(info(stack))
 }
 
-module.export = printErrMsg
+module.export = {
+	printErrMsg
+}

@@ -8,7 +8,7 @@ const auth = require('../middlewares/auth')
 const User = require('../models/user')
 
 // Error message formatter
-const printErrMsg = require('../utils/format-err-msg')
+const { printErrMsg } = require('../utils/format-err-msg')
 
 // Creating a new user 🆕
 router.post('/create-new-user', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/create-new-user', async (req, res) => {
 		const token = await user.getAuthToken()
 
 		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
-		res.send({ user, token })
+		res.send({ username: user.username, email: user.email })
 	} catch (e) {
 		printErrMsg(req.url, req.method, e.stack)
 		if (e.message.includes('email') && e.message.includes('duplicate key error')) {
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
 		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
 		res.send({ message: 'Logged-In Successfully', token })
 	} catch (e) {
-		printErrMsg(req.url, req.method, e.stack)
+		// printErrMsg(req.url, req.method, e.stack)
 		res.status(400).send()
 	}
 })

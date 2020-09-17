@@ -9,6 +9,7 @@ import 'rodal/lib/rodal.css'
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
 import DashboardCards from './dashboard-cards/dashboard-cards'
+import User from '../user/user'
 
 // Logos
 import AddBtn from '../../img/add-button.svg'
@@ -56,7 +57,7 @@ function Dashboard() {
 					<img src={AddBtn} onClick={() => setVisible(true)} alt='Create New Idea Board' />
 				</div>
 				<div className='user-wrapper'>
-					<h1>User</h1>
+					<User />
 				</div>
 			</div>
 

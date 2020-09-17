@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './sass/App.scss'
 
+// Store 🏪
+import store from './redux/store'
+
 // Components
-import Register from './components/auth/register'
-import Login from './components/auth/login'
-import Dashboard from './components/dashboard/dashboard'
+import Routes from './components/routing/routes'
+import { loadUser } from './redux/user/userActions'
 
 function App() {
+	useEffect(() => {
+		store.dispatch(loadUser())
+	}, [])
+
 	return (
-		<div className='App'>
-			<Dashboard />
-		</div>
+		<Provider store={store}>
+			<Router>
+				<div className='App'>
+					<Switch>
+						<Routes />
+					</Switch>
+				</div>
+			</Router>
+		</Provider>
 	)
 }
 

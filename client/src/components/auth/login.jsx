@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { attemptLogin } from '../../redux/login/loginActions'
 import validator from 'validator'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
@@ -6,6 +8,8 @@ import '../../sass/login.scss'
 
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
+import LoadingPage from '../loading-page/loading-page'
+import { Redirect } from 'react-router-dom'
 
 const initialValues = {
 	email: '',
@@ -32,12 +36,14 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-const onSubmit = (values) => {
-	console.log(values)
-}
-
-function Login() {
+function Login({ userData, attemptLogin }) {
 	const [ visible, setVisible ] = useState(false)
+
+	const onSubmit = (values) => {
+		console.log(values.email, values.password)
+		attemptLogin(values.email, values.password)
+		console.log(values)
+	}
 
 	useEffect(() => {
 		document.title = 'Craft Dash | Login'
@@ -45,50 +51,64 @@ function Login() {
 
 	return (
 		<div className='login'>
-			<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
-			<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
-				{(formik) => {
-					return (
-						<Form>
-							<div className='row-1'>
-								<div className='input-group'>
-									<label htmlFor='email'>Email</label>
-									<Field type='text' name='email' id='email' autoComplete='off' />
-									<div className='error-msg-wrapper'>
-										<ErrorMessage name='email' component={TextError} />
+			{!userData.isAuthenticated && userData.loading ? (
+				<LoadingPage />
+			) : !userData.isAuthenticated ? (
+				<React.Fragment>
+					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
+					<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+						{(formik) => {
+							return (
+								<Form>
+									<div className='row-1'>
+										<div className='input-group'>
+											<label htmlFor='email'>Email</label>
+											<Field type='text' name='email' id='email' autoComplete='off' />
+											<div className='error-msg-wrapper'>
+												<ErrorMessage name='email' component={TextError} />
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div className='row-2'>
-								<div className='input-group'>
-									<label htmlFor='password'>Password</label>
-									<Field
-										type='password'
-										name='password'
-										id='password'
-										autoComplete='current-password'
-									/>
-									<div className='error-msg-wrapper'>
-										<ErrorMessage name='password' component={TextError} />
+									<div className='row-2'>
+										<div className='input-group'>
+											<label htmlFor='password'>Password</label>
+											<Field
+												type='password'
+												name='password'
+												id='password'
+												autoComplete='current-password'
+											/>
+											<div className='error-msg-wrapper'>
+												<ErrorMessage name='password' component={TextError} />
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div className='row-3'>
-								<button type='submit' id='submit-btn' onClick={() => setVisible(true)}>
-									Login
-								</button>
-							</div>
-							<div className='row-4'>
-								<p>
-									Don't have an account? <span className='register-link'>Register here</span>
-								</p>
-							</div>
-						</Form>
-					)
-				}}
-			</Formik>
+									<div className='row-3'>
+										<button type='submit' id='submit-btn' onClick={() => setVisible(true)}>
+											Login
+										</button>
+									</div>
+									<div className='row-4'>
+										<p>
+											Don't have an account? <span className='register-link'>Register here</span>
+										</p>
+									</div>
+								</Form>
+							)
+						}}
+					</Formik>
+				</React.Fragment>
+			) : (
+				<Redirect to='/dashboard' />
+			)}
 		</div>
 	)
 }
 
-export default Login
+const mapStateToProps = (state) => {
+	return {
+		userData: state.auth
+	}
+}
+
+export default connect(mapStateToProps, { attemptLogin })(Login)

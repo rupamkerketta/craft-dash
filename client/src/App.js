@@ -10,6 +10,9 @@ import store from './redux/store'
 import Routes from './components/routing/routes'
 import { loadUser } from './redux/user/userActions'
 
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function App() {
 	useEffect(() => {
 		store.dispatch(loadUser())
@@ -20,6 +23,7 @@ function App() {
 		<Provider store={store}>
 			<Router>
 				<div className='App'>
+					<ToastContainer />
 					<Switch>
 						<Routes />
 					</Switch>

@@ -22,7 +22,7 @@ router.post('/create-new-user', async (req, res) => {
 		// printErrMsg(req.url, req.method, e.stack)
 		console.log(e.message)
 		if (e.message.includes('email') && e.message.includes('duplicate key error')) {
-			res.status(500).send({ message: 'Email already exists!!!' })
+			res.status(500).send({ message: `${req.body.email} already exists!!!` })
 		} else {
 			res.status(500).send({ message: 'Unable to create account. Please try again later' })
 		}
@@ -52,16 +52,12 @@ const sleep = (callback, time) => {
 
 // Reading Profile
 router.get('/me', auth, (req, res) => {
-	const block = () => {
-		try {
-			res.send(req.user)
-		} catch (e) {
-			// printErrMsg(req.url, req.method, e.stack)
-			res.status(500).send()
-		}
+	try {
+		res.send(req.user)
+	} catch (e) {
+		// printErrMsg(req.url, req.method, e.stack)
+		res.status(500).send()
 	}
-	block()
-	// sleep(block, 5000);
 })
 
 // Logout

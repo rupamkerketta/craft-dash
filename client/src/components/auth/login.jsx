@@ -37,13 +37,9 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-function Login({ userData, attemptLogin }) {
-	const [ visible, setVisible ] = useState(false)
-
+function Login({ auth, attemptLogin }) {
 	const onSubmit = (values) => {
-		console.log(values.email, values.password)
 		attemptLogin(values.email, values.password)
-		console.log(values)
 	}
 
 	useEffect(() => {
@@ -52,9 +48,9 @@ function Login({ userData, attemptLogin }) {
 
 	return (
 		<div className='login'>
-			{!userData.isAuthenticated && userData.loading ? (
+			{!auth.isAuthenticated && auth.loading ? (
 				<LoadingPage />
-			) : !userData.isAuthenticated ? (
+			) : !auth.isAuthenticated ? (
 				<React.Fragment>
 					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
 					<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
@@ -85,7 +81,7 @@ function Login({ userData, attemptLogin }) {
 										</div>
 									</div>
 									<div className='row-3'>
-										<button type='submit' id='submit-btn' onClick={() => setVisible(true)}>
+										<button type='submit' id='submit-btn'>
 											Login
 										</button>
 									</div>
@@ -111,7 +107,7 @@ function Login({ userData, attemptLogin }) {
 
 const mapStateToProps = (state) => {
 	return {
-		userData: state.auth
+		auth: state.auth
 	}
 }
 

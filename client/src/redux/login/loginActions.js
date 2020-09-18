@@ -3,6 +3,10 @@ import api from '../../utils/api'
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from './loginTypes'
 import { SET_USER } from '../user/userTypes'
 
+// Notification
+import * as TYPE from '../../utils/notifications/notifyTypes'
+import notify from '../../utils/notifications/notify'
+
 export const attemptLogin = (username, password) => async (dispatch) => {
 	const body = { username, password }
 	dispatch(loginRequest())
@@ -15,6 +19,7 @@ export const attemptLogin = (username, password) => async (dispatch) => {
 	} catch (e) {
 		console.log(e.message)
 		dispatch(loginFailure(e.message))
+		notify('Invalid username or password', TYPE.ERROR)
 	}
 }
 

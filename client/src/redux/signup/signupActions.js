@@ -2,6 +2,9 @@ import api from '../../utils/api'
 
 import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from './signupTypes'
 
+import * as TYPE from '../../utils/notifications/notifyTypes'
+import notify from '../../utils/notifications/notify'
+
 export const signupAttempt = (username, email, password) => async (dispatch) => {
 	const body = { username, email, password }
 	dispatch(signupRequest())
@@ -9,10 +12,15 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 		const res = await api.post('/user/create-new-user', body)
 		dispatch(signupSuccess(res.data))
 		window.location.reload()
-		console.log(res.data)
 	} catch (e) {
-		dispatch(signupFailure())
-		console.log(e.response.data)
+		if (e.response) {
+			dispatch(signupFailure(e.response.data.message))
+			notify(e.response.data.message, TYPE.ERROR)
+			console.log(e.response.data)
+		} else {
+			dispatch(signupFailure(e.message))
+			console.log(e.message)
+		}
 	}
 }
 

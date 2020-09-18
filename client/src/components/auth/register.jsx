@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import BrandLogo from '../../components/brand-logo/brand-logo'
 import { signupAttempt } from '../../redux/signup/signupActions'
 import LoadingPage from '../loading-page/loading-page'
+import LoadingSpinner from '../loading-spinner/loading-spinner'
 
 import '../../sass/register.scss'
 
@@ -50,7 +51,7 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-function Register({ userData, signupAttempt }) {
+function Register({ auth, signup, signupAttempt }) {
 	const onSubmit = (values) => {
 		signupAttempt(values.first_name + ' ' + values.last_name, values.email, values.password)
 		console.log(values)
@@ -62,9 +63,9 @@ function Register({ userData, signupAttempt }) {
 
 	return (
 		<div className='register'>
-			{!userData.isAuthenticated && userData.loading ? (
+			{!auth.isAuthenticated && auth.loading ? (
 				<LoadingPage />
-			) : !userData.isAuthenticated ? (
+			) : !auth.isAuthenticated ? (
 				<React.Fragment>
 					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
 					<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
@@ -82,6 +83,7 @@ function Register({ userData, signupAttempt }) {
 													id='first_name'
 													name='first_name'
 													autoComplete='off'
+													disabled={signup.loading || signup.status}
 												/>
 												<div className='error-msg-wrapper'>
 													<ErrorMessage name='first_name' component={TextError} />
@@ -93,7 +95,13 @@ function Register({ userData, signupAttempt }) {
 												<label htmlFor='last_name'>
 													Last Name <span className='asterisk'>*</span>
 												</label>
-												<Field type='text' id='last_name' name='last_name' autoComplete='off' />
+												<Field
+													type='text'
+													id='last_name'
+													name='last_name'
+													autoComplete='off'
+													disabled={signup.loading || signup.status}
+												/>
 												<div className='error-msg-wrapper'>
 													<ErrorMessage name='last_name' component={TextError} />
 												</div>
@@ -105,7 +113,13 @@ function Register({ userData, signupAttempt }) {
 											<label htmlFor='email'>
 												Email <span className='asterisk'>*</span>
 											</label>
-											<Field type='text' id='email' name='email' autoComplete='off' />
+											<Field
+												type='text'
+												id='email'
+												name='email'
+												autoComplete='off'
+												disabled={signup.loading || signup.status}
+											/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='email' component={TextError} />
 											</div>
@@ -121,6 +135,7 @@ function Register({ userData, signupAttempt }) {
 												id='password'
 												name='password'
 												autoComplete='current-password'
+												disabled={signup.loading || signup.status}
 											/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='password' component={TextError} />
@@ -128,9 +143,13 @@ function Register({ userData, signupAttempt }) {
 										</div>
 									</div>
 									<div className='row-4'>
-										<button type='submit' id='submit-btn'>
-											Sign - Up
-										</button>
+										{signup.loading ? (
+											<LoadingSpinner color='#ffffff' />
+										) : signup.status ? null : (
+											<button type='submit' id='submit-btn'>
+												Sign - Up
+											</button>
+										)}
 									</div>
 									<div className='row-5'>
 										<p>
@@ -154,7 +173,8 @@ function Register({ userData, signupAttempt }) {
 
 const mapStateToProps = (state) => {
 	return {
-		userData: state.auth
+		auth: state.auth,
+		signup: state.signup
 	}
 }
 

@@ -31,10 +31,6 @@ const mongoose = require('./db/mongoose')
 app.use(express.json(), cookieParser(), cors(corsOptions))
 app.use('/api/user', usersRouter)
 
-app.get('/', (req, res) => {
-	res.send('Craft Dash')
-})
-
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
 	// Set static folder

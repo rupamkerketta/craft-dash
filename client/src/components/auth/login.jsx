@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../../redux/login/loginActions'
 import validator from 'validator'
@@ -90,7 +91,10 @@ function Login({ userData, attemptLogin }) {
 									</div>
 									<div className='row-4'>
 										<p>
-											Don't have an account? <span className='register-link'>Register here</span>
+											Don't have an account?{' '}
+											<NavLink to='/signup'>
+												<span className='register-link'>Register here</span>
+											</NavLink>
 										</p>
 									</div>
 								</Form>

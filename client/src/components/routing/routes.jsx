@@ -12,6 +12,7 @@ const Routes = (props) => {
 		<React.Fragment>
 			<Route exact path='/signup' component={Register} />
 			<Route exact path='/login' component={Login} />
+			<PrivateRoute exact path='/' component={Dashboard} />
 			<PrivateRoute exact path='/dashboard' component={Dashboard} />
 		</React.Fragment>
 	)

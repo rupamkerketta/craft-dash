@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 import validator from 'validator'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { connect } from 'react-redux'
@@ -134,7 +134,10 @@ function Register({ userData, signupAttempt }) {
 									</div>
 									<div className='row-5'>
 										<p>
-											Already have an account? <span className='login-link'>Login here</span>
+											Already have an account?{' '}
+											<NavLink to='/login'>
+												<span className='login-link'>Login here</span>
+											</NavLink>
 										</p>
 									</div>
 								</Form>

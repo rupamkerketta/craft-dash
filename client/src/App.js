@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import './sass/App.scss'
 
@@ -13,6 +13,7 @@ import { loadUser } from './redux/user/userActions'
 function App() {
 	useEffect(() => {
 		store.dispatch(loadUser())
+		console.log('[CraftDash]')
 	}, [])
 
 	return (

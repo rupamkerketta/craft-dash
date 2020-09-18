@@ -19,11 +19,10 @@ router.post('/create-new-user', async (req, res) => {
 		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
 		res.send({ username: user.username, email: user.email })
 	} catch (e) {
-		printErrMsg(req.url, req.method, e.stack)
+		// printErrMsg(req.url, req.method, e.stack)
+		console.log(e.message)
 		if (e.message.includes('email') && e.message.includes('duplicate key error')) {
 			res.status(500).send({ message: 'Email already exists!!!' })
-		} else if (e.message.includes('username')) {
-			res.status(500).send({ message: 'Username already taken!!!' })
 		} else {
 			res.status(500).send({ message: 'Unable to create account. Please try again later' })
 		}
@@ -37,7 +36,7 @@ router.post('/login', async (req, res) => {
 		const token = await user.getAuthToken()
 
 		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
-		res.send({ message: 'Logged-In Successfully', token })
+		res.send({ username: user.username, email: user.email, message: 'Logged-In Successfully' })
 	} catch (e) {
 		// printErrMsg(req.url, req.method, e.stack)
 		res.status(400).send()
@@ -57,7 +56,7 @@ router.get('/me', auth, (req, res) => {
 		try {
 			res.send(req.user)
 		} catch (e) {
-			printErrMsg(req.url, req.method, e.stack)
+			// printErrMsg(req.url, req.method, e.stack)
 			res.status(500).send()
 		}
 	}
@@ -85,7 +84,7 @@ router.get('/logoutAll', auth, async (req, res) => {
 		await req.user.save()
 		res.send({ message: 'Successfully Logged Out of All Sessions' })
 	} catch (e) {
-		printErrMsg(req.url, req.method, e.stack)
+		// printErrMsg(req.url, req.method, e.stack)
 		res.status(500).send()
 	}
 })

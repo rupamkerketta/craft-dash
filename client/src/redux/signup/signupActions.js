@@ -12,7 +12,7 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 		console.log(res.data)
 	} catch (e) {
 		dispatch(signupFailure())
-		console.log(e.message)
+		console.log(e.response.data)
 	}
 }
 

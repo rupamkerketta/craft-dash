@@ -21,13 +21,29 @@ export const loadIBS = () => async (dispatch) => {
 	}
 }
 
-export const createIBS = () => async (dispatch) => {}
+export const createIBS = (data) => async (dispatch) => {
+	dispatch(ibCreateRequest())
+	try {
+		const res = await api.post('/idea-board/create-new-idea-board', data)
+		dispatch(ibCreateSuccess(res.data))
+		console.log(res.data)
+	} catch (e) {
+		if (e.response) {
+			dispatch(ibCreateFailure(e.response.data))
+		} else {
+			dispatch(ibCreateFailure(e.message))
+		}
+		console.log(e)
+	}
+}
 
 export const deleteIBS = () => async (dispatch) => {}
 
 export const editIBS = () => async (dispatch) => {}
 
 export const refreshIBS = () => async (dispatch) => {}
+
+// READ
 
 const ibsRequest = () => {
 	return {
@@ -52,9 +68,24 @@ const ibsFailure = (error) => {
 	}
 }
 
-const ibCreate = (data) => {
+// CREATE
+
+const ibCreateRequest = () => {
 	return {
-		type: TYPE.IB_CREATE,
+		type: TYPE.IB_CREATE_REQUEST
+	}
+}
+
+const ibCreateSuccess = (data) => {
+	return {
+		type: TYPE.IB_CREATE_SUCCESS,
 		payload: data
+	}
+}
+
+const ibCreateFailure = (error) => {
+	return {
+		type: TYPE.IB_CREATE_FAILURE,
+		payload: error
 	}
 }

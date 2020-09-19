@@ -8,7 +8,7 @@ import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 
 // API 😄
-import { loadIBS } from '../../redux/idea-boards/ideaBoardsActions'
+import { loadIBS, createIBS } from '../../redux/idea-boards/ideaBoardsActions'
 
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
@@ -20,23 +20,23 @@ import AddBtn from '../../img/add-button.svg'
 import Idea from '../../img/idea.svg'
 
 const initialValues = {
-	ideaboard_name: '',
-	ideboard_description: ''
+	idea_board_name: '',
+	idea_board_description: ''
 }
 
 const validate = (values) => {
 	let errors = {}
 
-	if (!values.ideaboard_name) {
-		errors.ideaboard_name = 'Required'
-	} else if (values.ideaboard_name.length >= 20) {
-		errors.ideaboard_name = 'Name too long'
+	if (!values.idea_board_name) {
+		errors.idea_board_name = 'Required'
+	} else if (values.idea_board_name.length >= 20) {
+		errors.idea_board_name = 'Name too long'
 	}
 
-	if (!values.ideaboard_description) {
-		errors.ideaboard_description = 'Required'
-	} else if (values.ideaboard_description.length > 30) {
-		errors.ideboard_description = 'Description too long'
+	if (!values.idea_board_description) {
+		errors.idea_board_description = 'Required'
+	} else if (values.idea_board_description.length > 30) {
+		errors.ide_board_description = 'Description too long'
 	}
 
 	return errors
@@ -44,7 +44,7 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-function Dashboard({ idea_boards, loadIBS }) {
+function Dashboard({ idea_boards, loadIBS, createIBS }) {
 	const [ visible, setVisible ] = useState(false)
 
 	useEffect(
@@ -54,6 +54,12 @@ function Dashboard({ idea_boards, loadIBS }) {
 		},
 		[ loadIBS ]
 	)
+
+	// Modal form onSubmit Handler
+	const onSubmit = (values) => {
+		console.log(values)
+		createIBS(values)
+	}
 
 	return (
 		<div className='dashboard'>
@@ -95,36 +101,36 @@ function Dashboard({ idea_boards, loadIBS }) {
 						<h1 className='ideaboard-title'>Create New Dashboard</h1>
 					</div>
 					<div className='idea-board-form'>
-						<Formik initialValues={initialValues} validate={validate}>
+						<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
 							{(formik) => {
 								return (
 									<Form>
 										<div className='input-group'>
-											<label htmlFor='ideaboard_name'>
+											<label htmlFor='idea_board_name'>
 												IdeaBoard name <span className='asterisk'>*</span>
 											</label>
 											<Field
 												type='text'
-												name='ideaboard_name'
-												id='ideaboard_name'
+												name='idea_board_name'
+												id='idea_board_name'
 												autoComplete='off'
 											/>
 											<div className='error-msg-wrapper'>
-												<ErrorMessage name='ideaboard_name' component={TextError} />
+												<ErrorMessage name='idea_board_name' component={TextError} />
 											</div>
 										</div>
 										<div className='input-group'>
-											<label htmlFor='ideaboard_description'>
+											<label htmlFor='idea_board_description'>
 												Description <span className='asterisk'>*</span>
 											</label>
 											<Field
 												as='textarea'
-												name='ideaboard_description'
-												id='ideaboard_name'
+												name='idea_board_description'
+												id='idea_board_name'
 												autoComplete='off'
 											/>
 											<div className='error-msg-wrapper'>
-												<ErrorMessage name='ideaboard_description' component={TextError} />
+												<ErrorMessage name='idea_board_description' component={TextError} />
 											</div>
 										</div>
 										<div className='create-btn'>
@@ -147,4 +153,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { loadIBS })(Dashboard)
+export default connect(mapStateToProps, { loadIBS, createIBS })(Dashboard)

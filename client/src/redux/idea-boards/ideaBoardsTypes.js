@@ -4,11 +4,14 @@ export const IBS_EMPTY = 'IBS_EMPTY'
 export const IBS_FAILURE = 'IBS_FAILURE'
 export const IBS_REFRESH = 'IBS_REFRESH'
 
-export const IB_CREATE = 'IB_CREATE'
 export const IB_CREATE_REQUEST = 'IB_CREATE_REQUEST'
+export const IB_CREATE_SUCCESS = 'IB_CREATE_SUCCESS'
+export const IB_CREATE_FAILURE = 'IB_CREATE_FAILURE'
 
-export const IB_DELETE = 'IB_DELETE'
 export const IB_DELETE_REQUEST = 'IB_DELETE_REQUEST'
+export const IB_DELETE_SUCCESS = 'IB_DELETE_SUCCESS'
+export const IB_DELETE_FAILURE = 'IB_DELETE_FAILURE'
 
-export const IB_EDIT = 'IB_EDIT'
 export const IB_EDIT_REQUEST = 'IB_EDIT_REQUEST'
+export const IB_EDIT_SUCCESS = 'IB_EDIT_SUCCESS'
+export const IB_EDIT_FAILURE = 'IB_EDIT_FAILURE'

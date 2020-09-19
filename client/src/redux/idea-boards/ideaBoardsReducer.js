@@ -8,10 +8,12 @@ const initialState = {
 	},
 	new_board: {
 		isLoading: false,
+		error: '',
 		info: null
 	},
 	delete_board: {
 		isLoading: false,
+		error: '',
 		info: null
 	}
 }
@@ -54,6 +56,36 @@ const reducer = (state = initialState, action) => {
 				...state.boards,
 				boards: {
 					...state.boards,
+					isLoading: false,
+					error: action.payload
+				}
+			}
+
+		// CREATE
+		case TYPE.IB_CREATE_REQUEST:
+			return {
+				...state,
+				new_board: {
+					...state.new_board,
+					isLoading: true
+				}
+			}
+
+		case TYPE.IB_CREATE_SUCCESS:
+			return {
+				...state,
+				new_board: {
+					...state.new_board,
+					isLoading: false,
+					info: action.payload
+				}
+			}
+
+		case TYPE.IB_CREATE_FAILURE:
+			return {
+				...state,
+				new_board: {
+					...state.new_board,
 					isLoading: false,
 					error: action.payload
 				}

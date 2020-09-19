@@ -25,11 +25,13 @@ const PORT = process.env.PORT || 5000
 
 // Routers
 const usersRouter = require('./routes/users')
+const ideaBoardRouter = require('./routes/idea-board')
 const mongoose = require('./db/mongoose')
 
 // Middlewares
 app.use(express.json(), cookieParser(), cors(corsOptions))
 app.use('/api/user', usersRouter)
+app.use('/api/idea-board', ideaBoardRouter)
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

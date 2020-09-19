@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import '../../sass/dashboard.scss'
 
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
+
+// API 😄
+import { loadIBS } from '../../redux/idea-boards/ideaBoardsActions'
 
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
@@ -25,7 +29,7 @@ const validate = (values) => {
 
 	if (!values.ideaboard_name) {
 		errors.ideaboard_name = 'Required'
-	} else if (values.ideaboard_name.length > 20) {
+	} else if (values.ideaboard_name.length >= 20) {
 		errors.ideaboard_name = 'Name too long'
 	}
 
@@ -40,12 +44,16 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-function Dashboard() {
+function Dashboard({ idea_boards, loadIBS }) {
 	const [ visible, setVisible ] = useState(false)
 
-	useState(() => {
-		document.title = 'Craft Dash | Main'
-	}, [])
+	useEffect(
+		() => {
+			document.title = 'Craft Dash | Dashboard'
+			loadIBS()
+		},
+		[ loadIBS ]
+	)
 
 	return (
 		<div className='dashboard'>
@@ -66,17 +74,11 @@ function Dashboard() {
 			</div>
 
 			<div className='dashboard-cards-wrapper'>
-				<DashboardCards title='My App' />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
-				<DashboardCards />
+				{idea_boards.boards.data.length !== 0 ? (
+					idea_boards.boards.data.map((idea_board) => {
+						return <DashboardCards key={idea_board._id} title={`${idea_board.idea_board_name}`} />
+					})
+				) : null}
 			</div>
 
 			<Rodal
@@ -139,4 +141,10 @@ function Dashboard() {
 	)
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+	return {
+		idea_boards: state.idea_boards
+	}
+}
+
+export default connect(mapStateToProps, { loadIBS })(Dashboard)

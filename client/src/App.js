@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import './sass/App.scss'
 
@@ -10,7 +10,7 @@ import store from './redux/store'
 import Routes from './components/routing/routes'
 import { loadUser } from './redux/user/userActions'
 
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {

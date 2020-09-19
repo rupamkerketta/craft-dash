@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { attemptLogin } from '../../redux/login/loginActions'

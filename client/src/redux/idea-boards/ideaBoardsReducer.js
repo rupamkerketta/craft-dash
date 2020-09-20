@@ -22,6 +22,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case TYPE.ADD_NEW_BOARD:
+			return {
+				...state,
+				boards: {
+					...state.boards,
+					data: [ ...state.boards.data, action.payload ]
+				}
+			}
+
 		case TYPE.IBS_REQUEST:
 			return {
 				...state,

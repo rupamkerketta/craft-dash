@@ -208,6 +208,13 @@
             margin: auto;
             margin-top: 20px;
 
+            .create-success-msg {
+                font-family: $theme-font;
+                width: fit-content;
+                margin: auto;
+                color: $login-btn-color;
+            }
+
             button {
                 border: 0;
                 border: 1px solid #0087cc;

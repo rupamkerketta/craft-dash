@@ -1,3 +1,5 @@
+import store from '../store'
+
 import api from '../../utils/api'
 import * as TYPE from './ideaBoardsTypes'
 
@@ -29,6 +31,9 @@ export const createIBS = (data) => async (dispatch) => {
 	try {
 		const res = await api.post('/idea-board/create-new-idea-board', data)
 		dispatch(ibCreateSuccess(res.data))
+		if (refreshIBS()) {
+			dispatch(addNewBoard(res.data))
+		}
 		console.log(res.data)
 	} catch (e) {
 		if (e.response) {
@@ -59,10 +64,67 @@ export const deleteIBS = (board_id) => async (dispatch) => {
 
 export const editIBS = () => async (dispatch) => {}
 
-export const refreshIBS = () => async (dispatch) => {}
+const refreshIBS = () => {
+	const state = store.getState().idea_boards
+
+	console.log(state)
+
+	// New Board Check
+	const board_ids = state.boards.data.map((board) => board._id)
+	let new_board_id
+
+	if (state.new_board.info._id) {
+		new_board_id = state.new_board.info._id
+	} else {
+		new_board_id = -1
+	}
+
+	if (new_board_id === -1) {
+		// Do Nothing
+		console.log(`[REFRESH] No new changes`)
+		return false
+	} else {
+		if (!board_ids.includes(new_board_id)) {
+			// callback(addNewBoard(state.idea_boards.new_board.info))
+			return true
+		} else {
+			return false
+		}
+	}
+}
+
+// export const refreshIBS = () => async (dispatch) => {
+// 	const state = useSelector((state) => state)
+
+// 	// New Board Check
+// 	const board_ids = state.idea_boards.boards.data((board) => board._id)
+// 	let new_board_id
+
+// 	if (state.idea_boards.new_board.info._id) {
+// 		new_board_id = state.idea_boards.new_board.info._id
+// 	} else {
+// 		new_board_id = -1
+// 	}
+
+// 	if (new_board_id === -1) {
+// 		// Do Nothing
+// 		console.log(`[REFRESH] No new changes`)
+// 	} else {
+// 		if (!board_ids.includes(new_board_id)) {
+// 			dispatch(addNewBoard(state.idea_boards.new_board.info))
+// 		}
+// 	}
+// }
+
+// ADD NEW BOARD
+const addNewBoard = (data) => {
+	return {
+		type: TYPE.ADD_NEW_BOARD,
+		payload: data
+	}
+}
 
 // READ
-
 const ibsRequest = () => {
 	return {
 		type: TYPE.IBS_REQUEST

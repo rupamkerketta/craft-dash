@@ -42,16 +42,22 @@ router.get('/get-idea-boards', auth, async (req, res) => {
 // Delete board
 router.delete('/delete-board/:id', auth, async (req, res) => {
 	try {
-		const ideaBoard = await IdeaBoard.deleteIdeaBoard(req.params.id)
+		const ideaBoard = await IdeaBoard.deleteIdeaBoard(req.params.id, req.user._id)
 		if (ideaBoard === -1) {
 			res.status(401).send({ message: 'Action not allowed' })
 		} else {
-			res.send({ message: 'IdeaBoard deleted successfully!!!' })
+			res.send({ message: 'IdeaBoard deleted successfully!!!', info: ideaBoard })
 		}
 	} catch (e) {
 		console.log(e)
 		res.status(500)
 	}
 })
+
+const sleep = (callback, time) => {
+	const stop = new Date().getTime() + time
+	while (new Date().getTime() < stop) {}
+	callback()
+}
 
 module.exports = router

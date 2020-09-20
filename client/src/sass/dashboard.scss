@@ -231,4 +231,70 @@
             }
         }
     }
+
+    .delete-modal {
+        width: 100%;
+
+        h2 {
+            width: 90%;
+            margin: auto;
+            font-family: $theme-font;
+            font-size: 1.3em;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        .post-delete {
+            width: fit-content;
+            margin: auto;
+            margin-top: 70px;
+        }
+
+        .yn {
+            margin-top: 30px;
+
+            div {
+
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+
+                button {
+                    width: 150px;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    font-family: $theme-font;
+                    font-size: 1.2em;
+                    color: white;
+                    border: 0;
+                    border-radius: 2px;
+                    border: 1px solid transparent;
+                    transition: .2s all ease;
+                    cursor: pointer;
+                    background-color: white;
+                    outline: none;
+                }
+
+                .yes {
+                    border: 1px solid $danger;
+                    color: $danger;
+                }
+
+                .no {
+                    border: 1px solid $login-btn-color;
+                    color: $login-btn-color;
+                }
+
+                .yes:hover {
+                    color: white;
+                    background-color: $danger;
+                }
+
+                .no:hover {
+                    color: white;
+                    background-color: $login-btn-color;
+                }
+            }
+        }
+    }
 }

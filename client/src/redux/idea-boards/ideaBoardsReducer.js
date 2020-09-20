@@ -91,6 +91,36 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 
+		// DELETE
+		case TYPE.IB_DELETE_REQUEST:
+			return {
+				...state,
+				delete_board: {
+					...state.delete_board,
+					isLoading: true
+				}
+			}
+
+		case TYPE.IB_DELETE_SUCCESS:
+			return {
+				...state,
+				delete_board: {
+					...state.delete_board,
+					isLoading: false,
+					info: action.payload
+				}
+			}
+
+		case TYPE.IB_DELETE_FAILURE:
+			return {
+				...state,
+				delete_board: {
+					...state.delete_board,
+					isLoading: false,
+					error: action.payload
+				}
+			}
+
 		default:
 			return state
 	}

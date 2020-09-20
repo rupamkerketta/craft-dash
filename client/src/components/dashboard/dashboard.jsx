@@ -8,12 +8,13 @@ import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 
 // API 😄
-import { loadIBS, createIBS } from '../../redux/idea-boards/ideaBoardsActions'
+import { loadIBS, createIBS, deleteIBS } from '../../redux/idea-boards/ideaBoardsActions'
 
 // Components
 import BrandLogo from '../brand-logo/brand-logo'
 import DashboardCards from './dashboard-cards/dashboard-cards'
 import User from '../user/user'
+import LoadingSpinner from '../loading-spinner/loading-spinner'
 
 // Logos
 import AddBtn from '../../img/add-button.svg'
@@ -44,8 +45,13 @@ const validate = (values) => {
 
 const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
-function Dashboard({ idea_boards, loadIBS, createIBS }) {
+function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 	const [ visible, setVisible ] = useState(false)
+	const [ deleteModal, setDeleteModal ] = useState({
+		id: '',
+		board_name: '',
+		visible: false
+	})
 
 	useEffect(
 		() => {
@@ -59,6 +65,26 @@ function Dashboard({ idea_boards, loadIBS, createIBS }) {
 	const onSubmit = (values) => {
 		console.log(values)
 		createIBS(values)
+	}
+
+	// Delete Handler
+	const deleteHandler = (id, board_name, visible) => {
+		console.log(`[deleteHandler] ${(id, board_name, visible)}`)
+
+		setDeleteModal({
+			id,
+			board_name,
+			visible
+		})
+	}
+
+	// optionsBtn Handler
+	const optionsBtnHandler = (action) => {
+		if (action === 'YES') {
+			deleteIBS(deleteModal.id)
+		} else {
+			setDeleteModal({ ...deleteModal, visible: false })
+		}
 	}
 
 	return (
@@ -82,10 +108,54 @@ function Dashboard({ idea_boards, loadIBS, createIBS }) {
 			<div className='dashboard-cards-wrapper'>
 				{idea_boards.boards.data.length !== 0 ? (
 					idea_boards.boards.data.map((idea_board) => {
-						return <DashboardCards key={idea_board._id} title={`${idea_board.idea_board_name}`} />
+						return (
+							<DashboardCards
+								key={idea_board._id}
+								_id={idea_board._id}
+								title={`${idea_board.idea_board_name}`}
+								deleteHandler={deleteHandler}
+							/>
+						)
 					})
 				) : null}
 			</div>
+
+			<Rodal
+				visible={deleteModal.visible}
+				onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
+				animation='zoom'
+				duration={400}
+				width={450}
+				height={200}
+			>
+				<div className='delete-modal'>
+					{idea_boards.delete_board.info && idea_boards.delete_board.info._id == deleteModal.id ? (
+						<h2 className='post-delete'>
+							<b>{idea_boards.delete_board.info.idea_board_name}</b> Deleted Successfully
+						</h2>
+					) : (
+						<h2 className='pre-delete'>
+							Are you sure you want to delete IdeaBoard - <b>{deleteModal.board_name}?</b>
+						</h2>
+					)}
+
+					<div className='yn'>
+						{idea_boards.delete_board.isLoading ? (
+							<LoadingSpinner color='#0087cc' />
+						) : idea_boards.delete_board.info &&
+						idea_boards.delete_board.info._id == deleteModal.id ? null : (
+							<div>
+								<button className='yes' onClick={() => optionsBtnHandler('YES')}>
+									YES
+								</button>
+								<button className='no' onClick={() => optionsBtnHandler('NO')}>
+									NO
+								</button>
+							</div>
+						)}
+					</div>
+				</div>
+			</Rodal>
 
 			<Rodal
 				visible={visible}
@@ -134,7 +204,11 @@ function Dashboard({ idea_boards, loadIBS, createIBS }) {
 											</div>
 										</div>
 										<div className='create-btn'>
-											<button type='submit'>Create</button>
+											{idea_boards.new_board.isLoading ? (
+												<LoadingSpinner color='#0087cc' />
+											) : (
+												<button type='submit'>Create</button>
+											)}
 										</div>
 									</Form>
 								)
@@ -153,4 +227,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { loadIBS, createIBS })(Dashboard)
+export default connect(mapStateToProps, { loadIBS, createIBS, deleteIBS })(Dashboard)

@@ -44,7 +44,7 @@ ideaboardSchema.statics.getAllBoards = async (user_id) => {
 ideaboardSchema.statics.deleteIdeaBoard = async (board_id, current_user_id) => {
 	const ideaBoard = await IdeaBoard.findById(board_id)
 
-	if (ideaBoard.owner === current_user_id) {
+	if (ideaBoard.owner.toString() === current_user_id.toString()) {
 		const result = await ideaBoard.delete()
 		return result
 	} else {

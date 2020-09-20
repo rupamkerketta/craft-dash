@@ -24,7 +24,12 @@ function DashboardCards(props) {
 							<h1>{props.title}</h1>
 
 							<div className='actions'>
-								<img className='delete' src={Delete} alt='Delete' />
+								<img
+									className='delete'
+									src={Delete}
+									alt='Delete'
+									onClick={() => props.deleteHandler(props._id, props.title, true)}
+								/>
 								<img className='edit' src={Edit} alt='Delete' />
 							</div>
 						</div>

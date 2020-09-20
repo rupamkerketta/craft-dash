@@ -4,7 +4,7 @@ import * as TYPE from './notifyTypes'
 
 const props = {
 	position: 'top-right',
-	autoClose: false,
+	autoClose: 4000,
 	hideProgressBar: false,
 	closeOnClick: true,
 	pauseOnHover: true,

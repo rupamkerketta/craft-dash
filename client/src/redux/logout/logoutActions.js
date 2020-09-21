@@ -1,6 +1,6 @@
 import api from '../../utils/api'
 
-import { LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from './logoutTypes'
+import * as TYPE from './logoutTypes'
 
 export const logout = () => async (dispatch) => {
 	dispatch(logoutRequest())
@@ -23,18 +23,18 @@ export const logout = () => async (dispatch) => {
 
 const logoutRequest = () => {
 	return {
-		type: LOGOUT_REQUEST
+		type: TYPE.LOGOUT_REQUEST
 	}
 }
 
 const logoutSuccess = () => {
 	return {
-		type: LOGOUT_SUCCESS
+		type: TYPE.LOGOUT_SUCCESS
 	}
 }
 
 const logoutFailure = () => {
 	return {
-		type: LOGOUT_FAILURE
+		type: TYPE.LOGOUT_FAILURE
 	}
 }

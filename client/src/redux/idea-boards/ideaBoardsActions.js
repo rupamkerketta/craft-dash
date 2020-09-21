@@ -31,6 +31,7 @@ export const createIBS = (data) => async (dispatch) => {
 	try {
 		const res = await api.post('/idea-board/create-new-idea-board', data)
 		dispatch(ibCreateSuccess(res.data))
+		notify('IdeaBoard created successfully.', NOTIFICATION_TYPE.INFO)
 		if (refreshIBS()) {
 			dispatch(addNewBoard(res.data))
 		}
@@ -41,6 +42,7 @@ export const createIBS = (data) => async (dispatch) => {
 		} else {
 			dispatch(ibCreateFailure(e.message))
 		}
+		notify('Unable to perform the create action.', NOTIFICATION_TYPE.INFO)
 		console.log(e)
 	}
 }
@@ -85,36 +87,12 @@ const refreshIBS = () => {
 		return false
 	} else {
 		if (!board_ids.includes(new_board_id)) {
-			// callback(addNewBoard(state.idea_boards.new_board.info))
 			return true
 		} else {
 			return false
 		}
 	}
 }
-
-// export const refreshIBS = () => async (dispatch) => {
-// 	const state = useSelector((state) => state)
-
-// 	// New Board Check
-// 	const board_ids = state.idea_boards.boards.data((board) => board._id)
-// 	let new_board_id
-
-// 	if (state.idea_boards.new_board.info._id) {
-// 		new_board_id = state.idea_boards.new_board.info._id
-// 	} else {
-// 		new_board_id = -1
-// 	}
-
-// 	if (new_board_id === -1) {
-// 		// Do Nothing
-// 		console.log(`[REFRESH] No new changes`)
-// 	} else {
-// 		if (!board_ids.includes(new_board_id)) {
-// 			dispatch(addNewBoard(state.idea_boards.new_board.info))
-// 		}
-// 	}
-// }
 
 // ADD NEW BOARD
 const addNewBoard = (data) => {

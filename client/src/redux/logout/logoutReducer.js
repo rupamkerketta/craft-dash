@@ -1,4 +1,4 @@
-import { LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from './logoutTypes'
+import * as TYPE from './logoutTypes'
 
 const initialState = {
 	isLoading: false
@@ -6,15 +6,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.case) {
-		case LOGOUT_REQUEST:
+		case TYPE.LOGOUT_REQUEST:
 			return {
 				isLoading: true
 			}
-		case LOGOUT_SUCCESS:
+		case TYPE.LOGOUT_SUCCESS:
 			return {
 				isLoading: false
 			}
-		case LOGOUT_FAILURE:
+		case TYPE.LOGOUT_FAILURE:
 			return {
 				isLoading: false
 			}

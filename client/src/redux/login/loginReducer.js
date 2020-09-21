@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOAD_CHECK_FAIL } from './loginTypes'
+import * as TYPE from './loginTypes'
 
 const initialState = {
 	loading: false,
@@ -8,24 +8,24 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN_REQUEST:
+		case TYPE.LOGIN_REQUEST:
 			return {
 				...state,
 				loading: true
 			}
-		case LOGIN_SUCCESS:
+		case TYPE.LOGIN_SUCCESS:
 			return {
 				loading: false,
 				isAuthenticated: true,
 				message: action.payload
 			}
-		case LOGIN_FAILURE:
+		case TYPE.LOGIN_FAILURE:
 			return {
 				...state,
 				loading: false,
 				error: action.payload
 			}
-		case LOAD_CHECK_FAIL:
+		case TYPE.LOAD_CHECK_FAIL:
 			return {
 				...state,
 				loading: false,

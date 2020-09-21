@@ -1,8 +1,8 @@
 import api from '../../utils/api'
 
-import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE } from './signupTypes'
+import * as TYPE from './signupTypes'
 
-import * as TYPE from '../../utils/notifications/notifyTypes'
+import * as NOTIFICATION_TYPE from '../../utils/notifications/notifyTypes'
 import notify from '../../utils/notifications/notify'
 
 export const signupAttempt = (username, email, password) => async (dispatch) => {
@@ -15,7 +15,7 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 	} catch (e) {
 		if (e.response) {
 			dispatch(signupFailure(e.response.data.message))
-			notify(e.response.data.message, TYPE.ERROR)
+			notify(e.response.data.message, NOTIFICATION_TYPE.ERROR)
 			console.log(e.response.data)
 		} else {
 			dispatch(signupFailure(e.message))
@@ -26,20 +26,20 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 
 const signupRequest = () => {
 	return {
-		type: SIGNUP_REQUEST
+		type: TYPE.SIGNUP_REQUEST
 	}
 }
 
 const signupSuccess = (userData) => {
 	return {
-		type: SIGNUP_SUCCESS,
+		type: TYPE.SIGNUP_SUCCESS,
 		payload: userData
 	}
 }
 
 const signupFailure = (error) => {
 	return {
-		type: SIGNUP_FAILURE,
+		type: TYPE.SIGNUP_FAILURE,
 		payload: error
 	}
 }

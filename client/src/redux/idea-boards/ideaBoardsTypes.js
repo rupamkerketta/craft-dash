@@ -17,3 +17,4 @@ export const IB_EDIT_SUCCESS = 'IB_EDIT_SUCCESS'
 export const IB_EDIT_FAILURE = 'IB_EDIT_FAILURE'
 
 export const ADD_NEW_BOARD = 'ADD_NEW_BOARD'
+export const REMOVE_BOARD = 'REMOVE_BOARD'

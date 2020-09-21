@@ -47,7 +47,6 @@ const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
 function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 	const [ visible, setVisible ] = useState(false)
-	const [ showBtn, setShowBtn ] = useState(true)
 	const [ deleteModal, setDeleteModal ] = useState({
 		id: '',
 		board_name: '',
@@ -63,9 +62,10 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 	)
 
 	// Modal form onSubmit Handler
-	const onSubmit = (values) => {
+	const onSubmit = (values, { resetForm }) => {
 		console.log(values)
 		createIBS(values)
+		resetForm()
 	}
 
 	// Delete Handler
@@ -88,15 +88,6 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 		}
 	}
 
-	const closeHandler = () => {
-		setShowBtn(false)
-	}
-
-	const nrHandler = () => {
-		setVisible(true)
-		setShowBtn(true)
-	}
-
 	return (
 		<div className='dashboard'>
 			<div className='top-nav'>
@@ -104,7 +95,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 					<BrandLogo fontStyles={{ fontSize: '1.4em', marginLeft: '10px' }} logoStyles={{ width: '30px' }} />
 				</div>
 				<div className='add-btn'>
-					<img src={AddBtn} onClick={() => nrHandler()} alt='Create New Idea Board' />
+					<img src={AddBtn} onClick={() => setVisible(true)} alt='Create New Idea Board' />
 				</div>
 				<div className='user-wrapper'>
 					<User />
@@ -139,7 +130,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				height={200}
 			>
 				<div className='delete-modal'>
-					{idea_boards.delete_board.info && idea_boards.delete_board.info._id == deleteModal.id ? (
+					{idea_boards.delete_board.info && idea_boards.delete_board.info._id === deleteModal.id ? (
 						<h2 className='post-delete'>
 							<b>{idea_boards.delete_board.info.idea_board_name}</b> Deleted Successfully
 						</h2>
@@ -153,7 +144,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 						{idea_boards.delete_board.isLoading ? (
 							<LoadingSpinner color='#0087cc' />
 						) : idea_boards.delete_board.info &&
-						idea_boards.delete_board.info._id == deleteModal.id ? null : (
+						idea_boards.delete_board.info._id === deleteModal.id ? null : (
 							<div>
 								<button className='yes' onClick={() => optionsBtnHandler('YES')}>
 									YES
@@ -194,7 +185,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 												name='idea_board_name'
 												id='idea_board_name'
 												autoComplete='off'
-												disabled={!showBtn}
+												disabled={idea_boards.new_board.isLoading}
 											/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='idea_board_name' component={TextError} />
@@ -209,37 +200,18 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 												name='idea_board_description'
 												id='idea_board_name'
 												autoComplete='off'
-												disabled={!showBtn}
+												disabled={idea_boards.new_board.isLoading}
 											/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='idea_board_description' component={TextError} />
 											</div>
 										</div>
 										<div className='create-btn'>
-											{/* {idea_boards.new_board.isLoading ? (
+											{idea_boards.new_board.isLoading ? (
 												<LoadingSpinner color='#0087cc' />
 											) : (
 												<button type='submit'>Create</button>
-											)} */}
-
-											<button
-												style={{ display: showBtn ? 'block' : 'none' }}
-												onClick={() => closeHandler()}
-												type='submit'
-											>
-												Create
-											</button>
-
-											<h3
-												style={{ display: showBtn ? 'none' : 'block' }}
-												className='create-success-msg'
-											>
-												<b>IdeaBoard Created Successfully</b>
-											</h3>
-
-											{idea_boards.new_board.isLoading ? (
-												<LoadingSpinner color='#0087cc' />
-											) : null}
+											)}
 										</div>
 									</Form>
 								)

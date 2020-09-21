@@ -12,23 +12,26 @@ const props = {
 	progress: undefined
 }
 
-const notify = (message, type) => {
+const notify = (message, type, autoClose = 4000) => {
 	switch (type) {
 		case TYPE.INFO:
 			toast.info(message, {
-				...props
+				...props,
+				autoClose
 			})
 			break
 
 		case TYPE.ERROR:
 			toast.error(message, {
-				...props
+				...props,
+				autoClose
 			})
 			break
 
 		case TYPE.WARNING:
 			toast.warning(message, {
-				...props
+				...props,
+				autoClose
 			})
 			break
 		default:

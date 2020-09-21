@@ -31,10 +31,10 @@ export const createIBS = (data) => async (dispatch) => {
 	try {
 		const res = await api.post('/idea-board/create-new-idea-board', data)
 		dispatch(ibCreateSuccess(res.data))
-		notify('IdeaBoard created successfully.', NOTIFICATION_TYPE.INFO)
-		if (refreshIBS()) {
+		if (refreshIBS('NEW')) {
 			dispatch(addNewBoard(res.data))
 		}
+		notify(`IdeaBoard - ${res.data.idea_board_name} created successfully.`, NOTIFICATION_TYPE.INFO, 3000)
 		console.log(res.data)
 	} catch (e) {
 		if (e.response) {
@@ -42,7 +42,7 @@ export const createIBS = (data) => async (dispatch) => {
 		} else {
 			dispatch(ibCreateFailure(e.message))
 		}
-		notify('Unable to perform the create action.', NOTIFICATION_TYPE.INFO)
+		notify('Unable to perform the create action.', NOTIFICATION_TYPE.INFO, 3000)
 		console.log(e)
 	}
 }
@@ -52,44 +52,74 @@ export const deleteIBS = (board_id) => async (dispatch) => {
 	try {
 		const res = await api.delete(`/idea-board/delete-board/${board_id}`)
 		dispatch(ibDeleteSuccess(res.data.info))
-		notify(`${res.data.message}`, NOTIFICATION_TYPE.INFO)
+		if (refreshIBS('DELETE')) {
+			console.log(res.data)
+			dispatch(removeBoard(res.data.info._id))
+		}
+		notify(`${res.data.message}`, NOTIFICATION_TYPE.INFO, 3000)
 	} catch (e) {
 		if (e.response) {
 			dispatch(ibDeleteFailure(e.response.data))
 		} else {
 			dispatch(ibDeleteFailure(e.message))
 		}
-		notify('Unable to perform the delete action.', NOTIFICATION_TYPE.ERROR)
+		notify('Unable to perform the delete action.', NOTIFICATION_TYPE.ERROR, 3000)
 		console.log(e)
 	}
 }
 
 export const editIBS = () => async (dispatch) => {}
 
-const refreshIBS = () => {
+const refreshIBS = (checkFor) => {
 	const state = store.getState().idea_boards
-
-	console.log(state)
-
-	// New Board Check
 	const board_ids = state.boards.data.map((board) => board._id)
-	let new_board_id
 
-	if (state.new_board.info._id) {
-		new_board_id = state.new_board.info._id
-	} else {
-		new_board_id = -1
+	if (checkFor === 'NEW') {
+		console.log(state)
+
+		// New Board Check
+		let new_board_id
+
+		if (state.new_board.info._id) {
+			new_board_id = state.new_board.info._id
+		} else {
+			new_board_id = -1
+		}
+
+		if (new_board_id === -1) {
+			// Do Nothing
+			console.log(`[REFRESH - NEW] No new changes`)
+			return false
+		} else {
+			if (!board_ids.includes(new_board_id)) {
+				return true
+			} else {
+				return false
+			}
+		}
 	}
 
-	if (new_board_id === -1) {
-		// Do Nothing
-		console.log(`[REFRESH] No new changes`)
-		return false
-	} else {
-		if (!board_ids.includes(new_board_id)) {
-			return true
+	if (checkFor === 'DELETE') {
+		// Delete Board Check
+		let delete_board_id
+
+		if (state.delete_board.info._id) {
+			delete_board_id = state.delete_board.info._id
 		} else {
+			delete_board_id = -1
+		}
+
+		if (delete_board_id === -1) {
+			// Do Nothing
+			console.log(`[REFRESH - DELETE] No new changes`)
 			return false
+		} else {
+			if (board_ids.includes(delete_board_id)) {
+				return true
+			} else {
+				return false
+			}
+			// const boards_updated = state.boards.data.filter((board) => board._id !== delete_board_id)
 		}
 	}
 }
@@ -98,6 +128,14 @@ const refreshIBS = () => {
 const addNewBoard = (data) => {
 	return {
 		type: TYPE.ADD_NEW_BOARD,
+		payload: data
+	}
+}
+
+// REMOVE A BOARD
+const removeBoard = (data) => {
+	return {
+		type: TYPE.REMOVE_BOARD,
 		payload: data
 	}
 }

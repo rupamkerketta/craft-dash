@@ -31,6 +31,15 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 
+		case TYPE.REMOVE_BOARD:
+			return {
+				...state,
+				boards: {
+					...state.boards,
+					data: state.boards.data.filter((board) => board._id !== action.payload)
+				}
+			}
+
 		case TYPE.IBS_REQUEST:
 			return {
 				...state,

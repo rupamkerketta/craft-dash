@@ -1,0 +1,14 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.main {
+    h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: $theme-font;
+        font-weight: 300;
+        color: white;
+    }
+}

@@ -75,6 +75,7 @@
                     }
 
                     .actions {
+                        position: relative;
                         padding-left: 10px;
                         padding-right: 10px;
                         display: flex;
@@ -84,12 +85,25 @@
 
                         margin-top: 7px;
 
+
                         .delete,
-                        .edit {
+                        .edit,
+                        .rocket {
                             width: 30px;
                             padding: 4px;
                             border-radius: 4px;
                             transition: .4s all ease;
+                        }
+
+                        .rocket {
+                            position: absolute;
+                            padding: 2px;
+                            top: 4px;
+                            right: -50px;
+                        }
+
+                        .rocket:hover {
+                            background-color: #c421ff69;
                         }
 
                         .edit {

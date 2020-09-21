@@ -16,7 +16,11 @@ router.post('/create-new-user', async (req, res) => {
 		const user = new User(req.body)
 		const token = await user.getAuthToken()
 
-		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
+		// Cookie Validity - 7 Days
+		res.cookie('token', `Bearer ${token}`, {
+			maxAge: 7 * 24 * 60 * 60 * 1000,
+			httpOnly: true
+		})
 		res.send({ username: user.username, email: user.email })
 	} catch (e) {
 		// printErrMsg(req.url, req.method, e.stack)
@@ -35,7 +39,11 @@ router.post('/login', async (req, res) => {
 		const user = await User.findByCredentials(req.body.username, req.body.password)
 		const token = await user.getAuthToken()
 
-		res.cookie('token', `Bearer ${token}`, { httpOnly: true })
+		// Cookie Validity - 7 Days
+		res.cookie('token', `Bearer ${token}`, {
+			maxAge: 7 * 24 * 60 * 60 * 1000,
+			httpOnly: true
+		})
 		res.send({ username: user.username, email: user.email, message: 'Logged-In Successfully' })
 	} catch (e) {
 		// printErrMsg(req.url, req.method, e.stack)

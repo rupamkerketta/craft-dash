@@ -1,0 +1,11 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.messaging {
+    position: absolute;
+    width: 15vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    background-color: #282C34;
+}

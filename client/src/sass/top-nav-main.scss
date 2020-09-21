@@ -1,0 +1,11 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.top-nav-main {
+    position: absolute;
+    width: 85vw;
+    height: 5vh;
+    top: 0;
+    left: 0;
+    background-color: $top-nav-color;
+}

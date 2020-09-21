@@ -1,0 +1,12 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.main-board {
+    position: absolute;
+    top: 5vh;
+    left: 0;
+    width: 85vw;
+    height: 95vh;
+
+    background-color: $main-board-color;
+}

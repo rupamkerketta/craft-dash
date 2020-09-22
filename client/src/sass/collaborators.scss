@@ -1,0 +1,125 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.collaborators {
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    width: 700px;
+    background-color: white;
+
+    .collaborators-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: fit-content;
+        margin: auto;
+        margin-top: 20px;
+
+        img {
+            width: 30px;
+        }
+
+        .collaborators-title {
+            margin-left: 4px;
+            font-family: $theme-font;
+            font-weight: 300;
+            font-size: 1.2em;
+        }
+    }
+
+    .collaborators-form {
+        margin-top: 50px;
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            .input-group {
+                width: 50%;
+                height: 100px;
+                position: relative;
+
+                label {
+                    display: block;
+                    width: 100%;
+                    font-family: $theme-font;
+                    font-weight: 300;
+                    font-size: 1em;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    color: $theme-color;
+
+                    .asterisk {
+                        color: $danger;
+                        font-weight: 300;
+                    }
+                }
+
+                input {
+                    width: 400px;
+                    border: 0;
+                    border-radius: 4px;
+                    background: $modal-field-color;
+                    font-family: $theme-font;
+                    font-size: 1.2em;
+                    color: $top-nav-color;
+                    font-weight: 300;
+                    outline: none;
+                }
+
+                input {
+                    padding: 7px;
+                }
+
+                .error-msg-wrapper {
+                    width: fit-content;
+                    height: 30px;
+                    margin-top: 5px;
+
+                    .error-msg {
+                        padding-left: 7px;
+                        padding-right: 7px;
+                        border-radius: 3px;
+                        background-color: #f52d7a31;
+                        color: $danger;
+                        font-family: $theme-font;
+                        font-weight: 400;
+                        font-size: 0.9em;
+                    }
+                }
+            }
+
+            .check-and-add {
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                margin-left: 25px;
+
+                button {
+                    width: 160px;
+                    border: 0;
+                    font-family: $theme-font;
+                    font-size: 1.178em;
+                    font-weight: 300;
+                    background-color: white;
+                    color: #0087cc;
+                    padding: 6px;
+                    border: 1px solid #0087cc;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    outline: none;
+                    transition: .4s all ease;
+                }
+
+                button:hover {
+                    color: white;
+                    background-color: #0087cc;
+                }
+            }
+        }
+    }
+}

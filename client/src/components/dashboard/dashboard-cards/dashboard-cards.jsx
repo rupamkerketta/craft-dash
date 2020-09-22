@@ -32,7 +32,13 @@ function DashboardCards(props) {
 									title='Delete'
 									onClick={() => props.deleteHandler(props._id, props.title, true)}
 								/>
-								<img className='edit' src={Edit} alt='Delete' title='Edit' />
+								<img
+									className='edit'
+									src={Edit}
+									alt='Delete'
+									title='Edit'
+									onClick={() => props.editHandler(props._id, props.title, true)}
+								/>
 
 								<Link to={`/main/${props._id}`} className='rocket-wrapper'>
 									<img className='rocket' src={Rocket} alt='Open' title='Open' />

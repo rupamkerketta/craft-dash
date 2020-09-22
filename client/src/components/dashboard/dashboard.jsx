@@ -15,6 +15,7 @@ import BrandLogo from '../brand-logo/brand-logo'
 import DashboardCards from './dashboard-cards/dashboard-cards'
 import User from '../user/user'
 import LoadingSpinner from '../loading-spinner/loading-spinner'
+import Collaborators from './collaborators/collaborators'
 
 // Logos
 import AddBtn from '../../img/add-button.svg'
@@ -47,6 +48,10 @@ const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
 function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 	const [ visible, setVisible ] = useState(false)
+	const [ editModal, setEditModal ] = useState({
+		id: '',
+		visible: false
+	})
 	const [ deleteModal, setDeleteModal ] = useState({
 		id: '',
 		board_name: '',
@@ -75,6 +80,16 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 		setDeleteModal({
 			id,
 			board_name,
+			visible
+		})
+	}
+
+	// Edit Handler
+	const editHandler = (id, visible) => {
+		console.log(`[editHandler] ${(id, visible)}`)
+
+		setEditModal({
+			id,
 			visible
 		})
 	}
@@ -115,11 +130,23 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 								_id={idea_board._id}
 								title={`${idea_board.idea_board_name}`}
 								deleteHandler={deleteHandler}
+								editHandler={editHandler}
 							/>
 						)
 					})
 				) : null}
 			</div>
+
+			<Rodal
+				visible={editModal.visible}
+				onClose={() => setEditModal({ ...editModal, visible: false })}
+				animation='zoom'
+				duration={400}
+				width={720}
+				height={600}
+			>
+				<Collaborators />
+			</Rodal>
 
 			<Rodal
 				visible={deleteModal.visible}

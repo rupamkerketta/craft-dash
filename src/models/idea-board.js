@@ -18,13 +18,7 @@ const ideaboardSchema = mongoose.Schema(
 			required: true,
 			ref: 'User'
 		},
-		collaborators: [
-			{
-				collaborator: {
-					type: mongoose.Schema.Types.ObjectId
-				}
-			}
-		]
+		collaborators: []
 	},
 	{
 		timestamps: true

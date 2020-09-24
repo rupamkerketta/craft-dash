@@ -8,9 +8,6 @@ import Main from '../main/main'
 import Register from '../auth/register'
 import Login from '../auth/login'
 
-// TEMP - Collaborators
-import Collaborators from '../dashboard/collaborators/collaborators'
-
 const Routes = (props) => {
 	return (
 		<React.Fragment>

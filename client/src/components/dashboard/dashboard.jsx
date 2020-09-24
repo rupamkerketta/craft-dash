@@ -141,7 +141,6 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				visible={editModal.visible}
 				onClose={() => setEditModal({ ...editModal, visible: false })}
 				animation='zoom'
-				duration={400}
 				width={720}
 				height={600}
 			>
@@ -152,7 +151,6 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				visible={deleteModal.visible}
 				onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
 				animation='zoom'
-				duration={400}
 				width={450}
 				height={200}
 			>
@@ -185,14 +183,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				</div>
 			</Rodal>
 
-			<Rodal
-				visible={visible}
-				onClose={() => setVisible(false)}
-				animation='zoom'
-				duration={400}
-				width={450}
-				height={480}
-			>
+			<Rodal visible={visible} onClose={() => setVisible(false)} animation='zoom' width={450} height={480}>
 				<div className='ideaboard-modal'>
 					<div className='ideaboard-header'>
 						<img src={Idea} alt='Idea' />

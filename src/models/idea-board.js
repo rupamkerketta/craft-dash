@@ -46,6 +46,6 @@ ideaboardSchema.statics.deleteIdeaBoard = async (board_id, current_user_id) => {
 	}
 }
 
-const IdeaBoard = mongoose.model('Ideaboard', ideaboardSchema)
+const IdeaBoard = mongoose.model('IdeaBoard', ideaboardSchema)
 
 module.exports = IdeaBoard

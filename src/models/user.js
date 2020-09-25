@@ -37,6 +37,12 @@ const userSchema = mongoose.Schema({
 			}
 		}
 	},
+	added_to: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'IdeaBoard'
+		}
+	],
 	tokens: [
 		{
 			token: {

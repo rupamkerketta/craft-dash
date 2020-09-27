@@ -144,7 +144,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				width={720}
 				height={600}
 			>
-				<Collaborators />
+				<Collaborators idea_board_id={`${editModal.id}`} />
 			</Rodal>
 
 			<Rodal

@@ -31,6 +31,7 @@
 
     .collaborators-form {
         margin-top: 50px;
+        border: 1px solid blue;
 
         form {
             display: flex;
@@ -119,6 +120,20 @@
                     color: white;
                     background-color: #0087cc;
                 }
+            }
+        }
+    }
+
+    .collaborators-list-wrapper {
+        border: 1px solid black;
+        padding-left: 30px;
+        padding-right: 30px;
+
+        .collaborators-list-header {
+            h2 {
+                font-family: $theme-font;
+                font-size: 1em;
+
             }
         }
     }

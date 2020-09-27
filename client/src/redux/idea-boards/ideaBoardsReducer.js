@@ -139,6 +139,20 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 
+		case TYPE.UPDATE_IB_COLLABORATORS_ADD:
+			return {
+				...state,
+				boards: {
+					...state.boards,
+					data: state.boards.data.map((idea_board) => {
+						if (idea_board._id.toString() === action.payload.idea_board_id) {
+							idea_board.collaborators.push(action.payload.new_collaborator)
+						}
+						return idea_board
+					})
+				}
+			}
+
 		default:
 			return state
 	}

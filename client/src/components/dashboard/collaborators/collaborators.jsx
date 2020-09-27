@@ -1,12 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import '../../../sass/collaborators.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import validator from 'validator'
 
 // Logos
 import Idea from '../../../img/idea.svg'
+import LoadingSpinner from '../../loading-spinner/loading-spinner'
 
-function Collaborators(props) {
+import { addCollaborator } from '../../../redux/collaborator/collaboratorActions'
+
+function Collaborators({ idea_board_id, boards, addCollaborator, collaborator }) {
 	const initialValues = {
 		collaborator_email: ''
 	}
@@ -23,8 +27,13 @@ function Collaborators(props) {
 		return errors
 	}
 
-	const onSubmit = (values) => {
-		console.log(values.Collaborator_email)
+	const onSubmit = (values, { resetForm }) => {
+		resetForm()
+		addCollaborator({
+			...values,
+			action: 'add-collaborator',
+			idea_board_id
+		})
 	}
 
 	const TextError = (props) => <div className='error-msg'>{props.children}</div>
@@ -54,15 +63,40 @@ function Collaborators(props) {
 									</div>
 								</div>
 								<div className='check-and-add'>
-									<button type='submit'>Check & Add</button>
+									{collaborator.isLoading ? (
+										<LoadingSpinner color='#0087cc' />
+									) : (
+										<button type='submit'>
+											<span>Check & Add</span>
+										</button>
+									)}
 								</div>
 							</Form>
 						)
 					}}
 				</Formik>
 			</div>
+			<div className='collaborators-list-wrapper'>
+				<div className='collaborators-list-header'>
+					<h2>Collaborators</h2>
+				</div>
+				<div className='collaborators-list-content'>
+					{boards.map((board) => {
+						if (board._id.toString() === idea_board_id.toString()) {
+							return board.collaborators.map((collaborator) => <p>{collaborator}</p>)
+						}
+					})}
+				</div>
+			</div>
 		</div>
 	)
 }
 
-export default Collaborators
+const mapStateToProps = (state) => {
+	return {
+		collaborator: state.collaborator,
+		boards: state.idea_boards.boards.data
+	}
+}
+
+export default connect(mapStateToProps, { addCollaborator })(Collaborators)

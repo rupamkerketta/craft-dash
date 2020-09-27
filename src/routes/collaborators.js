@@ -11,19 +11,7 @@ const IdeaBoard = require('../models/idea-board')
 // Check Add Remove
 router.post('/', auth, async (req, res) => {
 	try {
-		const { email, idea_board_id } = req.body
-
-		let action = ''
-
-		if (req.query.action) {
-			action = req.query.action
-		} else {
-			action = req.query.action
-		}
-
-		if (email === req.user.email) {
-			res.status(400).send({ message: 'Bad Request!!!' })
-		}
+		const { email, idea_board_id, action } = req.body
 
 		// Check if the user exists or not
 		const result = await User.findOne({ email })
@@ -34,8 +22,8 @@ router.post('/', auth, async (req, res) => {
 			const ideaBoard = await IdeaBoard.findById(idea_board_id)
 
 			if (ideaBoard) {
-				// Only perform the actions if the user is the owner if the idea-board
-				if (ideaBoard.owner.toString() === req.user._id.toString()) {
+				// Only perform the actions if the user is the owner of the idea-board
+				if (ideaBoard.owner.toString() === req.user._id.toString() && email !== req.user.email) {
 					if (action === 'add-collaborator') {
 						if (ideaBoard.collaborators.includes(email)) {
 							// If the collaborator already added to the ideaboard
@@ -48,7 +36,12 @@ router.post('/', auth, async (req, res) => {
 						await ideaBoard.save()
 						await result.save()
 
-						res.send({ message: 'Collaborator added successfully!!!' })
+						const collaborator_info = {
+							email: result.email,
+							_id: result._id
+						}
+
+						res.send({ message: 'Collaborator added successfully!!!', new_collaborator: collaborator_info })
 					} else if (action === 'remove-collaborator') {
 						const index_idb = ideaBoard.collaborators.indexOf(email)
 						ideaBoard.collaborators.splice(index_idb, 1)
@@ -60,7 +53,16 @@ router.post('/', auth, async (req, res) => {
 
 						await ideaBoard.save()
 						await result.save()
-						res.send({ message: 'Collaborator removed successfully!!!' })
+
+						const collaborator_info = {
+							email: result.email,
+							_id: result._id
+						}
+
+						res.send({
+							message: 'Collaborator removed successfully!!!',
+							removed_collaborator: collaborator_info
+						})
 					} else {
 						throw new Error()
 					}

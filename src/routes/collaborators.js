@@ -13,6 +13,8 @@ router.post('/', auth, async (req, res) => {
 	try {
 		const { email, idea_board_id, action } = req.body
 
+		console.log(email, idea_board_id, action)
+
 		// Check if the user exists or not
 		const result = await User.findOne({ email })
 
@@ -43,6 +45,7 @@ router.post('/', auth, async (req, res) => {
 
 						res.send({ message: 'Collaborator added successfully!!!', new_collaborator: collaborator_info })
 					} else if (action === 'remove-collaborator') {
+						console.log(`[remove-collaborator]`)
 						const index_idb = ideaBoard.collaborators.indexOf(email)
 						ideaBoard.collaborators.splice(index_idb, 1)
 

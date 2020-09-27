@@ -1,22 +1,41 @@
 import * as TYPE from './collaboratorTypes'
 
 const initialState = {
-	isLoading: false
+	addIsLoading: false,
+	removeIsLoading: false
 }
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case TYPE.COLLABORATOR_REQUEST:
+		case TYPE.ADD_COLLABORATOR_REQUEST:
 			return {
-				isLoading: true
+				...state,
+				addIsLoading: true
 			}
-		case TYPE.COLLABORATOR_SUCCESS:
+		case TYPE.ADD_COLLABORATOR_SUCCESS:
 			return {
-				isLoading: false
+				...state,
+				addIsLoading: false
 			}
-		case TYPE.COLLABORATOR_FAILURE:
+		case TYPE.ADD_COLLABORATOR_FAILURE:
 			return {
-				isLoading: false
+				...state,
+				addIsLoading: false
+			}
+		case TYPE.REMOVE_COLLABORATOR_REQUEST:
+			return {
+				...state,
+				removeIsLoading: true
+			}
+		case TYPE.REMOVE_COLLABORATOR_SUCCESS:
+			return {
+				...state,
+				removeIsLoading: false
+			}
+		case TYPE.REMOVE_COLLABORATOR_FAILURE:
+			return {
+				...state,
+				removeIsLoading: false
 			}
 		default:
 			return state

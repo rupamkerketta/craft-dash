@@ -8,9 +8,12 @@ import validator from 'validator'
 import Idea from '../../../img/idea.svg'
 import LoadingSpinner from '../../loading-spinner/loading-spinner'
 
-import { addCollaborator } from '../../../redux/collaborator/collaboratorActions'
+// Components
+import Collaborator from './collaborator/collaborator'
 
-function Collaborators({ idea_board_id, boards, addCollaborator, collaborator }) {
+import { actionCollaborator } from '../../../redux/collaborator/collaboratorActions'
+
+function Collaborators({ idea_board_id, boards, actionCollaborator, collaborator }) {
 	const initialValues = {
 		collaborator_email: ''
 	}
@@ -29,7 +32,7 @@ function Collaborators({ idea_board_id, boards, addCollaborator, collaborator })
 
 	const onSubmit = (values, { resetForm }) => {
 		resetForm()
-		addCollaborator({
+		actionCollaborator({
 			...values,
 			action: 'add-collaborator',
 			idea_board_id
@@ -63,7 +66,7 @@ function Collaborators({ idea_board_id, boards, addCollaborator, collaborator })
 									</div>
 								</div>
 								<div className='check-and-add'>
-									{collaborator.isLoading ? (
+									{collaborator.addIsLoading ? (
 										<LoadingSpinner color='#0087cc' />
 									) : (
 										<button type='submit'>
@@ -82,8 +85,15 @@ function Collaborators({ idea_board_id, boards, addCollaborator, collaborator })
 				</div>
 				<div className='collaborators-list-content'>
 					{boards.map((board) => {
-						if (board._id.toString() === idea_board_id.toString()) {
-							return board.collaborators.map((collaborator) => <p>{collaborator}</p>)
+						if (board._id.toString() === idea_board_id.toString() && board.collaborators.length !== 0) {
+							const res = board.collaborators.map((collaborator) => (
+								<Collaborator
+									key={collaborator}
+									collaborator_email={collaborator}
+									idea_board_id={idea_board_id}
+								/>
+							))
+							return res
 						}
 					})}
 				</div>
@@ -99,4 +109,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { addCollaborator })(Collaborators)
+export default connect(mapStateToProps, { actionCollaborator })(Collaborators)

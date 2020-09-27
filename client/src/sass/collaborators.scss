@@ -2,7 +2,6 @@
 @import './utils/fonts';
 
 .collaborators {
-    border: 1px solid white;
     padding-left: 30px;
     padding-right: 30px;
 
@@ -31,7 +30,6 @@
 
     .collaborators-form {
         margin-top: 50px;
-        border: 1px solid blue;
 
         form {
             display: flex;
@@ -125,7 +123,6 @@
     }
 
     .collaborators-list-wrapper {
-        border: 1px solid black;
         padding-left: 30px;
         padding-right: 30px;
 
@@ -133,7 +130,7 @@
             h2 {
                 font-family: $theme-font;
                 font-size: 1em;
-
+                margin-bottom: 7px;
             }
         }
     }

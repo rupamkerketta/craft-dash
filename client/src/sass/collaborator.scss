@@ -1,0 +1,42 @@
+@import './utils/colors';
+@import './utils/fonts';
+
+.collaborator {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    background-color: rgba(207, 238, 255, 0.349);
+
+    .collaborator-pic {
+        img {
+            width: 35px;
+        }
+    }
+
+    .collaborator-email {
+        h2 {
+            font-family: $theme-font;
+            font-size: 1em;
+            font-weight: 300;
+        }
+    }
+
+    .collaborator-remove-user {
+        img {
+            width: 40px;
+            padding: 7px;
+            cursor: pointer;
+            transition: .4s all ease;
+            border-radius: 4px;
+        }
+
+        img:hover {
+            background-color: #eb1f6d50;
+        }
+    }
+}

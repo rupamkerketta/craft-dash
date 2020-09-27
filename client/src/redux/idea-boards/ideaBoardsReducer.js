@@ -153,6 +153,32 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 
+		case TYPE.UPDATE_IB_COLLABORATORS_REMOVE:
+			const removeCollaborator = (arr, idea_board_id, removed_collaborator) => {
+				arr.forEach((board) => {
+					if (board._id.toString() === idea_board_id.toString()) {
+						const index = board.collaborators.indexOf(removed_collaborator)
+						board.collaborators.splice(index, 1)
+					}
+				})
+				return arr
+			}
+
+			return {
+				...state,
+				boards: {
+					...state.boards,
+					data: Object.assign(
+						[],
+						removeCollaborator(
+							state.boards.data,
+							action.payload.idea_board_id,
+							action.payload.removed_collaborator
+						)
+					)
+				}
+			}
+
 		default:
 			return state
 	}

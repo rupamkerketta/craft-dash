@@ -10,7 +10,8 @@ const Messaging = React.memo(({ room, username, socket }) => {
 	const [ messages, setMessages ] = useState([])
 
 	socket.on('chat-message', (data) => {
-		const obj = { message: data.message }
+		console.log(data)
+		const obj = { message: data.message, time: data.time }
 		setMessages([ ...messages, obj ])
 	})
 
@@ -45,7 +46,7 @@ const Messaging = React.memo(({ room, username, socket }) => {
 			</div>
 			<div className='chat-messages'>
 				{messages.map((obj, index) => {
-					return <Message key={index} data={obj.message} />
+					return <Message key={index} data={{ ...obj.message, time: obj.time }} />
 				})}
 			</div>
 			<div className='chat-input'>
@@ -66,10 +67,11 @@ const Messaging = React.memo(({ room, username, socket }) => {
 })
 
 const Message = (props) => {
+	console.log(props)
 	return (
 		<div className='message'>
 			<p className='chat-meta'>
-				{props.data.username} <span className='time'>10:30</span>
+				{props.data.username} <span className='time'>{props.data.time}</span>
 			</p>
 			<div className='chat-content-wrapper'>
 				<p className='chat-content'>{props.data.message}</p>

@@ -11,6 +11,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
+const moment = require('moment')
 const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
@@ -67,7 +68,9 @@ mongoose.connect(() => {
 				logUsers()
 				const user = getCurrentUser(socket.id)
 
-				io.to(user.room).emit('chat-message', { username: user.username, message })
+				io
+					.to(user.room)
+					.emit('chat-message', { username: user.username, message, time: moment().format('h:mm a') })
 			} catch (e) {
 				console.log(e)
 			}

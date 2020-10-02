@@ -11,6 +11,12 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
+const socketio = require('socket.io')
+const http = require('http')
+const server = http.createServer(app)
+const io = socketio(server)
+const { userJoin, getCurrentUser, logUsers } = require('./chat-module/user')
+
 // mongoDB Connection Module
 require('./db/mongoose')
 
@@ -46,5 +52,25 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 mongoose.connect(() => {
-	app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
+	server.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
+
+	io.on('connection', (socket) => {
+		socket.on('joinRoom', ({ username, room }) => {
+			const user = userJoin(socket.id, username, room)
+
+			socket.join(user.room)
+		})
+
+		// Listen for chat message
+		socket.on('chat-message', (message) => {
+			try {
+				logUsers()
+				const user = getCurrentUser(socket.id)
+
+				io.to(user.room).emit('chat-message', { username: user.username, message })
+			} catch (e) {
+				console.log(e)
+			}
+		})
+	})
 })

@@ -1,21 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../../sass/messaging.scss'
+import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 // Logos
 import MessagingIcon from '../../../img/messaging-icon.svg'
 
-function Messaging(props) {
+const Messaging = React.memo(({ room, username, socket }) => {
+	const [ messages, setMessages ] = useState([])
+
+	socket.on('chat-message', (data) => {
+		const obj = { message: data.message }
+		setMessages([ ...messages, obj ])
+	})
+
+	useEffect(() => {
+		socket.emit('joinRoom', { username, room })
+	}, [])
+
 	const initialValues = {
-		message: '',
-		owner: '',
-		idea_board_id: ''
+		message: ''
 	}
 
-	const validate = (values) => {}
+	const validate = (values) => {
+		let errors = {}
+
+		if (!values.message) {
+			errors.message = 'required'
+		}
+
+		return errors
+	}
 
 	const onSubmit = (values, { resetForm }) => {
 		resetForm()
+		console.log(values, room, username)
+		socket.emit('chat-message', { username, room, message: values.message })
 	}
 
 	return (
@@ -24,7 +44,9 @@ function Messaging(props) {
 				<img src={MessagingIcon} alt='Chat Box' title='Chat Box' />
 			</div>
 			<div className='chat-messages'>
-				<h4>Messaging - Chat Messages</h4>
+				{messages.map((obj, index) => {
+					return <Message key={index} data={obj.message} />
+				})}
 			</div>
 			<div className='chat-input'>
 				<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
@@ -41,6 +63,25 @@ function Messaging(props) {
 			</div>
 		</div>
 	)
+})
+
+const Message = (props) => {
+	return (
+		<div className='message'>
+			<p className='chat-meta'>
+				{props.data.username} <span className='time'>10:30</span>
+			</p>
+			<div className='chat-content-wrapper'>
+				<p className='chat-content'>{props.data.message}</p>
+			</div>
+		</div>
+	)
 }
 
-export default Messaging
+const mapStateToProps = (state) => {
+	return {
+		username: state.user.username
+	}
+}
+
+export default connect(mapStateToProps)(Messaging)

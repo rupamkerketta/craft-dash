@@ -16,7 +16,7 @@ const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
 const io = socketio(server)
-const { userJoin, getCurrentUser, logUsers } = require('./chat-module/user')
+const { userJoin, getCurrentUser } = require('./chat-module/user')
 
 // mongoDB Connection Module
 require('./db/mongoose')
@@ -65,7 +65,6 @@ mongoose.connect(() => {
 		// Listen for chat message
 		socket.on('chat-message', (message) => {
 			try {
-				logUsers()
 				const user = getCurrentUser(socket.id)
 
 				io

@@ -1,9 +1,12 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../../sass/messaging.scss'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { addMessage, resetMessages } from '../../../redux/chat/chatActions'
+
+// Chat Emojis
+import ReactEmoji from 'react-emoji'
 
 // Logos
 import MessagingIcon from '../../../img/messaging-icon.svg'
@@ -94,7 +97,7 @@ const Message = (props) => {
 				{props.data.username} <span className='time'>{props.data.time}</span>
 			</p>
 			<div className='chat-content-wrapper'>
-				<p className='chat-content'>{props.data.message}</p>
+				<p className='chat-content'>{ReactEmoji.emojify(props.data.message)}</p>
 			</div>
 		</div>
 	)

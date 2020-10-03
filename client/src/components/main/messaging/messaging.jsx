@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../../../sass/messaging.scss'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -8,6 +8,11 @@ import MessagingIcon from '../../../img/messaging-icon.svg'
 
 const Messaging = React.memo(({ room, username, socket }) => {
 	const [ messages, setMessages ] = useState([])
+	const chatBox = useRef(null)
+
+	const scrollToBottom = () => {
+		chatBox.current.scrollIntoView({ behavior: 'smooth' })
+	}
 
 	socket.on('chat-message', (data) => {
 		console.log(data)
@@ -15,9 +20,14 @@ const Messaging = React.memo(({ room, username, socket }) => {
 		setMessages([ ...messages, obj ])
 	})
 
-	useEffect(() => {
-		socket.emit('joinRoom', { username, room })
-	}, [])
+	socket.emit('joinRoom', { username, room })
+
+	useEffect(
+		() => {
+			scrollToBottom()
+		},
+		[ messages ]
+	)
 
 	const initialValues = {
 		message: ''
@@ -44,7 +54,7 @@ const Messaging = React.memo(({ room, username, socket }) => {
 			<div className='messaging-icon-wrapper'>
 				<img src={MessagingIcon} alt='Chat Box' title='Chat Box' />
 			</div>
-			<div className='chat-messages'>
+			<div className='chat-messages' ref={chatBox}>
 				{messages.map((obj, index) => {
 					return <Message key={index} data={{ ...obj.message, time: obj.time }} />
 				})}

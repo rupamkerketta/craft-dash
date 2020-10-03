@@ -20,6 +20,8 @@
         width: 100%;
         height: 83vh;
         overflow-y: scroll;
+        border: 1px solid white;
+        overflow-x: hidden;
 
         .message {
             width: 100%;
@@ -45,7 +47,9 @@
             }
 
             .chat-content-wrapper {
+
                 .chat-content {
+                    word-wrap: break-word;
                     padding-left: 7px;
                     padding-right: 7px;
                     padding-top: 10px;

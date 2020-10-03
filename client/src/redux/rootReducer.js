@@ -6,6 +6,7 @@ import signupReducer from './signup/signupReducer'
 import userReducer from './user/userReducer'
 import ideaBoardsReducer from './idea-boards/ideaBoardsReducer'
 import collaboratorReducer from './collaborator/collaboratorReducer'
+import chatReducer from './chat/chatReducer'
 
 const rootReducer = combineReducers({
 	auth: loginReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	logout: logoutReducer,
 	user: userReducer,
 	idea_boards: ideaBoardsReducer,
-	collaborator: collaboratorReducer
+	collaborator: collaboratorReducer,
+	chat: chatReducer
 })
 
 export default rootReducer

@@ -1,33 +1,35 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import '../../../sass/messaging.scss'
 import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
+import { addMessage, resetMessages } from '../../../redux/chat/chatActions'
+
 // Logos
 import MessagingIcon from '../../../img/messaging-icon.svg'
 
-const Messaging = React.memo(({ room, username, socket }) => {
-	const [ messages, setMessages ] = useState([])
-	const chatBox = useRef(null)
+const Messaging = ({ room, username, messages, socket, addMessage, resetMessages }) => {
+	useEffect(() => {
+		socket.emit('joinRoom', { username, room })
 
-	const scrollToBottom = () => {
-		chatBox.current.scrollIntoView({ behavior: 'smooth' })
-	}
+		socket.on('chat-message', (data) => {
+			const message = data.message.message
+			const time = data.time
+			const currentMsg = {
+				username,
+				message,
+				time,
+				room
+			}
+			console.log(currentMsg)
+			addMessage({ username, message, time, room })
+		})
 
-	socket.on('chat-message', (data) => {
-		console.log(data)
-		const obj = { message: data.message, time: data.time }
-		setMessages([ ...messages, obj ])
-	})
-
-	socket.emit('joinRoom', { username, room })
-
-	useEffect(
-		() => {
-			scrollToBottom()
-		},
-		[ messages ]
-	)
+		return () => {
+			console.log('[messaging] un-mounted')
+			window.location.reload()
+		}
+	}, [])
 
 	const initialValues = {
 		message: ''
@@ -54,11 +56,9 @@ const Messaging = React.memo(({ room, username, socket }) => {
 			<div className='messaging-icon-wrapper'>
 				<img src={MessagingIcon} alt='Chat Box' title='Chat Box' />
 			</div>
-			<div className='chat-messages' ref={chatBox}>
-				{messages.map((obj, index) => {
-					return <Message key={index} data={{ ...obj.message, time: obj.time }} />
-				})}
-			</div>
+
+			<Chats messages={messages} />
+
 			<div className='chat-input'>
 				<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
 					{(formik) => {
@@ -74,10 +74,20 @@ const Messaging = React.memo(({ room, username, socket }) => {
 			</div>
 		</div>
 	)
-})
+}
+
+const Chats = (props) => {
+	console.log(props.messages)
+	return (
+		<div className='chat-messages'>
+			{props.messages.map((obj, index) => {
+				return <Message key={index} data={obj} />
+			})}
+		</div>
+	)
+}
 
 const Message = (props) => {
-	console.log(props)
 	return (
 		<div className='message'>
 			<p className='chat-meta'>
@@ -92,8 +102,9 @@ const Message = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		username: state.user.username
+		username: state.user.username,
+		messages: state.chat.messages
 	}
 }
 
-export default connect(mapStateToProps)(Messaging)
+export default connect(mapStateToProps, { addMessage, resetMessages })(Messaging)

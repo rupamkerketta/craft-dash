@@ -8,5 +8,13 @@
     width: 80vw;
     height: 95vh;
 
+    border: 1px solid white;
+
     background-color: $main-board-color;
+
+    .my-graph {
+        .main-controls {
+            transform: scale(1.5);
+        }
+    }
 }

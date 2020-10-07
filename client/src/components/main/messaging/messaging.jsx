@@ -18,6 +18,7 @@ const Messaging = ({ room, username, messages, socket, addMessage, resetMessages
 		socket.on('chat-message', (data) => {
 			const message = data.message.message
 			const time = data.time
+			const username = data.username
 			const currentMsg = {
 				username,
 				message,

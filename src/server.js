@@ -67,6 +67,7 @@ mongoose.connect(() => {
 			try {
 				const user = getCurrentUser(socket.id)
 
+				console.log(`[chat-message-server] ${message}`)
 				io
 					.to(user.room)
 					.emit('chat-message', { username: user.username, message, time: moment().format('h:mm a') })

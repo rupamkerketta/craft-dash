@@ -46,29 +46,74 @@
 
 // export default MainBoard
 
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import '../../../sass/main-board.scss'
 
 import ReactFlow, { addEdge, removeElements, Background, Controls, MiniMap } from 'react-flow-renderer'
 
 const initialElements = [ { id: '1', type: 'input', data: { label: 'Craft Dash' }, position: { x: 0, y: 0 } } ]
-const onLoad = (reactFlowInstance) => {
-	reactFlowInstance.fitView()
-}
 
-const MainBoard = () => {
+const MainBoard = ({ room, socket }) => {
 	const [ focusElemens, setFocusElements ] = useState(null)
 	const [ elements, setElements ] = useState(initialElements)
 	const [ name, setName ] = useState('')
 
+	const checkId = (el, id) => {
+		return el === id
+	}
+
+	useEffect(() => {
+		socket.on('node-drag-stop', (data) => {
+			console.log(data)
+
+			let temp = [ ...elements ]
+			let updated_element = data.node
+
+			console.log(updated_element)
+
+			const index = elements.findIndex((el) => checkId(el.id, data.node.id))
+
+			console.log(index)
+			// temp[index] = updated_element
+
+			// console.log(temp)
+
+			// setElements([ ...temp ])
+		})
+
+		socket.on('receive-add-node', (data) => {
+			console.log(`[add-node] ${data}`)
+			addNodeLive(data.node)
+		})
+	}, [])
+
 	const addNode = () => {
-		setElements((e) =>
-			e.concat({
+		let node
+
+		setElements((e) => {
+			node = {
 				id: (e.length + 1).toString(),
 				data: { label: `${name}` },
 				position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
-			})
-		)
+			}
+			return e.concat(node)
+		})
+		socket.emit('send-add-node', { room, node })
+	}
+
+	const addNodeLive = (node) => {
+		setElements((e) => e.concat(node))
+	}
+
+	const onNodeDragStart = (event, node) => console.log('drag start', node)
+	const onNodeDragStop = (event, node) => {
+		console.log('drag stop', node)
+		socket.emit('on-drag-stop', { room, node })
+	}
+
+	const onLoad = (reactFlowInstance) => {
+		console.log('flow loaded:', reactFlowInstance)
+		reactFlowInstance.fitView()
 	}
 
 	const onConnect = (params) => {
@@ -92,8 +137,11 @@ const MainBoard = () => {
 				onLoad={onLoad}
 				style={{ width: '100%', height: '90vh' }}
 				onConnect={onConnect}
+				onLoad={onLoad}
 				onSelectionChange={onSelectionChange}
 				connectionLineStyle={{ stroke: '#ddd', strokeWidth: 3 }}
+				onNodeDragStart={onNodeDragStart}
+				onNodeDragStop={onNodeDragStop}
 				snapToGrid={true}
 				snapGrid={[ 16, 16 ]}
 			>

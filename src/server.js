@@ -35,6 +35,7 @@ const usersRouter = require('./routes/users')
 const ideaBoardRouter = require('./routes/idea-board')
 const collaboratorsRouter = require('./routes/collaborators')
 const mongoose = require('./db/mongoose')
+const { isContext } = require('vm')
 
 // Middlewares
 app.use(express.json(), cookieParser(), cors(corsOptions))
@@ -66,11 +67,27 @@ mongoose.connect(() => {
 		socket.on('chat-message', (message) => {
 			try {
 				const user = getCurrentUser(socket.id)
-
-				console.log(`[chat-message-server] ${message}`)
 				io
 					.to(user.room)
 					.emit('chat-message', { username: user.username, message, time: moment().format('h:mm a') })
+			} catch (e) {
+				console.log(e)
+			}
+		})
+
+		// Listen for node changes
+		socket.on('on-drag-stop', (data) => {
+			try {
+				io.to(data.room).emit('node-drag-stop', { node: data.node })
+			} catch (e) {
+				console.log(e)
+			}
+		})
+
+		socket.on('send-add-node', (data) => {
+			try {
+				console.log(`[node-update] ${JSON.stringify(data.node)} roomId: "${data.room}"`)
+				socket.broadcast.to(data.room).emit('receive-add-node', { node: data.node })
 			} catch (e) {
 				console.log(e)
 			}

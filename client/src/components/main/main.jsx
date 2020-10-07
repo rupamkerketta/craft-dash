@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import '../../sass/main.scss'
 
 // Components
@@ -10,8 +10,12 @@ import io from 'socket.io-client'
 import { server } from '../../utils/api'
 
 function Main({ match }) {
+	const [ socket, setSocket ] = useState(null)
+
 	useEffect(() => {
 		console.log(match)
+		const s = io(server)
+		setSocket(s)
 	}, [])
 
 	return (
@@ -19,12 +23,16 @@ function Main({ match }) {
 			<div className='top-nav-wrapper'>
 				<TopNavMain />
 			</div>
-			<div className='main-board-wrapper'>
-				<MainBoard />
-			</div>
-			<div className='messaging-wrapper'>
-				<Messaging room={match.params.id} socket={io(server)} />
-			</div>
+			{socket ? (
+				<Fragment>
+					<div className='main-board-wrapper'>
+						<MainBoard room={match.params.id} socket={socket} />
+					</div>
+					<div className='messaging-wrapper'>
+						<Messaging room={match.params.id} socket={socket} />
+					</div>
+				</Fragment>
+			) : null}
 		</div>
 	)
 }

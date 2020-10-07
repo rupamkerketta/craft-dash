@@ -1,51 +1,3 @@
-// import React, { useState } from 'react'
-// import ReactFlow, { MiniMap, Controls, removeElements } from 'react-flow-renderer'
-// import '../../../sass/main-board.scss'
-
-// function MainBoard() {
-// 	const [ elements, setElements ] = useState([
-// 		{ id: '1', data: { label: 'Node 1' }, position: { x: 250, y: 5 }, style: { fontFamily: 'Poppins' } },
-// 		{ id: '2', data: { label: <div>Node 2</div> }, position: { x: 100, y: 100 }, style: { fontFamily: 'Poppins' } },
-// 		{
-// 			id: 'e1-2',
-// 			source: '1',
-// 			target: '2',
-// 			animated: true,
-// 			labelBgBorderRadius: 4,
-// 			label: 'animated',
-// 			style: { stroke: '#ffffff' }
-// 		}
-// 	])
-
-// 	const update = () => {
-// 		setElements(elements.splice(2, 1))
-// 	}
-
-// 	return (
-// 		<div className='main-board'>
-// 			<ReactFlow className='my-graph' elements={elements}>
-// 				<MiniMap
-// 					nodeColor={(node) => {
-// 						switch (node.type) {
-// 							case 'input':
-// 								return 'red'
-// 							case 'default':
-// 								return '#00ff00'
-// 							case 'output':
-// 								return 'rgb(0,0,255)'
-// 							default:
-// 								return '#eee'
-// 						}
-// 					}}
-// 				/>
-// 				<Controls className='main-controls' />
-// 			</ReactFlow>
-// 		</div>
-// 	)
-// }
-
-// export default MainBoard
-
 import React, { useState, useEffect, Fragment } from 'react'
 import '../../../sass/main-board.scss'
 
@@ -58,38 +10,17 @@ const MainBoard = ({ room, socket }) => {
 	const [ elements, setElements ] = useState(initialElements)
 	const [ name, setName ] = useState('')
 
-	const checkId = (el, id) => {
-		return el === id
-	}
-
 	useEffect(() => {
-		socket.on('node-drag-stop', (data) => {
-			console.log(data)
+		socket.emit('joinRoomMain', { room })
 
-			let temp = [ ...elements ]
-			let updated_element = data.node
-
-			console.log(updated_element)
-
-			const index = elements.findIndex((el) => checkId(el.id, data.node.id))
-
-			console.log(index)
-			// temp[index] = updated_element
-
-			// console.log(temp)
-
-			// setElements([ ...temp ])
-		})
-
-		socket.on('receive-add-node', (data) => {
-			console.log(`[add-node] ${data}`)
-			addNodeLive(data.node)
+		socket.on('new-node-broadcast', (data) => {
+			console.log(`[new-node-broadcast] ${JSON.stringify(data.node)}`)
+			addNodeBroadcast(data.node)
 		})
 	}, [])
 
 	const addNode = () => {
-		let node
-
+		let node = {}
 		setElements((e) => {
 			node = {
 				id: (e.length + 1).toString(),
@@ -98,17 +29,20 @@ const MainBoard = ({ room, socket }) => {
 			}
 			return e.concat(node)
 		})
-		socket.emit('send-add-node', { room, node })
+		// Broadcast this to others 🤘
+		socket.emit('broadcast-node-added', { room, node })
 	}
 
-	const addNodeLive = (node) => {
+	const addNodeBroadcast = (node) => {
 		setElements((e) => e.concat(node))
 	}
 
-	const onNodeDragStart = (event, node) => console.log('drag start', node)
+	const onNodeDragStart = (event, node) => {
+		console.log('drag start', node)
+	}
+
 	const onNodeDragStop = (event, node) => {
 		console.log('drag stop', node)
-		socket.emit('on-drag-stop', { room, node })
 	}
 
 	const onLoad = (reactFlowInstance) => {

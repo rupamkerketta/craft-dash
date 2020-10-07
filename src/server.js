@@ -63,6 +63,10 @@ mongoose.connect(() => {
 			socket.join(user.room)
 		})
 
+		socket.on('joinRoomMain', (data) => {
+			socket.join(`${data.room}-main`)
+		})
+
 		// Listen for chat message
 		socket.on('chat-message', (message) => {
 			try {
@@ -76,18 +80,9 @@ mongoose.connect(() => {
 		})
 
 		// Listen for node changes
-		socket.on('on-drag-stop', (data) => {
+		socket.on('broadcast-node-added', (data) => {
 			try {
-				io.to(data.room).emit('node-drag-stop', { node: data.node })
-			} catch (e) {
-				console.log(e)
-			}
-		})
-
-		socket.on('send-add-node', (data) => {
-			try {
-				console.log(`[node-update] ${JSON.stringify(data.node)} roomId: "${data.room}"`)
-				socket.broadcast.to(data.room).emit('receive-add-node', { node: data.node })
+				socket.broadcast.to(`${data.room}-main`).emit('new-node-broadcast', { node: data.node })
 			} catch (e) {
 				console.log(e)
 			}

@@ -87,5 +87,33 @@ mongoose.connect(() => {
 				console.log(e)
 			}
 		})
+
+		// Position Update
+		socket.on('broadcast-node-pos', (data) => {
+			try {
+				socket.broadcast.to(`${data.room}-main`).emit('new-pos-broadcast', { node: data.node })
+			} catch (e) {
+				console.log(e)
+			}
+		})
+
+		// Edge Update
+		socket.on('new-edge-added-broadcast', (data) => {
+			try {
+				socket.broadcast.to(`${data.room}-main`).emit('add-new-edge', { edge: data.edge })
+			} catch (e) {
+				console.log(e)
+			}
+		})
+
+		socket.on('mouse-pointer-broadcast', (data) => {
+			try {
+				socket.broadcast
+					.to(`${data.room}-main`)
+					.emit('user-pointer-updates', { email: data.email, pos: { x: data.x, y: data.y } })
+			} catch (e) {
+				console.log(e)
+			}
+		})
 	})
 })

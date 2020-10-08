@@ -10,6 +10,13 @@
 
     background-color: $main-board-color;
 
+    .circle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: red;
+    }
+
     .mini-map {
         opacity: .4;
     }

@@ -152,16 +152,13 @@ const MainBoard = ({ room, socket }) => {
 						return '#FFCC00'
 					}}
 				/>
-				<Controls />
+				<Controls className='main-controls-plugin' />
 			</ReactFlow>
 
-			<div>
-				<input type='text' onChange={(e) => setName(e.target.value)} name='title' />
-				<button type='button' onClick={addNode}>
+			<div className='main-node-controls'>
+				<input type='text' className='node-text-input' onChange={(e) => setName(e.target.value)} name='title' />
+				<button className='add-node' type='button' onClick={addNode}>
 					Add Node
-				</button>
-				<button type='button' onClick={() => onElementsRemove(focusElemens)}>
-					Remove
 				</button>
 			</div>
 		</div>

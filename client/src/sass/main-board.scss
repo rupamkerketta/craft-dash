@@ -19,12 +19,46 @@
 
     .mini-map {
         opacity: .4;
+        transform: scale(0.8);
     }
 
-    // .my-graph {
-    //     .main-controls {
-    //         transform: scale(1.5);
-    //     }
+    .main-controls-plugin {
+        transform: scale(1.5);
+        margin-bottom: 20px;
+    }
 
-    // }
+
+    .main-node-controls {
+        height: 39px;
+        display: flex;
+        align-items: center;
+
+        .node-text-input {
+            border: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 4px;
+            padding-right: 4px;
+            width: 300px;
+            font-family: $theme-font;
+            font-size: 1em;
+            border-radius: 3px;
+            margin-left: 35px;
+            outline: none;
+        }
+
+        .add-node {
+            margin-left: 20px;
+            border: 0;
+            font-family: $theme-font;
+            font-size: 1em;
+            width: 100px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            color: white;
+            background-color: #0087cc;
+        }
+    }
 }

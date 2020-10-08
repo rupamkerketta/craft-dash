@@ -6,7 +6,6 @@
     top: 5vh;
     left: 0;
     width: 80vw;
-    height: 95vh;
 
     background-color: $main-board-color;
 
@@ -29,6 +28,9 @@
 
 
     .main-node-controls {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
         height: 39px;
         display: flex;
         align-items: center;

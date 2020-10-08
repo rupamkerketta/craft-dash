@@ -132,7 +132,7 @@ const MainBoard = ({ room, socket }) => {
 				onMouseMove={onMouseMove}
 				elements={elements}
 				onLoad={onLoad}
-				style={{ width: '100%', height: '90vh' }}
+				style={{ width: '100%', height: '88vh' }}
 				onConnect={onConnect}
 				onConnectEnd={onConnectEnd}
 				onLoad={onLoad}

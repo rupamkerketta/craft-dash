@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, connect } from 'react-redux'
 import '../../../sass/main-board.scss'
 
 import ReactFlow, { addEdge, removeElements, Background, Controls, MiniMap } from 'react-flow-renderer'
 
+import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
+
 const initialElements = [ { id: '1', type: 'input', data: { label: 'Craft Dash' }, position: { x: 0, y: 0 } } ]
 
-const MainBoard = ({ room, socket }) => {
+const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom }) => {
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
-	const [ focusElemens, setFocusElements ] = useState(null)
+	const [ focusElements, setFocusElements ] = useState(null)
 	const [ elements, setElements ] = useState(initialElements)
 	const [ name, setName ] = useState('')
 
@@ -18,6 +20,16 @@ const MainBoard = ({ room, socket }) => {
 
 	useEffect(() => {
 		socket.emit('joinRoomMain', { room })
+
+		socket.on('user-connected', (data) => {
+			console.log(`[user-connected] ${data.email}`)
+			addNewUserRoom(data)
+		})
+
+		socket.on('user-disconnected', (data) => {
+			console.log(`[user-disconnected] ${data.email}`)
+			removeUserRoom(data)
+		})
 
 		socket.on('new-node-broadcast', (data) => {
 			console.log(`[new-node-broadcast] ${JSON.stringify(data.node)}`)
@@ -165,4 +177,10 @@ const MainBoard = ({ room, socket }) => {
 	)
 }
 
-export default MainBoard
+const mapStateToProps = (state) => {
+	return {
+		state: state
+	}
+}
+
+export default connect(mapStateToProps, { addNewUserRoom, removeUserRoom })(MainBoard)

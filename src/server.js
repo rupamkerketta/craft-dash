@@ -16,7 +16,7 @@ const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
 const io = socketio(server)
-const { userJoin, getCurrentUser } = require('./chat-module/user')
+const { userJoin, getCurrentUser, userLeaves, getRoomUsers } = require('./chat-module/user')
 
 // mongoDB Connection Module
 require('./db/mongoose')
@@ -35,7 +35,6 @@ const usersRouter = require('./routes/users')
 const ideaBoardRouter = require('./routes/idea-board')
 const collaboratorsRouter = require('./routes/collaborators')
 const mongoose = require('./db/mongoose')
-const { isContext } = require('vm')
 
 // Middlewares
 app.use(express.json(), cookieParser(), cors(corsOptions))
@@ -57,10 +56,23 @@ mongoose.connect(() => {
 	server.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
 
 	io.on('connection', (socket) => {
-		socket.on('joinRoom', ({ username, room }) => {
-			const user = userJoin(socket.id, username, room)
+		socket.on('joinRoom', ({ username, email, room }) => {
+			const user = userJoin(socket.id, username, email, room)
 
 			socket.join(user.room)
+
+			socket.emit('successful-connection', { room })
+
+			socket.emit('room-users', { users: getRoomUsers(room) })
+			socket.broadcast.to(user.room).emit('user-connected', user)
+		})
+
+		socket.on('disconnect', () => {
+			const user = userLeaves(socket.id)
+
+			if (user) {
+				socket.broadcast.to(user.room).emit('user-disconnected', user)
+			}
 		})
 
 		socket.on('joinRoomMain', (data) => {

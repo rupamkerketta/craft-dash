@@ -34,16 +34,27 @@ export const createIBS = (data) => async (dispatch) => {
 		if (refreshIBS('NEW')) {
 			dispatch(addNewBoard(res.data))
 		}
-		notify(`IdeaBoard - ${res.data.idea_board_name} created successfully.`, NOTIFICATION_TYPE.INFO, 3000)
-		console.log(res.data)
+
+		notify(
+			{ message: `IdeaBoard - ${res.data.idea_board_name} created successfully.` },
+			NOTIFICATION_TYPE.INFO,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	} catch (e) {
 		if (e.response) {
 			dispatch(ibCreateFailure(e.response.data))
 		} else {
 			dispatch(ibCreateFailure(e.message))
 		}
-		notify('Unable to perform the create action.', NOTIFICATION_TYPE.INFO, 3000)
-		console.log(e)
+
+		notify({ message: 'Unable to perform the create action.' }, NOTIFICATION_TYPE.WARNING, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	}
 }
 
@@ -51,20 +62,27 @@ export const deleteIBS = (board_id) => async (dispatch) => {
 	dispatch(ibDeleteRequest())
 	try {
 		const res = await api.delete(`/idea-board/delete-board/${board_id}`)
+
 		dispatch(ibDeleteSuccess(res.data.info))
+
 		if (refreshIBS('DELETE')) {
-			console.log(res.data)
 			dispatch(removeBoard(res.data.info._id))
 		}
-		notify(`${res.data.message}`, NOTIFICATION_TYPE.INFO, 3000)
+
+		notify({ message: `${res.data.message}` }, NOTIFICATION_TYPE.INFO, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	} catch (e) {
 		if (e.response) {
 			dispatch(ibDeleteFailure(e.response.data))
 		} else {
 			dispatch(ibDeleteFailure(e.message))
 		}
-		notify('Unable to perform the delete action.', NOTIFICATION_TYPE.ERROR, 3000)
-		console.log(e)
+		notify({ message: 'Unable to perform the delete action.' }, NOTIFICATION_TYPE.ERROR, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	}
 }
 
@@ -88,7 +106,6 @@ const refreshIBS = (checkFor) => {
 
 		if (new_board_id === -1) {
 			// Do Nothing
-			console.log(`[REFRESH - NEW] No new changes`)
 			return false
 		} else {
 			if (!board_ids.includes(new_board_id)) {
@@ -111,7 +128,6 @@ const refreshIBS = (checkFor) => {
 
 		if (delete_board_id === -1) {
 			// Do Nothing
-			console.log(`[REFRESH - DELETE] No new changes`)
 			return false
 		} else {
 			if (board_ids.includes(delete_board_id)) {
@@ -119,7 +135,6 @@ const refreshIBS = (checkFor) => {
 			} else {
 				return false
 			}
-			// const boards_updated = state.boards.data.filter((board) => board._id !== delete_board_id)
 		}
 	}
 }

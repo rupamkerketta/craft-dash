@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux'
 import * as TYPE from './chatTypes'
 
 export const addMessage = ({ username, message, time, room }) => (dispatch) => {

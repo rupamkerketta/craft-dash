@@ -15,12 +15,24 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 	const addSuccessHandler = (res) => {
 		dispatch(addCollaboratorSuccess())
 		dispatch(ibUpdateCollaboratorsAdd({ idea_board_id, new_collaborator: res.data.new_collaborator.email }))
-		notify(`Collaborator ${res.data.new_collaborator.email} added successfully!!!`, NOTIFICATION_TYPE.INFO, 3000)
+
+		notify(
+			{ message: `Collaborator ${res.data.new_collaborator.email} added successfully!!!` },
+			NOTIFICATION_TYPE.INFO,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	}
 
 	const addErrHandler = () => {
 		dispatch(addCollaboratorFailure())
-		notify(`Collaborator ERROR!!!`, NOTIFICATION_TYPE.ERROR, 3000)
+		notify({ message: `Collaborator ERROR!!!` }, NOTIFICATION_TYPE.ERROR, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	}
 
 	// Remove Collaborator Action Handlers
@@ -34,17 +46,24 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 		dispatch(
 			ibUpdateCollaboratorsRemove({ idea_board_id, removed_collaborator: res.data.removed_collaborator.email })
 		)
-		// notify(`Collaborator ${res.data.new_collaborator.email} added successfully!!!`, NOTIFICATION_TYPE.INFO, 3000)
+
 		notify(
-			`Collaborator ${res.data.removed_collaborator.email} removed successfully!!!`,
+			{ message: `Collaborator ${res.data.removed_collaborator.email} removed successfully!!!` },
 			NOTIFICATION_TYPE.INFO,
-			3000
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
 		)
 	}
 
 	const removeErrHandler = () => {
 		dispatch(removeCollaboratorFailure())
-		notify(`Collaborator ERROR!!!`, NOTIFICATION_TYPE.ERROR, 3000)
+		notify({ message: `Collaborator ERROR!!!` }, NOTIFICATION_TYPE.ERROR, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	}
 
 	switch (action) {

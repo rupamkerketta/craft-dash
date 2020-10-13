@@ -12,14 +12,18 @@ export const attemptLogin = (username, password) => async (dispatch) => {
 	dispatch(loginRequest())
 	try {
 		const res = await api.post('/user/login', body)
-		console.log(res)
 		const { username, email, message } = res.data
+
 		dispatch(loginSuccess(message))
 		dispatch(setUser(username, email))
 	} catch (e) {
 		console.log(e.message)
 		dispatch(loginFailure(e.message))
-		notify('Invalid username or password', TYPE.ERROR)
+
+		notify({ message: 'Invalid username or password' }, TYPE.ERROR, 'zoom', {
+			autoClose: 3000,
+			position: 'top-right'
+		})
 	}
 }
 

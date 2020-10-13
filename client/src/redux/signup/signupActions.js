@@ -15,8 +15,11 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 	} catch (e) {
 		if (e.response) {
 			dispatch(signupFailure(e.response.data.message))
-			notify(e.response.data.message, NOTIFICATION_TYPE.ERROR)
-			console.log(e.response.data)
+
+			notify({ message: e.response.data.message }, NOTIFICATION_TYPE.ERROR, 'zoom', {
+				autoClose: 3000,
+				position: 'top-right'
+			})
 		} else {
 			dispatch(signupFailure(e.message))
 			console.log(e.message)

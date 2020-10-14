@@ -99,6 +99,16 @@ const MainBoard = ({
 		node = {
 			id: (elements.length + 1).toString(),
 			data: { label: `${name}` },
+			type: 'default',
+			style: {
+				backgroundColor: '#ffffff',
+				color: 'black',
+				fontFamily: 'Poppins',
+				fontWeight: '300',
+				minWidth: '100px',
+				maxWidth: '400px',
+				wordBreak: 'break-word'
+			},
 			position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
 		}
 
@@ -115,8 +125,6 @@ const MainBoard = ({
 
 	// Updating Node/Idea position (x,y)
 	const updatePos = (node) => {
-		// FIXME: Shift this login to the reducer module
-
 		updatePos_Main(node)
 	}
 
@@ -139,6 +147,7 @@ const MainBoard = ({
 		params = {
 			...params,
 			animated: true,
+			type: 'smoothedge',
 			id: `${elements.length}-egde-${params.source}-${params.target}`
 		}
 
@@ -192,14 +201,39 @@ const MainBoard = ({
 				snapGrid={[ 16, 16 ]}
 			>
 				<Background color='#888' gap={16} />
+
 				<MiniMap
 					className='mini-map'
-					nodeColor={(n) => {
-						if (n.type === 'input') return 'blue'
-
-						return '#FFCC00'
+					nodeColor={(node) => {
+						switch (node.type) {
+							case 'input':
+								return 'red'
+							case 'default':
+								return '#00ff00'
+							case 'output':
+								return 'rgb(0,0,255)'
+							default:
+								return '#eee'
+						}
 					}}
 				/>
+
+				{/* <MiniMap
+					className='mini-map'
+					nodeStrokeColor={(n) => {
+						// if (typeof n.style.background !== undefined) return n.style.background
+						if (n.type === 'input') return '#0041d0'
+						if (n.type === 'output') return '#ff0072'
+						if (n.type === 'default') return '#1a192b'
+						return '#eee'
+					}}
+					nodeColor={(n) => {
+						// if (typeof n.style.background !== undefined) return n.style.background
+						return '#fff'
+					}}
+					borderRadius={2}
+				/> */}
+
 				<Controls className='main-controls-plugin' />
 			</ReactFlow>
 

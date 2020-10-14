@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
 import { addMessage, resetMessages } from '../../../redux/chat/chatActions'
-import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 
 // Chat Emojis
 import ReactEmoji from 'react-emoji'
@@ -12,30 +11,12 @@ import ReactEmoji from 'react-emoji'
 // Logos
 import MessagingIcon from '../../../img/messaging-icon.svg'
 
-const Messaging = ({ room, username, email, messages, socket, addMessage, addUsersRoom, setIdRoom }) => {
+const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 	useEffect(() => {
-		socket.emit('joinRoom', { username, room, email })
-
-		socket.on('successful-connection', (data) => {
-			setIdRoom(data.room)
-		})
-
-		socket.on('room-users', (data) => {
-			console.log(`[room-users] ${JSON.stringify(data.users)}`)
-			addUsersRoom(data.users)
-		})
-
 		socket.on('chat-message', (data) => {
 			const message = data.message.message
 			const time = data.time
 			const username = data.username
-			const currentMsg = {
-				username,
-				message,
-				time,
-				room
-			}
-			console.log(currentMsg)
 			addMessage({ username, message, time, room })
 		})
 
@@ -122,4 +103,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { addMessage, resetMessages, addUsersRoom, setIdRoom })(Messaging)
+export default connect(mapStateToProps, { addMessage, resetMessages })(Messaging)

@@ -6,9 +6,11 @@ import ReactFlow, { addEdge, removeElements, Background, Controls, MiniMap } fro
 
 import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
 
+import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
+
 const initialElements = [ { id: '1', type: 'input', data: { label: 'Craft Dash' }, position: { x: 0, y: 0 } } ]
 
-const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom }) => {
+const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom, setIdRoom }) => {
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
@@ -16,36 +18,54 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom }) => {
 	const [ elements, setElements ] = useState(initialElements)
 	const [ name, setName ] = useState('')
 
-	const [ mousePos, setMousePos ] = useState({})
-
 	useEffect(() => {
-		socket.emit('joinRoomMain', { room })
+		// [Sends Data] - Sends a join request
+		socket.emit('joinRoom', { username, room, email })
 
+		//[Receives Data] When a use joins the session - Shows a notification
 		socket.on('user-connected', (data) => {
 			console.log(`[user-connected] ${data.email}`)
 			addNewUserRoom(data)
 		})
 
+		// [Receives Data] When a user gets disconnected or leaves the session - Shows a notification
 		socket.on('user-disconnected', (data) => {
 			console.log(`[user-disconnected] ${data.email}`)
 			removeUserRoom(data)
 		})
 
+		// [Receives Data] This handler receives the current room id on a successful connection
+		socket.on('successful-connection', (data) => {
+			setIdRoom(data.room)
+		})
+
+		// [Receives Data] Handler for getting the current users present in the session
+		socket.on('room-users', (data) => {
+			console.log(`[room-users] ${JSON.stringify(data.users)}`)
+			addUsersRoom(data.users)
+		})
+
+		// [Receives Data] A new node is added when someone creates it in the ideaboard
 		socket.on('new-node-broadcast', (data) => {
 			console.log(`[new-node-broadcast] ${JSON.stringify(data.node)}`)
 			addNodeBroadcast(data.node)
 		})
 
+		// [Receives Data] Updates the (x,y) position of the nodes when someone updates the positions of the nodes in the ideaboard
 		socket.on('new-pos-broadcast', (data) => {
 			console.log(`[new-pos-broadcast] ${JSON.stringify(data.node)}`)
 			updatePos(data.node)
 		})
 
+		// [Receives Data] Updates the edges when someone updates them in the ideaboard
 		socket.on('add-new-edge', (data) => {
 			console.log(`[new-edge-connection] ${JSON.stringify(data.edge)}`)
 			setElements((e) => e.concat(data.edge))
 		})
 
+		// TODO: Operations -> REMOVE:EDGE, EDIT:EDGE, REMOVE:NODE, EDIT:NODE
+
+		// FIXME: Fix/Update the mouse pointer feature
 		socket.on('user-pointer-updates', (data) => {
 			console.log(JSON.stringify(data))
 		})
@@ -137,9 +157,6 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom }) => {
 
 	return (
 		<div className='main-board'>
-			{/* {
-				mousePos.map(obj => <div className='circle' style={}/>)
-			} */}
 			<ReactFlow
 				onMouseMove={onMouseMove}
 				elements={elements}
@@ -183,4 +200,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { addNewUserRoom, removeUserRoom })(MainBoard)
+export default connect(mapStateToProps, { addNewUserRoom, removeUserRoom, addUsersRoom, setIdRoom })(MainBoard)

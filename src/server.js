@@ -75,10 +75,6 @@ mongoose.connect(() => {
 			}
 		})
 
-		socket.on('joinRoomMain', (data) => {
-			socket.join(`${data.room}-main`)
-		})
-
 		// Listen for chat message
 		socket.on('chat-message', (message) => {
 			try {
@@ -94,7 +90,7 @@ mongoose.connect(() => {
 		// Listen for node changes
 		socket.on('broadcast-node-added', (data) => {
 			try {
-				socket.broadcast.to(`${data.room}-main`).emit('new-node-broadcast', { node: data.node })
+				socket.broadcast.to(data.room).emit('new-node-broadcast', { node: data.node })
 			} catch (e) {
 				console.log(e)
 			}
@@ -103,7 +99,7 @@ mongoose.connect(() => {
 		// Position Update
 		socket.on('broadcast-node-pos', (data) => {
 			try {
-				socket.broadcast.to(`${data.room}-main`).emit('new-pos-broadcast', { node: data.node })
+				socket.broadcast.to(data.room).emit('new-pos-broadcast', { node: data.node })
 			} catch (e) {
 				console.log(e)
 			}
@@ -112,7 +108,7 @@ mongoose.connect(() => {
 		// Edge Update
 		socket.on('new-edge-added-broadcast', (data) => {
 			try {
-				socket.broadcast.to(`${data.room}-main`).emit('add-new-edge', { edge: data.edge })
+				socket.broadcast.to(data.room).emit('add-new-edge', { edge: data.edge })
 			} catch (e) {
 				console.log(e)
 			}
@@ -121,7 +117,7 @@ mongoose.connect(() => {
 		socket.on('mouse-pointer-broadcast', (data) => {
 			try {
 				socket.broadcast
-					.to(`${data.room}-main`)
+					.to(data.room)
 					.emit('user-pointer-updates', { email: data.email, pos: { x: data.x, y: data.y } })
 			} catch (e) {
 				console.log(e)

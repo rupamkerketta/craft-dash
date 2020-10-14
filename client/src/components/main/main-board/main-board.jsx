@@ -8,14 +8,27 @@ import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
 
 import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 
-const initialElements = [ { id: '1', type: 'input', data: { label: 'Craft Dash' }, position: { x: 0, y: 0 } } ]
+// Elements
+import * as ELEMENTS from '../../../redux/elements/elementsActions'
 
-const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom, setIdRoom }) => {
+const MainBoard = ({
+	room,
+	socket,
+	addNewUserRoom,
+	removeUserRoom,
+	addUsersRoom,
+	setIdRoom,
+	elements,
+	addNode_Main,
+	addNodeBroadcast_Main,
+	updatePos_Main,
+	onConnectSend_Main,
+	onConnectReceive_Main
+}) => {
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
 	const [ focusElements, setFocusElements ] = useState(null)
-	const [ elements, setElements ] = useState(initialElements)
 	const [ name, setName ] = useState('')
 
 	useEffect(() => {
@@ -60,7 +73,8 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom,
 		// [Receives Data] Updates the edges when someone updates them in the ideaboard
 		socket.on('add-new-edge', (data) => {
 			console.log(`[new-edge-connection] ${JSON.stringify(data.edge)}`)
-			setElements((e) => e.concat(data.edge))
+			// setElements((e) => e.concat(data.edge))
+			onConnectReceive_Main(data.edge)
 		})
 
 		// TODO: Operations -> REMOVE:EDGE, EDIT:EDGE, REMOVE:NODE, EDIT:NODE
@@ -73,36 +87,37 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom,
 
 	const addNode = () => {
 		let node = {}
-		setElements((e) => {
-			node = {
-				id: (e.length + 1).toString(),
-				data: { label: `${name}` },
-				position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
-			}
-			return e.concat(node)
-		})
+		// setElements((e) => {
+		// 	node = {
+		// 		id: (e.length + 1).toString(),
+		// 		data: { label: `${name}` },
+		// 		position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
+		// 	}
+		// 	return e.concat(node)
+		// })
+		// FIXME: Fix the random positon of the node, limit its scope around the previous element
+		node = {
+			id: (elements.length + 1).toString(),
+			data: { label: `${name}` },
+			position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
+		}
+
+		addNode_Main(node)
+
 		// Broadcast this to others 🤘
 		socket.emit('broadcast-node-added', { room, node })
 	}
 
 	// Updating the idea board when someone adds a new node
 	const addNodeBroadcast = (node) => {
-		setElements((e) => e.concat(node))
+		addNodeBroadcast_Main(node)
 	}
 
 	// Updating Node/Idea position (x,y)
 	const updatePos = (node) => {
-		const checkId = (id1, id2) => {
-			return id1 === id2
-		}
+		// FIXME: Shift this login to the reducer module
 
-		setElements((e) => {
-			const index = e.findIndex((el) => checkId(el.id, node.id))
-			console.log(index)
-			e[index] = node
-			const temp = [ ...e ]
-			return temp
-		})
+		updatePos_Main(node)
 	}
 
 	const onNodeDragStart = (event, node) => {
@@ -129,20 +144,24 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom,
 
 		socket.emit('new-edge-added-broadcast', { room, edge: params })
 
-		return setElements((e) => addEdge(params, e))
+		// return setElements((e) => addEdge(params, e))
+		// console.log(`[addEdge] ${addEdge(params, elements)}`)
+		onConnectSend_Main(addEdge(params, elements))
 	}
 
 	const onConnectEnd = (event) => {
 		console.log('[onConnectEnd]')
 	}
 
-	const onElementsRemove = (elementsToRemove) =>
-		setElements((e) => {
-			return removeElements(elementsToRemove, e)
-		})
+	// FIXME: Fix the remove handler
+	// const onElementsRemove = (elementsToRemove) =>
+	// 	setElements((e) => {
+	// 		return removeElements(elementsToRemove, e)
+	// 	})
 	const onSelectionChange = (elements) => {
-		setFocusElements(elements)
-		console.log('selection change', elements)
+		// FIXME: Fix the node selection handler
+		// setFocusElements(elements)
+		// console.log('selection change', elements)
 	}
 
 	const onMouseMove = (e) => {
@@ -196,8 +215,20 @@ const MainBoard = ({ room, socket, addNewUserRoom, removeUserRoom, addUsersRoom,
 
 const mapStateToProps = (state) => {
 	return {
-		state: state
+		elements: state.elements
 	}
 }
 
-export default connect(mapStateToProps, { addNewUserRoom, removeUserRoom, addUsersRoom, setIdRoom })(MainBoard)
+const dispatches = {
+	addNewUserRoom,
+	removeUserRoom,
+	addUsersRoom,
+	setIdRoom,
+	addNode_Main: (data) => ELEMENTS.addNode_Main(data),
+	addNodeBroadcast_Main: (data) => ELEMENTS.addNodeBroadcast_Main(data),
+	updatePos_Main: (data) => ELEMENTS.updatePos_Main(data),
+	onConnectSend_Main: (data) => ELEMENTS.onConnectSend_Main(data),
+	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data)
+}
+
+export default connect(mapStateToProps, { ...dispatches })(MainBoard)

@@ -48,7 +48,7 @@ const notify = (data, type, transition, customProps) => {
 				({ closeToast }) => (
 					<div style={style1.parent}>
 						<h3 style={style1.h3}>{`${data.username} ${data.message}`}</h3>
-						<img style={{ width: '40px', marginLeft: '30px' }} src={data.enter ? ENTER : EXIT} />
+						<img style={{ width: '40px', marginLeft: '30px' }} src={data.enter ? ENTER : EXIT} alt='' />
 					</div>
 				),
 				{

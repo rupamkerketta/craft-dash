@@ -9,6 +9,8 @@ import collaboratorReducer from './collaborator/collaboratorReducer'
 import chatReducer from './chat/chatReducer'
 import roomReducer from './room/roomReducer'
 import elementsReducer from './elements/elementsReducer'
+import focusReducer from './elements/focus-elements/focusElementsReducer'
+import sideBarReducer from './sidebar/sideBarReducer'
 
 const rootReducer = combineReducers({
 	auth: loginReducer,
@@ -19,7 +21,9 @@ const rootReducer = combineReducers({
 	collaborator: collaboratorReducer,
 	chat: chatReducer,
 	room: roomReducer,
-	elements: elementsReducer
+	elements: elementsReducer,
+	focus: focusReducer,
+	sidebar_focus: sideBarReducer
 })
 
 export default rootReducer

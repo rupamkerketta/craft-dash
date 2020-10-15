@@ -1,4 +1,3 @@
-import { dispatch } from 'd3'
 import * as TYPE from './elementsTypes'
 
 export const addNode_Main = (node) => (dispatch) => {

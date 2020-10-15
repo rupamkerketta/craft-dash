@@ -1,0 +1,2 @@
+export const SET_FOCUS_CHAT = 'SET_FOCUS_CHAT'
+export const SET_FOCUS_EDIT = 'SET_FOCUS_EDIT'

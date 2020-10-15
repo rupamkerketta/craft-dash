@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
 import '../../../sass/messaging.scss'
 import { connect } from 'react-redux'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field } from 'formik'
 
 import { addMessage, resetMessages } from '../../../redux/chat/chatActions'
 
 // Chat Emojis
 import ReactEmoji from 'react-emoji'
-
-// Logos
-import MessagingIcon from '../../../img/messaging-icon.svg'
 
 const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 	useEffect(() => {
@@ -48,9 +45,9 @@ const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 
 	return (
 		<div className='messaging'>
-			<div className='messaging-icon-wrapper'>
+			{/* <div className='messaging-icon-wrapper'>
 				<img src={MessagingIcon} alt='Chat Box' title='Chat Box' />
-			</div>
+			</div> */}
 
 			<Chats messages={messages} />
 
@@ -72,7 +69,6 @@ const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 }
 
 const Chats = (props) => {
-	console.log(props.messages)
 	return (
 		<div className='chat-messages'>
 			{props.messages.map((obj, index) => {

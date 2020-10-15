@@ -11,6 +11,9 @@ import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 // Elements
 import * as ELEMENTS from '../../../redux/elements/elementsActions'
 
+// Focus - Elements
+import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
+
 const MainBoard = ({
 	room,
 	socket,
@@ -23,12 +26,14 @@ const MainBoard = ({
 	addNodeBroadcast_Main,
 	updatePos_Main,
 	onConnectSend_Main,
-	onConnectReceive_Main
+	onConnectReceive_Main,
+	setFocusNode_Main,
+	setFocusEdge_Main,
+	deSelectAll_Main
 }) => {
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
-	const [ focusElements, setFocusElements ] = useState(null)
 	const [ name, setName ] = useState('')
 
 	useEffect(() => {
@@ -129,13 +134,14 @@ const MainBoard = ({
 	}
 
 	const onNodeDragStart = (event, node) => {
+		setFocusNode_Main(node)
 		console.log('drag start', node)
 	}
 
 	const onNodeDragStop = (event, node) => {
 		console.log('drag stop', node)
+		setFocusNode_Main(node)
 		socket.emit('broadcast-node-pos', { room, node })
-		console.log(elements)
 	}
 
 	const onLoad = (reactFlowInstance) => {
@@ -148,6 +154,7 @@ const MainBoard = ({
 			...params,
 			animated: true,
 			type: 'smoothedge',
+			style: { cursor: 'pointer' },
 			id: `${elements.length}-egde-${params.source}-${params.target}`
 		}
 
@@ -183,6 +190,23 @@ const MainBoard = ({
 		})
 	}
 
+	// When a node or an edge is clicked
+	const onElementClick = (event, element) => {
+		console.log((typeof element.source).toString() === 'undefined')
+		if ((typeof element.source).toString() === 'undefined') {
+			setFocusNode_Main(element)
+		} else {
+			setFocusEdge_Main(element)
+		}
+		console.log('click', element)
+	}
+
+	// When the pane is clicked / deselect-operation
+	const onPaneClick = (event) => {
+		deSelectAll_Main()
+		console.log('onPaneClick', event)
+	}
+
 	return (
 		<div className='main-board'>
 			<ReactFlow
@@ -190,6 +214,8 @@ const MainBoard = ({
 				elements={elements}
 				onLoad={onLoad}
 				style={{ width: '100%', height: '88vh' }}
+				onElementClick={onElementClick}
+				onPaneClick={onPaneClick}
 				onConnect={onConnect}
 				onConnectEnd={onConnectEnd}
 				onLoad={onLoad}
@@ -217,22 +243,6 @@ const MainBoard = ({
 						}
 					}}
 				/>
-
-				{/* <MiniMap
-					className='mini-map'
-					nodeStrokeColor={(n) => {
-						// if (typeof n.style.background !== undefined) return n.style.background
-						if (n.type === 'input') return '#0041d0'
-						if (n.type === 'output') return '#ff0072'
-						if (n.type === 'default') return '#1a192b'
-						return '#eee'
-					}}
-					nodeColor={(n) => {
-						// if (typeof n.style.background !== undefined) return n.style.background
-						return '#fff'
-					}}
-					borderRadius={2}
-				/> */}
 
 				<Controls className='main-controls-plugin' />
 			</ReactFlow>
@@ -262,7 +272,10 @@ const dispatches = {
 	addNodeBroadcast_Main: (data) => ELEMENTS.addNodeBroadcast_Main(data),
 	updatePos_Main: (data) => ELEMENTS.updatePos_Main(data),
 	onConnectSend_Main: (data) => ELEMENTS.onConnectSend_Main(data),
-	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data)
+	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data),
+	setFocusNode_Main: (data) => FOCUS.setFocusNode_Main(data),
+	setFocusEdge_Main: (data) => FOCUS.setFocusEdge_Main(data),
+	deSelectAll_Main: FOCUS.deSelectAll_Main
 }
 
 export default connect(mapStateToProps, { ...dispatches })(MainBoard)

@@ -8,7 +8,10 @@ const reducer = (state = initialState, action) => {
 			return [ ...state, action.payload ]
 
 		case TYPE.ADD_NODE_BROADCAST:
-			return [ ...state, action.payload ]
+			return [...state, action.payload]
+		
+		case TYPE.REMOVE_NODE:
+			return Object.assign([...action.payload])
 
 		case TYPE.UPDATE_POS:
 			for (let i = 0; i < state.length; i++) {

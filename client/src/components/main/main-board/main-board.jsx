@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, connect } from 'react-redux'
 import '../../../sass/main-board.scss'
+import { v4 as uuid4 } from 'uuid'
 
+// React Flow Renderer
 import ReactFlow, { addEdge, removeElements, Background, Controls, MiniMap } from 'react-flow-renderer'
 
 import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
-
 import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 
 // Elements 
@@ -24,6 +25,8 @@ const MainBoard = ({
 	elements,
 	addNode_Main,
 	addNodeBroadcast_Main,
+	removeNode_Main,
+	removeNodeBroadcast_Main,
 	updatePos_Main,
 	onConnectSend_Main,
 	onConnectReceive_Main,
@@ -82,12 +85,18 @@ const MainBoard = ({
 			onConnectReceive_Main(data.edge)
 		})
 
+		// [Receives Data] Updates the current state of elements
+		socket.on('remove-elements', (data) => {
+			removeNode_Main(data.elements)
+		})
+
 		// TODO: Operations -> REMOVE:EDGE, EDIT:EDGE, REMOVE:NODE, EDIT:NODE
 
 		// FIXME: Fix/Update the mouse pointer feature
-		socket.on('user-pointer-updates', (data) => {
-			console.log(JSON.stringify(data))
-		})
+		// socket.on('user-pointer-updates', (data) => {
+		// 	console.log(JSON.stringify(data))
+		// })
+
 	}, [])
 
 	const addNode = () => {
@@ -102,14 +111,14 @@ const MainBoard = ({
 		// })
 		// FIXME: Fix the random positon of the node, limit its scope around the previous element
 		node = {
-			id: (elements.length + 1).toString(),
+			id: uuid4(),
 			data: { label: `${name}` },
 			type: 'default',
 			style: {
 				backgroundColor: '#ffffff',
 				color: 'black',
 				fontFamily: 'Poppins',
-				fontWeight: '300',
+				fontWeight: '400',
 				minWidth: '100px',
 				maxWidth: '400px',
 				wordBreak: 'break-word'
@@ -177,6 +186,7 @@ const MainBoard = ({
 	// 	setElements((e) => {
 	// 		return removeElements(elementsToRemove, e)
 	// 	})
+
 	const onSelectionChange = (elements) => {
 		// FIXME: Fix the node selection handler
 		// setFocusElements(elements)
@@ -254,7 +264,7 @@ const MainBoard = ({
 			<div className='main-node-controls'>
 				<input type='text' className='node-text-input' onChange={(e) => setName(e.target.value)} value={name} name='title' />
 				<button className='add-node' type='button' onClick={addNode}>
-					Add Node
+					Add
 				</button>
 			</div>
 		</div>
@@ -279,6 +289,8 @@ const dispatches = {
 	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data),
 	setFocusNode_Main: (data) => FOCUS.setFocusNode_Main(data),
 	setFocusEdge_Main: (data) => FOCUS.setFocusEdge_Main(data),
+	removeNode_Main: (data) => ELEMENTS.removeNode_Main(data),
+	removeNodeBroadcast_Main: (data) => ELEMENTS.removeNodeBroadcast_Main(data),
 	deSelectAll_Main: FOCUS.deSelectAll_Main
 }
 

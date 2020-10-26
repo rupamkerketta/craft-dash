@@ -8,6 +8,14 @@ export const addNodeBroadcast_Main = (node) => (dispatch) => {
 	dispatch(addNodeBroadcastAction(node))
 }
 
+export const removeNode_Main = (data) => (dispatch) => { 
+	dispatch(removeNodeAction(data))
+}
+
+export const removeNodeBroadcast_Main = (data) => dispatch => { 
+	dispatch(removeNodeBroadcastAction(data))
+}
+
 export const updatePos_Main = (node) => (dispatch) => {
 	dispatch(updatePosAction(node))
 }
@@ -51,6 +59,20 @@ const onConnectSendAction = (data) => {
 const onConnectReceiveAction = (data) => {
 	return {
 		type: TYPE.ON_CONNECT_RECEIVE,
+		payload: data
+	}
+}
+
+const removeNodeAction = (data) => { 
+	return {
+		type: TYPE.REMOVE_NODE,
+		payload: data
+	}
+}
+
+const removeNodeBroadcastAction = (data) => { 
+	return {
+		type: TYPE.REMOVE_NODE_BROADCAST,
 		payload: data
 	}
 }

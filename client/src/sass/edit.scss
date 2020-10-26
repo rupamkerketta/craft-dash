@@ -54,6 +54,7 @@
 
       .field-label {
         // border: 1px solid #0087cc;
+        font-size: 1em;
         font-weight: 200;
       }
 
@@ -65,6 +66,7 @@
           width: fit-content;
           height: 30px;
           margin: auto;
+          font-size: 1em;
           font-weight: 200;
           color: white;
         }
@@ -76,9 +78,22 @@
       }
     }
 
+    .el-id {
+      .edit-group {
+        .field-content-wrapper {
+          .field-content {
+            display: flex;
+            align-items: center;
+            font-size: 0.64em;
+          }
+        }
+      }
+    }
+
     .co {
       @include flex-center("row");
       margin-top: 50px;
+
       .x-co,
       .y-co {
         width: 50%;
@@ -98,6 +113,7 @@
 
     .text {
       margin-top: 50px;
+
       .edit-group {
         flex-direction: column;
 
@@ -112,6 +128,7 @@
 
     .edit-update-btn {
       margin-top: 50px;
+
       button {
         @include button-style($login-btn-color);
       }
@@ -119,6 +136,7 @@
 
     .edit-remove-btn {
       margin-top: 50px;
+
       button {
         @include button-style($danger);
       }

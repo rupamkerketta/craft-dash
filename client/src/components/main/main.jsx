@@ -15,9 +15,9 @@ import MessagingIcon from '../../img/messaging-icon.svg'
 import EditTool from '../../img/edit-tool.svg'
 
 function Main({ match }) {
-	const [ socket, setSocket ] = useState(null)
+	const [socket, setSocket] = useState(null)
 
-	const [ sidebar_focus, set_sidebar_focus ] = useState({
+	const [sidebar_focus, set_sidebar_focus] = useState({
 		chat: true,
 		edit: false
 	})
@@ -58,7 +58,7 @@ function Main({ match }) {
 						<Messaging room={match.params.id} socket={socket} />
 					</div>
 					<div style={{ display: sidebar_focus.edit ? 'block' : 'none' }} className='edit-wrapper'>
-						<Edit />
+						<Edit room={match.params.id} socket={socket} />
 					</div>
 				</Fragment>
 			) : null}

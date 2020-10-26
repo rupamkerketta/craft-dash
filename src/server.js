@@ -123,5 +123,14 @@ mongoose.connect(() => {
 				console.log(e)
 			}
 		})
+
+		socket.on('remove-elements-broadcast', (data) => { 
+			try {
+				console.log(data.elements, data.room)
+				socket.broadcast.to(data.room).emit('remove-elements', {elements: data.elements})
+			} catch (e) { 
+				console.log(e)
+			}
+		})
 	})
 })

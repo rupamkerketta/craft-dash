@@ -3,6 +3,7 @@ import '../../sass/main.scss'
 
 // Components
 import Messaging from './messaging/messaging'
+import Edit from './edit/edit'
 import TopNavMain from './top-nav-main/top-nav-main'
 import MainBoard from './main-board/main-board'
 
@@ -57,7 +58,7 @@ function Main({ match }) {
 						<Messaging room={match.params.id} socket={socket} />
 					</div>
 					<div style={{ display: sidebar_focus.edit ? 'block' : 'none' }} className='edit-wrapper'>
-						<h1>EDIT</h1>
+						<Edit />
 					</div>
 				</Fragment>
 			) : null}

@@ -1,0 +1,123 @@
+@import "./utils/colors";
+@import "./utils/fonts";
+
+@mixin flex-center($direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin button-style($color) {
+  width: 100%;
+  border: 0;
+  border: 1px solid $color;
+  border-radius: 4px;
+  color: $color;
+  background-color: transparent;
+  font-family: $theme-font;
+  font-weight: 200;
+  font-size: 1em;
+  padding: 4px;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: 400;
+  }
+}
+
+.edit-sidebar {
+  // border: 1px solid white;
+  overflow: hidden;
+  position: absolute;
+  width: 20vw;
+  top: 7vh;
+  height: 93vh;
+  right: 0;
+  background-color: #282c34;
+
+  font-family: $theme-font;
+
+  .edit-sidebar-wrapper {
+    // border: 1px solid green;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    height: 100%;
+
+    .edit-group {
+      // border: 1px solid yellow;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      color: white;
+
+      .field-label {
+        // border: 1px solid #0087cc;
+        font-weight: 200;
+      }
+
+      .field-content-wrapper {
+        background-color: #1d2026;
+        border-radius: 4px;
+
+        .field-content {
+          width: fit-content;
+          margin: auto;
+          font-weight: 200;
+          color: white;
+        }
+      }
+
+      .field-label,
+      .field-content-wrapper {
+        padding: 3px;
+      }
+    }
+
+    .co {
+      @include flex-center("row");
+      margin-top: 50px;
+      .x-co,
+      .y-co {
+        width: 50%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    .fg-bg {
+      height: 80px;
+      margin-top: 50px;
+
+      .edit-group:nth-child(2) {
+        margin-top: 10px;
+      }
+    }
+
+    .text {
+      margin-top: 50px;
+      .edit-group {
+        flex-direction: column;
+
+        .field-content {
+          height: 90px;
+        }
+      }
+    }
+
+    .edit-update-btn {
+      margin-top: 50px;
+      button {
+        @include button-style($login-btn-color);
+      }
+    }
+
+    .edit-remove-btn {
+      margin-top: 50px;
+      button {
+        @include button-style($danger);
+      }
+    }
+  }
+}

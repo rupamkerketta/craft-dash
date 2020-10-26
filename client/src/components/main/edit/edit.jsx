@@ -1,15 +1,16 @@
 import React from "react"
+import { connect } from 'react-redux'
 
 import "../../../sass/edit.scss"
 
-const Edit = () => {
+const Edit = ({ focus_node }) => {
     return (
         <div className='edit-sidebar'>
             <div className='edit-sidebar-wrapper'>
                 <ElementGroup
                     data={{
                         label: "#id",
-                        content: "7",
+                        content: focus_node.id,
                         label_width: "20%",
                         content_width: "80%",
                     }}
@@ -20,7 +21,7 @@ const Edit = () => {
                         <ElementGroup
                             data={{
                                 label: "x :",
-                                content: "7",
+                                content: focus_node.position === undefined ? 'Na' : Math.floor(focus_node.position.x),
                                 label_width: "40%",
                                 content_width: "60%",
                             }}
@@ -30,7 +31,7 @@ const Edit = () => {
                         <ElementGroup
                             data={{
                                 label: "y :",
-                                content: "7",
+                                content: focus_node.position === undefined ? 'Na' : Math.floor(focus_node.position.y),
                                 label_width: "40%",
                                 content_width: "60%",
                             }}
@@ -61,7 +62,7 @@ const Edit = () => {
                     <ElementGroup
                         data={{
                             label: "text",
-                            content: "7",
+                            content: focus_node.data === undefined ? ' ' : focus_node.data.label,
                             label_width: "100%",
                             content_width: "100%",
                         }}
@@ -96,4 +97,10 @@ const ElementGroup = (props) => {
     )
 }
 
-export default Edit
+const mapStateToProps = (state) => {
+    return {
+        focus_node: state.focus.focus_node
+    }
+}
+
+export default connect(mapStateToProps, {})(Edit)

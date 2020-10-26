@@ -63,6 +63,7 @@
 
         .field-content {
           width: fit-content;
+          height: 30px;
           margin: auto;
           font-weight: 200;
           color: white;
@@ -101,6 +102,9 @@
         flex-direction: column;
 
         .field-content {
+          width: 100%;
+          height: 100%;
+          padding: 4px;
           height: 90px;
         }
       }

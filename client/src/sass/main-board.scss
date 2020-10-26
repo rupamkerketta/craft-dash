@@ -1,11 +1,18 @@
-@import './utils/colors';
-@import './utils/fonts';
+@import "./utils/colors";
+@import "./utils/fonts";
 
 .main-board {
+
     position: absolute;
     top: 5vh;
     left: 0;
     width: 80vw;
+    height: 95vh;
+    overflow: hidden;
+
+    .react-flow-main {
+        // border: 1px solid white;
+    }
 
     background-color: $main-board-color;
 
@@ -17,7 +24,7 @@
     }
 
     .mini-map {
-        opacity: .4;
+        opacity: 0.4;
         transform: scale(0.8);
     }
 
@@ -26,19 +33,20 @@
         margin-bottom: 20px;
     }
 
-
     .main-node-controls {
         position: absolute;
-        bottom: -40px;
-        left: 0;
-        height: 39px;
+        bottom: 5px;
+        left: 50%;
+        height: 35px;
         display: flex;
         align-items: center;
+        transform: translateX(-50%);
+        z-index: 99;
 
         .node-text-input {
             border: 0;
+            border: 2px solid black;
             padding-top: 5px;
-            padding-bottom: 5px;
             padding-left: 4px;
             padding-right: 4px;
             width: 300px;
@@ -47,6 +55,8 @@
             border-radius: 3px;
             margin-left: 35px;
             outline: none;
+            color: white;
+            background-color: $theme-color;
         }
 
         .add-node {
@@ -55,9 +65,9 @@
             font-family: $theme-font;
             font-size: 1em;
             width: 100px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            border-radius: 3px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 4px;
             cursor: pointer;
             color: white;
             background-color: #0087cc;

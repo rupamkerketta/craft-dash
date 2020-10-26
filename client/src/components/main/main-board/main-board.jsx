@@ -8,7 +8,7 @@ import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
 
 import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 
-// Elements
+// Elements 
 import * as ELEMENTS from '../../../redux/elements/elementsActions'
 
 // Focus - Elements
@@ -34,7 +34,7 @@ const MainBoard = ({
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
-	const [ name, setName ] = useState('')
+	const [name, setName] = useState('')
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
@@ -121,6 +121,9 @@ const MainBoard = ({
 
 		// Broadcast this to others 🤘
 		socket.emit('broadcast-node-added', { room, node })
+
+		// Clear the field
+		setName('')
 	}
 
 	// Updating the idea board when someone adds a new node
@@ -210,10 +213,11 @@ const MainBoard = ({
 	return (
 		<div className='main-board'>
 			<ReactFlow
+				className='react-flow-main'
 				onMouseMove={onMouseMove}
 				elements={elements}
 				onLoad={onLoad}
-				style={{ width: '100%', height: '88vh' }}
+				style={{ width: '100%', height: '95vh' }}
 				onElementClick={onElementClick}
 				onPaneClick={onPaneClick}
 				onConnect={onConnect}
@@ -224,7 +228,7 @@ const MainBoard = ({
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={true}
-				snapGrid={[ 16, 16 ]}
+				snapGrid={[16, 16]}
 			>
 				<Background color='#888' gap={16} />
 
@@ -248,7 +252,7 @@ const MainBoard = ({
 			</ReactFlow>
 
 			<div className='main-node-controls'>
-				<input type='text' className='node-text-input' onChange={(e) => setName(e.target.value)} name='title' />
+				<input type='text' className='node-text-input' onChange={(e) => setName(e.target.value)} value={name} name='title' />
 				<button className='add-node' type='button' onClick={addNode}>
 					Add Node
 				</button>

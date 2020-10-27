@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, connect } from 'react-redux'
-import '../../../sass/main-board.scss'
-import { v4 as uuid4 } from 'uuid'
+import React, { useState, useEffect } from "react"
+import { useSelector, connect } from "react-redux"
+import "../../../sass/main-board.scss"
+import { v4 as uuid4 } from "uuid"
 
 // React Flow Renderer
-import ReactFlow, { addEdge, removeElements, Background, Controls, MiniMap } from 'react-flow-renderer'
+import ReactFlow, {
+	addEdge,
+	removeElements,
+	Background,
+	Controls,
+	MiniMap,
+} from "react-flow-renderer"
 
-import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
-import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
+import { addNewUserRoom, removeUserRoom } from "../../../redux/room/roomActions"
+import { addUsersRoom, setIdRoom } from "../../../redux/room/roomActions"
 
-// Elements 
-import * as ELEMENTS from '../../../redux/elements/elementsActions'
+// Elements
+import * as ELEMENTS from "../../../redux/elements/elementsActions"
 
 // Focus - Elements
-import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
+import * as FOCUS from "../../../redux/elements/focus-elements/focusElementsActions"
 
 const MainBoard = ({
 	room,
@@ -25,69 +31,67 @@ const MainBoard = ({
 	elements,
 	addNode_Main,
 	addNodeBroadcast_Main,
-	removeNode_Main,
-	removeNodeBroadcast_Main,
+	removeElements_Main,
+	setFocusElement_Main,
 	updatePos_Main,
 	onConnectSend_Main,
 	onConnectReceive_Main,
-	setFocusNode_Main,
-	setFocusEdge_Main,
-	deSelectAll_Main
+	deSelectAll_Main,
 }) => {
 	const username = useSelector((state) => state.user.username)
 	const email = useSelector((state) => state.user.email)
 
-	const [name, setName] = useState('')
+	const [name, setName] = useState("")
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
-		socket.emit('joinRoom', { username, room, email })
+		socket.emit("joinRoom", { username, room, email })
 
 		//[Receives Data] When a use joins the session - Shows a notification
-		socket.on('user-connected', (data) => {
+		socket.on("user-connected", (data) => {
 			console.log(`[user-connected] ${data.email}`)
 			addNewUserRoom(data)
 		})
 
 		// [Receives Data] When a user gets disconnected or leaves the session - Shows a notification
-		socket.on('user-disconnected', (data) => {
+		socket.on("user-disconnected", (data) => {
 			console.log(`[user-disconnected] ${data.email}`)
 			removeUserRoom(data)
 		})
 
 		// [Receives Data] This handler receives the current room id on a successful connection
-		socket.on('successful-connection', (data) => {
+		socket.on("successful-connection", (data) => {
 			setIdRoom(data.room)
 		})
 
 		// [Receives Data] Handler for getting the current users present in the session
-		socket.on('room-users', (data) => {
+		socket.on("room-users", (data) => {
 			console.log(`[room-users] ${JSON.stringify(data.users)}`)
 			addUsersRoom(data.users)
 		})
 
 		// [Receives Data] A new node is added when someone creates it in the ideaboard
-		socket.on('new-node-broadcast', (data) => {
+		socket.on("new-node-broadcast", (data) => {
 			console.log(`[new-node-broadcast] ${JSON.stringify(data.node)}`)
 			addNodeBroadcast(data.node)
 		})
 
 		// [Receives Data] Updates the (x,y) position of the nodes when someone updates the positions of the nodes in the ideaboard
-		socket.on('new-pos-broadcast', (data) => {
+		socket.on("new-pos-broadcast", (data) => {
 			console.log(`[new-pos-broadcast] ${JSON.stringify(data.node)}`)
 			updatePos(data.node)
 		})
 
 		// [Receives Data] Updates the edges when someone updates them in the ideaboard
-		socket.on('add-new-edge', (data) => {
+		socket.on("add-new-edge", (data) => {
 			console.log(`[new-edge-connection] ${JSON.stringify(data.edge)}`)
 			// setElements((e) => e.concat(data.edge))
 			onConnectReceive_Main(data.edge)
 		})
 
 		// [Receives Data] Updates the current state of elements
-		socket.on('remove-elements', (data) => {
-			removeNode_Main(data.elements)
+		socket.on("remove-elements", (data) => {
+			removeElements_Main(data.elements)
 		})
 
 		// TODO: Operations -> REMOVE:EDGE, EDIT:EDGE, REMOVE:NODE, EDIT:NODE
@@ -96,7 +100,6 @@ const MainBoard = ({
 		// socket.on('user-pointer-updates', (data) => {
 		// 	console.log(JSON.stringify(data))
 		// })
-
 	}, [])
 
 	const addNode = () => {
@@ -113,26 +116,29 @@ const MainBoard = ({
 		node = {
 			id: uuid4(),
 			data: { label: `${name}` },
-			type: 'default',
+			type: "default",
 			style: {
-				backgroundColor: '#ffffff',
-				color: 'black',
-				fontFamily: 'Poppins',
-				fontWeight: '400',
-				minWidth: '100px',
-				maxWidth: '400px',
-				wordBreak: 'break-word'
+				backgroundColor: "#ffffff",
+				color: "black",
+				fontFamily: "Poppins",
+				fontWeight: "400",
+				minWidth: "100px",
+				maxWidth: "400px",
+				wordBreak: "break-word",
 			},
-			position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }
+			position: {
+				x: Math.random() * window.innerWidth,
+				y: Math.random() * window.innerHeight,
+			},
 		}
 
 		addNode_Main(node)
 
 		// Broadcast this to others 🤘
-		socket.emit('broadcast-node-added', { room, node })
+		socket.emit("broadcast-node-added", { room, node })
 
 		// Clear the field
-		setName('')
+		setName("")
 	}
 
 	// Updating the idea board when someone adds a new node
@@ -146,18 +152,18 @@ const MainBoard = ({
 	}
 
 	const onNodeDragStart = (event, node) => {
-		setFocusNode_Main(node)
-		console.log('drag start', node)
+		setFocusElement_Main(node)
+		console.log("drag start", node)
 	}
 
 	const onNodeDragStop = (event, node) => {
-		console.log('drag stop', node)
-		setFocusNode_Main(node)
-		socket.emit('broadcast-node-pos', { room, node })
+		console.log("drag stop", node)
+		setFocusElement_Main(node)
+		socket.emit("broadcast-node-pos", { room, node })
 	}
 
 	const onLoad = (reactFlowInstance) => {
-		console.log('flow loaded:', reactFlowInstance)
+		console.log("flow loaded:", reactFlowInstance)
 		reactFlowInstance.fitView()
 	}
 
@@ -165,12 +171,12 @@ const MainBoard = ({
 		params = {
 			...params,
 			animated: true,
-			type: 'smoothedge',
-			style: { cursor: 'pointer' },
-			id: `${elements.length}-egde-${params.source}-${params.target}`
+			type: "smoothedge",
+			style: { cursor: "pointer" },
+			id: uuid4(),
 		}
 
-		socket.emit('new-edge-added-broadcast', { room, edge: params })
+		socket.emit("new-edge-added-broadcast", { room, edge: params })
 
 		// return setElements((e) => addEdge(params, e))
 		// console.log(`[addEdge] ${addEdge(params, elements)}`)
@@ -178,7 +184,7 @@ const MainBoard = ({
 	}
 
 	const onConnectEnd = (event) => {
-		console.log('[onConnectEnd]')
+		console.log("[onConnectEnd]")
 	}
 
 	// FIXME: Fix the remove handler
@@ -194,30 +200,32 @@ const MainBoard = ({
 	}
 
 	const onMouseMove = (e) => {
-		socket.emit('mouse-pointer-broadcast', {
+		socket.emit("mouse-pointer-broadcast", {
 			x: e.nativeEvent.offsetX,
 			y: e.nativeEvent.offsetY,
 			room,
 			username,
-			email
+			email,
 		})
 	}
 
 	// When a node or an edge is clicked
 	const onElementClick = (event, element) => {
-		console.log((typeof element.source).toString() === 'undefined')
-		if ((typeof element.source).toString() === 'undefined') {
-			setFocusNode_Main(element)
-		} else {
-			setFocusEdge_Main(element)
-		}
-		console.log('click', element)
+		// console.log((typeof element.source).toString() === 'undefined')
+		// if ((typeof element.source).toString() === 'undefined') {
+		// 	setFocusNode_Main(element)
+		// } else {
+		// 	setFocusEdge_Main(element)
+		// }
+		setFocusElement_Main(element)
+
+		console.log("click", element)
 	}
 
 	// When the pane is clicked / deselect-operation
 	const onPaneClick = (event) => {
 		deSelectAll_Main()
-		console.log('onPaneClick', event)
+		console.log("onPaneClick", event)
 	}
 
 	return (
@@ -227,14 +235,14 @@ const MainBoard = ({
 				onMouseMove={onMouseMove}
 				elements={elements}
 				onLoad={onLoad}
-				style={{ width: '100%', height: '95vh' }}
+				style={{ width: "100%", height: "95vh" }}
 				onElementClick={onElementClick}
 				onPaneClick={onPaneClick}
 				onConnect={onConnect}
 				onConnectEnd={onConnectEnd}
 				onLoad={onLoad}
 				onSelectionChange={onSelectionChange}
-				connectionLineStyle={{ stroke: '#ddd', strokeWidth: 3 }}
+				connectionLineStyle={{ stroke: "#ddd", strokeWidth: 3 }}
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={true}
@@ -246,14 +254,14 @@ const MainBoard = ({
 					className='mini-map'
 					nodeColor={(node) => {
 						switch (node.type) {
-							case 'input':
-								return 'red'
-							case 'default':
-								return '#00ff00'
-							case 'output':
-								return 'rgb(0,0,255)'
+							case "input":
+								return "red"
+							case "default":
+								return "#00ff00"
+							case "output":
+								return "rgb(0,0,255)"
 							default:
-								return '#eee'
+								return "#eee"
 						}
 					}}
 				/>
@@ -262,10 +270,16 @@ const MainBoard = ({
 			</ReactFlow>
 
 			<div className='main-node-controls'>
-				<input type='text' className='node-text-input' onChange={(e) => setName(e.target.value)} value={name} name='title' />
+				<input
+					type='text'
+					className='node-text-input'
+					onChange={(e) => setName(e.target.value)}
+					value={name}
+					name='title'
+				/>
 				<button className='add-node' type='button' onClick={addNode}>
 					Add
-				</button>
+        </button>
 			</div>
 		</div>
 	)
@@ -273,7 +287,7 @@ const MainBoard = ({
 
 const mapStateToProps = (state) => {
 	return {
-		elements: state.elements
+		elements: state.elements,
 	}
 }
 
@@ -287,11 +301,9 @@ const dispatches = {
 	updatePos_Main: (data) => ELEMENTS.updatePos_Main(data),
 	onConnectSend_Main: (data) => ELEMENTS.onConnectSend_Main(data),
 	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data),
-	setFocusNode_Main: (data) => FOCUS.setFocusNode_Main(data),
-	setFocusEdge_Main: (data) => FOCUS.setFocusEdge_Main(data),
-	removeNode_Main: (data) => ELEMENTS.removeNode_Main(data),
-	removeNodeBroadcast_Main: (data) => ELEMENTS.removeNodeBroadcast_Main(data),
-	deSelectAll_Main: FOCUS.deSelectAll_Main
+	setFocusElement_Main: (data) => FOCUS.setFocusElement_Main(data),
+	removeElements_Main: (data) => ELEMENTS.removeElements_Main(data),
+	deSelectAll_Main: FOCUS.deSelectAll_Main,
 }
 
 export default connect(mapStateToProps, { ...dispatches })(MainBoard)

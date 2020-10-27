@@ -2,23 +2,21 @@ import * as TYPE from './focusElementsTypes'
 
 const initialState = {
 	focus_node: {},
-	focus_edge: {}
+	focus_edge: {},
+	focus_element: {},
 }
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case TYPE.SET_FOCUS_NODE:
+		case TYPE.SET_FOCUS_ELEMENT:
 			return {
 				...state,
-				focus_node: { ...action.payload }
+				focus_element: { ...action.payload }
 			}
-		case TYPE.SET_FOCUS_EDGE:
-			return {
-				...state,
-				focus_edge: { ...action.payload }
-			}
+
 		case TYPE.RESET_FOCUS_ELEMENTS:
 			return Object.assign(initialState)
+
 		default:
 			return state
 	}

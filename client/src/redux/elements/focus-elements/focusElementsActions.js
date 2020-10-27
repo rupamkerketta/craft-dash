@@ -1,29 +1,18 @@
 import * as TYPE from './focusElementsTypes'
 
-// Focus Element - Node
-export const setFocusNode_Main = (element) => (dispatch) => {
-	dispatch(setFocusNode(element))
-}
-
-// Focus Element - Edge
-export const setFocusEdge_Main = (edge) => (dispatch) => {
-	dispatch(setFocusEdge(edge))
+// Focus Element
+export const setFocusElement_Main = (data) => (dispatch) => {
+	dispatch(setFocusElement(data))
 }
 
 // Deselect All
 export const deSelectAll_Main = () => (dispatch) => {
 	dispatch(deselectAll())
 }
-const setFocusNode = (data) => {
-	return {
-		type: TYPE.SET_FOCUS_NODE,
-		payload: data
-	}
-}
 
-const setFocusEdge = (data) => {
+const setFocusElement = (data) => {
 	return {
-		type: TYPE.SET_FOCUS_EDGE,
+		type: TYPE.SET_FOCUS_ELEMENT,
 		payload: data
 	}
 }

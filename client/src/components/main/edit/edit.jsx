@@ -4,20 +4,19 @@ import { connect } from 'react-redux'
 import '../../../sass/edit.scss'
 
 import { deSelectAll_Main } from '../../../redux/elements/focus-elements/focusElementsActions'
-import { removeNode_Main } from '../../../redux/elements/elementsActions'
+import { removeElements_Main } from '../../../redux/elements/elementsActions'
 
 import { removeElements } from 'react-flow-renderer'
 
-const Edit = ({ socket, room, focus_node, elements, removeNode_Main, deSelectAll_Main }) => {
+const Edit = ({ socket, room, focus_element, elements, removeElements_Main, deSelectAll_Main }) => {
 
 
     const removeHandler = () => {
-        if (focus_node.data !== undefined) {
-            console.log(focus_node, elements)
-            removeNode_Main(removeElements([focus_node], elements))
+        if (focus_element !== undefined) {
+            removeElements_Main(removeElements([focus_element], elements))
 
             // [Sends Data]
-            socket.emit('remove-elements-broadcast', { elements: removeElements([focus_node], elements,), room })
+            socket.emit('remove-elements-broadcast', { elements: removeElements([focus_element], elements,), room })
 
             deSelectAll_Main()
         }
@@ -30,7 +29,7 @@ const Edit = ({ socket, room, focus_node, elements, removeNode_Main, deSelectAll
                     <ElementGroup
                         data={{
                             label: '#id',
-                            content: focus_node.id,
+                            content: focus_element.id,
                             label_width: '20%',
                             content_width: '80%',
                         }}
@@ -43,9 +42,9 @@ const Edit = ({ socket, room, focus_node, elements, removeNode_Main, deSelectAll
                             data={{
                                 label: 'x :',
                                 content:
-                                    focus_node.position === undefined
+                                    focus_element.position === undefined
                                         ? 'Na'
-                                        : Math.floor(focus_node.position.x),
+                                        : Math.floor(focus_element.position.x),
                                 label_width: '40%',
                                 content_width: '60%',
                             }}
@@ -56,9 +55,9 @@ const Edit = ({ socket, room, focus_node, elements, removeNode_Main, deSelectAll
                             data={{
                                 label: 'y :',
                                 content:
-                                    focus_node.position === undefined
+                                    focus_element.position === undefined
                                         ? 'Na'
-                                        : Math.floor(focus_node.position.y),
+                                        : Math.floor(focus_element.position.y),
                                 label_width: '40%',
                                 content_width: '60%',
                             }}
@@ -90,7 +89,7 @@ const Edit = ({ socket, room, focus_node, elements, removeNode_Main, deSelectAll
                         data={{
                             label: 'text',
                             content:
-                                focus_node.data === undefined ? ' ' : focus_node.data.label,
+                                focus_element.data === undefined ? ' ' : focus_element.data.label,
                             label_width: '100%',
                             content_width: '100%',
                         }}
@@ -128,12 +127,12 @@ const ElementGroup = (props) => {
 const mapStateToProps = (state) => {
     return {
         elements: state.elements,
-        focus_node: state.focus.focus_node,
+        focus_element: state.focus.focus_element
     }
 }
 
 const dispatches = {
-    removeNode_Main,
+    removeElements_Main,
     deSelectAll_Main
 }
 

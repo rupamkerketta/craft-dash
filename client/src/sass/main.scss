@@ -3,6 +3,13 @@
 
 .main {
 
+    .video-chat-wrapper{
+        position: absolute;
+        top: 5vh; 
+        width: 130px;
+        height: 450px;
+    }
+
     .sidebar-main {
         overflow: hidden;
         position: absolute;
@@ -55,8 +62,6 @@
                     padding: 5px;
                 }
             }
-
-
         }
 
         .sidebar-body {

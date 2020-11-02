@@ -156,12 +156,18 @@ const MainBoard = ({
 
 	const onNodeDragStart = (event, node) => {
 		setFocusElement_Main(node)
+		if (node.data !== undefined) {
+			setFocusText_Main(node.data.label)
+		}
 		console.log('drag start', node)
 	}
 
 	const onNodeDragStop = (event, node) => {
 		console.log('drag stop', node)
 		setFocusElement_Main(node)
+		if (node.data !== undefined) {
+			setFocusText_Main(node.data.label)
+		}
 		socket.emit('broadcast-node-pos', { room, node })
 	}
 

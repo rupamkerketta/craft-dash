@@ -93,11 +93,11 @@ const VideoChat = ({ socket, roomId }) => {
 			stream
 		})
 
-		peer.on('error', () => {
-			console.log(`[peer] : remote peer closed`)
+		// peer.on('error', () => {
+		// 	console.log(`[peer] : remote peer closed`)
 
-			peer._destroy((error) => console.log(error))
-		})
+		// 	peer._destroy((error) => console.log(error))
+		// })
 
 		peer.on('signal', (signal) => {
 			// console.log(`[createPeer] : peer.on('signal') called`)
@@ -117,11 +117,11 @@ const VideoChat = ({ socket, roomId }) => {
 			stream
 		})
 
-		peer.on('error', () => {
-			console.log(`[peer] : remote peer closed`)
+		// peer.on('error', () => {
+		// 	console.log(`[peer] : remote peer closed`)
 
-			peer._destroy((error) => console.log(error))
-		})
+		// 	peer._destroy((error) => console.log(error))
+		// })
 
 		peer.on('signal', (signal) => {
 			// console.log(`[addPeer] : peer.on('signal') called`)

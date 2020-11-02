@@ -1,4 +1,5 @@
 import * as TYPE from './elementsTypes'
+import update from 'immutability-helper'
 
 const initialState = [
 	{
@@ -46,14 +47,29 @@ const reducer = (state = initialState, action) => {
 			return [...state, action.payload]
 
 		case TYPE.NODE_TEXT_CHANGE:
-			for (let i = 0; i < state.length; i++) {
-				if (state[i].id.toString() === action.payload.id.toString()) {
-					console.log('***')
-					state[i].data.label = action.payload.text
-					break
-				}
+			console.log(action.payload.text)
+			// const newState = update(state, {
+			// 	state.findIndex((element) => element.id === action.payload.id) : { data: { label: { $set: action.payload.text } } }
+			// })
+
+			// const index = state.findIndex(
+			// 	(element) => element.id === action.payload.id
+			// )
+
+			const partialState = state.filter(
+				(element) => element.id !== action.payload.id
+			)
+			const node = state.find((element) => element.id === action.payload.id)
+
+			const updatedNode = update(node, {
+				data: { label: { $set: action.payload.text } }
+			})
+
+			if (state.length === 1) {
+				return [{ ...updatedNode }]
+			} else {
+				return [...partialState, updatedNode]
 			}
-			return [...state]
 
 		default:
 			return state

@@ -19,6 +19,7 @@ import * as ELEMENTS from '../../../redux/elements/elementsActions'
 
 // Focus - Elements
 import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
+import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions'
 
 const MainBoard = ({
 	room,
@@ -32,6 +33,7 @@ const MainBoard = ({
 	addNodeBroadcast_Main,
 	removeElements_Main,
 	setFocusElement_Main,
+	setFocusText_Main,
 	updatePos_Main,
 	onConnectSend_Main,
 	onConnectReceive_Main,
@@ -114,7 +116,9 @@ const MainBoard = ({
 		// FIXME: Fix the random positon of the node, limit its scope around the previous element
 		node = {
 			id: uuid4(),
-			data: { label: `${name}` },
+			data: {
+				label: name
+			},
 			type: 'default',
 			style: {
 				backgroundColor: '#ffffff',
@@ -217,6 +221,7 @@ const MainBoard = ({
 		// 	setFocusEdge_Main(element)
 		// }
 		setFocusElement_Main(element)
+		setFocusText_Main(element.data.label)
 
 		console.log('click', element)
 	}
@@ -224,6 +229,8 @@ const MainBoard = ({
 	// When the pane is clicked / deselect-operation
 	const onPaneClick = (event) => {
 		deSelectAll_Main()
+		setFocusText_Main('')
+
 		console.log('onPaneClick', event)
 	}
 
@@ -285,7 +292,8 @@ const MainBoard = ({
 
 const mapStateToProps = (state) => {
 	return {
-		elements: state.elements
+		elements: state.elements,
+		focus_element: state.focus.focus_element
 	}
 }
 
@@ -301,6 +309,7 @@ const dispatches = {
 	onConnectReceive_Main: (data) => ELEMENTS.onConnectReceive_Main(data),
 	setFocusElement_Main: (data) => FOCUS.setFocusElement_Main(data),
 	removeElements_Main: (data) => ELEMENTS.removeElements_Main(data),
+	setFocusText_Main: (data) => FOCUS_TEXT.setFocusText_Main(data),
 	deSelectAll_Main: FOCUS.deSelectAll_Main
 }
 

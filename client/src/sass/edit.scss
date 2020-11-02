@@ -126,7 +126,7 @@
     }
 
     .text {
-      margin-top: 50px;
+      margin-top: 20px;
 
       .edit-group {
         flex-direction: column;
@@ -135,21 +135,38 @@
           width: 100%;
           height: 100%;
           padding: 4px;
-          height: 90px;
+          height: 70px;
         }
       }
     }
 
     .edit-update-btn {
-      margin-top: 50px;
+      margin-top: 3px;
+      width: 100%;
+      
 
       button {
-        @include button-style($login-btn-color);
+        width: fit-content;
+        border: 0;
+        background-color: transparent;
+        font-size: 1em;
+        border: 1px solid $login-btn-color;
+        padding: 4px;
+        border-radius: 4px;
+        outline: none;
       }
     }
 
-    .edit-remove-btn {
+    .emoji-picker{
       margin-top: 10px;
+      width: 280px;
+      height: 440px;
+      position: absolute;
+      z-index: 199;
+    }
+
+    .edit-remove-btn {
+      margin-top: 30px;
 
       button {
         @include button-style(#f73962);

@@ -1,0 +1,2 @@
+export const SET_FOCUS_TEXT = 'SET_FOCUS_TEXT'
+export const RESET_FOCUS_TEXT = 'RESET_FOCUS_TEXT'

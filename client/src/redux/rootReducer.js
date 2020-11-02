@@ -11,6 +11,7 @@ import roomReducer from './room/roomReducer'
 import elementsReducer from './elements/elementsReducer'
 import focusReducer from './elements/focus-elements/focusElementsReducer'
 import sideBarReducer from './sidebar/sideBarReducer'
+import focusTextReducer from './elements/focus-text/focusTextReducer'
 
 const rootReducer = combineReducers({
 	auth: loginReducer,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
 	room: roomReducer,
 	elements: elementsReducer,
 	focus: focusReducer,
-	sidebar_focus: sideBarReducer
+	sidebar_focus: sideBarReducer,
+	focus_text: focusTextReducer
 })
 
 export default rootReducer

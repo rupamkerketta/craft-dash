@@ -245,5 +245,11 @@ mongoose.connect(() => {
 		// 		users[roomId] = room
 		// 	}
 		// })
+
+		// real-time text update
+		socket.on('send-updated-text', (data) => {
+			console.log(data.id, ' ', data.text, ' ', data.room)
+			socket.broadcast.to(data.room).emit('receiving-updated-text', data)
+		})
 	})
 })

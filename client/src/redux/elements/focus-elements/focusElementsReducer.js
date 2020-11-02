@@ -1,9 +1,7 @@
 import * as TYPE from './focusElementsTypes'
 
 const initialState = {
-	focus_node: {},
-	focus_edge: {},
-	focus_element: {},
+	focus_element: {}
 }
 
 const reducer = (state = initialState, action) => {

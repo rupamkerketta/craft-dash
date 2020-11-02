@@ -83,14 +83,15 @@ mongoose.connect(() => {
 
 			if (user) {
 				socket.broadcast.to(user.room).emit('user-disconnected', user)
+				socket.broadcast
+					.to(user.room)
+					.emit('user-disconnected-video', { userId: socket.id })
 			}
 
 			const roomId = socketToRoom[socket.id]
 			console.log(
 				`[server] socket-disconnect : ${socket.id}, roomId: ${roomId}`
 			)
-
-			io.to(roomId).emit('user-disconnected-video', { userId: socket.id })
 
 			let room = users[roomId]
 			if (room) {

@@ -1,6 +1,23 @@
 import * as TYPE from './elementsTypes'
 
-const initialState = [{ id: '1', type: 'input', data: { label: 'Craft Dash' }, position: { x: 0, y: 0 } }]
+const initialState = [
+	{
+		id: '1',
+		type: 'input',
+		data: { label: 'Craft Dash' },
+		type: 'default',
+		style: {
+			backgroundColor: '#ffffff',
+			color: 'black',
+			fontFamily: 'Poppins',
+			fontWeight: '400',
+			minWidth: '100px',
+			maxWidth: '400px',
+			wordBreak: 'break-word'
+		},
+		position: { x: 0, y: 0 }
+	}
+]
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -27,6 +44,16 @@ const reducer = (state = initialState, action) => {
 
 		case TYPE.ON_CONNECT_RECEIVE:
 			return [...state, action.payload]
+
+		case TYPE.NODE_TEXT_CHANGE:
+			for (let i = 0; i < state.length; i++) {
+				if (state[i].id.toString() === action.payload.id.toString()) {
+					console.log('***')
+					state[i].data.label = action.payload.text
+					break
+				}
+			}
+			return [...state]
 
 		default:
 			return state

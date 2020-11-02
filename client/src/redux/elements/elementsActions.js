@@ -8,7 +8,7 @@ export const addNodeBroadcast_Main = (node) => (dispatch) => {
 	dispatch(addNodeBroadcastAction(node))
 }
 
-export const removeElements_Main = (data) => dispatch => {
+export const removeElements_Main = (data) => (dispatch) => {
 	dispatch(removeElementsAction(data))
 }
 
@@ -22,6 +22,11 @@ export const onConnectSend_Main = (edge) => (dispatch) => {
 
 export const onConnectReceive_Main = (edge) => (dispatch) => {
 	dispatch(onConnectReceiveAction(edge))
+}
+
+// Text Change
+export const onTextChange_Main = (data) => (dispatch) => {
+	dispatch(onTextChangeAction(data))
 }
 
 const addNodeAction = (data) => {
@@ -62,6 +67,13 @@ const onConnectReceiveAction = (data) => {
 const removeElementsAction = (data) => {
 	return {
 		type: TYPE.REMOVE_ELEMENTS_MAIN,
+		payload: data
+	}
+}
+
+const onTextChangeAction = (data) => {
+	return {
+		type: TYPE.NODE_TEXT_CHANGE,
 		payload: data
 	}
 }

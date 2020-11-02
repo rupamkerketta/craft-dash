@@ -70,6 +70,20 @@
           font-weight: 200;
           color: white;
         }
+
+        .field-content-textarea{
+          padding: 5px;
+          height: 120px;
+          font-family: $theme-font;
+          font-size: 1em;
+          font-weight: 200;
+          color: white;
+          background-color: transparent;
+          resize: none;
+          border: none;
+          outline: none;
+          width: 100%;
+        }
       }
 
       .field-label,
@@ -135,10 +149,10 @@
     }
 
     .edit-remove-btn {
-      margin-top: 50px;
+      margin-top: 10px;
 
       button {
-        @include button-style($danger);
+        @include button-style(#f73962);
       }
     }
   }

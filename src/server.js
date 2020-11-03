@@ -16,6 +16,9 @@ const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
 const io = socketio(server)
+
+// JOIN, LEAVE, LOG operations on the room (chat and main)
+// Video room operations excluded !!!
 const {
 	userJoin,
 	getCurrentUser,
@@ -63,6 +66,9 @@ if (process.env.NODE_ENV === 'production') {
 const users = {}
 const socketToRoom = {}
 
+// Elements
+const elements_temp = {}
+
 mongoose.connect(() => {
 	server.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
 
@@ -70,11 +76,17 @@ mongoose.connect(() => {
 		socket.on('joinRoom', ({ username, email, room }) => {
 			const user = userJoin(socket.id, username, email, room)
 
+			// Add the user to the room
 			socket.join(user.room)
 
+			// Sends back the 'room - id' on a successful connection
 			socket.emit('successful-connection', { room })
 
+			// Sends back the users who are already present in the room
 			socket.emit('room-users', { users: getRoomUsers(room) })
+
+			// Broadcasts the info of user who just joined the room to other
+			// users who are already present in the room
 			socket.broadcast.to(user.room).emit('user-connected', user)
 		})
 
@@ -97,6 +109,14 @@ mongoose.connect(() => {
 			if (room) {
 				room = room.filter((id) => id !== socket.id)
 				users[roomId] = room
+			}
+
+			// Socket to room clean-up
+			delete socketToRoom[socket.id]
+
+			// Room Cleanup
+			if (users[roomId] !== undefined && users[roomId].length === 0) {
+				delete users[roomId]
 			}
 		})
 
@@ -229,22 +249,6 @@ mongoose.connect(() => {
 				id: socket.id
 			})
 		})
-
-		// When a user get's disconnected
-		// socket.on('disconnect', () => {
-		// 	const roomId = socketToRoom[socket.id]
-		// 	console.log(
-		// 		`[server] socket-disconnect : ${socket.id}, roomId: ${roomId}`
-		// 	)
-
-		// 	io.to(roomId).emit('user-disconnected', { userId: socket.id })
-
-		// 	let room = users[roomId]
-		// 	if (room) {
-		// 		room = room.filter((id) => id !== socket.id)
-		// 		users[roomId] = room
-		// 	}
-		// })
 
 		// real-time text update
 		socket.on('send-updated-text', (data) => {

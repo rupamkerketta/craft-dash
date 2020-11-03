@@ -19,7 +19,9 @@ router.post('/create-new-idea-board', auth, async (req, res) => {
 		res.send(result)
 	} catch (e) {
 		console.log(e)
-		res.status(500).send({ message: "Couldn't create board . Please try again later." })
+		res
+			.status(500)
+			.send({ message: "Couldn't create board . Please try again later." })
 	}
 })
 
@@ -30,7 +32,7 @@ router.get('/get-idea-boards', auth, async (req, res) => {
 
 		const user = await User.findById(req.user._id)
 		await user.populate('added_to').execPopulate()
-		console.log(user.added_to)
+		// console.log(user.added_to)
 
 		if (boards === 'EMPTY' && user.added_to.length === 0) {
 			// NFR - No Records Found
@@ -51,11 +53,17 @@ router.get('/get-idea-boards', auth, async (req, res) => {
 // Delete board
 router.delete('/delete-board/:id', auth, async (req, res) => {
 	try {
-		const ideaBoard = await IdeaBoard.deleteIdeaBoard(req.params.id, req.user._id)
+		const ideaBoard = await IdeaBoard.deleteIdeaBoard(
+			req.params.id,
+			req.user._id
+		)
 		if (ideaBoard === -1) {
 			res.status(401).send({ message: 'Action not allowed' })
 		} else {
-			res.send({ message: 'IdeaBoard deleted successfully!!!', info: ideaBoard })
+			res.send({
+				message: 'IdeaBoard deleted successfully!!!',
+				info: ideaBoard
+			})
 		}
 	} catch (e) {
 		console.log(e)

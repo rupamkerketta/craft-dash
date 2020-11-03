@@ -61,6 +61,7 @@ const MainBoard = ({
 		})
 
 		// [Receives Data] This handler receives the current room id on a successful connection
+		// and sets the 'room - id' in the redux store for the working ideaboard
 		socket.on('successful-connection', (data) => {
 			setIdRoom(data.room)
 		})

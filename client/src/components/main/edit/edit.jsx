@@ -46,6 +46,10 @@ const Edit = ({
 
 	useEffect(() => {
 		socket.on('receiving-updated-text', (data) => {
+			dispatch({
+				type: 'SET_FOCUS_TEXT',
+				payload: data.text
+			})
 			onTextChange_Main({ id: data.id, text: data.text })
 		})
 	}, [])

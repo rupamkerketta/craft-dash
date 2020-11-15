@@ -4,7 +4,6 @@ import update from 'immutability-helper'
 const initialState = [
 	{
 		id: '1',
-		type: 'input',
 		data: { label: 'Craft Dash' },
 		type: 'default',
 		style: {

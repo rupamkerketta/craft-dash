@@ -162,7 +162,7 @@ const Edit = ({
 							backgroundColor: showEmojiPicker ? '#08E789' : 'transparent'
 						}}
 						onClick={() => setShowEmojiPicker((e) => !e)}>
-						😋
+						<span>😋</span>
 					</button>
 				</div>
 

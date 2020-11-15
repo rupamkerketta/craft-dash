@@ -10,7 +10,7 @@ const connect = async (callback) => {
 			console.log('[mongodb] Connected to the Database')
 			callback()
 		} else {
-			await mongoose.connect('mongodb://127.0.0.1:27017/craft-dash', {
+			await mongoose.connect(process.env.DB_CONNECTION_STR, {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
 				useCreateIndex: true

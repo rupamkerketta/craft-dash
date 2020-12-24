@@ -6,29 +6,29 @@
         // border: 1px solid white;
         width: 800px;
         margin: auto;
-        margin-top: 100px;
+        margin-top: 180px;
 
         .row-2 {
-            margin-top: 40px;
+            margin-top: 0px;
         }
 
         .row-3 {
             text-align: center;
 
             #submit-btn {
-                width: 380px;
+                width: 400px;
                 border: 0;
                 border-radius: 4px;
                 background-color: transparent;
-                border: 1px solid $login-btn-color;
+                border: 2px solid $login-btn-color;
                 font-family: $theme-font;
-                font-weight: 300;
+                font-weight: 500;
                 font-size: 1em;
                 color: $login-btn-color;
                 cursor: pointer;
-                padding-top: 7px;
-                padding-bottom: 7px;
-                margin-top: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-top: 5px;
                 transition: .2s all ease-in;
                 outline: none;
             }
@@ -36,6 +36,7 @@
             #submit-btn:hover {
                 background-color: $login-btn-color;
                 color: $theme-color;
+                font-weight: 500;
             }
         }
 
@@ -56,11 +57,37 @@
             }
         }
 
+        .row-5{
+            text-align: center;
+            p{
+                margin-top: 20px;
+                font-family: $theme-font;
+                font-size: 0.9em;
+                color: $login-btn-color;
+                font-weight: 250;
+            }
+        }
+
+        .row-6{
+            margin-top: 20px;
+            table{
+                position: static;
+                margin-left: 125px;
+                margin-right: 125px;
+            }
+            // tr{
+            //     padding-left: 50px;
+            // }
+            img{
+                padding-left: 100px;
+            }
+        }
+
         .input-group {
             margin: auto;
             width: fit-content;
             position: relative;
-            margin-top: 20px;
+            margin-top: 0px;
 
             label {
                 display: block;
@@ -87,9 +114,9 @@
                 font-family: $theme-font;
                 font-size: 1.2em;
                 color: #ffffff;
-                font-weight: 40;
+                font-weight: 300;
                 // padding
-                padding: 7px;
+                padding: 10px;
                 padding-top: 10px;
                 padding-bottom: 10px;
                 outline: none;

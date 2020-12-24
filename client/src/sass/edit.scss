@@ -12,7 +12,7 @@
   width: 100%;
   border: 0;
   border: 1px solid $color;
-  border-radius: 4px;
+  border-radius: 5px;
   color: $color;
   background-color: transparent;
   font-family: $theme-font;
@@ -34,7 +34,7 @@
   top: 7vh;
   height: 93vh;
   right: 0;
-  background-color: #282c34;
+  background-color: $theme-color;
 
   font-family: $theme-font;
 
@@ -59,8 +59,9 @@
       }
 
       .field-content-wrapper {
-        background-color: #1d2026;
+        background-color: $input-box-color;
         border-radius: 4px;
+        border: 2px solid $charcoal;
 
         .field-content {
           width: fit-content;
@@ -141,7 +142,7 @@
     }
 
     .edit-update-btn {
-      margin-top: 3px;
+      margin-top: 5px;
       width: 100%;
       
 
@@ -150,9 +151,9 @@
         border: 0;
         background-color: transparent;
         font-size: 1em;
-        border: 1px solid $login-btn-color;
+        border: 3px solid $login-btn-color;
         padding: 4px;
-        border-radius: 4px;
+        border-radius: 5px;
         outline: none;
       }
     }
@@ -169,7 +170,12 @@
       margin-top: 30px;
 
       button {
-        @include button-style(#f73962);
+        @include button-style($craft-dash-red);
+        border: 3px solid;
+        border-radius: 5px;
+        font-family: $theme-font;
+        font-weight: 300;
+        color: $craft-dash-red;
       }
     }
   }

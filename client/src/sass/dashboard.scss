@@ -39,7 +39,7 @@
 
         .add-btn:hover {
             img {
-                background-color: #ffffff2a;
+                background-color: $charcoal;
             }
         }
 
@@ -115,6 +115,7 @@
 
 
     .ideaboard-modal {
+        // background-color: #1F2023;
         .ideaboard-header {
             width: fit-content;
             display: flex;
@@ -125,11 +126,13 @@
 
             img {
                 width: 30px;
+                margin-right: 10px;
             }
 
             .ideaboard-title {
                 margin-left: 4px;
                 font-family: $theme-font;
+                color: $label-color;
                 font-weight: 300;
                 font-size: 1.2em;
             }
@@ -149,7 +152,7 @@
                 font-size: 1em;
                 padding-top: 2px;
                 padding-bottom: 2px;
-                color: $theme-color;
+                color: $label-color;
 
                 .asterisk {
                     color: $danger;
@@ -162,7 +165,7 @@
                 width: 300px;
                 border: 0;
                 border-radius: 4px;
-                background: $modal-field-color;
+                background: $theme-color;
                 font-family: $theme-font;
                 font-size: 1.2em;
                 color: $top-nav-color;
@@ -217,24 +220,25 @@
 
             button {
                 border: 0;
-                border: 1px solid #0087cc;
-                border-radius: 4px;
+                border: 3px solid $login-btn-color;
+                border-radius: 5px;
                 width: 300px;
                 font-family: $theme-font;
                 font-size: 1em;
-                font-weight: 300;
+                font-weight: 500;
                 padding-top: 5px;
                 padding-bottom: 5px;
-                background-color: transparent;
-                color: #0087cc;
+                background-color: $login-btn-color;
+                color: $theme-color;
                 cursor: pointer;
                 outline: none;
                 transition: .2s all ease;
             }
 
             button:hover {
-                background-color: #0087cc;
-                color: #ffffff;
+                border: 3px solid $login-btn-color;
+                background-color: $modal-background-color;
+                color: $login-btn-color;
             }
         }
     }
@@ -248,6 +252,7 @@
             font-family: $theme-font;
             font-size: 1.3em;
             font-weight: 300;
+            color: $label-color;
             margin-top: 20px;
         }
 
@@ -272,33 +277,35 @@
                     padding-bottom: 5px;
                     font-family: $theme-font;
                     font-size: 1.2em;
-                    color: white;
+                    color: $theme-color;
                     border: 0;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     border: 1px solid transparent;
                     transition: .2s all ease;
                     cursor: pointer;
-                    background-color: white;
+                    background-color:transparent;
                     outline: none;
                 }
 
                 .yes {
-                    border: 1px solid $danger;
+                    border: 3px solid $danger;
+                    border-radius: 5px;
                     color: $danger;
                 }
 
                 .no {
-                    border: 1px solid $login-btn-color;
+                    border: 3px solid $login-btn-color;
+                    border-radius: 5px;
                     color: $login-btn-color;
                 }
 
                 .yes:hover {
-                    color: white;
+                    color:$theme-color;
                     background-color: $danger;
                 }
 
                 .no:hover {
-                    color: white;
+                    color: $theme-color;
                     background-color: $login-btn-color;
                 }
             }

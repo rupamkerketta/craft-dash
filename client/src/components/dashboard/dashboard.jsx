@@ -20,6 +20,7 @@ import Collaborators from './collaborators/collaborators'
 // Logos
 import AddBtn from '../../img/add-button.svg'
 import Idea from '../../img/idea.svg'
+import { Color } from 'chalk'
 
 const initialValues = {
 	idea_board_name: '',
@@ -57,6 +58,13 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 		board_name: '',
 		visible: false
 	})
+
+	const customStyles = {
+		wrapper:{
+			backgroundColor: " #1F2023",
+			borderRadius: "10px",
+		}
+	}
 
 	useEffect(
 		() => {
@@ -143,6 +151,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				animation='zoom'
 				width={720}
 				height={600}
+				customStyles = {customStyles.wrapper}
 			>
 				<Collaborators idea_board_id={`${editModal.id}`} />
 			</Rodal>
@@ -153,6 +162,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				animation='zoom'
 				width={450}
 				height={200}
+				customStyles = {customStyles.wrapper}
 			>
 				<div className='delete-modal'>
 					{idea_boards.delete_board.info && idea_boards.delete_board.info._id === deleteModal.id ? (
@@ -183,7 +193,7 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 				</div>
 			</Rodal>
 
-			<Rodal visible={visible} onClose={() => setVisible(false)} animation='zoom' width={450} height={480}>
+			<Rodal visible={visible} onClose={() => setVisible(false)} animation='zoom' width={450} height={480} customStyles={customStyles.wrapper}>
 				<div className='ideaboard-modal'>
 					<div className='ideaboard-header'>
 						<img src={Idea} alt='Idea' />

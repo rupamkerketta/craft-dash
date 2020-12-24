@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Formik, Form, Field } from 'formik'
 
 import { addMessage, resetMessages } from '../../../redux/chat/chatActions'
-
+import SendIcon from '../../../img/sendIcon.svg'
 // Chat Emojis
 import ReactEmoji from 'react-emoji'
 
@@ -57,7 +57,8 @@ const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 						return (
 							<Form>
 								<div className='input-group'>
-									<Field type='text' name='message' id='message' autoComplete='off' />
+									<Field type='text' name='message' id='message' autoComplete='off' placeholder="Type Something"/>
+									<img src={SendIcon} className='send-icon'/>
 								</div>
 							</Form>
 						)

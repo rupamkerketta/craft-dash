@@ -11,6 +11,10 @@ import '../../sass/login.scss'
 import BrandLogo from '../brand-logo/brand-logo'
 import LoadingPage from '../loading-page/loading-page'
 import { Redirect } from 'react-router-dom'
+import GoogleIcon from '../../img/GoogleIcon.svg'
+import MicrosoftIcon from '../../img/MicrosoftIcon.svg'
+import GithubIcon from '../../img/GithubIcon.svg'
+
 
 const initialValues = {
 	email: '',
@@ -59,8 +63,8 @@ function Login({ auth, attemptLogin }) {
 								<Form>
 									<div className='row-1'>
 										<div className='input-group'>
-											<label htmlFor='email'>Email</label>
-											<Field type='text' name='email' id='email' autoComplete='off' />
+											{/* <label htmlFor='email'>Email</label> */}
+											<Field type='text' name='email' id='email' autoComplete='off' placeholder="Email"/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='email' component={TextError} />
 											</div>
@@ -68,11 +72,12 @@ function Login({ auth, attemptLogin }) {
 									</div>
 									<div className='row-2'>
 										<div className='input-group'>
-											<label htmlFor='password'>Password</label>
+											{/* <label htmlFor='password'>Password</label> */}
 											<Field
 												type='password'
 												name='password'
 												id='password'
+												placeholder="Password"
 												autoComplete='current-password'
 											/>
 											<div className='error-msg-wrapper'>
@@ -92,6 +97,21 @@ function Login({ auth, attemptLogin }) {
 												<span className='register-link'>Register here</span>
 											</NavLink>
 										</p>
+									</div>
+									<div className='row-5'>
+										<p>
+											OR
+										</p>
+										
+									</div>
+									<div className='row-6'>
+									<table>
+											<tr>
+												<img src={GoogleIcon}></img> 
+												<img src={MicrosoftIcon}></img>
+												<img src={GithubIcon}></img>
+											</tr>
+										</table>
 									</div>
 								</Form>
 							)

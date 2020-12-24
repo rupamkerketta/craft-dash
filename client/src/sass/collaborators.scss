@@ -6,7 +6,7 @@
     padding-right: 30px;
 
     width: 700px;
-    background-color: white;
+    // background-color:$theme-color;
 
     .collaborators-header {
         display: flex;
@@ -18,13 +18,15 @@
 
         img {
             width: 30px;
+            margin-right: 10px;
         }
 
         .collaborators-title {
             margin-left: 4px;
             font-family: $theme-font;
+            color: $label-color;
             font-weight: 300;
-            font-size: 1.2em;
+            font-size: 1.6em;
         }
     }
 
@@ -32,6 +34,7 @@
         margin-top: 50px;
 
         form {
+            // background-color: $theme-color;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -49,7 +52,7 @@
                     font-size: 1em;
                     padding-top: 2px;
                     padding-bottom: 2px;
-                    color: $theme-color;
+                    color: $label-color;
 
                     .asterisk {
                         color: $danger;
@@ -61,10 +64,10 @@
                     width: 400px;
                     border: 0;
                     border-radius: 4px;
-                    background: $modal-field-color;
+                    background: $theme-color;
                     font-family: $theme-font;
                     font-size: 1.2em;
-                    color: $top-nav-color;
+                    color: $label-color;
                     font-weight: 300;
                     outline: none;
                 }
@@ -102,12 +105,12 @@
                     width: 160px;
                     border: 0;
                     font-family: $theme-font;
-                    font-size: 1.178em;
-                    font-weight: 300;
-                    background-color: white;
-                    color: #0087cc;
+                    font-size: 1em;
+                    font-weight: 500;
+                    background-color:$login-btn-color;
+                    color: $theme-color;
                     padding: 6px;
-                    border: 1px solid #0087cc;
+                    border: 3px solid $login-btn-color;
                     border-radius: 4px;
                     cursor: pointer;
                     outline: none;
@@ -115,8 +118,10 @@
                 }
 
                 button:hover {
-                    color: white;
-                    background-color: #0087cc;
+                    color: $login-btn-color;
+                    background-color:transparent;
+                    border: 3px solid $login-btn-color;
+                    border-radius: 4px;
                 }
             }
         }
@@ -130,7 +135,10 @@
             h2 {
                 font-family: $theme-font;
                 font-size: 1em;
+                font-weight: 200;
                 margin-bottom: 7px;
+                margin-top: 10px;
+                color: $label-color;
             }
         }
     }

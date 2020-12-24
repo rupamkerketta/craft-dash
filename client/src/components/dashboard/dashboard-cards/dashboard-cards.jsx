@@ -4,7 +4,7 @@ import '../../../sass/dashboard-cards.scss'
 
 // Craft Dash Logo
 import CraftDashLogo from '../../../img/craft-dash-logo.svg'
-import Owner from '../../../img/owner.png'
+import Owner from '../../../img/user-img-placeholder.svg'
 import Delete from '../../../img/trash.svg'
 import Edit from '../../../img/edit.svg'
 import Rocket from '../../../img/rocket-2.svg'

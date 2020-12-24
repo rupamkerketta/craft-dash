@@ -44,9 +44,11 @@
         z-index: 99;
 
         .node-text-input {
+            margin-bottom: 10px;
             border: 0;
-            border: 2px solid black;
+            border: 2px solid $charcoal;
             padding-top: 5px;
+            padding-bottom: 5px;
             padding-left: 4px;
             padding-right: 4px;
             width: 300px;
@@ -61,16 +63,18 @@
 
         .add-node {
             margin-left: 20px;
+            margin-bottom: 10px;
             border: 0;
             font-family: $theme-font;
             font-size: 1em;
+            font-weight: 800;
             width: 100px;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            border-radius: 4px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 5px;
             cursor: pointer;
-            color: white;
-            background-color: #0087cc;
+            color:$theme-color;
+            background-color:$login-btn-color;
         }
     }
 }

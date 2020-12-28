@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/logout/logoutActions'
-import '../../sass/user.scss'
+import './user.scss'
 
 // Dummy user pic
 import UserPic from '../../img/user-img-placeholder.svg'

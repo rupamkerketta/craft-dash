@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../../../sass/collaborators.scss'
+import './collaborators.scss'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import validator from 'validator'
 
@@ -13,7 +13,12 @@ import Collaborator from './collaborator/collaborator'
 
 import { actionCollaborator } from '../../../redux/collaborator/collaboratorActions'
 
-function Collaborators({ idea_board_id, boards, actionCollaborator, collaborator }) {
+function Collaborators({
+	idea_board_id,
+	boards,
+	actionCollaborator,
+	collaborator
+}) {
 	const initialValues = {
 		collaborator_email: ''
 	}
@@ -49,7 +54,10 @@ function Collaborators({ idea_board_id, boards, actionCollaborator, collaborator
 			</div>
 
 			<div className='collaborators-form'>
-				<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+				<Formik
+					initialValues={initialValues}
+					validate={validate}
+					onSubmit={onSubmit}>
 					{(formik) => {
 						return (
 							<Form>
@@ -62,7 +70,10 @@ function Collaborators({ idea_board_id, boards, actionCollaborator, collaborator
 										autoComplete='off'
 									/>
 									<div className='error-msg-wrapper'>
-										<ErrorMessage name='collaborator_email' component={TextError} />
+										<ErrorMessage
+											name='collaborator_email'
+											component={TextError}
+										/>
 									</div>
 								</div>
 								<div className='check-and-add'>
@@ -85,7 +96,10 @@ function Collaborators({ idea_board_id, boards, actionCollaborator, collaborator
 				</div>
 				<div className='collaborators-list-content'>
 					{boards.map((board) => {
-						if (board._id.toString() === idea_board_id.toString() && board.collaborators.length !== 0) {
+						if (
+							board._id.toString() === idea_board_id.toString() &&
+							board.collaborators.length !== 0
+						) {
 							const res = board.collaborators.map((collaborator) => (
 								<Collaborator
 									key={collaborator}

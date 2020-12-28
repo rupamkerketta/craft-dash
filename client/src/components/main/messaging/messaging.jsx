@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import '../../../sass/messaging.scss'
+import './messaging.scss'
 import { connect } from 'react-redux'
 import { Formik, Form, Field } from 'formik'
 
@@ -37,28 +37,54 @@ const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
 		return errors
 	}
 
+	// Reset Form Reference
+	const resetForm = React.useRef(null)
+
 	const onSubmit = (values, { resetForm }) => {
 		resetForm()
 		console.log(values, room, username)
 		socket.emit('chat-message', { username, room, message: values.message })
 	}
 
+	// Send message on click
+	const sendMsgOnClick = (values) => {
+		resetForm.current()
+		console.log(values, room, username)
+		socket.emit('chat-message', { username, room, message: values.message })
+	}
+
 	return (
 		<div className='messaging'>
-			{/* <div className='messaging-icon-wrapper'>
-				<img src={MessagingIcon} alt='Chat Box' title='Chat Box' />
-			</div> */}
-
 			<Chats messages={messages} />
 
 			<div className='chat-input'>
-				<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+				<Formik
+					initialValues={initialValues}
+					validate={validate}
+					onSubmit={onSubmit}>
 					{(formik) => {
+						resetForm.current = formik.resetForm
 						return (
 							<Form>
 								<div className='input-group'>
-									<Field type='text' name='message' id='message' autoComplete='off' placeholder="Type Something"/>
-									<img src={SendIcon} className='send-icon'/>
+									<Field
+										type='text'
+										name='message'
+										id='message'
+										autoComplete='off'
+										placeholder='Type Something'
+									/>
+									<img
+										src={SendIcon}
+										className='send-icon'
+										onClick={() => {
+											if (formik.isValid) {
+												sendMsgOnClick(formik.values)
+											}
+										}}
+										alt='Send Message'
+										title='Send Message'
+									/>
 								</div>
 							</Form>
 						)
@@ -100,4 +126,6 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { addMessage, resetMessages })(Messaging)
+export default connect(mapStateToProps, { addMessage, resetMessages })(
+	Messaging
+)

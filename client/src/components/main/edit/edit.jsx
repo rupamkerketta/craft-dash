@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 
-import '../../../sass/edit.scss'
+import './edit.scss'
 
 import { deSelectAll_Main } from '../../../redux/elements/focus-elements/focusElementsActions'
 import { setFocusText_Main } from '../../../redux/elements/focus-text/focusTextActions'
@@ -162,7 +162,12 @@ const Edit = ({
 							backgroundColor: showEmojiPicker ? '#08E789' : 'transparent'
 						}}
 						onClick={() => setShowEmojiPicker((e) => !e)}>
-						<span>😋</span>
+						{/* <span role='img' aria-label='sheep'>
+							🐑
+						</span> */}
+						<span role='img' aria-label='smiley'>
+							😋
+						</span>
 					</button>
 				</div>
 

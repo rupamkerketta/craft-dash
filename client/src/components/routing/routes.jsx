@@ -5,8 +5,8 @@ import PrivateRoute from './private-route'
 // Components
 import Dashboard from '../dashboard/dashboard'
 import Main from '../main/main'
-import Register from '../auth/register'
-import Login from '../auth/login'
+import Register from '../auth/register/register'
+import Login from '../auth/login/login'
 
 const Routes = (props) => {
 	return (

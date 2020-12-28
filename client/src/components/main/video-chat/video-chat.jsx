@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Peer from 'simple-peer'
 
 // Sass
-import '../../../sass/video-chat.scss'
+import './video-chat.scss'
 
 const VideoChat = ({ socket, roomId }) => {
 	// Slef video

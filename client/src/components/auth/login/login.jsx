@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { attemptLogin } from '../../redux/login/loginActions'
+import { attemptLogin } from '../../../redux/login/loginActions'
 import validator from 'validator'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 
-import '../../sass/login.scss'
+import './login.scss'
 
 // Components
-import BrandLogo from '../brand-logo/brand-logo'
-import LoadingPage from '../loading-page/loading-page'
+import BrandLogo from '../../brand-logo/brand-logo'
+import LoadingPage from '../../loading-page/loading-page'
 import { Redirect } from 'react-router-dom'
-import GoogleIcon from '../../img/GoogleIcon.svg'
-import MicrosoftIcon from '../../img/MicrosoftIcon.svg'
-import GithubIcon from '../../img/GithubIcon.svg'
 
+// Social Login Icons
+import GoogleIcon from '../../../img/GoogleIcon.svg'
+import MicrosoftIcon from '../../../img/MicrosoftIcon.svg'
+import GithubIcon from '../../../img/GithubIcon.svg'
 
 const initialValues = {
 	email: '',
@@ -57,14 +58,23 @@ function Login({ auth, attemptLogin }) {
 			) : !auth.isAuthenticated ? (
 				<React.Fragment>
 					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
-					<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+					<Formik
+						initialValues={initialValues}
+						validate={validate}
+						onSubmit={onSubmit}>
 						{(formik) => {
 							return (
 								<Form>
 									<div className='row-1'>
 										<div className='input-group'>
-											{/* <label htmlFor='email'>Email</label> */}
-											<Field type='text' name='email' id='email' autoComplete='off' placeholder="Email"/>
+											<label htmlFor='email'>Email</label>
+											<Field
+												type='text'
+												name='email'
+												id='email'
+												autoComplete='off'
+												placeholder='e.g john@mail.com'
+											/>
 											<div className='error-msg-wrapper'>
 												<ErrorMessage name='email' component={TextError} />
 											</div>
@@ -72,12 +82,12 @@ function Login({ auth, attemptLogin }) {
 									</div>
 									<div className='row-2'>
 										<div className='input-group'>
-											{/* <label htmlFor='password'>Password</label> */}
+											<label htmlFor='password'>Password</label>
 											<Field
 												type='password'
 												name='password'
 												id='password'
-												placeholder="Password"
+												placeholder='*****************'
 												autoComplete='current-password'
 											/>
 											<div className='error-msg-wrapper'>
@@ -99,19 +109,26 @@ function Login({ auth, attemptLogin }) {
 										</p>
 									</div>
 									<div className='row-5'>
-										<p>
-											OR
-										</p>
-										
+										<p>OR</p>
 									</div>
 									<div className='row-6'>
-									<table>
-											<tr>
-												<img src={GoogleIcon}></img> 
-												<img src={MicrosoftIcon}></img>
-												<img src={GithubIcon}></img>
-											</tr>
-										</table>
+										<div className='social-login'>
+											<img
+												src={GoogleIcon}
+												alt='Login with Google'
+												title='Login with Google'
+											/>
+											<img
+												src={MicrosoftIcon}
+												alt='Login with Microsoft'
+												title='Login with Microsoft'
+											/>
+											<img
+												src={GithubIcon}
+												alt='Login with Githhub'
+												title='Login with Githhub'
+											/>
+										</div>
 									</div>
 								</Form>
 							)

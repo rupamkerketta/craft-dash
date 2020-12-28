@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, connect } from 'react-redux'
-import '../../../sass/main-board.scss'
+import './main-board.scss'
 import { v4 as uuid4 } from 'uuid'
 
 // React Flow Renderer

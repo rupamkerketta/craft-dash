@@ -1,13 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../../../../sass/collaborator.scss'
+import './collaborator.scss'
 
 import { actionCollaborator } from '../../../../redux/collaborator/collaboratorActions'
 
 import RemoveUser from '../../../../img/remove-user.svg'
 import UserImg from '../../../../img/user-img-placeholder.svg'
 
-function Collaborator({ collaborator_email, idea_board_id, actionCollaborator }) {
+function Collaborator({
+	collaborator_email,
+	idea_board_id,
+	actionCollaborator
+}) {
 	const removeHandler = () => {
 		console.log(collaborator_email, idea_board_id)
 
@@ -27,7 +31,12 @@ function Collaborator({ collaborator_email, idea_board_id, actionCollaborator })
 				<h2>{collaborator_email}</h2>
 			</div>
 			<div className='collaborator-remove-user'>
-				<img src={RemoveUser} alt='Remove User' title='Remove User' onClick={() => removeHandler()} />
+				<img
+					src={RemoveUser}
+					alt='Remove User'
+					title='Remove User'
+					onClick={() => removeHandler()}
+				/>
 			</div>
 		</div>
 	)

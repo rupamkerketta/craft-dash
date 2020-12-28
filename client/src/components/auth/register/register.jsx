@@ -5,12 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { connect } from 'react-redux'
 
 // Components
-import BrandLogo from '../../components/brand-logo/brand-logo'
-import { signupAttempt } from '../../redux/signup/signupActions'
-import LoadingPage from '../loading-page/loading-page'
-import LoadingSpinner from '../loading-spinner/loading-spinner'
+import BrandLogo from '../../brand-logo/brand-logo'
+import { signupAttempt } from '../../../redux/signup/signupActions'
+import LoadingPage from '../../loading-page/loading-page'
+import LoadingSpinner from '../../loading-spinner/loading-spinner'
 
-import '../../sass/register.scss'
+import './register.scss'
 
 const initialValues = {
 	first_name: '',
@@ -53,7 +53,11 @@ const TextError = (props) => <div className='error-msg'>{props.children}</div>
 
 function Register({ auth, signup, signupAttempt }) {
 	const onSubmit = (values) => {
-		signupAttempt(values.first_name + ' ' + values.last_name, values.email, values.password)
+		signupAttempt(
+			values.first_name + ' ' + values.last_name,
+			values.email,
+			values.password
+		)
 		console.log(values)
 	}
 
@@ -68,7 +72,10 @@ function Register({ auth, signup, signupAttempt }) {
 			) : !auth.isAuthenticated ? (
 				<React.Fragment>
 					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
-					<Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+					<Formik
+						initialValues={initialValues}
+						validate={validate}
+						onSubmit={onSubmit}>
 						{(formik) => {
 							return (
 								<Form>
@@ -86,7 +93,10 @@ function Register({ auth, signup, signupAttempt }) {
 													disabled={signup.loading || signup.status}
 												/>
 												<div className='error-msg-wrapper'>
-													<ErrorMessage name='first_name' component={TextError} />
+													<ErrorMessage
+														name='first_name'
+														component={TextError}
+													/>
 												</div>
 											</div>
 										</div>
@@ -103,7 +113,10 @@ function Register({ auth, signup, signupAttempt }) {
 													disabled={signup.loading || signup.status}
 												/>
 												<div className='error-msg-wrapper'>
-													<ErrorMessage name='last_name' component={TextError} />
+													<ErrorMessage
+														name='last_name'
+														component={TextError}
+													/>
 												</div>
 											</div>
 										</div>

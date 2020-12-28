@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import '../../sass/main.scss'
+import './main.scss'
 
 // Components
 import Messaging from './messaging/messaging'
@@ -25,18 +25,17 @@ function Main({ match }) {
 
 	useEffect(() => {
 		console.log('[Main]')
-		console.log(match)
 		const s = io(server)
 		setSocket(s)
 	}, [])
 
-	const onChatClick = () => {
+	const onChatClick = React.useCallback(() => {
 		set_sidebar_focus({ chat: true, edit: false })
-	}
+	})
 
-	const onEditClick = () => {
+	const onEditClick = React.useCallback(() => {
 		set_sidebar_focus({ chat: false, edit: true })
-	}
+	})
 
 	return (
 		<div className='main'>

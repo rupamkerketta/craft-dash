@@ -1,6 +1,10 @@
 import api from '../../utils/api'
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOAD_CHECK_FAIL } from '../login/loginTypes'
+import {
+	LOGIN_REQUEST,
+	LOGIN_SUCCESS,
+	LOAD_CHECK_FAIL
+} from '../login/loginTypes'
 import { SET_USER } from './userTypes'
 
 export const loadUser = () => async (dispatch) => {
@@ -9,7 +13,9 @@ export const loadUser = () => async (dispatch) => {
 		const res = await api.get('/user/me')
 		dispatch(loadSuccess())
 		const { username, email } = res.data
-		dispatch(setUser(username, email))
+		const thumbnail = res.data.thumbnail || ''
+
+		dispatch(setUser(username, email, thumbnail))
 		console.log(res)
 	} catch (e) {
 		dispatch(loadCheckFail())
@@ -35,9 +41,9 @@ const loadCheckFail = () => {
 	}
 }
 
-const setUser = (username, email) => {
+const setUser = (username, email, thumbnail) => {
 	return {
 		type: SET_USER,
-		payload: { username, email }
+		payload: { username, email, thumbnail }
 	}
 }

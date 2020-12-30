@@ -2,7 +2,8 @@ import { SET_USER } from './userTypes'
 
 const initialState = {
 	username: '',
-	email: ''
+	email: '',
+	thumbnail: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,8 @@ const reducer = (state = initialState, action) => {
 		case SET_USER:
 			return {
 				username: action.payload.username,
-				email: action.payload.email
+				email: action.payload.email,
+				thumbnail: action.payload.thumbnail
 			}
 		default:
 			return state

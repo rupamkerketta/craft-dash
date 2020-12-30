@@ -6,11 +6,16 @@ import './user.scss'
 // Dummy user pic
 import UserPic from '../../img/user-img-placeholder.svg'
 
-function User({ logout }) {
+function User({ user, logout }) {
 	return (
 		<div className='user'>
 			<div className='user-pic'>
-				<img className='pic' src={UserPic} alt='' />
+				<img
+					className='pic'
+					src={user.thumbnail === '' ? UserPic : user.thumbnail}
+					alt={user.username}
+					title={user.username}
+				/>
 
 				<h5 onClick={() => logout()}>Logout</h5>
 			</div>
@@ -20,7 +25,7 @@ function User({ logout }) {
 
 const mapStateToProps = (state) => {
 	return {
-		userData: {}
+		user: state.user
 	}
 }
 

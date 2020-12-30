@@ -23,9 +23,12 @@ const userSchema = mongoose.Schema({
 			}
 		}
 	},
+	googleId: {
+		type: String,
+		unique: true
+	},
 	password: {
 		type: String,
-		required: true,
 		minlength: 6,
 		trim: true,
 		validate(password) {
@@ -33,6 +36,9 @@ const userSchema = mongoose.Schema({
 				throw new Error('Password cannot include password')
 			}
 		}
+	},
+	thumbnail: {
+		type: String
 	},
 	added_to: [
 		{
@@ -58,6 +64,7 @@ userSchema.methods.getAuthToken = async function () {
 	const { signToken } = require('../helpers/jwt-helper')
 	const token = await signToken(user._id)
 
+	// Saving the generated token into tokens array of the current user
 	user.tokens = user.tokens.concat({ token })
 	await user.save()
 	return token

@@ -12,12 +12,19 @@ const app = express()
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-
+const passport = require('passport')
 const moment = require('moment')
 const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
 const io = socketio(server)
+const mongoose = require('./db/mongoose')
+
+// mongoDB Connection Module
+require('./db/mongoose')
+
+// Social Login config
+require('./auth/social-login')
 
 // JOIN, LEAVE, LOG operations on the room (chat and main)
 // Video room operations excluded !!!
@@ -27,9 +34,6 @@ const {
 	userLeaves,
 	getRoomUsers
 } = require('./chat-module/user')
-
-// mongoDB Connection Module
-require('./db/mongoose')
 
 const origin =
 	process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000'
@@ -45,13 +49,19 @@ const PORT = process.env.PORT || 5000
 const usersRouter = require('./routes/user-routes')
 const ideaBoardRouter = require('./routes/idea-board-routes')
 const collaboratorsRouter = require('./routes/collaborator-routes')
-const mongoose = require('./db/mongoose')
+const authRouter = require('./routes/social-login-routes')
 
 // Middlewares
-app.use(express.json(), cookieParser(), cors(corsOptions))
+app.use(
+	express.json(),
+	cookieParser(),
+	cors(corsOptions),
+	passport.initialize()
+)
 app.use('/api/user', usersRouter)
 app.use('/api/idea-board', ideaBoardRouter)
 app.use('/api/collaborators', collaboratorsRouter)
+app.use('/auth', authRouter)
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -67,9 +77,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const users = {}
 const socketToRoom = {}
-
-// Elements
-const elements_temp = {}
 
 mongoose.connect(() => {
 	server.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))

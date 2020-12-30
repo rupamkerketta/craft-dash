@@ -114,6 +114,10 @@ function Login({ auth, attemptLogin }) {
 									<div className='row-6'>
 										<div className='social-login'>
 											<img
+												onClick={() =>
+													(window.location =
+														'http://localhost:5000/auth/google')
+												}
 												src={GoogleIcon}
 												alt='Login with Google'
 												title='Login with Google'

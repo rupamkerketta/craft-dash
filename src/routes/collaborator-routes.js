@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-// Middleware
-const auth = require('../middlewares/auth')
+// JWT helper
+const { verifyToken: auth } = require('../helpers/jwt-helper')
 
 // Models
 const User = require('../models/user')

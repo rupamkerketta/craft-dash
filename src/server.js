@@ -1,8 +1,10 @@
 // Environment Variables Configuration
-const result = require('dotenv').config()
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+	const result = require('dotenv').config()
 
-if (result.error) {
-	console.log(result.error)
+	if (result.error) {
+		console.log(result.error)
+	}
 }
 
 const express = require('express')
@@ -40,9 +42,9 @@ const corsOptions = {
 const PORT = process.env.PORT || 5000
 
 // Routers
-const usersRouter = require('./routes/users')
-const ideaBoardRouter = require('./routes/idea-board')
-const collaboratorsRouter = require('./routes/collaborators')
+const usersRouter = require('./routes/user-routes')
+const ideaBoardRouter = require('./routes/idea-board-routes')
+const collaboratorsRouter = require('./routes/collaborator-routes')
 const mongoose = require('./db/mongoose')
 
 // Middlewares

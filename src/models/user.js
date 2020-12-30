@@ -6,9 +6,6 @@ const validator = require('validator')
 // Bcrypt
 const bcrypt = require('bcrypt')
 
-// JSON web token
-const jwt = require('jsonwebtoken')
-
 const userSchema = mongoose.Schema({
 	username: {
 		type: String,
@@ -53,16 +50,20 @@ const userSchema = mongoose.Schema({
 	]
 })
 
-userSchema.methods.getAuthToken = async function() {
+// getAuthToken() works on the instance of the
+// current user who is successfully verified
+userSchema.methods.getAuthToken = async function () {
 	const user = this
-	const token = await jwt.sign({ _id: user._id }, process.env.SIGNATURE)
+
+	const { signToken } = require('../helpers/jwt-helper')
+	const token = await signToken(user._id)
 
 	user.tokens = user.tokens.concat({ token })
 	await user.save()
 	return token
 }
 
-userSchema.statics.findByCredentials = async function(username, password) {
+userSchema.statics.findByCredentials = async function (username, password) {
 	const user = await User.findOne({ email: username })
 	if (!user) {
 		throw new Error('Unable to login email')
@@ -77,7 +78,8 @@ userSchema.statics.findByCredentials = async function(username, password) {
 	return user
 }
 
-userSchema.pre('save', async function(next) {
+// Hashing the password brfore saving it in the database
+userSchema.pre('save', async function (next) {
 	const user = this
 
 	if (user.isModified('password')) {

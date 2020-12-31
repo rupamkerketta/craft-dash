@@ -1,8 +1,87 @@
-@import '../../sass/utils/colors';
-@import '../../sass/utils/fonts';
+@import "../../sass/utils/colors";
+@import "../../sass/utils/fonts";
 
-.landing-page {
-	h1 {
-		color: white;
-	}
+body {
+  overflow-x: hidden;
+  background-color: $theme-color;
+  background-image: '../img/Pattern.svg';
+}
+
+.navbar {
+  ul {
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    color: $label-color;
+    font-family: $theme-font;
+    list-style: none;
+  }
+
+  .active-link {
+    border-bottom: 5px solid $craft-dash-green;
+  }
+
+  .home-bar {
+    padding: 4px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-weight: 500;
+  }
+
+  .home-bar:hover {
+    color: $craft-dash-green;
+  }
+  .about-bar {
+    color: $label-color;
+    font-family: $theme-font;
+    padding: 4px;
+    font-weight: 500;
+    margin-left: 300px;
+  }
+
+  .about-bar:hover {
+    color: $craft-dash-green;
+  }
+
+  .login-btn {
+    background-color: $login-btn-color;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 150px;
+    // border: 3px solid $login-btn-color;
+    border: none;
+    border-radius: 20px;
+    font-family: $theme-font;
+    font-size: 1em;
+    font-weight: 800;
+    color: $theme-color;
+  }
+
+  .join-btn {
+    background-color: $signup-btn-color;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 150px;
+    // border: 3px solid $signup-btn-color;
+    border: none;
+    border-radius: 20px;
+    font-family: $theme-font;
+    font-size: 1em;
+    font-weight: 800;
+    margin-left: 300px;
+    color: $theme-color;
+  }
+
+  .login-btn:hover {
+    background-color: $theme-color;
+    color: $login-btn-color;
+  }
+  .join-btn:hover {
+    background-color: $theme-color;
+    color: $signup-btn-color;
+  }
 }

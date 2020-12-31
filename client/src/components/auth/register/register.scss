@@ -2,6 +2,11 @@
 @import '../../../sass/utils/fonts';
 
 .register {
+	overflow-y: hidden;
+	background: url('../../../img/landing-page-bg.svg') fixed center repeat;
+	background-size: cover;
+	// border: 1px solid white;
+	height: 100vh;
 	form {
 		width: 800px;
 		margin: auto;
@@ -32,12 +37,16 @@
 				margin-top: 30px;
 				transition: 0.2s all ease-in;
 				outline: none;
-			}
 
-			#submit-btn:hover {
-				background-color: $signup-btn-color;
-				color: $theme-color;
-				font-weight: 500;
+				&:hover {
+					background-color: $signup-btn-color;
+					color: $theme-color;
+					font-weight: 500;
+				}
+
+				&:focus {
+					outline: none;
+				}
 			}
 		}
 

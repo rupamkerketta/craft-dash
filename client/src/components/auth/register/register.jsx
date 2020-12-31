@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect, NavLink } from 'react-router-dom'
+import { Redirect, NavLink, Link } from 'react-router-dom'
 import validator from 'validator'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { connect } from 'react-redux'
@@ -71,7 +71,9 @@ function Register({ auth, signup, signupAttempt }) {
 				<LoadingPage />
 			) : !auth.isAuthenticated ? (
 				<React.Fragment>
-					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
+					<Link to='/landing-page'>
+						<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
+					</Link>
 					<Formik
 						initialValues={initialValues}
 						validate={validate}

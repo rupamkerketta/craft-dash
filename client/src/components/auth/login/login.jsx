@@ -10,7 +10,7 @@ import './login.scss'
 // Components
 import BrandLogo from '../../brand-logo/brand-logo'
 import LoadingPage from '../../loading-page/loading-page'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 // Social Login Icons
 import GoogleIcon from '../../../img/GoogleIcon.svg'
@@ -57,7 +57,9 @@ function Login({ auth, attemptLogin }) {
 				<LoadingPage />
 			) : !auth.isAuthenticated ? (
 				<React.Fragment>
-					<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
+					<Link to='/landing-page'>
+						<BrandLogo custom={{ margin: 'auto', marginTop: '20px' }} />
+					</Link>
 					<Formik
 						initialValues={initialValues}
 						validate={validate}

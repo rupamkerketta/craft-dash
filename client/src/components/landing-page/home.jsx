@@ -3,7 +3,7 @@ import './home.scss'
 
 import CDLogo from '../../img/LogoWithLight.svg'
 import Illustration1 from '../../img/Guy.svg'
-import Globe from '../../img/globe.svg'
+import Globe from '../../img/Globe.svg'
 import Illustration2 from '../../img/IdeaBoardIllustration.svg'
 import Illustration3 from '../../img/RealTimeInteractionIllustration.svg'
 import Illustration4 from '../../img/FileSharingIllustration.svg'
@@ -18,11 +18,7 @@ const Home = () => {
 			<section className='brand-banner'>
 				<div className='about-craft-dash'>
 					<p>
-						A web application which allows you to Create IdeaBoard Host Meetings
-						Note Creation, Mind-mapping Real-time group chats (Video and Text)
-						Polling on Ideas Task Planning or Roadmap for a particular topic for
-						any subject Role-Based Activities and Privileges Voice Notes File
-						Sharing (Images, Videos, Text Files, etc.)
+						A Real Time Mind Mapping Tool
 					</p>
 				</div>
 				<img src={CDLogo} className='cd-logo' alt='Craft Dash' />

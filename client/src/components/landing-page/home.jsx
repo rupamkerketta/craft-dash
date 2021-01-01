@@ -17,9 +17,7 @@ const Home = () => {
 		<div className='home-page-wrapper'>
 			<section className='brand-banner'>
 				<div className='about-craft-dash'>
-					<p>
-						A Real Time Mind Mapping Tool
-					</p>
+					<p>A Real Time Mind Mapping Tool</p>
 				</div>
 				<img src={CDLogo} className='cd-logo' alt='Craft Dash' />
 				<img src={Globe} className='globe' alt='Globe' />
@@ -101,24 +99,6 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-			{/* 
-			<div className='row-11'>
-				<table>
-					<tr>
-						<div className='contact-logos'>
-							<img src={Gmail} alt=''></img>
-							<img src={Twitter} alt=''></img>
-							<img src={Instagram} alt=''></img>
-						</div>
-					</tr>
-					<tr>
-						<p>Created by Rupam Kerketta & Vishnu Jayakumar</p>
-					</tr>
-					<tr>
-						<p>© 2021</p>
-					</tr>
-				</table>
-			</div> */}
 		</div>
 	)
 }

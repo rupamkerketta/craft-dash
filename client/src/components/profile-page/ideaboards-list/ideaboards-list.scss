@@ -1,0 +1,39 @@
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
+
+.active-ideaboards-list {
+  // border: 1px solid yellow;
+  width: 100%;
+  height: 120px;
+  // height: 200px;
+    position: absolute;
+    top: 60px;
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-left: 7px;
+    
+    // justify-content: flex-start;
+
+    // left: 20px;
+    .active-ideaboards-list-wrapper {
+      margin: 7px;
+      // border: 1px solid white;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      margin-right: 5px;
+      .color-circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: $craft-dash-pink;
+      }
+      .ideaboard-title {
+        margin-left: 5px;
+        font-family: $theme-font;
+        color: $label-color;
+      }
+    }
+  }

@@ -8,6 +8,7 @@ import Dashboard from '../dashboard/dashboard'
 import Main from '../main/main'
 import Register from '../auth/register/register'
 import Login from '../auth/login/login'
+import ProfilePage from '../profile-page/profile-page'
 
 const Routes = (props) => {
 	return (
@@ -16,6 +17,7 @@ const Routes = (props) => {
 			<Route exact path='/signup' component={Register} />
 			<Route exact path='/login' component={Login} />
 			<PrivateRoute exact path='/main/:id' component={Main} />
+			<PrivateRoute exact path='/profile-page' component={ProfilePage}/>
 			<PrivateRoute exact path='/' component={Dashboard} />
 			<PrivateRoute exact path='/dashboard' component={Dashboard} />
 		</React.Fragment>

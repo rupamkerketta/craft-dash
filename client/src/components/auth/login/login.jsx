@@ -14,8 +14,8 @@ import { Link, Redirect } from 'react-router-dom'
 
 // Social Login Icons
 import GoogleIcon from '../../../img/GoogleIcon.svg'
-import MicrosoftIcon from '../../../img/MicrosoftIcon.svg'
-import GithubIcon from '../../../img/GithubIcon.svg'
+import FacebookIcon from '../../../img/FacebookIcon.svg'
+
 
 const initialValues = {
 	email: '',
@@ -114,26 +114,34 @@ function Login({ auth, attemptLogin }) {
 										<p>OR</p>
 									</div>
 									<div className='row-6'>
-										<div className='social-login'>
-											<img
-												onClick={() =>
+									<div className='social-login'>
+											<button onClick={() =>
 													(window.location =
 														'http://localhost:5000/auth/google')
 												}
+												alt='Login with Google'
+												title='Login with Google' className="google-button"><img
+												
+											/>
+											<img
 												src={GoogleIcon}
 												alt='Login with Google'
 												title='Login with Google'
 											/>
-											<img
-												src={MicrosoftIcon}
-												alt='Login with Microsoft'
-												title='Login with Microsoft'
+											<p>Sign in with Google</p>
+											</button>
+											<button 
+												alt='Login with Facebook'
+												title='Login with Facebook' className="facebook-button"><img
+												
 											/>
 											<img
-												src={GithubIcon}
-												alt='Login with Githhub'
-												title='Login with Githhub'
+												src={FacebookIcon}
+												alt='Login with Facebook'
+												title='Login with Facebook'
 											/>
+											<p>Continue with Facebook</p>
+											</button>
 										</div>
 									</div>
 								</Form>

@@ -11,10 +11,10 @@
 		.card {
 			position: relative;
 			border-radius: 10px;
-			width: 270px;
+			width: 300px;
 			height: 180px;
 			cursor: pointer;
-			margin-left: 60px;
+			margin-left: 30px;
 
 			.main {
 				position: absolute;
@@ -23,24 +23,25 @@
 				width: 100%;
 				border-top-right-radius: 10px;
 				border-top-left-radius: 10px;
-				background-color: $card-main-color;
+				background-color: $theme-color;
 
 				.logo-wrapper {
 					position: relative;
 					border-top-right-radius: 10px;
 					border-top-left-radius: 10px;
+					border: 1px solid $charcoal;
 					width: 100%;
 					height: 100%;
-					background-color: rgba(0, 0, 0, 0.5);
+					background-color: $theme-color;
 					transition: 0.4s all ease;
 
 					img {
 						position: absolute;
-						width: 27px;
+						width: 50px;
 						top: 50%;
 						left: 50%;
 						transform: translate(-50%, -50%);
-						transition: 0.4s all ease;
+						transition: 0.6s all ease;
 					}
 				}
 			}
@@ -50,9 +51,12 @@
 				width: 100%;
 				height: 30%;
 				bottom: 0;
+				border-bottom: 1px solid $charcoal;
+				border-left: 1px solid $charcoal;
+				border-right: 1px solid $charcoal;
 				border-bottom-left-radius: 10px;
 				border-bottom-right-radius: 10px;
-				background-color: $card-footer-color;
+				background-color: $theme-color;
 
 				display: flex;
 				align-items: center;
@@ -137,9 +141,9 @@
 		.card:hover {
 			.logo-wrapper {
 				background: none;
-
 				img {
-					opacity: 0;
+					width: 20px;
+					opacity: 0.8;
 				}
 			}
 		}

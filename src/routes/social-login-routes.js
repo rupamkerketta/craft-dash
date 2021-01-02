@@ -34,7 +34,7 @@ router.get(
 				httpOnly: true
 			})
 
-			if (process.env.NODE_ENV === 'PRODUCTION') {
+			if (process.env.NODE_ENV === 'production') {
 				res.redirect('/')
 			} else {
 				res.redirect('http://localhost:3000')

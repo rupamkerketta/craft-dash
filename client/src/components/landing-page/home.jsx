@@ -3,7 +3,7 @@ import './home.scss'
 
 import CDLogo from '../../img/LogoWithLight.svg'
 import Illustration1 from '../../img/Guy.svg'
-import Globe from '../../img/Globe.svg'
+import Globe from '../../img/Globe.png'
 import Illustration2 from '../../img/IdeaBoardIllustration.svg'
 import Illustration3 from '../../img/RealTimeInteractionIllustration.svg'
 import Illustration4 from '../../img/FileSharingIllustration.svg'

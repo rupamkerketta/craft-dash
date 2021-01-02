@@ -18,13 +18,11 @@
 		margin-top: 50px;
 		background: linear-gradient(
 			103.23deg,
-			rgba(108, 134, 144, 0.10) 0%,
+			rgba(108, 134, 144, 0.1) 0%,
 			rgba(108, 134, 145, 0.04) 49.27%,
 			rgba(108, 134, 144, 0.06) 100%
 		);
-		backdrop-filter: blur(
-			10px
-		); 
+		backdrop-filter: blur(10px);
 		border-left: 2px solid #1f2a31;
 		border-top: 2px solid #1f2a31;
 		border-right: 1px solid #27292e;
@@ -136,6 +134,10 @@
 						color: $label-color;
 					}
 
+					&:focus {
+						outline: none;
+					}
+
 					&:hover {
 						border-left: 3px solid #fbbc05;
 						border-top: 3px solid #ea4335;
@@ -161,6 +163,7 @@
 					padding-bottom: 5px;
 					border-radius: 5px;
 					transition: 0.4s all linear;
+					display: none;
 					img {
 						width: 35px;
 						margin-left: -80px;
@@ -171,6 +174,10 @@
 						font-family: $theme-font;
 						font-size: 1.2em;
 						color: $label-color;
+					}
+
+					&:focus {
+						outline: none;
 					}
 
 					&:hover {

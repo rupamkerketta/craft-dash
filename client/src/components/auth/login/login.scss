@@ -9,10 +9,27 @@
 	height: 100vh;
 	form {
 		// border: 1px solid white;
-		width: 800px;
+		width: fit-content;
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		margin: auto;
-		margin-top: 70px;
-
+		margin-top: 50px;
+		background: linear-gradient(
+			103.23deg,
+			rgba(108, 134, 144, 0.10) 0%,
+			rgba(108, 134, 145, 0.04) 49.27%,
+			rgba(108, 134, 144, 0.06) 100%
+		);
+		backdrop-filter: blur(
+			10px
+		); 
+		border-left: 2px solid #1f2a31;
+		border-top: 2px solid #1f2a31;
+		border-right: 1px solid #27292e;
+		border-bottom: 1px solid #27292e;
+		border-radius: 10px;
 		.row-2 {
 			margin-top: 30px;
 		}
@@ -94,6 +111,7 @@
 				}
 
 				.google-button {
+					outline: none;
 					align-items: center;
 					justify-content: space-evenly;
 					display: flex;
@@ -129,6 +147,7 @@
 				}
 
 				.facebook-button {
+					outline: none;
 					display: flex;
 					margin-top: 20px;
 					align-items: center;
@@ -190,11 +209,12 @@
 				width: 400px;
 				border: 0;
 				border-radius: 4px;
-				background: $reg-input-box-color;
+				background: $modal-background-color;
 				font-family: $theme-font;
 				font-size: 1.2em;
-				color: #ffffff;
+				color: $label-color;
 				font-weight: 300;
+				border: 2px solid $charcoal;
 				// padding
 				padding: 10px;
 				padding-top: 10px;

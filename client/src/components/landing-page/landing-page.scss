@@ -3,6 +3,8 @@
 
 .landing-page {
 	// border: 2px solid white;
+	scroll-behavior: smooth;
+
 	width: 100%;
 	// height: 100vh;
 	background: url('../../img/landing-page-bg.svg') fixed center repeat;
@@ -10,15 +12,29 @@
 
 	.landing-page-content {
 		.navbar {
-			width: 100%;
+			width: 90%;
 			height: 9vh;
 			position: sticky;
-			top: 0;
-			-webkit-backdrop-filter: blur(5px); /* Safari 9+ */
-			backdrop-filter: blur(5px); /* Chrome and Opera */
-			background-color: rgba(0, 0, 0, 0.041);
+			top: 10px;
+			margin: auto;
+			// -webkit-backdrop-filter: blur(5px); /* Safari 9+ */
+			// backdrop-filter: blur(5px); /* Chrome and Opera */
+			// background-color: rgba(0, 0, 0, 0.041);
 			z-index: 199;
-
+			background: linear-gradient(
+				103.23deg,
+				rgba(108, 134, 144, 0.10) 0%,
+				rgba(108, 134, 145, 0.04) 49.27%,
+				rgba(108, 134, 144, 0.06) 100%
+			);
+			backdrop-filter: blur(
+				10px
+			); 
+			border-left: 2px solid #1f2a31;
+			border-top: 2px solid #1f2a31;
+			border-right: 1px solid #27292e;
+			border-bottom: 1px solid #27292e;
+			border-radius: 5px;
 			// Flex
 			display: flex;
 			justify-content: space-around;
@@ -44,14 +60,16 @@
 						color: $label-color;
 						font-family: $theme-font;
 						font-size: 1.4em;
-						font-weight: 300;
+						font-weight: 500;
 						width: 100%;
 					}
 					transition: 0.2s all ease;
 				}
 
 				.content:hover {
-					border: 2px solid rgba(136, 136, 136, 0.541);
+					h4{
+						color: $craft-dash-green;
+					}
 				}
 			}
 

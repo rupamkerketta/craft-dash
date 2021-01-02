@@ -1,12 +1,16 @@
-@import '../../sass/utils/colors';
-@import '../../sass/utils/fonts';
+@import "../../sass/utils/colors";
+@import "../../sass/utils/fonts";
 
-
+.profile-page {
+  background: url("../../img/landing-page-bg.svg") fixed center repeat;
+  background-size: cover;
+  height: 95vh;
+}
 .app-bar {
   ul {
     margin-top: 20px;
     margin-left: 80px;
-    margin-right: 20px;
+    margin-right: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,50 +41,69 @@
 
 .profile-card {
   margin-top: 50px;
-  margin-left: 120px;
-  background-color: $modal-background-color;
-  width: 1180px;
-  height: 300px;
+  // margin-left: 120px;
+  // background-color: $modal-background-color;
+  -webkit-backdrop-filter: blur(8px);
+  /* Safari 9+ */
+  background: linear-gradient(
+    100.5deg,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(8px);
+  width: 600px;
+  height: 250px;
+  border-left: 2px solid #1f2a31;
+  border-top: 2px solid #1f2a31;
+  border-right: 1px solid #27292e;
+  border-bottom: 1px solid #27292e;
   border-radius: 15px;
   position: absolute;
   top: 100px;
-  left: 40px;
-
+  left: 50%;
+  transform: translate(-55%);
+  transition: 0.2s all linear;
   .username {
     position: absolute;
-    left: 20px;
-    top: 20px;
+    left: 250px;
+    top: 70px;
     color: $label-color;
     font-family: $theme-font;
-    font-weight: 800;
-    font-size: 5em;
+    text-align: center;
+    font-weight: 500;
+    font-size: 36px;
   }
   .email {
     position: absolute;
-    left: 20px;
-    top: 155px;
+    left: 310px;
+    top: 120px;
     color: $label-color;
     font-family: $theme-font;
-    font-weight: 300;
-    font-size: 3em;
+    text-align: center;
+    font-weight: 200;
+    font-size: 20px;
   }
   .subscription {
     position: absolute;
-    left: 20px;
-    top: 260px;
+    left: 360px;
+    top: 160px;
     color: $label-color;
     font-family: $theme-font;
     font-weight: 500;
-    font-size: 1em;
+    font-size: 14px;
   }
   .userImage {
     position: absolute;
-    left: 920px;
-    top: -26px;
-    width: 350px;
+    left: 20px;
+    top: 25px;
+    bottom: 20px;
+    width: 200px;
     border-radius: 50%;
+    border-top: 3px solid $craft-dash-pink;
+    border-bottom: 3px solid $craft-dash-purple;
+    border-right: 3px solid $craft-dash-green;
+    border-left: 3px solid $craft-dash-blue;
     padding: 5px;
-    border: 5px solid $craft-dash-green;
   }
   .edit-profile-button {
     display: none;
@@ -102,7 +125,22 @@
     border: 3px solid $craft-dash-blue;
   }
 }
-
+.profile-card:hover {
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari 9+ */
+  border-left: 2px solid #1f2a31;
+  border-top: 2px solid #1f2a31;
+  border-right: 1px solid #27292e;
+  border-bottom: 1px solid #27292e;
+  border-radius: 15px;
+  background: linear-gradient(
+    100.1deg,
+    rgba(47, 218, 228, 0.02) 10%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(25px);
+  transition: 0.3s all linear;
+}
 .subscription-card {
   display: none;
   margin-top: 50px;
@@ -160,6 +198,7 @@
   }
 }
 .active-time-card {
+  display: none;
   background-color: $modal-background-color;
   border-radius: 15px;
   position: absolute;
@@ -191,22 +230,51 @@
 
 .active-ideaboards-card {
   margin-top: 50px;
-  margin-left: 50px;
-  background-color: $modal-background-color;
+  // margin-left: 50px;
+  -webkit-backdrop-filter: blur(8px);
+  /* Safari 9+ */
+  background: linear-gradient(
+    100.5deg,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(8px);
+  width: 600px;
+  height: 250px;
+  border-left: 2px solid #1f2a31;
+  border-top: 2px solid #1f2a31;
+  border-right: 1px solid #27292e;
+  border-bottom: 1px solid #27292e;
   border-radius: 15px;
   position: absolute;
-  width: 400px;
-  height: 200px;
-  left: 893px;
-  top: 450px;
+  left: 50%;
+  transform: translate(-55%);
+  transition: 0.3s all linear;
+  top: 400px;
   .active-ideaboards-header {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 210px;
     color: $label-color;
     font-family: $theme-font;
     font-size: 1.2em;
-    font-weight: 800;
+    font-weight: 500;
   }
- 
+}
+
+.active-ideaboards-card:hover {
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari 9+ */
+  border-left: 2px solid #1f2a31;
+  border-top: 2px solid #1f2a31;
+  border-right: 1px solid #27292e;
+  border-bottom: 1px solid #27292e;
+  border-radius: 15px;
+  background: linear-gradient(
+    100.1deg,
+    rgba(47, 218, 228, 0.02) 10%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(25px);
+  transition: 0.3s all linear;
 }

@@ -3,6 +3,7 @@
 
 body {
   background-color: $theme-color;
+  scroll-behavior: smooth;
 }
 
 .logo {
@@ -40,7 +41,6 @@ body {
   width: fit-content;
   .tech-logos {
     position: relative;
-    background-color: $theme-color;
 
     table {
       align-items: center;
@@ -48,7 +48,7 @@ body {
     img {
       margin: auto;
       position: relative;
-      width: 40px;
+      width: 500px;
       padding: 10px;
     }
   }

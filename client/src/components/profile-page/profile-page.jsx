@@ -17,7 +17,7 @@ import { logout } from "../../redux/logout/logoutActions";
 function ProfilePage({idea_boards, user, logout}) {
   
   return (
-    <div>
+    <div className="profile-page">
       <div className="app-bar">
         <div>
           <ul>

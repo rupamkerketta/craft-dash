@@ -68,6 +68,7 @@
 					font-family: $theme-font;
 					font-size: 1.2em;
 					color: $label-color;
+					// border: 2px solid $charcoal;
 					font-weight: 300;
 					outline: none;
 				}
@@ -130,7 +131,6 @@
 	.collaborators-list-wrapper {
 		padding-left: 30px;
 		padding-right: 30px;
-
 		.collaborators-list-header {
 			h2 {
 				font-family: $theme-font;
@@ -141,5 +141,6 @@
 				color: $label-color;
 			}
 		}
+	
 	}
 }

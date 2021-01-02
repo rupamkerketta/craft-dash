@@ -22,7 +22,6 @@ function DashboardCards(props) {
 					<div className='footer'>
 						<div className='idea-board-title'>
 							<h1>{props.title}</h1>
-
 							<div className='actions'>
 								<img
 									className='delete'

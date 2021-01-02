@@ -16,7 +16,6 @@ import { Link, Redirect } from 'react-router-dom'
 import GoogleIcon from '../../../img/GoogleIcon.svg'
 import FacebookIcon from '../../../img/FacebookIcon.svg'
 
-
 const initialValues = {
 	email: '',
 	password: ''
@@ -114,33 +113,36 @@ function Login({ auth, attemptLogin }) {
 										<p>OR</p>
 									</div>
 									<div className='row-6'>
-									<div className='social-login'>
-											<button onClick={() =>
+										<div className='social-login'>
+											<button
+												onClick={() =>
 													(window.location =
-														'http://localhost:5000/auth/google')
+														window.location.hostname === 'localhost'
+															? 'http://localhost:5000/auth/google'
+															: 'https://craft-dash.herokuapp.com/auth/google')
 												}
 												alt='Login with Google'
-												title='Login with Google' className="google-button"><img
-												
-											/>
-											<img
-												src={GoogleIcon}
-												alt='Login with Google'
 												title='Login with Google'
-											/>
-											<p>Sign in with Google</p>
+												className='google-button'>
+												<img />
+												<img
+													src={GoogleIcon}
+													alt='Login with Google'
+													title='Login with Google'
+												/>
+												<p>Sign in with Google</p>
 											</button>
-											<button 
-												alt='Login with Facebook'
-												title='Login with Facebook' className="facebook-button"><img
-												
-											/>
-											<img
-												src={FacebookIcon}
+											<button
 												alt='Login with Facebook'
 												title='Login with Facebook'
-											/>
-											<p>Continue with Facebook</p>
+												className='facebook-button'>
+												<img />
+												<img
+													src={FacebookIcon}
+													alt='Login with Facebook'
+													title='Login with Facebook'
+												/>
+												<p>Continue with Facebook</p>
 											</button>
 										</div>
 									</div>

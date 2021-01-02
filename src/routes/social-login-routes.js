@@ -34,8 +34,8 @@ router.get(
 				httpOnly: true
 			})
 
-			if (process.env.NODE_ENV === 'PRODUCTION') {
-				res.redirect('/')
+			if (process.env.NODE_ENV === 'production') {
+				res.redirect('https://craft-dash.herokuapp.com')
 			} else {
 				res.redirect('http://localhost:3000')
 			}

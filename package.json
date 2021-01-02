@@ -1,38 +1,38 @@
 {
-  "name": "craft-dash",
-  "version": "1.0.0",
-  "description": "Brain Storming Web App",
-  "main": "server.js",
-  "scripts": {
-    "start": "cd src && node server.js",
-    "server": "cd src && nodemon server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "author": "Rupam Kerketta",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "chalk": "^4.1.0",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "http-errors": "^1.8.0",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.0",
-    "mongoose": "^5.10.7",
-    "passport": "^0.4.1",
-    "passport-google-oauth2": "^0.2.0",
-    "socket.io": "^2.3.0",
-    "validator": "^13.1.17"
-  },
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
-  },
-  "engines": {
-    "node": "10.15.3"
-  }
+	"name": "craft-dash",
+	"version": "1.0.0",
+	"description": "Brain Storming Web App",
+	"main": "server.js",
+	"scripts": {
+		"start": "cd src && node server.js",
+		"server": "cd src && nodemon server.js",
+		"client": "cd client && npm start",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm run build --prefix client"
+	},
+	"author": "Rupam Kerketta",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^5.0.0",
+		"chalk": "^4.1.0",
+		"cookie-parser": "^1.4.5",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"http-errors": "^1.8.0",
+		"jsonwebtoken": "^8.5.1",
+		"moment": "^2.29.0",
+		"mongoose": "^5.10.7",
+		"passport": "^0.4.1",
+		"passport-google-oauth2": "^0.2.0",
+		"socket.io": "^2.3.0",
+		"validator": "^13.1.17"
+	},
+	"devDependencies": {
+		"concurrently": "^5.3.0",
+		"nodemon": "^2.0.4"
+	},
+	"engines": {
+		"node": "10.15.3"
+	}
 }

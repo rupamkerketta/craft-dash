@@ -2,26 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-// Logos
-import CDLogo from '../../img/LogoWithLight.svg'
-import NodeJs from '../../img/NodJs.svg'
-import Express from '../../img/Express.svg'
-import Figma from '../../img/Figma.svg'
-import Firebase from '../../img/Firebase.svg'
-import MongoDB from '../../img/MongoDB.svg'
-import ReactLogo from '../../img/React.svg'
-import Redux from '../../img/Redux.svg'
-import Sass from '../../img/Sass.svg'
-import GitHub from '../../img/GithubIcon.svg'
-import Socket from '../../img/Socket.svg'
-import WebRTC from '../../img/WebRTC.svg'
 
 // Loading Page
 import LoadingPage from '../loading-page/loading-page'
 
 // Home
 import Home from './home'
-
+import About from './about'
 // Style
 import './landing-page.scss'
 import './about.scss'
@@ -90,47 +77,47 @@ const LandingPageContent = () => {
 	)
 }
 
-const About = () => {
-	return (
-		<div>
-			<div className='logo'>
-				<img src={CDLogo} alt='LogoWithLight' />
-				<p>
-					A web application which allows you to Create IdeaBoard Host Meetings
-					Note Creation, Mind-mapping Real-time group chats (Video and Text)
-					Polling on Ideas Task Planning or Roadmap for a particular topic for
-					any subject Role-Based Activities and Privileges Voice Notes File
-					Sharing (Images, Videos, Text Files, etc.)
-				</p>
-			</div>
-			<div className='row-12'>
-				<table>
-					<tr>
-						<div className='tech-logos'>
-							<img src={NodeJs}></img>
-							<img src={ReactLogo}></img>
-							<img src={GitHub}></img>
-							<img src={Firebase}></img>
-							<img src={Figma}></img>
-							<img src={Express}></img>
-							<img src={Redux}></img>
-							<img src={WebRTC}></img>
-							<img src={MongoDB}></img>
-							<img src={Socket}></img>
-							<img src={Sass}></img>
-						</div>
-					</tr>
-					<tr>
-						<p>Created by Rupam Kerketta & Vishnu Jayakumar</p>
-					</tr>
-					<tr>
-						<p>© 2021</p>
-					</tr>
-				</table>
-			</div>
-		</div>
-	)
-}
+// const About = () => {
+// 	return (
+// 		<div>
+// 			<div className='logo'>
+// 				<img src={CDLogo} alt='LogoWithLight' />
+// 				<p>
+// 					A web application which allows you to Create IdeaBoard Host Meetings
+// 					Note Creation, Mind-mapping Real-time group chats (Video and Text)
+// 					Polling on Ideas Task Planning or Roadmap for a particular topic for
+// 					any subject Role-Based Activities and Privileges Voice Notes File
+// 					Sharing (Images, Videos, Text Files, etc.)
+// 				</p>
+// 			</div>
+// 			<div className='row-12'>
+// 				<table>
+// 					<tr>
+// 						<div className='tech-logos'>
+// 							<img src={NodeJs}></img>
+// 							<img src={ReactLogo}></img>
+// 							<img src={GitHub}></img>
+// 							<img src={Firebase}></img>
+// 							<img src={Figma}></img>
+// 							<img src={Express}></img>
+// 							<img src={Redux}></img>
+// 							<img src={WebRTC}></img>
+// 							<img src={MongoDB}></img>
+// 							<img src={Socket}></img>
+// 							<img src={Sass}></img>
+// 						</div>
+// 					</tr>
+// 					<tr>
+// 						<p>Created by Rupam Kerketta & Vishnu Jayakumar</p>
+// 					</tr>
+// 					<tr>
+// 						<p>© 2021</p>
+// 					</tr>
+// 				</table>
+// 			</div>
+// 		</div>
+// 	)
+// }
 
 const mapStateToProps = (state) => {
 	return {

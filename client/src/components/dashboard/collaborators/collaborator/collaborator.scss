@@ -7,10 +7,10 @@
 	align-items: center;
 	padding-top: 7px;
 	padding-bottom: 7px;
-	border-radius: 4px;
+	border-radius: 5px;
 	cursor: pointer;
-
-	background-color: rgba(207, 238, 255, 0.349);
+	background-color: $theme-color;
+	// border: 2px solid $charcoal;
 
 	.collaborator-pic {
 		img {
@@ -23,6 +23,7 @@
 			font-family: $theme-font;
 			font-size: 1em;
 			font-weight: 300;
+			color: $label-color;
 		}
 	}
 

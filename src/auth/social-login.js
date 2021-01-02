@@ -1,8 +1,16 @@
+if (process.env.NODE_ENV !== 'production') {
+	const result = require('dotenv').config()
+
+	if (result.error) {
+		console.log(result.error)
+	}
+}
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth2').Strategy
 
 // User Model
 const User = require('../models/user')
+
 
 passport.serializeUser((user, done) => {
 	console.log('[passportSerialize] ' + user)

@@ -11,7 +11,24 @@
 		width: 800px;
 		margin: auto;
 		margin-top: 40px;
-
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-top: 10px;
+		padding-bottom: 20px;
+		background: linear-gradient(
+			103.23deg,
+			rgba(108, 134, 144, 0.10) 0%,
+			rgba(108, 134, 145, 0.04) 49.27%,
+			rgba(108, 134, 144, 0.06) 100%
+		);
+		backdrop-filter: blur(
+			10px
+		); 
+		border-left: 2px solid #1f2a31;
+		border-top: 2px solid #1f2a31;
+		border-right: 1px solid #27292e;
+		border-bottom: 1px solid #27292e;
+		border-radius: 10px;
 		.row-1 {
 			display: flex;
 			align-items: flex-start;

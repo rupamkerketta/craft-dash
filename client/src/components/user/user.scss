@@ -12,12 +12,16 @@
 			width: 60px;
 			cursor: pointer;
 			border-radius: 50%;
-			border: 2px solid $top-nav-color;
+			border: 2px solid $charcoal;
 			transition: 0.2s all ease;
 		}
 
 		.pic:hover {
-			border: 2px solid $danger;
+			border-top: 2px solid $craft-dash-pink;
+			border-bottom: 2px solid $craft-dash-purple;
+			border-right: 2px solid $craft-dash-green;
+			border-left: 2px solid $craft-dash-blue;
+
 		}
 
 		h5 {

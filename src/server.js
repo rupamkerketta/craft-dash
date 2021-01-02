@@ -1,5 +1,5 @@
 // Environment Variables Configuration
-if (process.env.NODE_ENV !== 'PRODUCTION') {
+if (process.env.NODE_ENV !== 'production') {
 	const result = require('dotenv').config()
 
 	if (result.error) {

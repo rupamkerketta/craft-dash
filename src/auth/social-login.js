@@ -17,11 +17,11 @@ passport.use(
 	new GoogleStrategy(
 		{
 			clientID:
-				process.env.NODE_ENV === 'PRODUCTION'
+				process.env.NODE_ENV === 'production'
 					? process.env.GOOGLE_CLIENT_ID
 					: process.env.GOOGLE_CLIENT_ID_LOCAL,
 			clientSecret:
-				process.env.NODE_ENV === 'PRODUCTION'
+				process.env.NODE_ENV === 'production'
 					? process.env.GOOGLE_CLIENT_SECRET
 					: process.env.GOOGLE_CLIENT_SECRET_LOCAL,
 			callbackURL: '/auth/google/callback'

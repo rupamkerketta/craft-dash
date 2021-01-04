@@ -9,16 +9,18 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const app = express()
+
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
 const path = require('path')
+const cookieParser = require('cookie-parser')
+const mongoose = require('./db/mongoose')
 const passport = require('passport')
 const moment = require('moment')
 const socketio = require('socket.io')
 const http = require('http')
+
 const server = http.createServer(app)
 const io = socketio(server)
-const mongoose = require('./db/mongoose')
 
 // mongoDB Connection Module
 require('./db/mongoose')

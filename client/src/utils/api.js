@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const production = 'https://craftdash.xyz/api'
+const production = 'https://www.craftdash.xyz/api'
 const dev = 'http://localhost:5000/api'
 
 export const server =

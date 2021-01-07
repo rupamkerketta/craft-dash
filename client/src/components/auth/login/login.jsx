@@ -119,7 +119,7 @@ function Login({ auth, attemptLogin }) {
 													(window.location =
 														window.location.hostname === 'localhost'
 															? 'http://localhost:5000/auth/google'
-															: 'https://craft-dash.herokuapp.com/auth/google')
+															: 'https://craftdash.xyz/auth/google')
 												}
 												alt='Login with Google'
 												title='Login with Google'

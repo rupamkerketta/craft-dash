@@ -8,7 +8,7 @@ import SendIcon from '../../../img/sendIcon.svg'
 // Chat Emojis
 import ReactEmoji from 'react-emoji'
 
-const Messaging = ({ room, username, email, messages, socket, addMessage }) => {
+const Messaging = ({ room, username, messages, socket, addMessage }) => {
 	useEffect(() => {
 		socket.on('chat-message', (data) => {
 			const message = data.message.message

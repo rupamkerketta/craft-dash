@@ -15,9 +15,9 @@ import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 	useEffect(() => {
-		if (!(window.location.hostname === 'www.craftdash.xyz')) {
-			window.location.hostname = 'https://www.craftdash.xyz'
-		}
+		// if (!(window.location.hostname === 'www.craftdash.xyz')) {
+		// 	window.location.hostname = 'https://www.craftdash.xyz'
+		// }
 		store.dispatch(loadUser())
 		console.log('[CraftDash]')
 	}, [])

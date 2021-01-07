@@ -35,7 +35,7 @@ router.get(
 			})
 
 			if (process.env.NODE_ENV === 'production') {
-				res.redirect('craftdash.xyz')
+				res.redirect('https://craftdash.xyz/#/dashboard')
 			} else {
 				res.redirect('http://localhost:3000')
 			}

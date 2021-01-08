@@ -46,6 +46,8 @@ function Login({ auth, attemptLogin }) {
 		attemptLogin(values.email, values.password)
 	}
 
+	const [displayError, setDisplayError] = React.useState(true)
+
 	useEffect(() => {
 		document.title = 'Craft Dash | Login'
 	}, [])
@@ -76,7 +78,9 @@ function Login({ auth, attemptLogin }) {
 												autoComplete='off'
 												placeholder='e.g john@mail.com'
 											/>
-											<div className='error-msg-wrapper'>
+											<div
+												className='error-msg-wrapper'
+												style={{ display: displayError ? 'block' : 'none' }}>
 												<ErrorMessage name='email' component={TextError} />
 											</div>
 										</div>
@@ -91,7 +95,9 @@ function Login({ auth, attemptLogin }) {
 												placeholder='*****************'
 												autoComplete='current-password'
 											/>
-											<div className='error-msg-wrapper'>
+											<div
+												className='error-msg-wrapper'
+												style={{ display: displayError ? 'block' : 'none' }}>
 												<ErrorMessage name='password' component={TextError} />
 											</div>
 										</div>
@@ -115,12 +121,13 @@ function Login({ auth, attemptLogin }) {
 									<div className='row-6'>
 										<div className='social-login'>
 											<button
-												onClick={() =>
-													(window.location =
+												onClick={() => {
+													setDisplayError(false)
+													window.location =
 														window.location.hostname === 'localhost'
 															? 'http://localhost:5000/auth/google'
-															: 'http://craftdash.xyz/auth/google')
-												}
+															: 'http://craftdash.xyz/auth/google'
+												}}
 												alt='Login with Google'
 												title='Login with Google'
 												className='google-button'>

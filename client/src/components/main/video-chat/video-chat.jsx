@@ -28,7 +28,7 @@ const VideoChat = ({ socket, roomId }) => {
 				// My Video Steam
 				myStream.current = stream
 
-				// Setting the video stream - my webacm stream
+				// Setting the video stream - my webcam stream
 				myVideo.current.srcObject = myStream.current
 
 				socket.emit('join-room', { roomId })
@@ -143,7 +143,7 @@ const VideoChat = ({ socket, roomId }) => {
 			/>
 			<div className='my-peers'>
 				{peers.map((peer, index) => (
-					<Video key={index} peer={peer.peer} />
+					<Video key={index} peer={peer.peer} style={myVideoStyle} />
 				))}
 			</div>
 		</div>

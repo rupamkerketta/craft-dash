@@ -203,11 +203,16 @@
 				width: 300px;
 				border: 0;
 				border-radius: 4px;
+<<<<<<< HEAD
 				background: $theme-color;
 				border: 2px solid $charcoal;
+=======
+				background:$theme-color;
+>>>>>>> baeecd4 (:recycle: Glassmorphism for Rodals)
 				font-family: $theme-font;
 				font-size: 1.2em;
 				color: $label-color;
+				border: 2px solid $charcoal;
 				font-weight: 300;
 				outline: none;
 			}
@@ -217,6 +222,8 @@
 				padding: 7px;
 				padding-top: 10px;
 				padding-bottom: 10px;
+				background-color: $theme-color;
+				border: 2px solid $charcoal;
 				outline: none;
 				
 			}

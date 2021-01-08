@@ -32,7 +32,7 @@ passport.use(
 					? process.env.GOOGLE_CLIENT_SECRET
 					: process.env.GOOGLE_CLIENT_SECRET_LOCAL,
 			callbackURL: `${
-				process.env.NODE_ENV === 'production' ? 'https://craftdash.xyz' : ''
+				process.env.NODE_ENV === 'production' ? 'http://craftdash.xyz' : ''
 			}/auth/google/callback`
 		},
 		(accessToken, refreshToken, profile, done) => {

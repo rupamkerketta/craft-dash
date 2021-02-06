@@ -93,12 +93,6 @@ const VideoChat = ({ socket, roomId }) => {
 			stream
 		})
 
-		// peer.on('error', () => {
-		// 	console.log(`[peer] : remote peer closed`)
-
-		// 	peer._destroy((error) => console.log(error))
-		// })
-
 		peer.on('signal', (signal) => {
 			// console.log(`[createPeer] : peer.on('signal') called`)
 			socket.emit('sending-signal', { userToSignal, callerId, signal })
@@ -116,12 +110,6 @@ const VideoChat = ({ socket, roomId }) => {
 			trickle: false,
 			stream
 		})
-
-		// peer.on('error', () => {
-		// 	console.log(`[peer] : remote peer closed`)
-
-		// 	peer._destroy((error) => console.log(error))
-		// })
 
 		peer.on('signal', (signal) => {
 			// console.log(`[addPeer] : peer.on('signal') called`)

@@ -7,13 +7,24 @@
 	// border: 1px solid black;
 
 	object-fit: cover;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .video-chat {
 	// border: 1px solid white;
-	width: 110px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	// padding-left: 20px;
+	background: linear-gradient(
+		103.23deg,
+		rgba(108, 134, 144, 0.1) 0%,
+		rgba(108, 134, 145, 0.04) 49.27%,
+		rgba(108, 134, 144, 0.06) 100%
+	);
+	backdrop-filter: blur(10px);
+	// width: 100px;
 	position: absolute;
+	z-index: 299;
 
 	display: flex;
 	flex-direction: column;
@@ -21,7 +32,7 @@
 	align-items: center;
 
 	video {
-		margin-top: 10px;
+		// margin-top: 10px;
 		transition: all 0.4s ease;
 	}
 
@@ -39,4 +50,5 @@
 			@include videoProps();
 		}
 	}
+	transition: all 0.4s ease;
 }

@@ -123,15 +123,17 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 	}
 
 	return (
-		<div className='video-chat'>
+		<div
+			className='video-chat'
+			style={{ width: videoFullMode ? '80vw' : '150px' }}>
 			<video
 				className='my-video'
 				ref={myVideo}
 				style={{
 					transform: 'rotateY(180deg)',
-					width: videoFullMode ? '320px' : '100px',
-					height: videoFullMode ? '320px' : '100px',
-					marginLeft: videoFullMode ? '240px' : ''
+					width: videoFullMode ? '280px' : '120px',
+					height: videoFullMode ? '280px' : '120px',
+					marginLeft: videoFullMode ? '' : '5px'
 				}}
 				autoPlay
 				muted
@@ -165,9 +167,9 @@ const Video = (props) => {
 				ref={ref}
 				style={{
 					transform: 'rotateY(180deg)',
-					width: props.videoFullMode ? '320px' : '100px',
-					height: props.videoFullMode ? '320px' : '100px',
-					marginLeft: props.videoFullMode ? '320px' : ''
+					width: props.videoFullMode ? '280px' : '120px',
+					height: props.videoFullMode ? '280px' : '120px',
+					marginLeft: props.videoFullMode ? '' : '5px'
 				}}
 				autoPlay
 			/>

@@ -9,12 +9,17 @@
 	left: 0;
 	// background-color: $theme-color;
 
-	.expand-btn {
-		border: 1px solid white;
+	.expand-btn-wrapper {
+		// border: 1px solid white;
 		position: absolute;
 		top: 50%;
-		left: 20px;
+		left: 7px;
 		transform: translateY(-50%);
+
+		img {
+			cursor: pointer;
+			width: 27px;
+		}
 	}
 
 	// border: 1px solid white;

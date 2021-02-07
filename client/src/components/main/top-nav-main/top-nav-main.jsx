@@ -1,21 +1,37 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './top-nav-main.scss'
 
 // Brand Logo
 import BrandLogo from '../../brand-logo/brand-logo'
 
+// Video Actions
+import {
+	enableFullMode,
+	disableFullMode
+} from '../../../redux/video/videoActions'
+
 // Expand Button
 import ExpandButtonActive from '../../../img/expand-btn-active-min.png'
 import ExpandButtonInactive from '../../../img/expand-btn-inactive-min.png'
 
-function TopNav() {
+function TopNav({ videoFullMode, enableFullMode, disableFullMode }) {
+	const videoToggleHandler = () => {
+		if (videoFullMode) {
+			disableFullMode()
+		} else {
+			enableFullMode()
+		}
+	}
+
 	return (
 		<div className='top-nav-main'>
 			<div className='expand-btn-wrapper'>
 				<img
 					className='expand-btn'
-					src={ExpandButtonInactive}
+					src={videoFullMode ? ExpandButtonActive : ExpandButtonInactive}
 					alt='Expand Video'
+					onClick={videoToggleHandler}
 				/>
 			</div>
 			<div className='brand-logo-wrapper'>
@@ -28,4 +44,15 @@ function TopNav() {
 	)
 }
 
-export default TopNav
+const mapStateToProps = (state) => {
+	return {
+		videoFullMode: state.video.videoFullMode
+	}
+}
+
+const mapDispatchToProps = {
+	enableFullMode,
+	disableFullMode
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopNav)

@@ -11,8 +11,12 @@ import ReactEmoji from 'react-emoji'
 const Messaging = ({ room, username, messages, socket, addMessage }) => {
 	useEffect(() => {
 		socket.on('chat-message', (data) => {
-			const message = data.message.message
-			const time = data.time
+			const d = new Date()
+			const hh = d.getHours()
+			const ss = d.getMinutes()
+
+			const message = data.message
+			const time = `${hh > 12 ? hh - 12 : hh}:${ss} ${hh >= 12 ? 'PM' : 'AM'}`
 			const username = data.username
 			addMessage({ username, message, time, room })
 		})

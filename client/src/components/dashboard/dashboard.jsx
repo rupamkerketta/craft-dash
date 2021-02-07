@@ -69,12 +69,13 @@ function Dashboard({ idea_boards, loadIBS, createIBS, deleteIBS }) {
 
   const customStyles = {
     wrapper: {
-      background: 'linear-gradient( 180deg, rgba(3,3, 3, 0.8), rgba(3,3, 3, 0.6))',
-      borderLeft: '1px solid rgba(234,236,239, 0.15)',
-      borderTop: '1px solid rgba(234,236,239, 0.15)',
-      borderRight: '1px solid rgba(234,236,239, 0.1)',
-      borderBottom: '1px solid rgba(234,236,239, 0.1)',
-      backdropFilter: 'blur(20px)',
+      background: 'linear-gradient(103.23deg,rgba(108, 134, 144, 0.1) 0%, rgba(108, 134, 145, 0.04) 49.27%, rgba(108, 134, 144, 0.06) 100%)',
+      background: 'transparent',
+      borderLeft: '1px solid rgba(234,236,239, 0.2)',
+      borderTop: '1px solid rgba(234,236,239, 0.2)',
+      borderRight: '1px solid rgba(234,236,239, 0.18)',
+      borderBottom: '1px solid rgba(234,236,239, 0.18)',
+      // backdropFilter: 'blur(20px)',
       borderRadius: '10px',
     },
   };

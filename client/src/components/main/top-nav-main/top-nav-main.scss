@@ -8,7 +8,15 @@
 	top: 0;
 	left: 0;
 	// background-color: $theme-color;
-	
+
+	.expand-btn {
+		border: 1px solid white;
+		position: absolute;
+		top: 50%;
+		left: 20px;
+		transform: translateY(-50%);
+	}
+
 	// border: 1px solid white;
 	.brand-logo-wrapper {
 		width: 130px;

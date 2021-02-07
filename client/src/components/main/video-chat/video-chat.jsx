@@ -170,7 +170,7 @@ const Video = (props) => {
 
 	return (
 		<div className='video-wrapper'>
-			<video ref={ref} style={{ transform: 'rotateY(180deg)' }} autoPlay />
+			<video ref={ref} style={...props.style} autoPlay />
 		</div>
 	)
 }

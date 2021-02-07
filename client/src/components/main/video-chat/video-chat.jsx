@@ -131,23 +131,14 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 					transform: 'rotateY(180deg)',
 					width: videoFullMode ? '320px' : '100px',
 					height: videoFullMode ? '320px' : '100px',
-					marginLeft: videoFullMode ? '320px' : ''
+					marginLeft: videoFullMode ? '240px' : ''
 				}}
 				autoPlay
 				muted
 			/>
 			<div className='my-peers'>
 				{peers.map((peer, index) => (
-					<Video
-						key={index}
-						peer={peer.peer}
-						style={{
-							transform: 'rotateY(180deg)',
-							width: videoFullMode ? '320px' : '100px',
-							height: videoFullMode ? '320px' : '100px',
-							marginLeft: videoFullMode ? '320px' : ''
-						}}
-					/>
+					<Video key={index} peer={peer.peer} videoFullMode={videoFullMode} />
 				))}
 			</div>
 		</div>
@@ -170,7 +161,16 @@ const Video = (props) => {
 
 	return (
 		<div className='video-wrapper'>
-			<video ref={ref} style={...props.style} autoPlay />
+			<video
+				ref={ref}
+				style={{
+					transform: 'rotateY(180deg)',
+					width: props.videoFullMode ? '320px' : '100px',
+					height: props.videoFullMode ? '320px' : '100px',
+					marginLeft: props.videoFullMode ? '320px' : ''
+				}}
+				autoPlay
+			/>
 		</div>
 	)
 }

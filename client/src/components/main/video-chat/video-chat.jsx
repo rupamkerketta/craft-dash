@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { connect } from 'react-redux'
 
 // Utility Modules
 import PropTypes from 'prop-types'
@@ -9,7 +10,7 @@ import Peer from 'simple-peer'
 // Sass
 import './video-chat.scss'
 
-const VideoChat = ({ socket, roomId }) => {
+const VideoChat = ({ socket, roomId, videoFullMode }) => {
 	// Slef video
 	const myStream = useRef()
 	const myVideo = useRef()
@@ -19,6 +20,7 @@ const VideoChat = ({ socket, roomId }) => {
 	const [peers, setPeers] = useState([])
 
 	useEffect(() => {
+		console.log(videoFullMode)
 		navigator.mediaDevices
 			.getUserMedia({
 				video: true,
@@ -121,17 +123,27 @@ const VideoChat = ({ socket, roomId }) => {
 	}
 
 	return (
-		<div className='video-chat'>
+		<div
+			className='video-chat'
+			style={{
+				width: videoFullMode ? '80vw' : '150px',
+				height: videoFullMode ? '300px' : ''
+			}}>
 			<video
 				className='my-video'
 				ref={myVideo}
-				style={myVideoStyle}
+				style={{
+					transform: 'rotateY(180deg)',
+					width: videoFullMode ? '280px' : '120px',
+					height: videoFullMode ? '280px' : '120px',
+					marginLeft: videoFullMode ? '' : '2px'
+				}}
 				autoPlay
 				muted
 			/>
 			<div className='my-peers'>
 				{peers.map((peer, index) => (
-					<Video key={index} peer={peer.peer} style={myVideoStyle} />
+					<Video key={index} peer={peer.peer} videoFullMode={videoFullMode} />
 				))}
 			</div>
 		</div>
@@ -154,13 +166,28 @@ const Video = (props) => {
 
 	return (
 		<div className='video-wrapper'>
-			<video ref={ref} style={myVideoStyle} autoPlay />
+			<video
+				ref={ref}
+				style={{
+					transform: 'rotateY(180deg)',
+					width: props.videoFullMode ? '280px' : '120px',
+					height: props.videoFullMode ? '280px' : '120px',
+					marginLeft: props.videoFullMode ? '' : '2px'
+				}}
+				autoPlay
+			/>
 		</div>
 	)
 }
 
-const myVideoStyle = {
-	transform: 'rotateY(180deg)'
+// const myVideoStyle = {
+
+// }
+
+const mapStateToProps = (state) => {
+	return {
+		videoFullMode: state.video.videoFullMode
+	}
 }
 
-export default VideoChat
+export default connect(mapStateToProps, {})(VideoChat)

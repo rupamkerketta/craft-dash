@@ -173,8 +173,8 @@ const Video = (props) => {
 				ref={ref}
 				style={{
 					transform: 'rotateY(180deg)',
-					width: props.videoFullMode ? '200px' : '100px',
-					height: props.videoFullMode ? '200px' : '100px',
+					width: props.videoFullMode ? '280px' : '100px',
+					height: props.videoFullMode ? '280px' : '100px',
 					marginTop: props.videoFullMode ? '' : '3px'
 				}}
 				autoPlay

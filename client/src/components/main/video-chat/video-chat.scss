@@ -10,19 +10,14 @@
 }
 
 .video-chat {
-	// border: 1px solid white;
 	margin-left: 20px;
 	margin-top: 10px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 15px;
-	padding-right: 15px;
 	background: linear-gradient(
-			103.23deg,
-			rgba(108, 134, 144, 0.1) 0%,
-			rgba(108, 134, 145, 0.04) 49.27%,
-			rgba(108, 134, 144, 0.06) 100%
-		);
+		103.23deg,
+		rgba(108, 134, 144, 0.1) 0%,
+		rgba(108, 134, 145, 0.04) 49.27%,
+		rgba(108, 134, 144, 0.06) 100%
+	);
 	backdrop-filter: blur(5px);
 	// width: 100px;
 	position: absolute;
@@ -32,29 +27,30 @@
 	border-right: 2px solid #27292e;
 	border-bottom: 2px solid #27292e;
 	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
+
+	// border: 1px solid white;
+
 	video {
-		// margin-top: 10px;
-		transition: all 0.4s ease;
+		// margin-top: 10p4;
+		transition: all 0.4s linear;
 	}
 
+	// border: 2px solid white;
 	.my-video {
+		// border: 2px solid white;
 		@include videoProps();
 	}
 
-	.video-wrapper {
-		// border: 1px solid #0087cc;
+	.my-peers {
+		margin-top: 7px;
+		margin-left: 10px;
+		margin-right: 10px;
+		// border: 1px solid yellow;
 		display: flex;
-		align-items: center;
 		justify-content: space-around;
-
-		video {
-			@include videoProps();
-		}
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
 	}
-	transition: all 0.4s linear;
+	transition: all 0.7s linear;
 }

@@ -126,22 +126,25 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 		<div
 			className='video-chat'
 			style={{
-				width: videoFullMode ? '77vw' : '150px',
-				height: videoFullMode ? '300px' : ''
+				width: videoFullMode ? 'fit-content' : '',
+				// height: videoFullMode ? '300px' : '',
+				transition: 'all .4s linear'
 			}}>
-			<video
-				className='my-video'
-				ref={myVideo}
-				style={{
-					transform: 'rotateY(180deg)',
-					width: videoFullMode ? '280px' : '120px',
-					height: videoFullMode ? '280px' : '120px',
-					marginLeft: videoFullMode ? '' : '2px'
-				}}
-				autoPlay
-				muted
-			/>
-			<div className='my-peers'>
+			<div
+				className='my-peers'
+				style={{ paddingBottom: videoFullMode ? '' : '10px' }}>
+				<video
+					className='my-video'
+					ref={myVideo}
+					style={{
+						transform: 'rotateY(180deg)',
+						width: videoFullMode ? '280px' : '120px',
+						height: videoFullMode ? '280px' : '120px',
+						marginTop: videoFullMode ? '' : '3px'
+					}}
+					autoPlay
+					muted
+				/>
 				{peers.map((peer, index) => (
 					<Video key={index} peer={peer.peer} videoFullMode={videoFullMode} />
 				))}
@@ -172,7 +175,7 @@ const Video = (props) => {
 					transform: 'rotateY(180deg)',
 					width: props.videoFullMode ? '200px' : '100px',
 					height: props.videoFullMode ? '200px' : '100px',
-					marginLeft: props.videoFullMode ? '' : '2px'
+					marginTop: props.videoFullMode ? '' : '3px'
 				}}
 				autoPlay
 			/>

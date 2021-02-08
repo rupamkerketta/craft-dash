@@ -131,7 +131,10 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 			}}>
 			<div
 				className='my-peers'
-				style={{ paddingBottom: videoFullMode ? '' : '10px' }}>
+				style={{
+					paddingBottom: videoFullMode ? '' : '10px',
+					paddingTop: videoFullMode ? '15px' : ''
+				}}>
 				<video
 					className='my-video'
 					ref={myVideo}

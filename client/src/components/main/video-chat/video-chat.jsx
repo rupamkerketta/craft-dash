@@ -174,7 +174,7 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 				{peers.map((peer, index) => (
 					<Video
 						key={index}
-						user={room.users[index + 1]}
+						// user={room.users[index + 1]}
 						peer={peer.peer}
 						peerId={peer.peerId}
 						videoFullMode={videoFullMode}
@@ -212,9 +212,9 @@ const Video = (props) => {
 				}
 				autoPlay
 			/>
-			<div className='peer-name'>
+			{/* <div className='peer-name'>
 				<p>{props.user.username}</p>
-			</div>
+			</div> */}
 		</div>
 	)
 }

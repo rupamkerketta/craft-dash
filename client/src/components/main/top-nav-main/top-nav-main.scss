@@ -1,34 +1,33 @@
-@import '../../../sass/utils/colors';
-@import '../../../sass/utils/fonts';
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
 
 .top-nav-main {
-	position: absolute;
-	width: 80vw;
-	height: 5vh;
-	top: 0;
-	left: 0;
-	// background-color: $theme-color;
+  position: absolute;
+  width: 80vw;
+  height: 5vh;
+  top: 0;
+  left: 0;
+  // background-color: $theme-color;
 
-	.expand-btn-wrapper {
-		// border: 1px solid white;
-		position: absolute;
-		top: 50%;
-		left: 20px;
-		transform: translateY(-50%);
+  .expand-btn-wrapper {
+    // border: 1px solid white;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    img {
+      cursor: pointer;
+      width: 24px;
+    }
+  }
 
-		img {
-			cursor: pointer;
-			width: 24px;
-		}
-	}
-
-	// border: 1px solid white;
-	.brand-logo-wrapper {
-		width: 130px;
-		margin: auto;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
+  // border: 1px solid white;
+  .brand-logo-wrapper {
+    width: 130px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

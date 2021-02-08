@@ -10,7 +10,7 @@ import Peer from 'simple-peer'
 // Sass
 import './video-chat.scss'
 
-const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
+const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 	// Slef video
 	const myStream = useRef()
 	const myVideo = useRef()
@@ -20,7 +20,6 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 	const [peers, setPeers] = useState([])
 
 	useEffect(() => {
-		console.log(room)
 		console.log(videoFullMode)
 		navigator.mediaDevices
 			.getUserMedia({
@@ -34,17 +33,18 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 				// Setting the video stream - my webcam stream
 				myVideo.current.srcObject = myStream.current
 
-				socket.emit('join-room', { roomId })
+				socket.emit('join-room', { roomId, username: user.username })
 				socket.on('all-users', (data) => {
 					console.log(`[all-users] : data -> ${data.usersInThisRoom}`)
 					let peers = []
-					data.usersInThisRoom.forEach((userId) => {
-						const peer = createPeer(userId, socket.id, myStream.current)
+					data.usersInThisRoom.forEach((user) => {
+						const peer = createPeer(user.socketId, socket.id, myStream.current)
 						peersRef.current.push({
-							peerId: userId,
-							peer
+							peerId: user.socketId,
+							peer,
+							username: user.username
 						})
-						peers.push({ peer, peerId: userId })
+						peers.push({ peer, peerId: user.socketId, username: user.username })
 					})
 					setPeers(peers)
 				})
@@ -60,7 +60,7 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 
 					setPeers((prevPeers) => [
 						...prevPeers,
-						{ peer, peerId: data.callerId }
+						{ peer, peerId: data.callerId, username: data.username }
 					])
 				})
 
@@ -98,7 +98,12 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 
 		peer.on('signal', (signal) => {
 			// console.log(`[createPeer] : peer.on('signal') called`)
-			socket.emit('sending-signal', { userToSignal, callerId, signal })
+			socket.emit('sending-signal', {
+				userToSignal,
+				callerId,
+				signal,
+				username: user.username
+			})
 			// console.log(`[createPeer] : socket.emit('sending-signal')`)
 		})
 
@@ -116,7 +121,11 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 
 		peer.on('signal', (signal) => {
 			// console.log(`[addPeer] : peer.on('signal') called`)
-			socket.emit('returning-signal', { signal, callerId })
+			socket.emit('returning-signal', {
+				signal,
+				callerId,
+				username: user.username
+			})
 			// console.log(`[addPeer] : socket.emit('returning-signal')`)
 		})
 		peer.signal(incomingSignal)
@@ -166,15 +175,15 @@ const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 						autoPlay
 						muted
 					/>
-					{/* <div className='my-name'>
+					<div className='my-name'>
 						<p>You</p>
-					</div> */}
+					</div>
 				</div>
 
 				{peers.map((peer, index) => (
 					<Video
 						key={index}
-						user={room.users[index + 1]}
+						username={peer.username}
 						peer={peer.peer}
 						peerId={peer.peerId}
 						videoFullMode={videoFullMode}
@@ -212,9 +221,9 @@ const Video = (props) => {
 				}
 				autoPlay
 			/>
-			{/* <div className='peer-name'>
-				<p>{props.user.username}</p>
-			</div> */}
+			<div className='peer-name'>
+				<p>{props.username}</p>
+			</div>
 		</div>
 	)
 }
@@ -222,7 +231,8 @@ const Video = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		videoFullMode: state.video.videoFullMode,
-		room: state.room
+		room: state.room,
+		user: state.user
 	}
 }
 

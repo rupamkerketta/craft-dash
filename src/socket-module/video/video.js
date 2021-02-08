@@ -18,10 +18,10 @@ const video = (socket, io) => {
 				return
 			}
 			// If the limit is not reached then add a user to the room
-			users[data.roomId].push(socket.id)
+			users[data.roomId].push({ socketId: socket.id, username: data.username })
 		} else {
 			// This is for when a user is the first one to join the room
-			users[data.roomId] = [socket.id]
+			users[data.roomId] = [{ socketId: socket.id, username: data.username }]
 			// users : Representation of the data structure
 			// {
 			//     roomId: [socket.id1, socket.id2, socket.id3, ...]
@@ -43,8 +43,10 @@ const video = (socket, io) => {
 
 		// Return a list of all user who are already in the room
 		const usersInThisRoom = users[data.roomId].filter(
-			(userId) => userId !== socket.id
+			(user) => user.socketId !== socket.id
 		)
+
+		console.log(`[usersInThisRoom] ${usersInThisRoom}`)
 
 		// Socket emit the user list
 		socket.emit('all-users', { usersInThisRoom })
@@ -56,7 +58,8 @@ const video = (socket, io) => {
 	socket.on('sending-signal', (data) => {
 		io.to(data.userToSignal).emit('user-joined', {
 			signal: data.signal,
-			callerId: data.callerId
+			callerId: data.callerId,
+			username: data.username
 		})
 	})
 
@@ -64,7 +67,8 @@ const video = (socket, io) => {
 	socket.on('returning-signal', (data) => {
 		io.to(data.callerId).emit('receiving-returned-signal', {
 			signal: data.signal,
-			id: socket.id
+			id: socket.id,
+			username: data.username
 		})
 	})
 }
@@ -77,7 +81,7 @@ const cleanRoom = (socketId) => {
 	if (users[roomId] !== undefined && users[roomId].length === 0) {
 		delete users[roomId]
 	} else {
-		users[roomId] = users[roomId].filter((skt_id) => skt_id !== socketId)
+		users[roomId] = users[roomId].filter((user) => user.socketId !== socketId)
 	}
 
 	console.log(users)

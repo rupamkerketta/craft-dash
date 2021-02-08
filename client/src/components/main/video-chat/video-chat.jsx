@@ -10,7 +10,7 @@ import Peer from 'simple-peer'
 // Sass
 import './video-chat.scss'
 
-const VideoChat = ({ socket, roomId, videoFullMode }) => {
+const VideoChat = ({ socket, roomId, videoFullMode, room }) => {
 	// Slef video
 	const myStream = useRef()
 	const myVideo = useRef()
@@ -20,6 +20,7 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 	const [peers, setPeers] = useState([])
 
 	useEffect(() => {
+		console.log(room)
 		console.log(videoFullMode)
 		navigator.mediaDevices
 			.getUserMedia({
@@ -35,8 +36,8 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 
 				socket.emit('join-room', { roomId })
 				socket.on('all-users', (data) => {
-					// console.log(`[all-users] : data -> ${data.usersInThisRoom}`)
-					const peers = []
+					console.log(`[all-users] : data -> ${data.usersInThisRoom}`)
+					let peers = []
 					data.usersInThisRoom.forEach((userId) => {
 						const peer = createPeer(userId, socket.id, myStream.current)
 						peersRef.current.push({
@@ -122,33 +123,64 @@ const VideoChat = ({ socket, roomId, videoFullMode }) => {
 		return peer
 	}
 
+	const videoChatFullOff = {
+		width: '150px',
+		minHeight: '150px',
+		marginTop: '3px',
+		flexDirection: 'column'
+	}
+
+	const videoChatFullOn = {
+		width: '77vw',
+		height: '290px',
+		flexDirection: 'row'
+	}
+
+	const videoChatOn = {
+		width: '230px',
+		height: '230px',
+		marginTop: ''
+	}
+
+	const videoChatOff = {
+		width: '120px',
+		height: '120px',
+		marginTop: '10px'
+	}
+
 	return (
 		<div
-			className='video-chat'
-			style={{
-				width: videoFullMode ? '77vw' : '',
-				height: videoFullMode ? '300px' : ''
-			}}>
+			className={`video-chat`}
+			style={videoFullMode ? { ...videoChatFullOn } : { ...videoChatFullOff }}>
 			<div
 				className='my-peers'
 				style={{
-					paddingBottom: videoFullMode ? '' : '10px',
-					paddingTop: videoFullMode ? '15px' : ''
+					paddingBottom: videoFullMode ? '20px' : '5px',
+					paddingTop: videoFullMode ? '20px' : ''
 				}}>
-				<video
-					className='my-video'
-					ref={myVideo}
-					style={{
-						transform: 'rotateY(180deg)',
-						width: videoFullMode ? '250px' : '120px',
-						height: videoFullMode ? '250px' : '120px',
-						marginTop: videoFullMode ? '' : '3px'
-					}}
-					autoPlay
-					muted
-				/>
+				<div className='my-video-wrapper'>
+					<video
+						className='my-video'
+						ref={myVideo}
+						style={videoFullMode ? { ...videoChatOn } : { ...videoChatOff }}
+						autoPlay
+						muted
+					/>
+					<div className='my-name'>
+						<p>You</p>
+					</div>
+				</div>
+
 				{peers.map((peer, index) => (
-					<Video key={index} peer={peer.peer} videoFullMode={videoFullMode} />
+					<Video
+						key={index}
+						user={room.users[index + 1]}
+						peer={peer.peer}
+						peerId={peer.peerId}
+						videoFullMode={videoFullMode}
+						videoChatOff={videoChatOff}
+						videoChatOn={videoChatOn}
+					/>
 				))}
 			</div>
 		</div>
@@ -173,25 +205,24 @@ const Video = (props) => {
 		<div className='video-wrapper'>
 			<video
 				ref={ref}
-				style={{
-					transform: 'rotateY(180deg)',
-					width: props.videoFullMode ? '250px' : '120px',
-					height: props.videoFullMode ? '250px' : '120px',
-					marginTop: props.videoFullMode ? '' : '3px'
-				}}
+				style={
+					props.videoFullMode
+						? { ...props.videoChatOn }
+						: { ...props.videoChatOff }
+				}
 				autoPlay
 			/>
+			<div className='peer-name'>
+				<p>{props.user.username}</p>
+			</div>
 		</div>
 	)
 }
 
-// const myVideoStyle = {
-
-// }
-
 const mapStateToProps = (state) => {
 	return {
-		videoFullMode: state.video.videoFullMode
+		videoFullMode: state.video.videoFullMode,
+		room: state.room
 	}
 }
 

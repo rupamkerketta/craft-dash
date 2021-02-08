@@ -146,14 +146,21 @@
 
 	// 💄  Styles for 'Create New IdeaBoard'
 	.ideaboard-modal {
-		// background-color: #1F2023;
+		width: 100%;
+		margin: auto;
+		background: transparent;
+		backdrop-filter: blur(80px);
+		// border-left: 2px solid #1f2a31;
+		// border-top: 2px solid #1f2a31;
+		// border-right: 1px solid #27292e;
+		// border-bottom: 1px solid #27292e;
 		.ideaboard-header {
 			width: fit-content;
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
 			margin: auto;
-			margin-top: 20px;
+			// margin-top: 20px;
 
 			img {
 				width: 30px;
@@ -196,10 +203,11 @@
 				width: 300px;
 				border: 0;
 				border-radius: 4px;
-				background: $theme-color;
+				background:$theme-color;
 				font-family: $theme-font;
 				font-size: 1.2em;
 				color: $label-color;
+				border: 2px solid $charcoal;
 				font-weight: 300;
 				outline: none;
 			}
@@ -209,7 +217,10 @@
 				padding: 7px;
 				padding-top: 10px;
 				padding-bottom: 10px;
+				background-color: $theme-color;
+				border: 2px solid $charcoal;
 				outline: none;
+				
 			}
 
 			textarea {

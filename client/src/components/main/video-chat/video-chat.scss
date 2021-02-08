@@ -4,34 +4,39 @@
 @mixin videoProps {
 	width: 100px;
 	height: 100px;
-	// border: 1px solid black;
-
+	// border: 3px solid $craft-dash-green;
 	object-fit: cover;
 	border-radius: 10px;
 }
 
 .video-chat {
 	// border: 1px solid white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	// padding-left: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 	background: linear-gradient(
-		103.23deg,
-		rgba(108, 134, 144, 0.1) 0%,
-		rgba(108, 134, 145, 0.04) 49.27%,
-		rgba(108, 134, 144, 0.06) 100%
-	);
-	backdrop-filter: blur(10px);
+			103.23deg,
+			rgba(108, 134, 144, 0.1) 0%,
+			rgba(108, 134, 145, 0.04) 49.27%,
+			rgba(108, 134, 144, 0.06) 100%
+		);
+	backdrop-filter: blur(5px);
 	// width: 100px;
 	position: absolute;
 	z-index: 299;
-
+	border-left: 3px solid #1f2a31;
+	border-top: 3px solid #1f2a31;
+	border-right: 2px solid #27292e;
+	border-bottom: 2px solid #27292e;
+	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
-
 	video {
 		// margin-top: 10px;
 		transition: all 0.4s ease;
@@ -51,5 +56,5 @@
 			@include videoProps();
 		}
 	}
-	transition: all 0.4s ease;
+	transition: all 0.4s linear;
 }

@@ -12,8 +12,8 @@ import {
 } from '../../../redux/video/videoActions'
 
 // Expand Button
-import ExpandButtonActive from '../../../img/expand-btn-active-min.png'
-import ExpandButtonInactive from '../../../img/expand-btn-inactive-min.png'
+import ExpandButtonActive from '../../../img/expand-btn-inactive.png'
+import ExpandButtonInactive from '../../../img/expand-btn-active-min.png'
 
 function TopNav({ videoFullMode, enableFullMode, disableFullMode }) {
 	const videoToggleHandler = () => {

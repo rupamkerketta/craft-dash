@@ -13,7 +13,7 @@ import LoadingPage from '../../loading-page/loading-page'
 import { Link, Redirect } from 'react-router-dom'
 
 // Social Login Icons
-import GoogleIcon from '../../../img/GoogleIcon.svg'
+import GoogleIcon from '../../../img/GoogleSocialIcon.png'
 import FacebookIcon from '../../../img/FacebookIcon.svg'
 
 const initialValues = {

@@ -68,22 +68,48 @@
   }
 
   .my-name {
+    background: linear-gradient(96.2deg, rgba(228, 228, 228, 0.22) 0%, rgba(227, 228, 228, 0.22) 6.67%, rgba(222, 228, 228, 0.22) 13.33%, rgba(214, 228, 228, 0.22) 20%, rgba(202, 227, 228, 0.22) 26.67%, rgba(186, 226, 228, 0.22) 33.33%, rgba(168, 225, 228, 0.22) 40%, rgba(148, 224, 228, 0.22) 46.67%, rgba(127, 223, 228, 0.22) 53.33%, rgba(107, 221, 228, 0.22) 60%, rgba(89, 220, 228, 0.22) 66.67%, rgba(74, 220, 228, 0.22) 73.33%, rgba(62, 219, 228, 0.22) 80%, rgba(53, 218, 228, 0.22) 86.67%, rgba(49, 218, 228, 0.22) 93.33%, rgba(47, 218, 228, 0.22) 100%);
+    backdrop-filter: blur(50px);
     position: relative;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 2px;
     width: fit-content;
     font-family: $theme-font;
-    color: $craft-dash-green;
-    font-size: 0.8em;
-    font-weight: 500;
+    color: $label-color;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    // border: 2px solid white;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .peer-name {
+    background: linear-gradient(96.2deg, rgba(228, 228, 228, 0.22) 0%, rgba(227, 228, 228, 0.22) 6.67%, rgba(222, 228, 228, 0.22) 13.33%, rgba(214, 228, 228, 0.22) 20%, rgba(202, 227, 228, 0.22) 26.67%, rgba(186, 226, 228, 0.22) 33.33%, rgba(168, 225, 228, 0.22) 40%, rgba(148, 224, 228, 0.22) 46.67%, rgba(127, 223, 228, 0.22) 53.33%, rgba(107, 221, 228, 0.22) 60%, rgba(89, 220, 228, 0.22) 66.67%, rgba(74, 220, 228, 0.22) 73.33%, rgba(62, 219, 228, 0.22) 80%, rgba(53, 218, 228, 0.22) 86.67%, rgba(49, 218, 228, 0.22) 93.33%, rgba(47, 218, 228, 0.22) 100%);
+    backdrop-filter: blur(50px);
     position: relative;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 2px;
     width: fit-content;
     font-family: $theme-font;
     color: $label-color;
     font-size: 0.8em;
     font-weight: 500;
+    padding: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    // border: 2px solid white;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   transition: all 0.7s ease-out;

@@ -132,14 +132,41 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 		return peer
 	}
 
+	const videoChatFullOff = {
+		width: '150px',
+		minHeight: '150px',
+		marginTop: '3px',
+		flexDirection: 'column'
+	}
+
+	const videoChatFullOn = {
+		width: '77vw',
+		height: '290px',
+		flexDirection: 'row'
+	}
+
+	const videoChatOn = {
+		width: '230px',
+		height: '230px',
+		marginTop: ''
+	}
+
+	const videoChatOff = {
+		width: '120px',
+		height: '120px',
+		marginTop: '10px'
+	}
+
 	return (
 		<div
-			className='video-chat'
-			style={{
-				width: videoFullMode ? '80vw' : '150px',
-				height: videoFullMode ? '300px' : ''
-			}}>
-			<div>
+			className={`video-chat`}
+			style={videoFullMode ? { ...videoChatFullOn } : { ...videoChatFullOff }}>
+			<div
+				className='my-peers'
+				style={{
+					paddingBottom: videoFullMode ? '20px' : '5px',
+					paddingTop: videoFullMode ? '20px' : ''
+				}}>
 				<div className='my-video-wrapper'>
 					<video
 						className='my-video'
@@ -187,12 +214,11 @@ const Video = (props) => {
 		<div className='video-wrapper'>
 			<video
 				ref={ref}
-				style={{
-					transform: 'rotateY(180deg)',
-					width: props.videoFullMode ? '280px' : '120px',
-					height: props.videoFullMode ? '280px' : '120px',
-					marginLeft: props.videoFullMode ? '' : '2px'
-				}}
+				style={
+					props.videoFullMode
+						? { ...props.videoChatOn }
+						: { ...props.videoChatOff }
+				}
 				autoPlay
 			/>
 			<div className='peer-name'>
@@ -201,10 +227,6 @@ const Video = (props) => {
 		</div>
 	)
 }
-
-// const myVideoStyle = {
-
-// }
 
 const mapStateToProps = (state) => {
 	return {

@@ -183,7 +183,7 @@ const Edit = ({
 						}}
 						onSelect={addEmoji}
 						theme='dark'
-						title='Pick your emoji…'
+						title='Pick an emoji'
 						emoji='point_up'
 					/>
 				</div>

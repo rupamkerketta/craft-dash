@@ -29,16 +29,16 @@
 				justify-content: space-between;
 				color: $login-btn-color;
 				font-family: $theme-font;
-				font-weight: 400;
+				font-weight: 500;
 				font-size: 0.85em;
 				display: flex;
 				align-items: center;
 
 				.time {
-					color: $signup-btn-color;
-					letter-spacing: 2px;
+					color: $craft-dash-blue;
+					letter-spacing: 1px;
 					font-size: 0.7em;
-					font-weight: 200;
+					font-weight: 400;
 				}
 			}
 
@@ -57,7 +57,8 @@
 					font-size: 0.9em;
 					color: $label-color;
 					border-radius: 5px;
-					background-color: $charcoal;
+					background-color: $modal-background-color;
+					border: 3px solid $charcoal;
 				}
 			}
 		}
@@ -96,30 +97,43 @@
 		input[type='text'] {
 			position: absolute;
 			top: 50%;
-			left: 45%;
+			left: 50%;
 			transform: translate(-50%, -50%);
-			width: 80%;
+			width: 95%;
 			font-family: $theme-font;
 			font-size: 0.8em;
-			font-weight: 200;
-			padding: 7px;
+			font-weight: 500;
+			padding: 10px;
 			border: 0;
 			outline: none;
-			color: white;
+			color: $label-color;
 			background-color: $charcoal;
 			border-radius: 5px;
 		}
+		.emoji-icon{
+			background-color: transparent;
+			border: none;
+			margin-left: 240px;
+			margin-right: 50px;
+			margin-top: 16px;
+			position: absolute;
+			outline: none;
+			
+			img{
+				width: 24px;
+			}
+		}
 		.send-icon {
 			margin-left: 270px;
-			margin-top: 14px;
-			position: relative;
+			margin-top: 16px;
+			position: absolute;
 			// border: 1px solid white;
 			cursor: pointer;
 			// margin: auto;
 			width: fit-content;
 			img {
 				// border: 1px solid white;
-				width: 20px;
+				width: 24px;
 			}
 		}
 		::placeholder {

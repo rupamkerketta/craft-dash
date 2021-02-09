@@ -2,7 +2,7 @@
 @import '../../sass/utils/fonts';
 
 .profile-page {
-	background: url('../../img/dash-board-bg.png') fixed center repeat;
+	background: url('../../img/landing-page-bg.svg') fixed center repeat;
 	background-size: cover;
 	height: 95vh;
 }
@@ -58,10 +58,10 @@
 	width: 600px;
 	height: 170px;
 
-	border-left: 2px solid #1f2a31;
-	border-top: 2px solid #1f2a31;
-	border-right: 1px solid #27292e;
-	border-bottom: 1px solid #27292e;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 15px;
 	position: absolute;
 	top: 100px;
@@ -141,10 +141,10 @@
 .profile-card:hover {
 	-webkit-backdrop-filter: blur(10px);
 	/* Safari 9+ */
-	border-left: 2px solid #1f2a31;
-	border-top: 2px solid #1f2a31;
-	border-right: 1px solid #27292e;
-	border-bottom: 1px solid #27292e;
+	border-left: 1px solid rgba(255, 255, 255, 0.3);
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	border-right: 1px solid rgba(255, 255, 255, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	border-radius: 15px;
 	background: linear-gradient(
 		100.1deg,
@@ -254,10 +254,10 @@
 	backdrop-filter: blur(8px);
 	width: 600px;
 	height: 250px;
-	border-left: 2px solid #1f2a31;
-	border-top: 2px solid #1f2a31;
-	border-right: 1px solid #27292e;
-	border-bottom: 1px solid #27292e;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 15px;
 	position: absolute;
 	left: 50%;
@@ -278,10 +278,10 @@
 .active-ideaboards-card:hover {
 	-webkit-backdrop-filter: blur(10px);
 	/* Safari 9+ */
-	border-left: 2px solid #1f2a31;
-	border-top: 2px solid #1f2a31;
-	border-right: 1px solid #27292e;
-	border-bottom: 1px solid #27292e;
+	border-left: 1px solid rgba(255, 255, 255, 0.3);
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	border-right: 1px solid rgba(255, 255, 255, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 	border-radius: 15px;
 	background: linear-gradient(
 		100.1deg,

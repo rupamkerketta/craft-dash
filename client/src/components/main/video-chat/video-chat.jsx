@@ -157,6 +157,14 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 		marginTop: '10px'
 	}
 
+	const peerNameFullOff = {
+		fontSize: '0.6em',
+	}
+
+	const peerNameFullOn = {
+		fontSize: '0.8em',
+	}
+
 	return (
 		<div
 			className={`video-chat`}
@@ -222,7 +230,7 @@ const Video = (props) => {
 				autoPlay
 			/>
 			<div className='peer-name'>
-				<p>{props.username}</p>
+				<p style={props.videoFullMode ? {fontSize: '0.9em'}:{fontSize: '0.7em'}}>{props.username}</p>
 			</div>
 		</div>
 	)

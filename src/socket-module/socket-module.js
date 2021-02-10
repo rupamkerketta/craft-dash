@@ -67,8 +67,8 @@ const socketModule = (socket, io) => {
 	// webRTC video & audio
 	video(socket, io)
 
-	// // Mouse Pointer
-	// mousePointer(socket)
+	// Mouse Pointer
+	mousePointer(socket)
 }
 
 module.exports = socketModule

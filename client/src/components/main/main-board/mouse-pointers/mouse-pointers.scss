@@ -1,0 +1,13 @@
+@import '../../../../sass/utils/colors';
+@import '../../../../sass/utils/fonts';
+
+.mouse-pointers {
+	.pointer-wrapper {
+		.user-email-wrapper {
+			.user-email {
+				color: white;
+				font-family: $theme-font;
+			}
+		}
+	}
+}

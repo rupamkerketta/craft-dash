@@ -3,24 +3,24 @@
 
 .main-board {
 	background: linear-gradient(
-      179.33deg,
-      #121317 0.6%,
-      #121317 7.19%,
-      #121318 13.79%,
-      #121318 20.38%,
-      #111319 26.97%,
-      #11141b 33.56%,
-      #11141c 40.15%,
-      #10141e 46.74%,
-      #10151f 53.33%,
-      #0f1521 59.92%,
-      #0f1523 66.51%,
-      #0f1624 73.1%,
-      #0f1625 79.69%,
-      #0e1626 86.28%,
-      #0e1626 92.87%,
-      #0e1626 99.46%
-    );
+		179.33deg,
+		#121317 0.6%,
+		#121317 7.19%,
+		#121318 13.79%,
+		#121318 20.38%,
+		#111319 26.97%,
+		#11141b 33.56%,
+		#11141c 40.15%,
+		#10141e 46.74%,
+		#10151f 53.33%,
+		#0f1521 59.92%,
+		#0f1523 66.51%,
+		#0f1624 73.1%,
+		#0f1625 79.69%,
+		#0e1626 86.28%,
+		#0e1626 92.87%,
+		#0e1626 99.46%
+	);
 	position: absolute;
 	top: 5vh;
 	left: 0;
@@ -28,9 +28,17 @@
 	height: 95vh;
 	overflow: hidden;
 
-	// .react-flow-main {
-	// 	// border: 1px solid white;
-	// }
+	.react-flow-main {
+		.circle-pointer {
+			border: 2px solid white;
+			width: 10px;
+			height: 10px;
+			border-radius: 10px;
+			background-color: white;
+			position: absolute;
+		}
+		// border: 1px solid white;
+	}
 
 	background-color: $main-board-color;
 

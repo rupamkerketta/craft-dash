@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
 import { v4 as uuid4 } from 'uuid'
+
+// Pointer - 1
+import Pointer1 from '../../../img/pointer-1.png'
 
 // React Flow Renderer
 import ReactFlow, {
@@ -24,6 +27,8 @@ import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions
 const MainBoard = ({
 	room,
 	socket,
+	user,
+	data,
 	addNewUserRoom,
 	removeUserRoom,
 	addUsersRoom,
@@ -43,6 +48,48 @@ const MainBoard = ({
 	const email = useSelector((state) => state.user.email)
 
 	const [name, setName] = useState('')
+
+	// Current User's email
+	const user_email = user.email
+
+	// Getting the current room
+	const current_room = data.find((idea_board) => idea_board._id === room)
+	console.log(`[current_room] ${JSON.stringify(current_room)}`)
+
+	// Collaborators (except the owner)
+	const collaborators = current_room.collaborators
+
+	const users_list = () => {
+		if (collaborators.length !== 0) {
+			if (collaborators.includes(user_email)) {
+				return [
+					current_room.owner_email,
+					...collaborators.filter((email) => email !== user_email)
+				]
+			} else {
+				return collaborators
+			}
+		} else {
+			return []
+		}
+	}
+
+	console.log(`[users_list] ${users_list()}`)
+
+	const [pointers, setPointers] = useState(users_list())
+
+	const [pos_updates, setPosUpdates] = useState(
+		users_list().map((user) => {
+			const obj = {
+				email: user,
+				pos: {
+					x: 0,
+					y: 0
+				}
+			}
+			return obj
+		})
+	)
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
@@ -99,9 +146,14 @@ const MainBoard = ({
 		// TODO: Operations -> REMOVE:EDGE, EDIT:EDGE, REMOVE:NODE, EDIT:NODE
 
 		// FIXME: Fix/Update the mouse pointer feature
-		// socket.on('user-pointer-updates', (data) => {
-		// 	console.log(JSON.stringify(data))
-		// })
+		socket.on('user-pointer-updates', (data) => {
+			console.log(JSON.stringify(data))
+			setPosUpdates((preVal) => {
+				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
+				const updated_list = [...list, { ...data }]
+				return updated_list
+			})
+		})
 	}, [])
 
 	const addNode = () => {
@@ -210,6 +262,8 @@ const MainBoard = ({
 	}
 
 	const onMouseMove = (e) => {
+		// myPointer.current = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY }
+		// setMyPointerS({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
 		socket.emit('mouse-pointer-broadcast', {
 			x: e.nativeEvent.offsetX,
 			y: e.nativeEvent.offsetY,
@@ -262,6 +316,34 @@ const MainBoard = ({
 				snapGrid={[16, 16]}>
 				<Background color='#888' gap={16} />
 
+				{console.log(pos_updates)}
+
+				{pos_updates.map((item) => {
+					return (
+						<div
+							className='peer-pointer'
+							style={{
+								position: 'absolute',
+								top: `${item.pos.y}px`,
+								left: `${item.pos.x}px`
+							}}>
+							<img
+								src={Pointer1}
+								alt={`${item.email}`}
+								style={{ width: '30px' }}
+							/>
+							<h2
+								style={{
+									color: 'white',
+									fontSize: '1em',
+									fontFamily: 'Poppins'
+								}}>
+								{item.email}
+							</h2>
+						</div>
+					)
+				})}
+
 				<MiniMap
 					className='mini-map'
 					nodeColor={(node) => {
@@ -300,7 +382,9 @@ const MainBoard = ({
 const mapStateToProps = (state) => {
 	return {
 		elements: state.elements,
-		focus_element: state.focus.focus_element
+		focus_element: state.focus.focus_element,
+		data: state.idea_boards.boards.data,
+		user: state.user
 	}
 }
 

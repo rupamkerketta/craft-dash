@@ -18,6 +18,16 @@ const ideaboardSchema = mongoose.Schema(
 			required: true,
 			ref: 'User'
 		},
+		owner_email: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		owner_username: {
+			type: String,
+			required: true,
+			trim: true
+		},
 		collaborators: [],
 		ideas: []
 	},

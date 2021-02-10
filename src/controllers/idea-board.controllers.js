@@ -6,9 +6,15 @@ module.exports = {
 	// Creating a new IdeaBoard
 	createNewIdeaBoard: async (req, res) => {
 		try {
+			const owner_email = req.body.email
+			const owner_username = req.body.username
+
 			const ideaBoard = new IdeaBoard({
 				owner: req.user._id,
-				...req.body
+				idea_board_name: req.body.idea_board_name,
+				idea_board_description: req.body.idea_board_description,
+				owner_email,
+				owner_username
 			})
 			const result = await ideaBoard.save()
 			res.send(result)

@@ -22,14 +22,30 @@
 		}
 	}
 
-	.collaborator-email {
+	.collaborator-name {
+		width: fit-content;
+		margin: auto;
 		h2 {
-			font-family: $theme-font;
-			font-size: 1em;
-			font-weight: 300;
-			color: $label-color;
+		  font-family: $theme-font;
+		  font-size: 1em;
+		  font-weight: 300;
+		  color: $label-color;
 		}
-	}
+	  }
+	  .collaborator-email {
+		width: fit-content;
+		margin: auto;
+		// position: relative;
+		// margin: auto;
+		// width: fit-content;
+		// right: 20%;
+		h2 {
+		  font-family: $theme-font;
+		  font-size: 0.7em;
+		  font-weight: 300;
+		  color: $label-color;
+		}
+	  }
 
 	.collaborator-remove-user {
 		img {

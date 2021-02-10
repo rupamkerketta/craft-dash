@@ -9,11 +9,12 @@ import UserImg from '../../../../img/user-img-placeholder.svg'
 
 function Collaborator({
 	collaborator_email,
+	collaborator_name,
 	idea_board_id,
 	actionCollaborator
 }) {
 	const removeHandler = () => {
-		console.log(collaborator_email, idea_board_id)
+		console.log(collaborator_email, collaborator_name, idea_board_id)
 
 		actionCollaborator({
 			action: 'remove-collaborator',
@@ -27,9 +28,14 @@ function Collaborator({
 			<div className='collaborator-pic'>
 				<img src={UserImg} alt='' title='' />
 			</div>
-			<div className='collaborator-email'>
-				<h2>{collaborator_email}</h2>
-			</div>
+			<div className="collaborator-details">
+      <div className="collaborator-name">
+          <h2>{collaborator_name}</h2>
+        </div>
+        <div className="collaborator-email">
+          <h2>{collaborator_email}</h2>
+        </div>
+      </div>
 			<div className='collaborator-remove-user'>
 				<img
 					src={RemoveUser}

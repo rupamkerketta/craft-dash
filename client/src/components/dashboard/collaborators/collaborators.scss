@@ -14,7 +14,7 @@
     justify-content: space-around;
     width: fit-content;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 0px;
 
     img {
       width: 30px;
@@ -31,7 +31,7 @@
   }
 
   .collaborators-form {
-    margin-top: 50px;
+    margin-top: 0px;
 
     form {
       // background-color: $theme-color;
@@ -64,7 +64,7 @@
           width: 400px;
           border: 0;
           border-radius: 4px;
-          background: $modal-background-color;
+          background: $theme-color;
           font-family: $theme-font;
           font-size: 1.2em;
           color: $label-color;
@@ -104,25 +104,29 @@
 
         button {
           width: 160px;
-          border: 0;
           font-family: $theme-font;
           font-size: 1em;
           font-weight: 500;
           background-color: $login-btn-color;
           color: $theme-color;
           padding: 6px;
+          padding-top: 8px;
+          padding-bottom: 8px;
           border: 3px solid $login-btn-color;
-          border-radius: 4px;
+          border-radius: 5px;
           cursor: pointer;
           outline: none;
+          backdrop-filter: blur(10px);
           transition: 0.4s all ease;
         }
 
         button:hover {
-          color: $login-btn-color;
-          background-color: transparent;
+          color: $theme-color;
+          font-weight: 500;
+          background-color: rgba(63, 222, 156, 0.6);
+          backdrop-filter: blur(10px);
           border: 3px solid $login-btn-color;
-          border-radius: 4px;
+          border-radius: 5px;
         }
       }
     }
@@ -130,7 +134,7 @@
 
   .owner-details-wrapper {
     // border: 1px solid white;
-	margin-top: 10px;
+    margin-top: 10px;
     padding-left: 35px;
     padding-right: 30px;
     // width: fit-content;
@@ -152,8 +156,8 @@
   .collaborators-list-wrapper {
     padding-left: 35px;
     padding-right: 30px;
-	margin-top: 10px;
-	// border: 1px solid red;
+    margin-top: 10px;
+    // border: 1px solid red;
 
     .collaborators-list-header {
       h2 {
@@ -164,5 +168,48 @@
         color: $label-color;
       }
     }
+  }
+}
+
+.ideaboard-header-wrapper {
+  width: fit-content;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  // border: 2px solid $charcoal;
+  background: linear-gradient(
+    96.2deg,
+    rgba(228, 228, 228, 0.22) 0%,
+    rgba(227, 228, 228, 0.22) 6.67%,
+    rgba(222, 228, 228, 0.22) 13.33%,
+    rgba(214, 228, 228, 0.22) 20%,
+    rgba(202, 227, 228, 0.22) 26.67%,
+    rgba(186, 226, 228, 0.22) 33.33%,
+    rgba(168, 225, 228, 0.22) 40%,
+    rgba(148, 224, 228, 0.22) 46.67%,
+    rgba(127, 223, 228, 0.22) 53.33%,
+    rgba(107, 221, 228, 0.22) 60%,
+    rgba(89, 220, 228, 0.22) 66.67%,
+    rgba(74, 220, 228, 0.22) 73.33%,
+    rgba(62, 219, 228, 0.22) 80%,
+    rgba(53, 218, 228, 0.22) 86.67%,
+    rgba(49, 218, 228, 0.22) 93.33%,
+    rgba(47, 218, 228, 0.22) 100%
+  );
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+
+  .ideaboard-header-title {
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1em;
+    font-weight: 300;
   }
 }

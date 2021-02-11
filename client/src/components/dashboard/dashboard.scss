@@ -211,7 +211,7 @@
 				width: 300px;
 				border: 0;
 				border-radius: 4px;
-				background: $modal-background-color;
+				background: $theme-color;
 				font-family: $theme-font;
 				font-size: 1.2em;
 				color: $label-color;
@@ -334,25 +334,31 @@
 				}
 
 				.yes {
+					background-color: rgba(255,46,66, 0.6);
+					backdrop-filter: blur(10px);
 					border: 3px solid $danger;
+					font-weight: 600;
 					border-radius: 5px;
-					color: $danger;
+					color: $theme-color;
 				}
 
 				.no {
+					background-color: rgba(63,222,156, 0.6);
+					backdrop-filter: blur(10px);
 					border: 3px solid $login-btn-color;
+					font-weight: 600;
 					border-radius: 5px;
-					color: $login-btn-color;
+					color: $theme-color;
 				}
 
 				.yes:hover {
 					color: $theme-color;
-					background-color: $danger;
+					background-color:rgba(255,46,66, 1);
 				}
 
 				.no:hover {
 					color: $theme-color;
-					background-color: $login-btn-color;
+					background-color: rgba(63,222,156, 1);
 				}
 			}
 		}

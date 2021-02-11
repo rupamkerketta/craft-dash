@@ -28,7 +28,12 @@ const ideaboardSchema = mongoose.Schema(
 			required: true,
 			trim: true
 		},
-		collaborators: [],
+		collaborators: [
+			{
+				email: { type: String, required: true, trim: true },
+				username: { type: String, required: true, trim: true }
+			}
+		],
 		ideas: []
 	},
 	{

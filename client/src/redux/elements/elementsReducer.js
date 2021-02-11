@@ -1,10 +1,25 @@
+import React from 'react'
 import * as TYPE from './elementsTypes'
 import update from 'immutability-helper'
+
+import BrandLogo from '../../components/brand-logo/brand-logo'
 
 const initialState = [
 	{
 		id: '1',
-		data: { label: 'Craft Dash' },
+		data: {
+			label: (
+				<>
+					<BrandLogo
+						fontStyles={{
+							fontSize: '1.2em',
+							marginLeft: '10px',
+							color: '#000000'
+						}}
+					/>
+				</>
+			)
+		},
 		type: 'default',
 		style: {
 			backgroundColor: '#ffffff',

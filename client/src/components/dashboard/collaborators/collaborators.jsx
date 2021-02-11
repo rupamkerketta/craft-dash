@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./collaborators.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -10,10 +10,9 @@ import LoadingSpinner from "../../loading-spinner/loading-spinner";
 
 // Components
 import Collaborator from "./collaborator/collaborator";
-import Owner from './owner/owner'
+import Owner from "./owner/owner";
 
 import { actionCollaborator } from "../../../redux/collaborator/collaboratorActions";
-import owner from "./owner/owner";
 
 function Collaborators({
   idea_board_id,
@@ -21,6 +20,10 @@ function Collaborators({
   actionCollaborator,
   collaborator,
 }) {
+  useEffect(() => {
+    console.log(idea_board_id);
+  }, []);
+
   const initialValues = {
     collaborator_email: "",
   };
@@ -50,15 +53,22 @@ function Collaborators({
     <div className="error-msg">{props.children}</div>
   );
 
+  // Getting the current room
+  const current_room = boards.find(
+    (idea_board) => idea_board._id === idea_board_id
+  );
+
   return (
     <div className="collaborators">
       <div className="collaborators-header">
         <img src={Idea} alt="Idea" />
         <h1 className="collaborators-title">Edit IdeaBoard - Collaborators</h1>
       </div>
+
       <div className="ideaboard-header-wrapper">
         <h2 className="ideaboard-header-title">IdeaBoard Name Here</h2>
       </div>
+
       <div className="collaborators-form">
         <Formik
           initialValues={initialValues}
@@ -101,9 +111,20 @@ function Collaborators({
         <div className="owner-detail-header">
           <h2>Owner</h2>
         </div>
-		<div>
-			<Owner owner_email = "owner@mail.com" owner_name="Owner Name"/>
-		</div>
+        <div>
+          <Owner
+            owner_username={
+              typeof current_room === "undefined"
+                ? ""
+                : current_room.owner_username
+            }
+            owner_email={
+              typeof current_room === "undefined"
+                ? ""
+                : current_room.owner_email
+            }
+          />
+        </div>
       </div>
       <div className="collaborators-list-wrapper">
         <div className="collaborators-list-header">
@@ -118,8 +139,8 @@ function Collaborators({
               const res = board.collaborators.map((collaborator) => (
                 <Collaborator
                   key={collaborator}
-                  collaborator_email={collaborator}
-				  collaborator_name = "Collaborator Name"
+                  collaborator_email={collaborator.email}
+                  collaborator_name={collaborator.username}
                   idea_board_id={idea_board_id}
                 />
               ));

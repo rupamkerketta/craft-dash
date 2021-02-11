@@ -35,7 +35,10 @@ router.post('/', auth, async (req, res) => {
 							// Throw error
 							throw new Error()
 						}
-						ideaBoard.collaborators = ideaBoard.collaborators.concat(email)
+						ideaBoard.collaborators = ideaBoard.collaborators.concat({
+							email,
+							username: result.username
+						})
 						result.added_to = result.added_to.concat(ideaBoard._id)
 
 						await ideaBoard.save()

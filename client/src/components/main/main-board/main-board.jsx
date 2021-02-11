@@ -59,14 +59,22 @@ const MainBoard = ({
 	// Collaborators (except the owner)
 	const collaborators = current_room.collaborators
 
+	console.log(JSON.stringify(collaborators))
+
 	const users_list = () => {
 		if (collaborators.length !== 0) {
-			if (collaborators.includes(user_email)) {
+			if (collaborators.find((user) => user.email !== user_email)) {
+				// For other collaborators
 				return [
 					current_room.owner_email,
-					...collaborators.filter((email) => email !== user_email)
+					...collaborators.map((user) => {
+						if (user.email !== user_email) {
+							return user.email
+						}
+					})
 				]
 			} else {
+				// For the owner
 				return collaborators
 			}
 		} else {
@@ -74,14 +82,15 @@ const MainBoard = ({
 		}
 	}
 
-	console.log(`[users_list] ${users_list()}`)
+	console.log(`[users_list] ${JSON.stringify(users_list())}`)
 
 	// const [pointers, setPointers] = useState(users_list())
 
 	const [pos_updates, setPosUpdates] = useState(
 		users_list().map((user) => {
+			console.log(user)
 			const obj = {
-				email: user,
+				email: user.email,
 				pos: {
 					x: -50,
 					y: -50
@@ -312,9 +321,8 @@ const MainBoard = ({
 				connectionLineStyle={{ stroke: '#ddd', strokeWidth: 3 }}
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
-				snapToGrid={true}
-				snapGrid={[16, 16]}>
-				<Background color='#888' gap={16} />
+				snapToGrid={false}>
+				<Background color='#888' gap={50} variant='dots' />
 
 				{console.log(pos_updates)}
 

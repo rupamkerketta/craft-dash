@@ -118,6 +118,21 @@
 		// 	border-radius: 10px;
 	}
 
+	.rodal-bg-blur {
+		background: linear-gradient(
+			103.23deg,
+			rgba(108, 134, 144, 0.1) 0%,
+			rgba(108, 134, 145, 0.04) 49.27%,
+			rgba(108, 134, 144, 0.06) 100%
+		);
+		backdrop-filter: blur(10px);
+	}
+
+	// .collaborators-modal {
+
+	// 	outline: none;
+	// }
+
 	// .dashboard-cards-wrapper
 
 	/* width */

@@ -5,11 +5,11 @@ import "./dashboard-cards.scss";
 // Craft Dash Logo
 import CraftDashLogo from "../../../img/craft-dash-logo.svg";
 import Owner from "../../../img/user-img-placeholder.svg";
-import Avatar1 from "../../../img/Avatar1.png"
-import Avatar2 from "../../../img/Avatar2.png"
-import Avatar3 from "../../../img/Avatar3.png"
-import Avatar4 from "../../../img/Avatar4.png"
-import Avatar5 from "../../../img/Avatar5.png"
+import Avatar1 from "../../../img/Avatar1.png";
+import Avatar2 from "../../../img/Avatar2.png";
+import Avatar3 from "../../../img/Avatar3.png";
+import Avatar4 from "../../../img/Avatar4.png";
+import Avatar5 from "../../../img/Avatar5.png";
 
 import Delete from "../../../img/trash.svg";
 import Edit from "../../../img/edit.svg";
@@ -61,8 +61,8 @@ function DashboardCards(props) {
             </div>
             <div className="idea-board-members">
               <div className="idea-board-others">
-			  {/* TODO Conditional Rendering of Users in the IdeaBoard  */}
-                {/* <img src={Owner} alt="" /> */} 
+                {/* TODO Conditional Rendering of Users in the IdeaBoard  */}
+                {/* <img src={Owner} alt="" /> */}
                 {/* <img src={Owner} alt="" /> */}
                 {/* <img src={Owner} alt="" /> */}
               </div>

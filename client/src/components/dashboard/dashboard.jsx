@@ -69,11 +69,9 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 
 	const customStyles = {
 		wrapper: {
-			backgroundColor: ' #1F2023',
+			backgroundColor: '#1F2023',
 			background:
 				'linear-gradient(144.37deg, rgba(22, 22, 22, 0.86) 0%, rgba(22, 22, 22, 0.757406) 6.67%, rgba(23, 23, 23, 0.749347) 13.33%, rgba(23, 23, 23, 0.635502) 20%, rgba(24, 24, 24, 0.615777) 26.67%, rgba(24, 25, 25, 0.590468) 33.33%, rgba(25, 26, 27, 0.560435) 40%, rgba(26, 27, 28, 0.527193) 46.67%, rgba(27, 28, 29, 0.492807) 53.33%, rgba(28, 29, 31, 0.459565) 60%, rgba(29, 30, 32, 0.429532) 66.67%, rgba(30, 31, 33, 0.404223) 73.33%, rgba(30, 31, 34, 0.384498) 80%, rgba(31, 32, 35, 0.370653) 86.67%, rgba(31, 32, 35, 0.362594) 93.33%, rgba(31, 32, 35, 0.36) 100%)',
-			// backdropFilter: 'blur(80px)',
-			// borderRadius: '10px'
 			borderLeft: '1px solid rgba(234,236,239, 0.3)',
 			borderTop: '1px solid rgba(234,236,239, 0.3)',
 			borderRight: '1px solid rgba(234,236,239, 0.2)',
@@ -167,6 +165,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			</div>
 
 			<Rodal
+				className='rodal-bg-blur'
 				visible={editModal.visible}
 				onClose={() => setEditModal({ ...editModal, visible: false })}
 				animation='fade'
@@ -177,6 +176,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			</Rodal>
 
 			<Rodal
+				className='rodal-bg-blur'
 				visible={deleteModal.visible}
 				onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
 				animation='fade'
@@ -218,6 +218,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			</Rodal>
 
 			<Rodal
+				className='rodal-bg-blur'
 				visible={visible}
 				onClose={() =>
 					setVisible((preVal) => {

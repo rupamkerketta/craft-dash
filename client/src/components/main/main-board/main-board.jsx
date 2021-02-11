@@ -76,15 +76,15 @@ const MainBoard = ({
 
 	console.log(`[users_list] ${users_list()}`)
 
-	const [pointers, setPointers] = useState(users_list())
+	// const [pointers, setPointers] = useState(users_list())
 
 	const [pos_updates, setPosUpdates] = useState(
 		users_list().map((user) => {
 			const obj = {
 				email: user,
 				pos: {
-					x: 0,
-					y: 0
+					x: -50,
+					y: -50
 				}
 			}
 			return obj

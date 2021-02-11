@@ -56,7 +56,9 @@ function Collaborators({
         <img src={Idea} alt="Idea" />
         <h1 className="collaborators-title">Edit IdeaBoard - Collaborators</h1>
       </div>
-
+      <div className="ideaboard-header-wrapper">
+        <h2 className="ideaboard-header-title">IdeaBoard Name Here</h2>
+      </div>
       <div className="collaborators-form">
         <Formik
           initialValues={initialValues}

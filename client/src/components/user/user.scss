@@ -34,35 +34,3 @@
 	}
 }
 
-.user-light {
-	.user-pic-light {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-
-		.pic-light {
-			padding: 4px;
-			width: 60px;
-			cursor: pointer;
-			border-radius: 50%;
-			border: 3px solid $theme-color;
-			transition: 0.2s all ease;
-		}
-
-		.pic-light:hover {
-			border-top: 3px solid $craft-dash-pink;
-			border-bottom: 3px solid $craft-dash-purple;
-			border-right: 3px solid $craft-dash-green;
-			border-left: 3px solid $craft-dash-blue;
-
-		}
-
-		h5 {
-			margin-left: 20px;
-			font-family: $theme-font;
-			color: #ffffff;
-			font-weight: 300;
-			cursor: pointer;
-		}
-	}
-}

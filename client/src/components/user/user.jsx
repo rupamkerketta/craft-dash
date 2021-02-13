@@ -10,11 +10,11 @@ import UserPic from '../../img/user-img-placeholder.svg'
 
 function User({ user, logout }) {
 	return (
-		<div className='user-light'>
-			<div className='user-pic-light'>
+		<div className='user'>
+			<div className='user-pic'>
 				<Link to='/profile-page'>
 					<img
-						className='pic-light'
+						className='pic'
 						src={user.thumbnail === '' ? UserPic : user.thumbnail}
 						alt={user.username}
 						title={user.username}

@@ -5,7 +5,7 @@ import './brand-logo.scss'
 function BrandLogo(props) {
 	return (
 		<div className='brand-logo-wrapper'>
-			<div className='brand-logo' style={props.custom}>
+			<div className='brand-logo-light' style={props.custom}>
 				{props.logoStyles ? (
 					<img
 						src={craft_dash_logo}

@@ -365,14 +365,14 @@
   }
 }
 
-
 .dashboard-light {
   // border: 1px solid white;
   position: absolute;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: url("../../img/dash-board-bg-pattern-light.svg") fixed center no-repeat;
+  background: url("../../img/dash-board-bg-pattern-light.svg") fixed center
+    no-repeat;
   background-color: $theme-color-light;
   background-size: cover;
   .top-nav-light {
@@ -443,7 +443,7 @@
       padding-top: 5px;
       padding-bottom: 5px;
       color: $theme-color;
-	  backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
       border: 3px solid $craft-dash-pink;
     }
   }
@@ -508,13 +508,13 @@
   }
 
   /* Track */
-  .dashboard-cards-wrapper-light::-webkit-scrollbar-track{
+  .dashboard-cards-wrapper-light::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0.123);
     border-radius: 10px;
   }
 
   /* Handle */
-  .dashboard-cards-wrapper-light::-webkit-scrollbar-thumb{
+  .dashboard-cards-wrapper-light::-webkit-scrollbar-thumb {
     background: #29e4968e;
     // background: $charcoal;
     border-radius: 10px;
@@ -640,7 +640,7 @@
         font-family: $theme-font;
         font-size: 1em;
         font-weight: 500;
-		// letter-spacing: 3;
+        // letter-spacing: 3;
         padding-top: 5px;
         padding-bottom: 5px;
         background-color: $login-btn-color;
@@ -666,8 +666,8 @@
       margin: auto;
       font-family: $theme-font;
       font-size: 1.3em;
-      font-weight: 300;
-      color: $label-color;
+      font-weight: 500;
+      color: $theme-color;
       margin-top: 20px;
     }
 

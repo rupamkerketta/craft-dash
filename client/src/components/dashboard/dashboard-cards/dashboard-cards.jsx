@@ -18,20 +18,20 @@ import { disconnect } from "mongoose";
 
 function DashboardCards(props) {
   return (
-    <div className="dashboard-cards">
-      <div className="cards">
-        <div className="card">
-          <h1 className="main">
-            <div className="logo-wrapper">
+    <div className="dashboard-cards-light">
+      <div className="cards-light">
+        <div className="card-light">
+          <h1 className="main-light">
+            <div className="logo-wrapper-light">
               <img src={CraftDashLogo} alt="" />
             </div>
           </h1>
-          <div className="footer">
-            <div className="idea-board-title">
+          <div className="footer-light">
+            <div className="idea-board-title-light">
               <h1>{props.title}</h1>
-              <div className="actions">
+              <div className="actions-light">
                 <img
-                  className="delete"
+                  className="delete-light"
                   src={Delete}
                   alt="Delete"
                   title="Delete"
@@ -40,7 +40,7 @@ function DashboardCards(props) {
                   }
                 />
                 <img
-                  className="edit"
+                  className="edit-light"
                   src={Edit}
                   alt="Delete"
                   title="Edit"
@@ -49,9 +49,9 @@ function DashboardCards(props) {
                   }
                 />
 
-                <Link to={`/main/${props._id}`} className="rocket-wrapper">
+                <Link to={`/main/${props._id}`} className="rocket-wrapper-light">
                   <img
-                    className="rocket"
+                    className="rocket-light"
                     src={Rocket}
                     alt="Open"
                     title="Open"
@@ -59,14 +59,14 @@ function DashboardCards(props) {
                 </Link>
               </div>
             </div>
-            <div className="idea-board-members">
-              <div className="idea-board-others">
+            <div className="idea-board-members-light">
+              <div className="idea-board-others-light">
                 {/* TODO Conditional Rendering of Users in the IdeaBoard  */}
                 {/* <img src={Owner} alt="" /> */}
                 {/* <img src={Owner} alt="" /> */}
                 {/* <img src={Owner} alt="" /> */}
               </div>
-              <div className="idea-board-owner">
+              <div className="idea-board-owner-light">
                 <img src={Owner} alt="" />
               </div>
             </div>

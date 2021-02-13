@@ -19,3 +19,22 @@
 		color: $brand-text-color;
 	}
 }
+
+.brand-logo-light {
+	user-select: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	width: fit-content;
+
+	img {
+		width: 37px;
+	}
+
+	h1 {
+		font-family: $brand-font;
+		font-weight: 300;
+		margin-left: 20px;
+		color: $theme-color;
+	}
+}

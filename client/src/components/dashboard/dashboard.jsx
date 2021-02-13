@@ -79,6 +79,14 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			borderRadius: '5px'
 		}
 	}
+	const customStylesLight = {
+		wrapper: {
+			backgroundColor: '#1F2023',
+			background: 'linear-gradient(103.23deg, rgba(164, 238, 254, 0.2) 0%, rgba(165, 238, 254, 0.199654) 6.67%, rgba(166, 238, 254, 0.19858) 13.33%, rgba(169, 239, 254, 0.196734) 20%, rgba(173, 239, 254, 0.194104) 26.67%, rgba(178, 240, 254, 0.190729) 33.33%, rgba(184, 241, 254, 0.186725) 40%, rgba(190, 242, 254, 0.182292) 46.67%, rgba(197, 244, 254, 0.177708) 53.33%, rgba(203, 245, 254, 0.173275) 60%, rgba(209, 246, 254, 0.169271) 66.67%, rgba(214, 247, 254, 0.165896) 73.33%, rgba(218, 247, 254, 0.163266) 80%, rgba(221, 248, 254, 0.16142) 86.67%, rgba(222, 248, 254, 0.160346) 93.33%, rgba(223, 248, 254, 0.16) 100%)',
+			border: '1px solid #282C34',
+			borderRadius: '5px'
+		}
+	}
 
 	useEffect(() => {
 		document.title = 'Craft Dash | Dashboard'
@@ -124,31 +132,31 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 	}
 
 	return (
-		<div className='dashboard'>
-			<div className='top-nav'>
-				<div className='brand-logo-wrapper'>
+		<div className='dashboard-light'>
+			<div className='top-nav-light'>
+				<div className='brand-logo-wrapper-light'>
 					<BrandLogo
 						fontStyles={{ fontSize: '1.4em', marginLeft: '10px' }}
 						logoStyles={{ width: '30px' }}
 					/>
 				</div>
-				<div className='add-btn'>
+				<div className='add-btn-light'>
 					<img
 						src={AddBtn}
 						onClick={() => setVisible(true)}
 						alt='Create New Idea Board'
 					/>
 				</div>
-				<div className='user-wrapper'>
+				<div className='user-wrapper-light'>
 					<User />
 				</div>
 			</div>
 
-			<div className='dashboard-title'>
+			<div className='dashboard-title-light'>
 				<h1>Dashboard</h1>
 			</div>
 
-			<div className='dashboard-cards-wrapper'>
+			<div className='dashboard-cards-wrapper-light'>
 				{idea_boards.boards.data.length !== 0
 					? idea_boards.boards.data.map((idea_board) => {
 							return (
@@ -165,50 +173,50 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			</div>
 
 			<Rodal
-				className='rodal-bg-blur'
+				className='rodal-bg-blur-light'
 				visible={editModal.visible}
 				onClose={() => setEditModal({ ...editModal, visible: false })}
 				animation='fade'
 				width={720}
 				height={600}
-				customStyles={customStyles.wrapper}>
+				customStyles={customStylesLight.wrapper}>
 				<Collaborators idea_board_id={`${editModal.id}`} />
 			</Rodal>
 
 			<Rodal
-				className='rodal-bg-blur'
+				className='rodal-bg-blur-light'
 				visible={deleteModal.visible}
 				onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
 				animation='fade'
 				width={450}
 				height={200}
-				customStyles={customStyles.wrapper}>
-				<div className='delete-modal'>
+				customStyles={customStylesLight.wrapper}>
+				<div className='delete-modal-light'>
 					{idea_boards.delete_board.info &&
 					idea_boards.delete_board.info._id === deleteModal.id ? (
-						<h2 className='post-delete'>
+						<h2 className='post-delete-light'>
 							<b>{idea_boards.delete_board.info.idea_board_name}</b> Deleted
 							Successfully
 						</h2>
 					) : (
-						<h2 className='pre-delete'>
+						<h2 className='pre-delete-light'>
 							Are you sure you want to delete IdeaBoard -{' '}
 							<b>{deleteModal.board_name}?</b>
 						</h2>
 					)}
 
-					<div className='yn'>
+					<div className='yn-light'>
 						{idea_boards.delete_board.isLoading ? (
 							<LoadingSpinner color='#0087cc' />
 						) : idea_boards.delete_board.info &&
 						  idea_boards.delete_board.info._id === deleteModal.id ? null : (
 							<div>
 								<button
-									className='yes'
+									className='yes-light'
 									onClick={() => optionsBtnHandler('YES')}>
 									YES
 								</button>
-								<button className='no' onClick={() => optionsBtnHandler('NO')}>
+								<button className='no-light' onClick={() => optionsBtnHandler('NO')}>
 									NO
 								</button>
 							</div>
@@ -218,7 +226,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			</Rodal>
 
 			<Rodal
-				className='rodal-bg-blur'
+				className='rodal-bg-blur-light'
 				visible={visible}
 				onClose={() =>
 					setVisible((preVal) => {
@@ -229,13 +237,13 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 				animation='fade'
 				width={450}
 				height={480}
-				customStyles={customStyles.wrapper}>
-				<div className='ideaboard-modal'>
-					<div className='ideaboard-header'>
+				customStyles={customStylesLight.wrapper}>
+				<div className='ideaboard-modal-light'>
+					<div className='ideaboard-header-light'>
 						<img src={Idea} alt='Idea' />
-						<h1 className='ideaboard-title'>Create New IdeaBoard</h1>
+						<h1 className='ideaboard-title-light'>Create New IdeaBoard</h1>
 					</div>
-					<div className='idea-board-form'>
+					<div className='idea-board-form-light'>
 						<Formik
 							initialValues={initialValues}
 							validate={validate}
@@ -244,9 +252,9 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 								resetForm.current = formik.resetForm
 								return (
 									<Form>
-										<div className='input-group'>
+										<div className='input-group-light'>
 											<label htmlFor='idea_board_name'>
-												IdeaBoard name <span className='asterisk'>*</span>
+												IdeaBoard name <span className='asterisk-light'>*</span>
 											</label>
 											<Field
 												type='text'
@@ -255,14 +263,14 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 												autoComplete='off'
 												disabled={idea_boards.new_board.isLoading}
 											/>
-											<div className='error-msg-wrapper'>
+											<div className='error-msg-wrapper-light'>
 												<ErrorMessage
 													name='idea_board_name'
 													component={TextError}
 												/>
 											</div>
 										</div>
-										<div className='input-group'>
+										<div className='input-group-light'>
 											<label htmlFor='idea_board_description'>
 												Description <span className='asterisk'>*</span>
 											</label>
@@ -273,14 +281,14 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 												autoComplete='off'
 												disabled={idea_boards.new_board.isLoading}
 											/>
-											<div className='error-msg-wrapper'>
+											<div className='error-msg-wrapper-light'>
 												<ErrorMessage
 													name='idea_board_description'
 													component={TextError}
 												/>
 											</div>
 										</div>
-										<div className='create-btn'>
+										<div className='create-btn-light'>
 											{idea_boards.new_board.isLoading ? (
 												<LoadingSpinner color='#0087cc' />
 											) : (

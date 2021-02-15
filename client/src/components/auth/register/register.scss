@@ -1,142 +1,204 @@
-@import '../../../sass/utils/colors';
-@import '../../../sass/utils/fonts';
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
 
 .register {
-	overflow-y: hidden;
-	background: url('../../../img/landing-page-bg.svg') fixed center repeat;
-	background-size: cover;
-	// border: 1px solid white;
-	height: 100vh;
-	form {
-		width: 800px;
-		margin: auto;
-		margin-top: 40px;
-		padding-left: 15px;
-		padding-right: 15px;
-		padding-top: 10px;
-		padding-bottom: 20px;
-		background: linear-gradient(
-			103.23deg,
-			rgba(108, 134, 144, 0.10) 0%,
-			rgba(108, 134, 145, 0.04) 49.27%,
-			rgba(108, 134, 144, 0.06) 100%
-		);
-		backdrop-filter: blur(
-			10px
-		); 
-		border-left: 1px solid rgba(234,236,239, 0.3);
-		border-top:  1px solid rgba(234,236,239, 0.3);
-		border-right:  1px solid rgba(234,236,239, 0.2);
-		border-bottom:  1px solid rgba(234,236,239, 0.2);
-		border-radius: 10px;
-		.row-1 {
-			display: flex;
-			align-items: flex-start;
-			justify-content: space-between;
-		}
+  overflow-y: hidden;
+  background: url("../../../img/landing-page-bg.svg") fixed center repeat;
+  background-size: cover;
+  // border: 1px solid white;
+  height: 100vh;
+  form {
+    width: 800px;
+    margin: auto;
+    margin-top: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background: linear-gradient(
+      103.23deg,
+      rgba(108, 134, 144, 0.1) 0%,
+      rgba(108, 134, 145, 0.04) 49.27%,
+      rgba(108, 134, 144, 0.06) 100%
+    );
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(234, 236, 239, 0.3);
+    border-top: 1px solid rgba(234, 236, 239, 0.3);
+    border-right: 1px solid rgba(234, 236, 239, 0.2);
+    border-bottom: 1px solid rgba(234, 236, 239, 0.2);
+    border-radius: 10px;
+    .row-1 {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
 
-		.row-4 {
-			text-align: center;
+    .row-2 {
+      //   border: 1px solid white;
+      display: flex;
+      align-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
 
-			#submit-btn {
-				width: 450px;
-				border: 0;
-				border-radius: 4px;
-				background-color: transparent;
-				border: 1px solid $signup-btn-color;
-				font-family: $theme-font;
-				font-weight: 500;
-				font-size: 1em;
-				color: $signup-btn-color;
-				cursor: pointer;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				margin-top: 30px;
-				transition: 0.2s all ease-in;
-				outline: none;
+      .avatars-wrapper {
+        margin-left: 25px;
+        width: 100%;
+        // position: relative;
+        // border: 1px solid gold;
 
-				&:hover {
-					background-color: $signup-btn-color;
-					color: $theme-color;
-					font-weight: 500;
-				}
+        .avatars-header {
+          color: $label-color;
+          font-family: $theme-font;
+          font-weight: 100;
 
-				&:focus {
-					outline: none;
-				}
-			}
-		}
+          .asterik {
+            color: $danger;
+            font-weight: 300;
+          }
+        }
 
-		.row-5 {
-			text-align: center;
+        .avatars-content {
+          margin-top: 10px;
+          .avatars-row1 {
+            display: flex;
+            img {
+              margin-left: 5px;
+              margin-right: 5px;
+              width: 50px;
+              border-radius: 50%;
+              transition: 0.3s ease-in-out;
+            }
+            img:hover {
+              margin-left: 10px;
+              margin-right: 10px;
+              border: 3px solid $label-color;
+              border-radius: 50%;
+              transform: scale(1.4);
+            }
+          }
+          .avatars-row2 {
+            margin-top: 10px;
+            display: flex;
+            img {
+              margin-left: 5px;
+              margin-right: 5px;
+              width: 50px;
+              border-radius: 50%;
+              transition: 0.3s ease-in-out;
+            }
+            img:hover {
+              margin-left: 10px;
+              margin-right: 10px;
+              border: 3px solid $label-color;
+              border-radius: 50%;
+              transform: scale(1.4);
+            }
+          }
+        }
+      }
+    }
+    .row-4 {
+      text-align: center;
 
-			p {
-				margin-top: 20px;
-				font-family: $theme-font;
-				color: $label-color;
-				font-size: 0.9em;
-				font-weight: 200;
+      #submit-btn {
+        width: 450px;
+        border: 0;
+        border-radius: 4px;
+        background-color: transparent;
+        border: 1px solid $signup-btn-color;
+        font-family: $theme-font;
+        font-weight: 500;
+        font-size: 1em;
+        color: $signup-btn-color;
+        cursor: pointer;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 30px;
+        transition: 0.2s all ease-in;
+        outline: none;
 
-				span.login-link {
-					color: $login-btn-color;
-					font-weight: 300;
-				}
-			}
-		}
+        &:hover {
+          background-color: $signup-btn-color;
+          color: $theme-color;
+          font-weight: 500;
+        }
 
-		.input-group {
-			position: relative;
-			margin-top: 20px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
 
-			label {
-				display: block;
-				width: 100%;
-				font-family: $theme-font;
-				font-weight: 200;
-				font-size: 1.2em;
-				font-size: 1em;
-				padding-top: 2px;
-				padding-bottom: 2px;
-				color: $label-color;
+    .row-5 {
+      text-align: center;
 
-				.asterisk {
-					color: $danger;
-					font-weight: 300;
-				}
-			}
+      p {
+        margin-top: 20px;
+        font-family: $theme-font;
+        color: $label-color;
+        font-size: 0.9em;
+        font-weight: 200;
 
-			input {
-				width: 370px;
-				border: 0;
-				border-radius: 4px;
-				background: $reg-input-box-color;
-				font-family: $theme-font;
-				font-size: 1.2em;
-				color: #ffffff;
-				font-weight: 40;
-				// padding
-				padding: 10px;
-				padding-top: 10px;
-				padding-bottom: 10px;
-				outline: none;
-			}
+        span.login-link {
+          color: $login-btn-color;
+          font-weight: 300;
+        }
+      }
+    }
 
-			.error-msg-wrapper {
-				width: fit-content;
-				height: 30px;
-				margin-top: 5px;
+    .input-group {
+      position: relative;
+      margin-top: 20px;
 
-				.error-msg {
-					padding-left: 7px;
-					padding-right: 7px;
-					border-radius: 3px;
-					background-color: #f52d7a31;
-					color: $danger;
-					font-family: $theme-font;
-					font-weight: 400;
-					font-size: 0.9em;
-				}
-			}
-		}
-	}
+      label {
+        display: block;
+        width: 100%;
+        font-family: $theme-font;
+        font-weight: 200;
+        font-size: 1.2em;
+        font-size: 1em;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        color: $label-color;
+
+        .asterisk {
+          color: $danger;
+          font-weight: 300;
+        }
+      }
+
+      input {
+        width: 370px;
+        border: 0;
+        border-radius: 4px;
+        background: $reg-input-box-color;
+        font-family: $theme-font;
+        font-size: 1.2em;
+        color: #ffffff;
+        font-weight: 40;
+        // padding
+        padding: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        outline: none;
+      }
+
+      .error-msg-wrapper {
+        width: fit-content;
+        height: 30px;
+        margin-top: 5px;
+
+        .error-msg {
+          padding-left: 7px;
+          padding-right: 7px;
+          border-radius: 3px;
+          background-color: #f52d7a31;
+          color: $danger;
+          font-family: $theme-font;
+          font-weight: 400;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
 }

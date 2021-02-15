@@ -141,6 +141,23 @@ function Register({ auth, signup, signupAttempt }) {
                         <ErrorMessage name="email" component={TextError} />
                       </div>
                     </div>
+                    <div className="input-group">
+                      <label htmlFor="password">
+                        Password <span className="asterisk">*</span>
+                      </label>
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="current-password"
+                        disabled={signup.loading || signup.status}
+                      />
+                      <div className="error-msg-wrapper">
+                        <ErrorMessage name="password" component={TextError} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row-3">
                     <div className="avatars-wrapper">
                       <div className="avatars-header">
                         <p>
@@ -164,23 +181,6 @@ function Register({ auth, signup, signupAttempt }) {
                           <Avatars index={10} />
                           <Avatars index={11} />
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row-3">
-                    <div className="input-group">
-                      <label htmlFor="password">
-                        Password <span className="asterisk">*</span>
-                      </label>
-                      <Field
-                        type="password"
-                        id="password"
-                        name="password"
-                        autoComplete="current-password"
-                        disabled={signup.loading || signup.status}
-                      />
-                      <div className="error-msg-wrapper">
-                        <ErrorMessage name="password" component={TextError} />
                       </div>
                     </div>
                   </div>

@@ -1,293 +1,294 @@
-@import '../../sass/utils/colors';
-@import '../../sass/utils/fonts';
+@import "../../sass/utils/colors";
+@import "../../sass/utils/fonts";
 
 .profile-page {
-	background: url('../../img/landing-page-bg.svg') fixed center repeat;
-	background-size: cover;
-	height: 95vh;
+  background: url("../../img/landing-page-bg.svg") fixed center repeat;
+  background-size: cover;
+  height: 95vh;
 }
 .app-bar {
-	ul {
-		margin-top: 20px;
-		margin-left: 80px;
-		margin-right: 0px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: transparent;
-		color: $label-color;
-		font-family: $theme-font;
-		list-style: none;
-	}
-	.logout-button {
-		background-color: transparent;
-		border: 3px solid $craft-dash-pink;
-		width: 121px;
-		color: $label-color;
-		padding-top: 5px;
-		font-family: $theme-font;
-		border-radius: 10px;
-		padding-bottom: 5px;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-right: 20px;
-	}
-	.logout-button:hover {
-		background-color: $craft-dash-pink;
-		color: $theme-color;
-		font-weight: 800;
-	}
+  ul {
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-right: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    color: $label-color;
+    font-family: $theme-font;
+    list-style: none;
+  }
+  .logout-button {
+    background-color: transparent;
+    border: 3px solid $craft-dash-pink;
+    width: 121px;
+    color: $label-color;
+    padding-top: 5px;
+    font-family: $theme-font;
+    border-radius: 10px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 20px;
+  }
+  .logout-button:hover {
+    background-color: $craft-dash-pink;
+    color: $theme-color;
+    font-weight: 800;
+  }
 }
 
 .profile-card {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-direction: column;
-	// padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  // padding-right: 10px;
 
-	margin-top: 100px;
-	-webkit-backdrop-filter: blur(8px);
-	/* Safari 9+ */
-	background: linear-gradient(
-		100.5deg,
-		rgba(255, 255, 255, 0.05) 10%,
-		rgba(255, 255, 255, 0.04) 100%
-	);
-	backdrop-filter: blur(8px);
-	width: 600px;
-	height: 170px;
+  margin-top: 100px;
+  -webkit-backdrop-filter: blur(8px);
+  /* Safari 9+ */
+  background: linear-gradient(
+    100.5deg,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(8px);
+  width: 600px;
+  height: 170px;
 
-	border-left: 1px solid rgba(255, 255, 255, 0.2);
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	border-radius: 15px;
-	position: absolute;
-	top: 100px;
-	left: 50%;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
 
-	transform: translate(-55%);
-	transition: 0.2s all linear;
+  transform: translate(-55%);
+  transition: 0.2s all linear;
 
-	.profile-text-content {
-		padding: 10px 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+  .profile-text-content {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-		width: 70%;
-		// width: 50%;
-		// border: 1px solid white;
+    width: 70%;
+    // width: 50%;
+    // border: 1px solid white;
 
-		.username,
-		.email {
-			font-family: $theme-font;
-			color: $label-color;
-		}
+    .username,
+    .email {
+      font-family: $theme-font;
+      color: $label-color;
+    }
 
-		.username {
-			font-size: 1.8em;
-		}
+    .username {
+      font-size: 1.8em;
+    }
 
-		.email {
-			font-size: 0.8em;
-			font-weight: 200;
-		}
-	}
+    .email {
+      font-size: 0.8em;
+      font-weight: 200;
+    }
+  }
 
-	.user-image-wrapper {
-		width: 30%;
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		margin-top: -80px;
-		// border: 1px solid white;
-		.user-image {
-			// position: absolute;
-			left: 20px;
-			top: 25px;
-			bottom: 20px;
-			width: 145px;
-			border-radius: 50%;
-			border-top: 3px solid $craft-dash-pink;
-			border-bottom: 3px solid $craft-dash-purple;
-			border-right: 3px solid $craft-dash-green;
-			border-left: 3px solid $craft-dash-blue;
-			padding: 5px;
-		}
-	}
+  .user-image-wrapper {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: -80px;
+    // border: 1px solid white;
+    .user-image {
+      // position: absolute;
+      left: 20px;
+      top: 25px;
+      bottom: 20px;
+      width: 145px;
+      border-radius: 50%;
+      border-top: 3px solid $craft-dash-pink;
+      border-bottom: 3px solid $craft-dash-purple;
+      border-right: 3px solid $craft-dash-green;
+      border-left: 3px solid $craft-dash-blue;
+      padding: 5px;
+    }
+  }
 
-	// 	.edit-profile-button {
-	// 		display: none;
-	// 		position: absolute;
-	// 		top: 240px;
-	// 		left: 420px;
-	// 		border: 3px solid $craft-dash-blue;
-	// 		border-radius: 10px;
-	// 		background-color: transparent;
-	// 		color: $label-color;
-	// 		width: 150px;
-	// 		height: 45px;
-	// 		font-family: $theme-font;
-	// 		font-weight: 800;
-	// 	}
-	// 	.edit-profile-button:hover {
-	// 		color: $modal-background-color;
-	// 		background-color: $craft-dash-blue;
-	// 		border: 3px solid $craft-dash-blue;
-	// 	}
+  // 	.edit-profile-button {
+  // 		display: none;
+  // 		position: absolute;
+  // 		top: 240px;
+  // 		left: 420px;
+  // 		border: 3px solid $craft-dash-blue;
+  // 		border-radius: 10px;
+  // 		background-color: transparent;
+  // 		color: $label-color;
+  // 		width: 150px;
+  // 		height: 45px;
+  // 		font-family: $theme-font;
+  // 		font-weight: 800;
+  // 	}
+  // 	.edit-profile-button:hover {
+  // 		color: $modal-background-color;
+  // 		background-color: $craft-dash-blue;
+  // 		border: 3px solid $craft-dash-blue;
+  // 	}
 }
 .profile-card:hover {
-	-webkit-backdrop-filter: blur(10px);
-	/* Safari 9+ */
-	border-left: 1px solid rgba(255, 255, 255, 0.3);
-	border-top: 1px solid rgba(255, 255, 255, 0.3);
-	border-right: 1px solid rgba(255, 255, 255, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-	border-radius: 15px;
-	background: linear-gradient(
-		100.1deg,
-		rgba(47, 218, 228, 0.02) 10%,
-		rgba(255, 255, 255, 0.02) 100%
-	);
-	backdrop-filter: blur(25px);
-	transition: 0.3s all linear;
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari 9+ */
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  background: linear-gradient(
+    100.1deg,
+    rgba(47, 218, 228, 0.02) 10%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(25px);
+  transition: 0.3s all linear;
 }
 .subscription-card {
-	display: none;
-	margin-top: 50px;
-	margin-left: 50px;
-	background-color: $modal-background-color;
-	border-radius: 15px;
-	position: absolute;
-	width: 400px;
-	height: 300px;
-	left: 893px;
-	top: 100px;
-	.subscription-header {
-		position: absolute;
-		top: 20px;
-		left: 20px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 1.2em;
-		font-weight: 800;
-	}
-	.subscription-plan {
-		position: absolute;
-		top: 80px;
-		left: 20px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 3em;
-		font-weight: 300;
-	}
-	.subscription-date {
-		position: absolute;
-		top: 160px;
-		left: 20px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 1em;
-		font-weight: 300;
-	}
-	.renew-subscription-button {
-		position: absolute;
-		top: 240px;
-		left: 230px;
-		border: 3px solid $craft-dash-green;
-		border-radius: 10px;
-		background-color: transparent;
-		color: $label-color;
-		padding: 10px;
-		font-family: $theme-font;
-		font-weight: 800;
-	}
-	.renew-subscription-button:hover {
-		color: $modal-background-color;
-		background-color: $craft-dash-green;
-		border: 3px solid $craft-dash-green;
-	}
+  display: none;
+  margin-top: 50px;
+  margin-left: 50px;
+  background-color: $modal-background-color;
+  border-radius: 15px;
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  left: 893px;
+  top: 100px;
+  .subscription-header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1.2em;
+    font-weight: 800;
+  }
+  .subscription-plan {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 3em;
+    font-weight: 300;
+  }
+  .subscription-date {
+    position: absolute;
+    top: 160px;
+    left: 20px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1em;
+    font-weight: 300;
+  }
+  .renew-subscription-button {
+    position: absolute;
+    top: 240px;
+    left: 230px;
+    border: 3px solid $craft-dash-green;
+    border-radius: 10px;
+    background-color: transparent;
+    color: $label-color;
+    padding: 10px;
+    font-family: $theme-font;
+    font-weight: 800;
+  }
+  .renew-subscription-button:hover {
+    color: $modal-background-color;
+    background-color: $craft-dash-green;
+    border: 3px solid $craft-dash-green;
+  }
 }
 .active-time-card {
-	display: none;
-	background-color: $modal-background-color;
-	border-radius: 15px;
-	position: absolute;
-	width: 600px;
-	height: 200px;
-	margin-top: 50px;
-	margin-left: 120px;
-	top: 450px;
-	left: 40px;
-	.active-time-header {
-		position: absolute;
-		top: 20px;
-		left: 20px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 1.2em;
-		font-weight: 800;
-	}
-	.active-time-month {
-		position: absolute;
-		top: 20px;
-		left: 380px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 1.2em;
-		font-weight: 300;
-	}
+  display: none;
+  background-color: $modal-background-color;
+  border-radius: 15px;
+  position: absolute;
+  width: 600px;
+  height: 200px;
+  margin-top: 50px;
+  margin-left: 120px;
+  top: 450px;
+  left: 40px;
+  .active-time-header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1.2em;
+    font-weight: 800;
+  }
+  .active-time-month {
+    position: absolute;
+    top: 20px;
+    left: 380px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1.2em;
+    font-weight: 300;
+  }
 }
 
 .active-ideaboards-card {
-	margin-top: 50px;
-	// margin-left: 50px;
-	-webkit-backdrop-filter: blur(8px);
-	/* Safari 9+ */
-	background: linear-gradient(
-		100.5deg,
-		rgba(255, 255, 255, 0.05) 10%,
-		rgba(255, 255, 255, 0.04) 100%
-	);
-	backdrop-filter: blur(8px);
-	width: 600px;
-	height: 250px;
-	border-left: 1px solid rgba(255, 255, 255, 0.2);
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
-	border-right: 1px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	border-radius: 15px;
-	position: absolute;
-	left: 50%;
-	transform: translate(-55%);
-	transition: 0.3s all linear;
-	top: 400px;
-	.active-ideaboards-header {
-		position: absolute;
-		top: 20px;
-		left: 210px;
-		color: $label-color;
-		font-family: $theme-font;
-		font-size: 1.2em;
-		font-weight: 500;
-	}
+  margin-top: 50px;
+  // margin-left: 50px;
+  -webkit-backdrop-filter: blur(8px);
+  /* Safari 9+ */
+  background: linear-gradient(
+    100.5deg,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(8px);
+  width: 600px;
+  height: 250px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-55%);
+  transition: 0.3s all linear;
+  top: 400px;
+  .active-ideaboards-header {
+    position: absolute;
+    top: 20px;
+    left: 210px;
+    color: $label-color;
+    font-family: $theme-font;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
 }
 
 .active-ideaboards-card:hover {
-	-webkit-backdrop-filter: blur(10px);
-	/* Safari 9+ */
-	border-left: 1px solid rgba(255, 255, 255, 0.3);
-	border-top: 1px solid rgba(255, 255, 255, 0.3);
-	border-right: 1px solid rgba(255, 255, 255, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-	border-radius: 15px;
-	background: linear-gradient(
-		100.1deg,
-		rgba(47, 218, 228, 0.02) 10%,
-		rgba(255, 255, 255, 0.02) 100%
-	);
-	backdrop-filter: blur(25px);
-	transition: 0.3s all linear;
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari 9+ */
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  background: linear-gradient(
+    100.1deg,
+    rgba(47, 218, 228, 0.02) 10%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(25px);
+  transition: 0.3s all linear;
 }
+

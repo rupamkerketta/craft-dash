@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				boards: {
 					...state.boards,
-					data: [ ...state.boards.data, action.payload ]
+					data: [...state.boards.data, action.payload]
 				}
 			}
 
@@ -36,7 +36,9 @@ const reducer = (state = initialState, action) => {
 				...state,
 				boards: {
 					...state.boards,
-					data: state.boards.data.filter((board) => board._id !== action.payload)
+					data: state.boards.data.filter(
+						(board) => board._id !== action.payload
+					)
 				}
 			}
 
@@ -146,7 +148,10 @@ const reducer = (state = initialState, action) => {
 					...state.boards,
 					data: state.boards.data.map((idea_board) => {
 						if (idea_board._id.toString() === action.payload.idea_board_id) {
-							idea_board.collaborators.push(action.payload.new_collaborator)
+							idea_board.collaborators.push({
+								email: action.payload.new_collaborator_email,
+								username: action.payload.new_collaborator_username
+							})
 						}
 						return idea_board
 					})

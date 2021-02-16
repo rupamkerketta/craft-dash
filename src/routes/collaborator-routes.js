@@ -45,8 +45,8 @@ router.post('/', auth, async (req, res) => {
 						await result.save()
 
 						const collaborator_info = {
-							email: result.email,
-							_id: result._id
+							username: result.username,
+							email: result.email
 						}
 
 						res.send({

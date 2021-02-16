@@ -4,35 +4,37 @@ import update from 'immutability-helper'
 
 import BrandLogo from '../../components/brand-logo/brand-logo'
 
-const initialState = [
-	{
-		id: '1',
-		data: {
-			label: (
-				<>
-					<BrandLogo
-						fontStyles={{
-							fontSize: '1.2em',
-							marginLeft: '10px',
-							color: '#000000'
-						}}
-					/>
-				</>
-			)
-		},
-		type: 'default',
-		style: {
-			backgroundColor: '#ffffff',
-			color: 'black',
-			fontFamily: 'Poppins',
-			fontWeight: '400',
-			minWidth: '100px',
-			maxWidth: '400px',
-			wordBreak: 'break-word'
-		},
-		position: { x: 0, y: 0 }
-	}
-]
+// const initialState = [
+// 	{
+// 		id: '1',
+// 		data: {
+// 			label: (
+// 				<>
+// 					<BrandLogo
+// 						fontStyles={{
+// 							fontSize: '1.2em',
+// 							marginLeft: '10px',
+// 							color: '#000000'
+// 						}}
+// 					/>
+// 				</>
+// 			)
+// 		},
+// 		type: 'default',
+// 		style: {
+// 			backgroundColor: '#ffffff',
+// 			color: 'black',
+// 			fontFamily: 'Poppins',
+// 			fontWeight: '400',
+// 			minWidth: '100px',
+// 			maxWidth: '400px',
+// 			wordBreak: 'break-word'
+// 		},
+// 		position: { x: 0, y: 0 }
+// 	}
+// ]
+
+const initialState = []
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -62,13 +64,6 @@ const reducer = (state = initialState, action) => {
 
 		case TYPE.NODE_TEXT_CHANGE:
 			console.log(action.payload.text)
-			// const newState = update(state, {
-			// 	state.findIndex((element) => element.id === action.payload.id) : { data: { label: { $set: action.payload.text } } }
-			// })
-
-			// const index = state.findIndex(
-			// 	(element) => element.id === action.payload.id
-			// )
 
 			const partialState = state.filter(
 				(element) => element.id !== action.payload.id

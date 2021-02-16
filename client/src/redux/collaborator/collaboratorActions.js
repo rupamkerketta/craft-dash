@@ -1,12 +1,19 @@
 import api from '../../utils/api'
 
 import * as TYPE from './collaboratorTypes'
-import { UPDATE_IB_COLLABORATORS_ADD, UPDATE_IB_COLLABORATORS_REMOVE } from '../idea-boards/ideaBoardsTypes'
+import {
+	UPDATE_IB_COLLABORATORS_ADD,
+	UPDATE_IB_COLLABORATORS_REMOVE
+} from '../idea-boards/ideaBoardsTypes'
 
 import * as NOTIFICATION_TYPE from '../../utils/notifications/notifyTypes'
 import notify from '../../utils/notifications/notify'
 
-export const actionCollaborator = ({ collaborator_email: email, idea_board_id, action }) => async (dispatch) => {
+export const actionCollaborator = ({
+	collaborator_email: email,
+	idea_board_id,
+	action
+}) => async (dispatch) => {
 	// Add Collaborator Action Handlers
 	const addRequestHandler = () => {
 		dispatch(addCollaboratorRequest())
@@ -14,10 +21,18 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 
 	const addSuccessHandler = (res) => {
 		dispatch(addCollaboratorSuccess())
-		dispatch(ibUpdateCollaboratorsAdd({ idea_board_id, new_collaborator: res.data.new_collaborator.email }))
+		dispatch(
+			ibUpdateCollaboratorsAdd({
+				idea_board_id,
+				new_collaborator_email: res.data.new_collaborator.email,
+				new_collaborator_username: res.data.new_collaborator.username
+			})
+		)
 
 		notify(
-			{ message: `Collaborator ${res.data.new_collaborator.email} added successfully!!!` },
+			{
+				message: `Collaborator ${res.data.new_collaborator.email} added successfully!!!`
+			},
 			NOTIFICATION_TYPE.INFO,
 			'zoom',
 			{
@@ -29,10 +44,15 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 
 	const addErrHandler = () => {
 		dispatch(addCollaboratorFailure())
-		notify({ message: `Collaborator ERROR!!!` }, NOTIFICATION_TYPE.ERROR, 'zoom', {
-			autoClose: 3000,
-			position: 'top-right'
-		})
+		notify(
+			{ message: `Collaborator ERROR!!!` },
+			NOTIFICATION_TYPE.ERROR,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	}
 
 	// Remove Collaborator Action Handlers
@@ -44,11 +64,16 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 		console.log(res.data)
 		dispatch(removeCollaboratorSuccess())
 		dispatch(
-			ibUpdateCollaboratorsRemove({ idea_board_id, removed_collaborator: res.data.removed_collaborator.email })
+			ibUpdateCollaboratorsRemove({
+				idea_board_id,
+				removed_collaborator: res.data.removed_collaborator.email
+			})
 		)
 
 		notify(
-			{ message: `Collaborator ${res.data.removed_collaborator.email} removed successfully!!!` },
+			{
+				message: `Collaborator ${res.data.removed_collaborator.email} removed successfully!!!`
+			},
 			NOTIFICATION_TYPE.INFO,
 			'zoom',
 			{
@@ -60,10 +85,15 @@ export const actionCollaborator = ({ collaborator_email: email, idea_board_id, a
 
 	const removeErrHandler = () => {
 		dispatch(removeCollaboratorFailure())
-		notify({ message: `Collaborator ERROR!!!` }, NOTIFICATION_TYPE.ERROR, 'zoom', {
-			autoClose: 3000,
-			position: 'top-right'
-		})
+		notify(
+			{ message: `Collaborator ERROR!!!` },
+			NOTIFICATION_TYPE.ERROR,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	}
 
 	switch (action) {

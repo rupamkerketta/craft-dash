@@ -3,6 +3,7 @@ const mousePointer = (socket) => {
 		try {
 			socket.broadcast.to(data.room).emit('user-pointer-updates', {
 				email: data.email,
+				username: data.username,
 				pos: { x: data.x, y: data.y }
 			})
 		} catch (e) {

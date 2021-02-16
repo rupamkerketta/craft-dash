@@ -1,16 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./messaging.scss";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 
 import { addMessage, resetMessages } from "../../../redux/chat/chatActions";
 import SendIcon from "../../../img/sendIcon.svg";
 import EmojiIcon from "../../../img/emojiIcon.png";
 
+import { deSelectAll_Main } from "../../../redux/elements/focus-elements/focusElementsActions";
+import { setFocusText_Main } from "../../../redux/elements/focus-text/focusTextActions";
+
+import {
+  onTextChange_Main,
+  removeElements_Main,
+} from "../../../redux/elements/elementsActions";
+
 // Chat Emojis
 import ReactEmoji from "react-emoji";
 
-const Messaging = ({ room, username, messages, socket, addMessage }) => {
+//Emoji Picker
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
+
+const Messaging = ({
+  room,
+  username,
+  messages,
+  socket,
+  addMessage,
+  focus_element,
+}) => {
   useEffect(() => {
     socket.on("chat-message", (data) => {
       const d = new Date();
@@ -28,6 +47,10 @@ const Messaging = ({ room, username, messages, socket, addMessage }) => {
       window.location.reload();
     };
   }, []);
+
+  // const textChangeHandler = (text) => {
+  //   onTextChange_Main({ id: focus_element.id, text });
+  // };
 
   const initialValues = {
     message: "",
@@ -59,6 +82,15 @@ const Messaging = ({ room, username, messages, socket, addMessage }) => {
     socket.emit("chat-message", { username, room, message: values.message });
   };
 
+  const myForm = React.useRef(null)
+
+  const addEmoji = (emoji) => {
+    console.log(myForm)
+    // messageRef.current.value = messageRef.current.value + emoji
+  };
+
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
   return (
     <div className="messaging">
       <Chats messages={messages} />
@@ -70,9 +102,27 @@ const Messaging = ({ room, username, messages, socket, addMessage }) => {
           onSubmit={onSubmit}
         >
           {(formik) => {
+            myForm.current = formik
             resetForm.current = formik.resetForm;
             return (
               <Form>
+                <div
+                  className="emoji-picker"
+                  style={{
+                    display: showEmojiPicker ? "block" : "none",
+                  }}
+                >
+                  <Picker
+                    style={{
+                      width: "280px",
+                      height: "440px",
+                    }}
+                    onSelect={addEmoji}
+                    theme="dark"
+                    title="Pick an emoji"
+                    emoji="point_up"
+                  />
+                </div>
                 <div className="input-group">
                   <Field
                     type="text"
@@ -81,8 +131,12 @@ const Messaging = ({ room, username, messages, socket, addMessage }) => {
                     autoComplete="off"
                     placeholder="Type Something"
                   />
-                  <button className="emoji-icon" title="Select Emoji">
-                    <img src={EmojiIcon} alt=""/>
+                  <button
+                    className="emoji-icon"
+                    title="Select Emoji"
+                    onClick={() => setShowEmojiPicker((e) => !e)}
+                  >
+                    <img src={EmojiIcon} alt="" />
                   </button>
                   <img
                     src={SendIcon}

@@ -14,6 +14,8 @@ import Avatar5 from "../../../img/Avatar5.png";
 import Delete from "../../../img/trash.svg";
 import Edit from "../../../img/edit.svg";
 import Rocket from "../../../img/rocket-2.svg";
+
+import Avatars from '../../avatars/avatars-import';
 import { disconnect } from "mongoose";
 
 function DashboardCards(props) {
@@ -62,12 +64,12 @@ function DashboardCards(props) {
             <div className="idea-board-members">
               <div className="idea-board-others">
                 {/* TODO Conditional Rendering of Users in the IdeaBoard  */}
-                {/* <img src={Owner} alt="" /> */}
-                {/* <img src={Owner} alt="" /> */}
-                {/* <img src={Owner} alt="" /> */}
+                {/* <Avatars index="1"/> */}
+                {/* <Avatars index="2"/> */}
+                {/* <Avatars index="11"/> */}
               </div>
               <div className="idea-board-owner">
-                <img src={Owner} alt="" />
+                <Avatars index={0}/>
               </div>
             </div>
           </div>

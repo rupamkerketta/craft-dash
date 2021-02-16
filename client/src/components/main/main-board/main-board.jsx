@@ -179,7 +179,12 @@ const MainBoard = ({
 				// let updated_list = []
 				// if (preVal.length > 1) {
 				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
-				const updated_list = [...list, { ...data }]
+
+				let updated_list = [...list, { ...data }]
+
+				updated_list = updated_list.filter(
+					(item) => typeof item.email !== 'undefined'
+				)
 				// } else {
 				// 	updated_list = [{ ...data }]
 				// }

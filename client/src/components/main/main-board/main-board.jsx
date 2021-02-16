@@ -68,6 +68,12 @@ const MainBoard = ({
 		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
 		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
 		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
+		{ i: 4, pointer: Pointer4, color: '#C521FF' },
+		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
+		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
+		{ i: 4, pointer: Pointer4, color: '#C521FF' },
+		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
+		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
 		{ i: 4, pointer: Pointer4, color: '#C521FF' }
 	]
 
@@ -169,14 +175,14 @@ const MainBoard = ({
 		socket.on('user-pointer-updates', (data) => {
 			console.log(JSON.stringify(data))
 			setPosUpdates((preVal) => {
-				let list = []
-				let updated_list = []
-				if (preVal.length > 1) {
-					list = [...preVal.filter((preVal) => preVal.email !== data.email)]
-					updated_list = [...list, { ...data }]
-				} else {
-					updated_list = [{ ...data }]
-				}
+				// let list = []
+				// let updated_list = []
+				// if (preVal.length > 1) {
+				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
+				const updated_list = [...list, { ...data }]
+				// } else {
+				// 	updated_list = [{ ...data }]
+				// }
 				return updated_list
 			})
 		})

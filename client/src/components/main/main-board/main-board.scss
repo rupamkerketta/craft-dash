@@ -1,124 +1,127 @@
-@import "../../../sass/utils/colors";
-@import "../../../sass/utils/fonts";
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
 
 .main-board {
-  background: linear-gradient(
-    179.33deg,
-    #121317 0.6%,
-    #121317 7.19%,
-    #121318 13.79%,
-    #121318 20.38%,
-    #111319 26.97%,
-    #11141b 33.56%,
-    #11141c 40.15%,
-    #10141e 46.74%,
-    #10151f 53.33%,
-    #0f1521 59.92%,
-    #0f1523 66.51%,
-    #0f1624 73.1%,
-    #0f1625 79.69%,
-    #0e1626 86.28%,
-    #0e1626 92.87%,
-    #0e1626 99.46%
-  );
-  position: absolute;
-  top: 5vh;
-  left: 0;
-  width: 80vw;
-  height: 95vh;
-  overflow: hidden;
+	background: linear-gradient(
+		179.33deg,
+		#121317 0.6%,
+		#121317 7.19%,
+		#121318 13.79%,
+		#121318 20.38%,
+		#111319 26.97%,
+		#11141b 33.56%,
+		#11141c 40.15%,
+		#10141e 46.74%,
+		#10151f 53.33%,
+		#0f1521 59.92%,
+		#0f1523 66.51%,
+		#0f1624 73.1%,
+		#0f1625 79.69%,
+		#0e1626 86.28%,
+		#0e1626 92.87%,
+		#0e1626 99.46%
+	);
+	position: absolute;
+	top: 5vh;
+	left: 0;
+	width: 80vw;
+	height: 95vh;
+	overflow: hidden;
 
-  .react-flow-main {
-    .circle-pointer {
-      border: 2px solid white;
-      width: 10px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: white;
-      position: absolute;
-    }
-    // border: 1px solid white;
-  }
+	.react-flow-main {
+		.circle-pointer {
+			border: 2px solid white;
+			width: 10px;
+			height: 10px;
+			border-radius: 10px;
+			background-color: white;
+			position: absolute;
+		}
+		// border: 1px solid white;
+	}
 
-  background-color: $main-board-color;
+	background-color: $main-board-color;
 
-  .circle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-  }
+	.circle {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: red;
+	}
 
-  .mini-map {
-    opacity: 0.4;
-    transform: scale(0.8);
-  }
+	.mini-map {
+		opacity: 0.4;
+		transform: scale(0.8);
+	}
 
-  .main-controls-plugin {
-    transform: scale(1.5);
-    margin-bottom: 20px;
-  }
+	.main-controls-plugin {
+		transform: scale(1.5);
+		margin-bottom: 20px;
+	}
 
-  .main-node-controls {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    transform: translateX(-50%);
-    z-index: 99;
+	.main-node-controls {
+		position: absolute;
+		bottom: 5px;
+		left: 50%;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		transform: translateX(-50%);
+		z-index: 99;
 
-    .node-text-input {
-      margin-bottom: 10px;
-      border: 0;
-      border: 2px solid $charcoal;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      padding-left: 4px;
-      padding-right: 4px;
-      width: 300px;
-      font-family: $theme-font;
-      font-size: 1em;
-      border-radius: 3px;
-      margin-left: 35px;
-      outline: none;
-      color: white;
-      background-color: $theme-color;
-    }
+		.node-text-input {
+			margin-bottom: 10px;
+			border: 0;
+			border: 2px solid $charcoal;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 4px;
+			padding-right: 4px;
+			width: 300px;
+			font-family: $theme-font;
+			font-size: 1em;
+			border-radius: 3px;
+			margin-left: 35px;
+			outline: none;
+			color: white;
+			background-color: $theme-color;
+		}
 
-    .add-node {
-      margin-left: 20px;
-      margin-bottom: 10px;
-      border: 0;
-      font-family: $theme-font;
-      font-size: 1em;
-      font-weight: 800;
-      width: 100px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $theme-color;
-      background-color: $login-btn-color;
-    }
-  }
+		.add-node {
+			margin-left: 20px;
+			margin-bottom: 10px;
+			border: 0;
+			font-family: $theme-font;
+			font-size: 1em;
+			font-weight: 800;
+			width: 100px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+			color: $theme-color;
+			background-color: $login-btn-color;
+		}
+	}
 }
 
 .peer-pointer {
-  width: 20px;
-}
+	width: fit-content;
+	img {
+		width: 20px;
+	}
 
-.peer-email {
-  margin: auto;
-  margin-left: 15px;
-  font-family: $theme-font;
-  border-radius: 5px;
-  font-size: 0.6em;
-  padding: 5px;
-  font-weight: 500;
-  color: $label-color;
-  width: fit-content;
-  background-color: rgba(255, 45, 146, 0.5);
+	.peer-email {
+		margin: auto;
+		margin-left: 15px;
+		font-family: $theme-font;
+		border-radius: 5px;
+		font-size: 0.6em;
+		padding: 5px;
+		font-weight: 500;
+		color: $label-color;
+		width: fit-content;
+		color: $theme-color;
+		font-weight: 600;
+	}
 }
-

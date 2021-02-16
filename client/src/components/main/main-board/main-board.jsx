@@ -5,6 +5,9 @@ import { v4 as uuid4 } from 'uuid'
 
 // Pointer - 1
 import Pointer1 from '../../../img/pointer-1.png'
+import Pointer2 from '../../../img/pointer-2.png'
+import Pointer3 from '../../../img/pointer-3.png'
+import Pointer4 from '../../../img/pointer-4.png'
 
 // React Flow Renderer
 import ReactFlow, {
@@ -91,6 +94,7 @@ const MainBoard = ({
 			console.log(user)
 			const obj = {
 				email: user.email,
+				username: user.username,
 				pos: {
 					x: -50,
 					y: -50
@@ -99,6 +103,13 @@ const MainBoard = ({
 			return obj
 		})
 	)
+
+	const list = [
+		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
+		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
+		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
+		{ i: 4, pointer: Pointer4, color: '#C521FF' }
+	]
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
@@ -326,7 +337,8 @@ const MainBoard = ({
 
 				{console.log(pos_updates)}
 
-				{pos_updates.map((item) => {
+				{pos_updates.map((item, index) => {
+					console.log(item, index)
 					return (
 						<div
 							className='peer-pointer'
@@ -336,11 +348,16 @@ const MainBoard = ({
 								left: `${item.pos.x}px`
 							}}>
 							<img
-								src={Pointer1}
+								src={list[index].pointer}
 								alt={`${item.email}`}
 								className='peer-pointer'
 							/>
-							<h2 className='peer-email'>{item.email}</h2>
+							{/* <h2 className='peer-email'>{item.email}</h2> */}
+							<h2
+								className='peer-email'
+								style={{ backgroundColor: list[index].color }}>
+								{item.username}
+							</h2>
 						</div>
 					)
 				})}

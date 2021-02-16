@@ -62,13 +62,6 @@ const reducer = (state = initialState, action) => {
 
 		case TYPE.NODE_TEXT_CHANGE:
 			console.log(action.payload.text)
-			// const newState = update(state, {
-			// 	state.findIndex((element) => element.id === action.payload.id) : { data: { label: { $set: action.payload.text } } }
-			// })
-
-			// const index = state.findIndex(
-			// 	(element) => element.id === action.payload.id
-			// )
 
 			const partialState = state.filter(
 				(element) => element.id !== action.payload.id

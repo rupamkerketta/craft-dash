@@ -1,143 +1,153 @@
-@import '../../../sass/utils/colors';
-@import '../../../sass/utils/fonts';
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
 
 .messaging {
-	overflow: hidden;
-	position: absolute;
-	width: 20vw;
-	top: 7vh;
-	height: 93vh;
-	right: 0;
-	background-color: $theme-color;
+  overflow: hidden;
+  position: absolute;
+  width: 20vw;
+  top: 7vh;
+  height: 93vh;
+  right: 0;
+  background-color: $theme-color;
 
-	.chat-messages {
-		margin-top: 15px;
-		width: 100%;
-		height: 83vh;
-		overflow-y: scroll;
-		overflow-x: hidden;
+  .chat-messages {
+    margin-top: 15px;
+    width: 100%;
+    height: 83vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
-		.message {
-			width: 100%;
-			margin-top: 25px;
+    .message {
+      width: 100%;
+      margin-top: 25px;
 
-			.chat-meta {
-				padding: 3px;
-				padding-left: 5px;
-				padding-right: 5px;
-				margin-left: 2px;
-				justify-content: space-between;
-				color: $login-btn-color;
-				font-family: $theme-font;
-				font-weight: 500;
-				font-size: 0.85em;
-				display: flex;
-				align-items: center;
+      .chat-meta {
+        padding: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 2px;
+        justify-content: space-between;
+        color: $login-btn-color;
+        font-family: $theme-font;
+        font-weight: 500;
+        font-size: 0.85em;
+        display: flex;
+        align-items: center;
 
-				.time {
-					color: $craft-dash-blue;
-					letter-spacing: 1px;
-					font-size: 0.7em;
-					font-weight: 400;
-				}
-			}
+        .time {
+          color: $craft-dash-blue;
+          letter-spacing: 1px;
+          font-size: 0.7em;
+          font-weight: 400;
+        }
+      }
 
-			.chat-content-wrapper {
-				.chat-content {
-					word-wrap: break-word;
-					padding-left: 7px;
-					padding-right: 7px;
-					padding-top: 10px;
-					padding-bottom: 10px;
-					margin: 3px;
-					margin-left: 7px;
-					margin-right: 7px;
-					font-family: $theme-font;
-					font-weight: 500;
-					font-size: 0.9em;
-					color: $label-color;
-					border-radius: 5px;
-					background-color: $modal-background-color;
-					border: 3px solid $charcoal;
-				}
-			}
-		}
-	}
+      .chat-content-wrapper {
+        .chat-content {
+          word-wrap: break-word;
+          padding-left: 7px;
+          padding-right: 7px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          margin: 3px;
+          margin-left: 7px;
+          margin-right: 7px;
+          font-family: $theme-font;
+          font-weight: 500;
+          font-size: 0.9em;
+          color: $label-color;
+          border-radius: 5px;
+          background-color: $modal-background-color;
+          border: 3px solid $charcoal;
+        }
+      }
+    }
+  }
 
-	// .chat-messages
+  // .chat-messages
 
-	/* width */
-	.chat-messages::-webkit-scrollbar {
-		width: 2px;
-	}
+  /* width */
+  .chat-messages::-webkit-scrollbar {
+    width: 2px;
+  }
 
-	/* Track */
-	.chat-messages::-webkit-scrollbar-track {
-		background-color: rgba(0, 0, 0, 0.123);
-		border-radius: 10px;
-	}
+  /* Track */
+  .chat-messages::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.123);
+    border-radius: 10px;
+  }
 
-	/* Handle */
-	.chat-messages::-webkit-scrollbar-thumb {
-		background: #0088ccab;
-		border-radius: 10px;
-	}
+  /* Handle */
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: #0088ccab;
+    border-radius: 10px;
+  }
 
-	/* Handle on hover */
-	.chat-messages::-webkit-scrollbar-thumb:hover {
-		background: #0087cc;
-	}
+  /* Handle on hover */
+  .chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #0087cc;
+  }
 
-	.chat-input {
-		width: 100%;
-		height: 7vh;
-		position: relative;
-		background-color: $theme-color;
+  .chat-input {
+    width: 100%;
+    height: 7vh;
+    position: relative;
+    background-color: $theme-color;
 
-		input[type='text'] {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 95%;
-			font-family: $theme-font;
-			font-size: 0.8em;
-			font-weight: 500;
-			padding: 10px;
-			border: 0;
-			outline: none;
-			color: $label-color;
-			background-color: $charcoal;
-			border-radius: 5px;
-		}
-		.emoji-icon{
-			background-color: transparent;
-			border: none;
-			margin-left: 240px;
-			margin-right: 50px;
-			margin-top: 16px;
-			position: absolute;
-			outline: none;
-			
-			img{
-				width: 24px;
-			}
-		}
-		.send-icon {
-			margin-left: 270px;
-			margin-top: 16px;
-			position: absolute;
-			// border: 1px solid white;
-			cursor: pointer;
-			// margin: auto;
-			width: fit-content;
-			img {
-				// border: 1px solid white;
-				width: 24px;
-			}
-		}
-		::placeholder {
-			color: $label-color;
-		}
-	}
+    input[type="text"] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 95%;
+      font-family: $theme-font;
+      font-size: 0.8em;
+      font-weight: 500;
+      padding: 10px;
+      border: 0;
+      outline: none;
+      color: $label-color;
+      background-color: $charcoal;
+      border-radius: 5px;
+    }
+    .emoji-icon {
+      background-color: transparent;
+      border: none;
+      margin-left: 240px;
+      margin-right: 50px;
+      margin-top: 16px;
+      position: absolute;
+      outline: none;
+
+      img {
+        width: 24px;
+      }
+    }
+    .send-icon {
+      margin-left: 270px;
+      margin-top: 16px;
+      position: absolute;
+      // border: 1px solid white;
+      cursor: pointer;
+      // margin: auto;
+      width: fit-content;
+      img {
+        // border: 1px solid white;
+        width: 24px;
+      }
+    }
+    ::placeholder {
+      color: $label-color;
+    }
+  }
+}
+
+.emoji-picker {
+  //   margin-top: 5px;
+  width: 280px;
+  height: 440px;
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+  z-index: 199;
 }

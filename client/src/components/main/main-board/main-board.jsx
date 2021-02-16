@@ -64,6 +64,13 @@ const MainBoard = ({
 
 	console.log(JSON.stringify(collaborators))
 
+	const list = [
+		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
+		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
+		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
+		{ i: 4, pointer: Pointer4, color: '#C521FF' }
+	]
+
 	const users_list = () => {
 		if (collaborators.length !== 0) {
 			if (collaborators.find((user) => user.email !== user_email)) {
@@ -103,13 +110,6 @@ const MainBoard = ({
 			return obj
 		})
 	)
-
-	const list = [
-		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' }
-	]
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
@@ -169,8 +169,14 @@ const MainBoard = ({
 		socket.on('user-pointer-updates', (data) => {
 			console.log(JSON.stringify(data))
 			setPosUpdates((preVal) => {
-				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
-				const updated_list = [...list, { ...data }]
+				let list = []
+				let updated_list = []
+				if (preVal.length > 1) {
+					list = [...preVal.filter((preVal) => preVal.email !== data.email)]
+					updated_list = [...list, { ...data }]
+				} else {
+					updated_list = [{ ...data }]
+				}
 				return updated_list
 			})
 		})
@@ -337,30 +343,33 @@ const MainBoard = ({
 
 				{console.log(pos_updates)}
 
-				{pos_updates.map((item, index) => {
-					console.log(item, index)
-					return (
-						<div
-							className='peer-pointer'
-							style={{
-								position: 'absolute',
-								top: `${item.pos.y}px`,
-								left: `${item.pos.x}px`
-							}}>
-							<img
-								src={list[index].pointer}
-								alt={`${item.email}`}
-								className='peer-pointer'
-							/>
-							{/* <h2 className='peer-email'>{item.email}</h2> */}
-							<h2
-								className='peer-email'
-								style={{ backgroundColor: list[index].color }}>
-								{item.username}
-							</h2>
-						</div>
-					)
-				})}
+				{pos_updates
+					? pos_updates.map((item, index) => {
+							console.log(item, index)
+							return (
+								<div
+									key={index}
+									className='peer-pointer'
+									style={{
+										position: 'absolute',
+										top: `${item.pos.y}px`,
+										left: `${item.pos.x}px`
+									}}>
+									<img
+										src={list[index].pointer}
+										alt={`${item.email}`}
+										className='peer-pointer'
+									/>
+									{/* <h2 className='peer-email'>{item.email}</h2> */}
+									<h2
+										className='peer-email'
+										style={{ backgroundColor: list[index].color }}>
+										{item.username}
+									</h2>
+								</div>
+							)
+					  })
+					: ''}
 
 				<MiniMap
 					className='mini-map'

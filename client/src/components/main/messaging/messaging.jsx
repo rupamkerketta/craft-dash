@@ -107,7 +107,7 @@ const Messaging = ({
             return (
               <Form>
                 <div
-                  className="emoji-picker"
+                  className="emoji-picker-messaging"
                   style={{
                     display: showEmojiPicker ? "block" : "none",
                   }}

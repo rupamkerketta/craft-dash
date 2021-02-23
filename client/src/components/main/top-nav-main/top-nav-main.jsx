@@ -4,8 +4,6 @@ import "./top-nav-main.scss";
 
 // Brand Logo
 import BrandLogo from "../../brand-logo/brand-logo";
-import CloudAddLogo from "../../../img/CloudAddLogo.png";
-import { Link } from "react-router-dom";
 
 // Video Actions
 import {
@@ -42,11 +40,6 @@ function TopNav({ videoFullMode, enableFullMode, disableFullMode }) {
           fontStyles={{ fontSize: "1.2em", marginLeft: "10px" }}
         />
       </div>
-      {/* <Link to="/craft-dash-cloud"> */}
-        <div className="upload-file-wrapper">
-          <img src={CloudAddLogo} className="upload-file-button" />
-        </div>
-      {/* </Link> */}
     </div>
   );
 }

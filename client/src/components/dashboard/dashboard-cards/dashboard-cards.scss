@@ -93,7 +93,8 @@
 
             .delete,
             .edit,
-            .rocket {
+            .rocket,
+            .cloud-storage-icon {
               width: 30px;
               padding: 4px;
               border-radius: 4px;
@@ -122,6 +123,37 @@
 
             .edit:hover {
               background-color: #22d18562;
+            }
+
+            .cloud-storage-icon-wrapper {
+              // border: 1px solid white;
+              .cloud-storage-icon {
+                position: absolute;
+                right: -10px;
+                bottom: -4px;
+                width: 35px;
+              }
+              .cloud-storage-icon:hover {
+                background: linear-gradient(
+                  180deg,
+                  rgba(255, 45, 146, 0.2) 12%,
+                  rgba(253, 46, 147, 0.198703) 12.67%,
+                  rgba(248, 51, 149, 0.194674) 13.33%,
+                  rgba(238, 59, 153, 0.187751) 20%,
+                  rgba(224, 71, 158, 0.177888) 26.67%,
+                  rgba(207, 85, 165, 0.165234) 33.33%,
+                  rgba(186, 102, 173, 0.150217) 40%,
+                  rgba(163, 122, 182, 0.133596) 46.67%,
+                  rgba(139, 141, 192, 0.116404) 53.33%,
+                  rgba(116, 161, 201, 0.0997826) 60%,
+                  rgba(95, 178, 209, 0.0847662) 66.67%,
+                  rgba(78, 192, 216, 0.0721117) 73.33%,
+                  rgba(64, 204, 221, 0.062249) 80%,
+                  rgba(54, 212, 225, 0.0553265) 86.67%,
+                  rgba(49, 217, 227, 0.0512971) 93.33%,
+                  rgba(47, 218, 228, 0.05) 100%
+                );
+              }
             }
           }
         }
@@ -172,5 +204,3 @@
     }
   }
 }
-
-

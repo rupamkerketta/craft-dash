@@ -4,6 +4,7 @@ import "./dashboard-cards.scss";
 
 // Craft Dash Logo
 import CraftDashLogo from "../../../img/craft-dash-logo.svg";
+import CloudLogo from '../../../img/CloudLogo.png'
 import Owner from "../../../img/user-img-placeholder.svg";
 import Avatar1 from "../../../img/Avatar1.png";
 import Avatar2 from "../../../img/Avatar2.png";
@@ -15,7 +16,7 @@ import Delete from "../../../img/trash.svg";
 import Edit from "../../../img/edit.svg";
 import Rocket from "../../../img/rocket-2.svg";
 
-import Avatars from '../../avatars/avatars-import';
+import Avatars from "../../avatars/avatars-import";
 import { disconnect } from "mongoose";
 
 function DashboardCards(props) {
@@ -50,7 +51,11 @@ function DashboardCards(props) {
                     props.editHandler(props._id, props.title, true)
                   }
                 />
-
+                <Link to="/craft-dash-cloud">
+                <div className="cloud-storage-icon-wrapper">
+                  <img src={CloudLogo} className="cloud-storage-icon" />
+                </div>
+                </Link>
                 <Link to={`/main/${props._id}`} className="rocket-wrapper">
                   <img
                     className="rocket"
@@ -69,7 +74,7 @@ function DashboardCards(props) {
                 {/* <Avatars index="11"/> */}
               </div>
               <div className="idea-board-owner">
-                <Avatars index={0}/>
+                <Avatars index={0} />
               </div>
             </div>
           </div>

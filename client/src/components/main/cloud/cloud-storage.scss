@@ -1,0 +1,131 @@
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
+
+.cloud-storage {
+  width: 100%;
+  position: absolute;
+  background: url("../../../img/landing-page-bg.svg");
+  background-size: cover;
+  height: 100vh;
+
+  .top-nav {
+    position: absolute;
+    width: 1000px;
+    height: 10vh;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    border-bottom: 2px solid #323232;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .brand-logo-wrapper {
+      width: 170px;
+    }
+
+    .add-btn {
+      width: 170px;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      img {
+        border-radius: 10px;
+        padding: 10px;
+        width: 50px;
+        transition: 0.2s all ease;
+      }
+
+      cursor: pointer;
+      transition: 0.4s all ease;
+    }
+
+    .user-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 170px;
+      height: 70px;
+    }
+  }
+
+  .ideaboard-name {
+    width: fit-content;
+    margin: auto;
+    margin-top: 120px;
+    transform: translateX(-5%);
+    height: 4vh;
+    cursor: pointer;
+
+    h1 {
+      width: fit-content;
+      font-family: $theme-font;
+      font-weight: 500;
+      font-size: 1em;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: $theme-color;
+      background-color: $craft-dash-green;
+      border-radius: 5px;
+      border: 2px solid $craft-dash-green;
+      transition: 0.1s ease-in-out;
+    }
+  }
+  .ideaboard-name:hover {
+    h1 {
+      border: 2px solid $craft-dash-green;
+      background-color: transparent;
+      color: $craft-dash-green;
+      border-radius: 10px;
+    }
+  }
+  .add-button-wrapper {
+    // border: 1px solid white;
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    .add-button-base {
+      width: fit-content;
+      display: inline-block;
+      .add-button {
+        // background-color: $craft-dash-green;
+        border-radius: 50%;
+        img {
+          width: 55px;
+        }
+      }
+      .files-button {
+        // background-color: $craft-dash-green;
+        border-radius: 50%;
+        margin-left: 5px;
+        transition: 0.2s ease-in-out;
+        img {
+          width: 50px;
+        }
+      }
+      .audio-button {
+        // background-color: $craft-dash-green;
+        border-radius: 50%;
+        margin-left: 5px;
+        transition: 0.2s ease-in-out;
+        img {
+          width: 50px;
+        }
+      }
+      .notes-button {
+        // background-color: $craft-dash-green;
+        border-radius: 50%;
+        margin-left: 5px;
+        transition: 0.2s ease-in-out;
+        img {
+          width: 50px;
+        }
+      }
+    }
+  }
+}

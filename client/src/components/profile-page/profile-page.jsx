@@ -7,6 +7,7 @@ import IdeaBoardsList from '../profile-page/ideaboards-list/ideaboards-list'
 
 import { connect } from 'react-redux'
 import { logout } from '../../redux/logout/logoutActions'
+import Avatars from '../avatars/avatars-import'
 
 function ProfilePage({ idea_boards, user, logout }) {
 	return (

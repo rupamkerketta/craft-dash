@@ -9,6 +9,7 @@ import Main from '../main/main'
 import Register from '../auth/register/register'
 import Login from '../auth/login/login'
 import ProfilePage from '../profile-page/profile-page'
+import CloudStorage from '../main/cloud/cloud-storage'
 
 const Routes = (props) => {
 	return (
@@ -20,6 +21,7 @@ const Routes = (props) => {
 			<PrivateRoute exact path='/profile-page' component={ProfilePage}/>
 			<PrivateRoute exact path='/' component={Dashboard} />
 			<PrivateRoute exact path='/dashboard' component={Dashboard} />
+			<PrivateRoute exact path='/craft-dash-cloud' component={CloudStorage}/>
 		</React.Fragment>
 	)
 }

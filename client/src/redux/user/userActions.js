@@ -12,10 +12,11 @@ export const loadUser = () => async (dispatch) => {
 	try {
 		const res = await api.get('/user/me')
 		dispatch(loadSuccess())
-		const { username, email } = res.data
+
+		const { username, email, avatar_id } = res.data
 		const thumbnail = res.data.thumbnail || ''
 
-		dispatch(setUser(username, email, thumbnail))
+		dispatch(setUser(username, email, thumbnail, avatar_id))
 		console.log(res)
 	} catch (e) {
 		dispatch(loadCheckFail())
@@ -41,9 +42,9 @@ const loadCheckFail = () => {
 	}
 }
 
-const setUser = (username, email, thumbnail) => {
+const setUser = (username, email, thumbnail, avatar_id) => {
 	return {
 		type: SET_USER,
-		payload: { username, email, thumbnail }
+		payload: { username, email, thumbnail, avatar_id }
 	}
 }

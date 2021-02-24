@@ -33,10 +33,15 @@ function ProfilePage({ idea_boards, user, logout }) {
 			</div>
 			<div className='profile-card'>
 				<div className='user-image-wrapper'>
-					<img
+					{/* <img
 						className='user-image'
 						src={user.thumbnail === '' ? UserPic : user.thumbnail}
 						alt=''
+					/> */}
+					<Avatars
+						index={user.avatar_id}
+						selected={false}
+						avatarHandler={false}
 					/>
 				</div>
 				<div className='profile-text-content'>

@@ -5,6 +5,8 @@ import { logout } from '../../redux/logout/logoutActions'
 
 import './user.scss'
 
+import Avatars from '../avatars/avatars-import'
+
 // Dummy user pic
 import UserPic from '../../img/user-img-placeholder.svg'
 
@@ -13,11 +15,17 @@ function User({ user, logout }) {
 		<div className='user'>
 			<div className='user-pic'>
 				<Link to='/profile-page'>
-					<img
+					{/* <img
 						className='pic'
 						src={user.thumbnail === '' ? UserPic : user.thumbnail}
 						alt={user.username}
 						title={user.username}
+					/> */}
+					<Avatars
+						className='pic'
+						index={user.avatar_id}
+						selected={false}
+						avatarHandler={false}
 					/>
 				</Link>
 

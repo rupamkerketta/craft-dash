@@ -5,8 +5,10 @@ import * as TYPE from './signupTypes'
 import * as NOTIFICATION_TYPE from '../../utils/notifications/notifyTypes'
 import notify from '../../utils/notifications/notify'
 
-export const signupAttempt = (username, email, password) => async (dispatch) => {
-	const body = { username, email, password }
+export const signupAttempt = (username, email, password, avatar_id) => async (
+	dispatch
+) => {
+	const body = { username, email, password, avatar_id }
 	dispatch(signupRequest())
 	try {
 		const res = await api.post('/user/create-new-user', body)
@@ -16,10 +18,15 @@ export const signupAttempt = (username, email, password) => async (dispatch) => 
 		if (e.response) {
 			dispatch(signupFailure(e.response.data.message))
 
-			notify({ message: e.response.data.message }, NOTIFICATION_TYPE.ERROR, 'zoom', {
-				autoClose: 3000,
-				position: 'top-right'
-			})
+			notify(
+				{ message: e.response.data.message },
+				NOTIFICATION_TYPE.ERROR,
+				'zoom',
+				{
+					autoClose: 3000,
+					position: 'top-right'
+				}
+			)
 		} else {
 			dispatch(signupFailure(e.message))
 			console.log(e.message)

@@ -7,7 +7,7 @@
 		align-items: center;
 		justify-content: space-around;
 
-		.pic {
+		img {
 			padding: 4px;
 			width: 60px;
 			cursor: pointer;
@@ -16,12 +16,11 @@
 			transition: 0.2s all ease;
 		}
 
-		.pic:hover {
+		img:hover {
 			border-top: 2px solid $craft-dash-pink;
 			border-bottom: 2px solid $craft-dash-purple;
 			border-right: 2px solid $craft-dash-green;
 			border-left: 2px solid $craft-dash-blue;
-
 		}
 
 		h5 {
@@ -33,4 +32,3 @@
 		}
 	}
 }
-

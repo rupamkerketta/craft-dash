@@ -83,7 +83,12 @@ module.exports = {
 	// Reading Profile Info
 	me: (req, res) => {
 		try {
-			res.send(req.user)
+			const user = req.user.toJSON()
+
+			delete user.password
+			delete user.tokens
+
+			res.send(user)
 		} catch (e) {
 			res.status(500).send()
 		}

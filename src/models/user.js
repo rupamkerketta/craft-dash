@@ -6,11 +6,18 @@ const validator = require('validator')
 // Bcrypt
 const bcrypt = require('bcrypt')
 
+const d = Date.now()
+
 const userSchema = mongoose.Schema({
 	username: {
 		type: String,
 		required: true,
 		trim: true
+	},
+	avatar_id: {
+		type: Number,
+		required: false,
+		default: 0
 	},
 	email: {
 		type: String,
@@ -25,7 +32,8 @@ const userSchema = mongoose.Schema({
 	},
 	googleId: {
 		type: String,
-		unique: true
+		unique: true,
+		default: () => Date.now()
 	},
 	password: {
 		type: String,

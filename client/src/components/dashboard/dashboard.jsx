@@ -167,7 +167,8 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			<Rodal
 				className='rodal-bg-blur'
 				visible={editModal.visible}
-				onClose={() => setEditModal({ ...editModal, visible: false })}
+				// onClose={() => setEditModal({ ...editModal, visible: false })}
+				onClose={() => setEditModal({})}
 				animation='fade'
 				width={720}
 				height={600}
@@ -178,7 +179,8 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 			<Rodal
 				className='rodal-bg-blur'
 				visible={deleteModal.visible}
-				onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
+				// onClose={() => setDeleteModal({ ...deleteModal, visible: false })}
+				onClose={() => setDeleteModal({})}
 				animation='fade'
 				width={450}
 				height={200}

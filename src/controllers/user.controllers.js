@@ -47,6 +47,7 @@ module.exports = {
 			res.send({
 				username: user.username,
 				email: user.email,
+				avatar_id: user.avatar_id,
 				message: 'Logged-In Successfully'
 			})
 		} catch (e) {

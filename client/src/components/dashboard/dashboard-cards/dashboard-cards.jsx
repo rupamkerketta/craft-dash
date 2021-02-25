@@ -50,7 +50,7 @@ function DashboardCards(props) {
 										props.editHandler(props._id, props.title, true)
 									}
 								/>
-								<Link to='/craft-dash-cloud'>
+								<Link to={`/craft-dash-cloud/${props._id}`}>
 									<div className='cloud-storage-icon-wrapper'>
 										<img src={CloudLogo} className='cloud-storage-icon' />
 									</div>

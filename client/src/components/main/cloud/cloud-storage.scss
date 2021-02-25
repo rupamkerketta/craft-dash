@@ -128,4 +128,98 @@
       }
     }
   }
+  .rodal-cloud-bg {
+    background: linear-gradient(
+      103.23deg,
+      rgba(108, 134, 144, 0.1) 0%,
+      rgba(108, 134, 145, 0.04) 49.27%,
+      rgba(108, 134, 144, 0.06) 100%
+    );
+    backdrop-filter: blur(10px);
+  }
+  .cdc-logo-wrapper {
+    width: fit-content;
+    margin: auto;
+    // border: 1px solid white;
+    margin-top: 10px;
+    img {
+      width: 250px;
+    }
+  }
+  .files-field-wrapper {
+    background-color: $gunmetal;
+    width: 900px;
+    height: 550px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    border: 2px solid $charcoal;
+
+    .label-row-1 {
+      // border: 1px solid white;
+      width: fit-content;
+      margin: auto;
+      margin-top: 175px;
+      p {
+        font-family: $theme-font;
+        color: #797a7a;
+        font-size: 1.5em;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+    }
+    .upload-button {
+      // border: 1px solid white;
+      width: fit-content;
+      margin: auto;
+      margin-top: 10px;
+      align-items: center;
+
+      img {
+        display: inline-flex;
+        width: 24px;
+        margin-right: 15px;
+        margin-left: 10px;
+      }
+      button {
+        display: inline-flex;
+        align-items: center;
+        width: 170px;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        background-color: $charcoal;
+        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: $label-color;
+        font-family: $theme-font;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+      }
+      p {
+        display: inline-flex;
+        margin-top: 2px;
+        margin-right: 2px;
+      }
+    }
+  }
+  .upload-button:hover {
+    button {
+      background-color: rgba(44, 62, 80, 0.5);
+    }
+  }
+  .label-row-2 {
+    width: fit-content;
+    margin: auto;
+    margin-top: 15px;
+    p {
+      font-family: $theme-font;
+      color: #797a7a;
+      font-size: 0.8em;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+  }
 }

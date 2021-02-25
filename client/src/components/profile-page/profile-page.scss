@@ -104,11 +104,12 @@
     margin-top: -80px;
     // border: 1px solid white;
     img {
+      padding: 5px;
       border-radius: 50%;
-      border-top: 5px solid $craft-dash-pink;
-      border-bottom: 5px solid $craft-dash-purple;
-      border-right: 5px solid $craft-dash-green;
-      border-left: 5px solid $craft-dash-blue;
+      border-top: 4px solid $craft-dash-pink;
+      border-bottom: 4px solid $craft-dash-purple;
+      border-right: 4px solid $craft-dash-green;
+      border-left: 4px solid $craft-dash-blue;
       width: 145px;
     }
     .user-image {

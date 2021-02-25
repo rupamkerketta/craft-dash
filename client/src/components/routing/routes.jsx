@@ -18,10 +18,10 @@ const Routes = (props) => {
 			<Route exact path='/signup' component={Register} />
 			<Route exact path='/login' component={Login} />
 			<PrivateRoute exact path='/main/:id' component={Main} />
-			<PrivateRoute exact path='/profile-page' component={ProfilePage}/>
+			<PrivateRoute exact path='/profile-page' component={ProfilePage} />
 			<PrivateRoute exact path='/' component={Dashboard} />
 			<PrivateRoute exact path='/dashboard' component={Dashboard} />
-			<PrivateRoute exact path='/craft-dash-cloud' component={CloudStorage}/>
+			<PrivateRoute path='/craft-dash-cloud/:id' component={CloudStorage} />
 		</React.Fragment>
 	)
 }

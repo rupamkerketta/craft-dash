@@ -13,11 +13,11 @@ export const attemptLogin = (username, password) => async (dispatch) => {
 	try {
 		const res = await api.post('/user/login', body)
 		console.log(res.data)
-		const { username, email, message } = res.data
+		const { username, email, message, avatar_id } = res.data
 		const thumbnail = res.data.thumbnail || ''
 
 		dispatch(loginSuccess(message))
-		dispatch(setUser(username, email, thumbnail))
+		dispatch(setUser(username, email, thumbnail, avatar_id))
 	} catch (e) {
 		console.log(e.message)
 		dispatch(loginFailure(e.message))
@@ -49,9 +49,9 @@ const loginFailure = (error) => {
 	}
 }
 
-const setUser = (username, email, thumbnail) => {
+const setUser = (username, email, thumbnail, avatar_id) => {
 	return {
 		type: SET_USER,
-		payload: { username, email, thumbnail }
+		payload: { username, email, thumbnail, avatar_id }
 	}
 }

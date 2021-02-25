@@ -9,7 +9,7 @@ import Main from '../main/main'
 import Register from '../auth/register/register'
 import Login from '../auth/login/login'
 import ProfilePage from '../profile-page/profile-page'
-import CloudStorage from '../main/cloud/cloud-storage'
+import CloudStorage from '../dashboard/cloud/cloud-storage'
 
 const Routes = (props) => {
 	return (

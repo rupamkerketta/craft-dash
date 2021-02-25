@@ -66,10 +66,11 @@ function CloudStorage() {
             <p>Upload Your Files Here</p>
           </div>
           <div className="upload-button">
-            <button>
-              <img src={FileAddIcon} alt="Browse files" title="Browse Files" />
-              <p>Browse Files</p>
-            </button>
+            <span>
+              <input type="file" id="browse-file" />
+              <img src={FileAddIcon} alt="" />
+              <label for="browse-file">Browse Files</label>
+            </span>
           </div>
           <div className="label-row-2">
             <p>All documents and images are supported</p>
@@ -97,10 +98,11 @@ function CloudStorage() {
             <p>Upload Your Audio Files Here</p>
           </div>
           <div className="upload-button">
-            <button>
-              <img src={FileAddIcon} alt="Browse files" title="Browse Files" />
-              <p>Browse Files</p>
-            </button>
+            <span>
+              <input type="file" id="browse-file" />
+              <img src={FileAddIcon} alt="" />
+              <label for="browse-file">Browse Files</label>
+            </span>
           </div>
           <div className="label-row-2">
             <p>Supported Files are mp3, aac, m4a</p>

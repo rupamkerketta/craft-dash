@@ -4,7 +4,7 @@
 	"description": "Brain Storming Web App",
 	"main": "server.js",
 	"scripts": {
-		"start": "cd src && node server.js",
+		"start": "cd server && node server.js",
 		"server": "cd server && nodemon server.js",
 		"client": "cd client && npm start",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",

@@ -102,20 +102,24 @@ const MainBoard = ({
 
 	// const [pointers, setPointers] = useState(users_list())
 
-	const [pos_updates, setPosUpdates] = useState(
-		users_list().map((user) => {
-			console.log(user)
-			const obj = {
-				email: user.email,
-				username: user.username,
-				pos: {
-					x: -50,
-					y: -50
+	const [pos_updates, setPosUpdates] = useState(() => {
+		if (users_list.length !== 0) {
+			return users_list().map((user) => {
+				console.log(user)
+				const obj = {
+					email: user.email,
+					username: user.username,
+					pos: {
+						x: -50,
+						y: -50
+					}
 				}
-			}
-			return obj
-		})
-	)
+				return obj
+			})
+		} else {
+			return []
+		}
+	})
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request

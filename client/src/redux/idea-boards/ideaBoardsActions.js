@@ -16,7 +16,7 @@ export const loadIBS = () => async (dispatch) => {
 			dispatch(ibsSuccess(res.data))
 		}
 
-		console.log(res.data)
+		// console.log(res.data)
 	} catch (e) {
 		if (e.response) {
 			dispatch(ibsFailure(e.response.data))
@@ -36,7 +36,9 @@ export const createIBS = (data) => async (dispatch) => {
 		}
 
 		notify(
-			{ message: `IdeaBoard - ${res.data.idea_board_name} created successfully.` },
+			{
+				message: `IdeaBoard - ${res.data.idea_board_name} created successfully.`
+			},
 			NOTIFICATION_TYPE.INFO,
 			'zoom',
 			{
@@ -51,10 +53,15 @@ export const createIBS = (data) => async (dispatch) => {
 			dispatch(ibCreateFailure(e.message))
 		}
 
-		notify({ message: 'Unable to perform the create action.' }, NOTIFICATION_TYPE.WARNING, 'zoom', {
-			autoClose: 3000,
-			position: 'top-right'
-		})
+		notify(
+			{ message: 'Unable to perform the create action.' },
+			NOTIFICATION_TYPE.WARNING,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	}
 }
 
@@ -79,10 +86,15 @@ export const deleteIBS = (board_id) => async (dispatch) => {
 		} else {
 			dispatch(ibDeleteFailure(e.message))
 		}
-		notify({ message: 'Unable to perform the delete action.' }, NOTIFICATION_TYPE.ERROR, 'zoom', {
-			autoClose: 3000,
-			position: 'top-right'
-		})
+		notify(
+			{ message: 'Unable to perform the delete action.' },
+			NOTIFICATION_TYPE.ERROR,
+			'zoom',
+			{
+				autoClose: 3000,
+				position: 'top-right'
+			}
+		)
 	}
 }
 

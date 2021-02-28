@@ -20,9 +20,9 @@ function Collaborators({
 	actionCollaborator,
 	collaborator
 }) {
-	useEffect(() => {
-		console.log(idea_board_id)
-	}, [])
+	// useEffect(() => {
+	// 	console.log(idea_board_id)
+	// }, [])
 
 	const initialValues = {
 		collaborator_email: ''
@@ -139,7 +139,7 @@ function Collaborators({
 						) {
 							const res = board.collaborators.map((collaborator) => (
 								<Collaborator
-									key={collaborator}
+									key={collaborator.email}
 									collaborator_email={collaborator.email}
 									collaborator_name={collaborator.username}
 									idea_board_id={idea_board_id}

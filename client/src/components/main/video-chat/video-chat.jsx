@@ -20,7 +20,7 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 	const [peers, setPeers] = useState([])
 
 	useEffect(() => {
-		console.log(videoFullMode)
+		// console.log(videoFullMode)
 		navigator.mediaDevices
 			.getUserMedia({
 				video: true,
@@ -35,7 +35,9 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 
 				socket.emit('join-room', { roomId, username: user.username })
 				socket.on('all-users', (data) => {
-					console.log(`[all-users] : data -> ${data.usersInThisRoom}`)
+					console.log(
+						`[all-users] : data -> ${JSON.stringify(data.usersInThisRoom)}`
+					)
 					let peers = []
 					data.usersInThisRoom.forEach((user) => {
 						const peer = createPeer(user.socketId, socket.id, myStream.current)
@@ -158,11 +160,11 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 	}
 
 	const peerNameFullOff = {
-		fontSize: '0.6em',
+		fontSize: '0.6em'
 	}
 
 	const peerNameFullOn = {
-		fontSize: '0.8em',
+		fontSize: '0.8em'
 	}
 
 	return (
@@ -230,7 +232,12 @@ const Video = (props) => {
 				autoPlay
 			/>
 			<div className='peer-name'>
-				<p style={props.videoFullMode ? {fontSize: '0.9em'}:{fontSize: '0.7em'}}>{props.username}</p>
+				<p
+					style={
+						props.videoFullMode ? { fontSize: '0.9em' } : { fontSize: '0.7em' }
+					}>
+					{props.username}
+				</p>
 			</div>
 		</div>
 	)

@@ -47,35 +47,29 @@ const MainBoard = ({
 	onConnectReceive_Main,
 	deSelectAll_Main
 }) => {
-	const username = useSelector((state) => state.user.username)
-	const email = useSelector((state) => state.user.email)
-
+	// Label for the Node
 	const [name, setName] = useState('')
+
+	// Current User's username
+	const username = useSelector((state) => state.user.username)
 
 	// Current User's email
 	const user_email = user.email
 
 	// Getting the current room
 	const current_room = data.find((idea_board) => idea_board._id === room)
-	console.log(`[current_room] ${JSON.stringify(current_room)}`)
 
 	// Collaborators (except the owner)
 	const collaborators = current_room.collaborators
 
-	console.log(JSON.stringify(collaborators))
+	// const colors = ['#FF2D92', '#3FDE9C', '#2FDAE4', '#C521FF']
 
-	const list = [
-		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' }
-	]
+	// const list_pointers = [
+	// 	{ i: 1, pointer: Pointer1, color: '#FF2D92' },
+	// 	{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
+	// 	{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
+	// 	{ i: 4, pointer: Pointer4, color: '#C521FF' }
+	// ]
 
 	const users_list = () => {
 		if (collaborators.length !== 0) {
@@ -83,11 +77,7 @@ const MainBoard = ({
 				// For other collaborators
 				return [
 					current_room.owner_email,
-					...collaborators.map((user) => {
-						if (user.email !== user_email) {
-							return user.email
-						}
-					})
+					...collaborators.filter((user) => user.email !== user_email)
 				]
 			} else {
 				// For the owner
@@ -98,32 +88,38 @@ const MainBoard = ({
 		}
 	}
 
-	console.log(`[users_list] ${JSON.stringify(users_list())}`)
+	const processed_list = users_list().filter(
+		(user) => typeof user !== 'undefined'
+	)
+	console.log(`[processed-list] ${JSON.stringify(processed_list)}`)
 
-	// const [pointers, setPointers] = useState(users_list())
+	// const [pos_updates, setPosUpdates] = useState(() => {
+	// 	return users_list().map((user) => {
+	// 		let index = 0
+	// 		const color = typeof user === 'undefined' ? '' : ''
+	// 		const obj = {
+	// 			email: user.email,
+	// 			username: user.username,
+	// 			pos: {
+	// 				x: -50,
+	// 				y: -50
+	// 			},
+	// 			color: typeof user !== 'undefined' ? list_pointers[index].color : '',
+	// 			pointer: typeof user !== 'undefined' ? list_pointers[index].pointer : ''
+	// 		}
 
-	const [pos_updates, setPosUpdates] = useState(() => {
-		if (users_list.length !== 0) {
-			return users_list().map((user) => {
-				console.log(user)
-				const obj = {
-					email: user.email,
-					username: user.username,
-					pos: {
-						x: -50,
-						y: -50
-					}
-				}
-				return obj
-			})
-		} else {
-			return []
-		}
-	})
+	// 		if (typeof user !== 'undefined') {
+	// 			index += 1
+	// 		}
+
+	// 		return obj
+	// 	})
+	// })
+	const [pos_updates, setPosUpdates] = useState([])
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
-		socket.emit('joinRoom', { username, room, email })
+		socket.emit('joinRoom', { username, room, user_email })
 
 		//[Receives Data] When a use joins the session - Shows a notification
 		socket.on('user-connected', (data) => {
@@ -145,7 +141,7 @@ const MainBoard = ({
 
 		// [Receives Data] Handler for getting the current users present in the session
 		socket.on('room-users', (data) => {
-			console.log(`[room-users] ${JSON.stringify(data.users)}`)
+			// console.log(`[room-users] ${JSON.stringify(data.users)}`)
 			addUsersRoom(data.users)
 		})
 
@@ -184,7 +180,11 @@ const MainBoard = ({
 				// if (preVal.length > 1) {
 				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
 
-				let updated_list = [...list, { ...data }]
+				const user_data = preVal.find((preVal) => preVal.email === data.email)
+
+				const modified_data = { ...user_data, ...data }
+
+				let updated_list = [...list, { ...modified_data }]
 
 				updated_list = updated_list.filter(
 					(item) => typeof item.email !== 'undefined'
@@ -192,6 +192,7 @@ const MainBoard = ({
 				// } else {
 				// 	updated_list = [{ ...data }]
 				// }
+				console.log(updated_list)
 				return updated_list
 			})
 		})
@@ -266,7 +267,7 @@ const MainBoard = ({
 	}
 
 	const onLoad = (reactFlowInstance) => {
-		console.log('flow loaded:', reactFlowInstance)
+		// console.log('flow loaded:', reactFlowInstance)
 		reactFlowInstance.fitView({ padding: 6 })
 	}
 
@@ -310,7 +311,7 @@ const MainBoard = ({
 			y: e.nativeEvent.offsetY,
 			room,
 			username,
-			email
+			user_email
 		})
 	}
 
@@ -338,6 +339,7 @@ const MainBoard = ({
 
 	return (
 		<div className='main-board'>
+			{/* {console.log(JSON.stringify(pos_updates))} */}
 			<ReactFlow
 				className='react-flow-main'
 				onMouseMove={onMouseMove}
@@ -356,7 +358,7 @@ const MainBoard = ({
 				snapToGrid={false}>
 				<Background color='#888' gap={50} variant='dots' />
 
-				{console.log(pos_updates)}
+				{/* {console.log(pos_updates)} */}
 
 				{pos_updates
 					? pos_updates.map((item, index) => {
@@ -371,16 +373,12 @@ const MainBoard = ({
 										left: `${item.pos.x}px`
 									}}>
 									<img
-										src={list[index].pointer}
+										src={item.pointer}
 										alt={`${item.email}`}
 										className='peer-pointer'
 									/>
 									{/* <h2 className='peer-email'>{item.email}</h2> */}
-									<h2
-										className='peer-email'
-										style={{ backgroundColor: list[index].color }}>
-										{item.username}
-									</h2>
+									<h2 className='peer-email'>{item.username}</h2>
 								</div>
 							)
 					  })

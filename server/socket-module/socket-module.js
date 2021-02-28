@@ -54,7 +54,7 @@ const socketModule = (socket, io) => {
 			socket.broadcast
 				.to(user.room)
 				.emit('user-disconnected-video', { userId: socket.id })
-			cleanRoom(socket.id)
+			cleanRoom(socket.id, io)
 		}
 	})
 

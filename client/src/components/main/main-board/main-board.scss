@@ -113,6 +113,7 @@
 	}
 
 	.peer-email {
+		border: 1px solid white;
 		margin: auto;
 		margin-left: 15px;
 		font-family: $theme-font;
@@ -122,7 +123,7 @@
 		font-weight: 500;
 		color: $label-color;
 		width: fit-content;
-		color: $theme-color;
+		color: white;
 		font-weight: 600;
 	}
 }

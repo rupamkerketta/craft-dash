@@ -24,7 +24,7 @@ function Main({ match }) {
 	})
 
 	useEffect(() => {
-		console.log('[Main]')
+		// console.log('[Main]')
 		const s = io(server)
 		setSocket(s)
 	}, [])

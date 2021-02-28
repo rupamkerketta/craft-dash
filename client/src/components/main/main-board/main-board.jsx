@@ -26,6 +26,7 @@ import * as ELEMENTS from '../../../redux/elements/elementsActions'
 // Focus - Elements
 import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
 import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions'
+import { color } from 'd3'
 
 const MainBoard = ({
 	room,
@@ -57,64 +58,28 @@ const MainBoard = ({
 	const user_email = user.email
 
 	// Getting the current room
-	const current_room = data.find((idea_board) => idea_board._id === room)
+	// const current_room = data.find((idea_board) => idea_board._id === room)
 
-	// Collaborators (except the owner)
-	const collaborators = current_room.collaborators
+	const pointers = [Pointer1, Pointer2, Pointer3, Pointer4]
+	const colors = ['#FF2D92', '#3FDE9C', '#2FDAE4', '#C521FF']
 
-	// const colors = ['#FF2D92', '#3FDE9C', '#2FDAE4', '#C521FF']
+	const color_codes = useRef([])
+	const email_indexes = useRef([])
 
-	// const list_pointers = [
-	// 	{ i: 1, pointer: Pointer1, color: '#FF2D92' },
-	// 	{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-	// 	{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-	// 	{ i: 4, pointer: Pointer4, color: '#C521FF' }
-	// ]
+	const onUserJoin = (email) => {
+		const length = color_codes.current.length
 
-	const users_list = () => {
-		if (collaborators.length !== 0) {
-			if (collaborators.find((user) => user.email !== user_email)) {
-				// For other collaborators
-				return [
-					current_room.owner_email,
-					...collaborators.filter((user) => user.email !== user_email)
-				]
-			} else {
-				// For the owner
-				return collaborators
-			}
-		} else {
-			return []
+		if (!email_indexes.current.includes(email)) {
+			email_indexes.current.push(email)
+
+			color_codes.current.push({
+				email,
+				color: colors[length],
+				pointer: pointers[length]
+			})
 		}
 	}
 
-	const processed_list = users_list().filter(
-		(user) => typeof user !== 'undefined'
-	)
-	console.log(`[processed-list] ${JSON.stringify(processed_list)}`)
-
-	// const [pos_updates, setPosUpdates] = useState(() => {
-	// 	return users_list().map((user) => {
-	// 		let index = 0
-	// 		const color = typeof user === 'undefined' ? '' : ''
-	// 		const obj = {
-	// 			email: user.email,
-	// 			username: user.username,
-	// 			pos: {
-	// 				x: -50,
-	// 				y: -50
-	// 			},
-	// 			color: typeof user !== 'undefined' ? list_pointers[index].color : '',
-	// 			pointer: typeof user !== 'undefined' ? list_pointers[index].pointer : ''
-	// 		}
-
-	// 		if (typeof user !== 'undefined') {
-	// 			index += 1
-	// 		}
-
-	// 		return obj
-	// 	})
-	// })
 	const [pos_updates, setPosUpdates] = useState([])
 
 	useEffect(() => {
@@ -174,10 +139,8 @@ const MainBoard = ({
 		// FIXME: Fix/Update the mouse pointer feature
 		socket.on('user-pointer-updates', (data) => {
 			console.log(JSON.stringify(data))
+			onUserJoin(data.email)
 			setPosUpdates((preVal) => {
-				// let list = []
-				// let updated_list = []
-				// if (preVal.length > 1) {
 				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
 
 				const user_data = preVal.find((preVal) => preVal.email === data.email)
@@ -189,10 +152,8 @@ const MainBoard = ({
 				updated_list = updated_list.filter(
 					(item) => typeof item.email !== 'undefined'
 				)
-				// } else {
-				// 	updated_list = [{ ...data }]
-				// }
-				console.log(updated_list)
+
+				// console.log(updated_list)
 				return updated_list
 			})
 		})
@@ -339,7 +300,7 @@ const MainBoard = ({
 
 	return (
 		<div className='main-board'>
-			{/* {console.log(JSON.stringify(pos_updates))} */}
+			{console.log(JSON.stringify(color_codes.current))}
 			<ReactFlow
 				className='react-flow-main'
 				onMouseMove={onMouseMove}
@@ -363,6 +324,11 @@ const MainBoard = ({
 				{pos_updates
 					? pos_updates.map((item, index) => {
 							console.log(item, index)
+
+							const s = color_codes.current.find((i) => i.email === item.email)
+							const pointer = s['pointer']
+							const color = s['color']
+
 							return (
 								<div
 									key={index}
@@ -373,12 +339,14 @@ const MainBoard = ({
 										left: `${item.pos.x}px`
 									}}>
 									<img
-										src={item.pointer}
+										src={pointer}
 										alt={`${item.email}`}
 										className='peer-pointer'
 									/>
 									{/* <h2 className='peer-email'>{item.email}</h2> */}
-									<h2 className='peer-email'>{item.username}</h2>
+									<h2 className='peer-email' style={{ backgroundColor: color }}>
+										{item.username}
+									</h2>
 								</div>
 							)
 					  })

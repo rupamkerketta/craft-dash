@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { useDropzone } from 'react-dropzone'
 import BrandLogo from '../../brand-logo/brand-logo'
 import User from '../../user/user'
+import api from '../../../utils/api'
+
+import notify from '../../../utils/notifications/notify'
+import * as NOTIFICATION_TYPE from '../../../utils/notifications/notifyTypes'
+
 import './cloud-storage.scss'
 
 import AddFilesButton from '../../../img/AddFilesButton.png'
@@ -14,13 +20,69 @@ import 'rodal/lib/rodal.css'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
 import FileAddIcon from '../../../img/folder-add.png'
 
+const thumbsContainer = {
+	display: 'flex',
+	flexDirection: 'row',
+	flexWrap: 'wrap',
+	marginTop: 16
+}
+
+const thumb = {
+	display: 'inline-flex',
+	borderRadius: 2,
+	border: '1px solid #eaeaea',
+	marginBottom: 8,
+	marginRight: 8,
+	width: 100,
+	height: 100,
+	padding: 4,
+	boxSizing: 'border-box'
+}
+
+const thumbInner = {
+	display: 'flex',
+	minWidth: 0,
+	overflow: 'hidden'
+}
+
+const img = {
+	display: 'block',
+	width: 'auto',
+	height: '100%'
+}
+
 function CloudStorage({ match, idea_boards }) {
+	const [files, setFiles] = useState([])
+
+	const [isUploading, setIsUploading] = useState(false)
+
 	const [showButtons, setButtonVisibility] = useState(false)
 	const [showFilesModal, setFilesModalVisibility] = useState(false)
 	const [showAudioModal, setAudioModalVisibility] = useState(false)
 
 	const [ideaBoardId, setIdeaBoardId] = useState('')
 	const [ideaBoardName, setIdeaBoardName] = useState('')
+
+	const { getRootProps, getInputProps } = useDropzone({
+		accept: 'image/*',
+		onDrop: (acceptedFiles) => {
+			setFiles(
+				acceptedFiles.map((file) =>
+					Object.assign(file, {
+						preview: URL.createObjectURL(file)
+					})
+				)
+			)
+		}
+	})
+
+	const thumbs = files.map((file) => (
+		<div style={thumb} key={file.name}>
+			<div style={thumbInner}>
+				<img src={file.preview} style={img} alt='rdz' />
+			</div>
+		</div>
+	))
 
 	useEffect(() => {
 		setIdeaBoardId(match.params.id)
@@ -31,6 +93,46 @@ function CloudStorage({ match, idea_boards }) {
 
 		setIdeaBoardName(idb.idea_board_name)
 	}, [])
+
+	const imgSubmit = React.useCallback(async () => {
+		try {
+			const formData = new FormData()
+
+			files.forEach((file, index) => {
+				formData.append(`file${index + 1}`, files[index])
+			})
+
+			formData.append('nf', files.length)
+			formData.append('idea_board_id', ideaBoardId)
+
+			notify(
+				{ message: 'Uploading Files...' },
+				NOTIFICATION_TYPE.INFO,
+				'zoom',
+				{
+					autoClose: 3000,
+					position: 'bottom-left'
+				}
+			)
+
+			const res = await api.post('/cloud-storage/uploads', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			})
+
+			notify(
+				{ username: '', enter: true, message: 'Files Uploaded Successfully' },
+				NOTIFICATION_TYPE.DARK,
+				'zoom',
+				{
+					autoClose: 3000,
+					position: 'bottom-left'
+				}
+			)
+			console.log(res)
+		} catch (err) {}
+	}, [files])
 
 	const customStyles = {
 		wrapper: {
@@ -77,8 +179,9 @@ function CloudStorage({ match, idea_boards }) {
 						title='Craft Dash Cloud'
 					/>
 				</div>
+
 				<div className='files-field-wrapper'>
-					<div className='label-row-1'>
+					{/* <div className='label-row-1'>
 						<p>Upload Your Files Here</p>
 					</div>
 					<div className='upload-button'>
@@ -89,7 +192,13 @@ function CloudStorage({ match, idea_boards }) {
 					</div>
 					<div className='label-row-2'>
 						<p>All documents and images are supported</p>
+					</div> */}
+					<div {...getRootProps({ className: 'dropzone' })}>
+						<input {...getInputProps()} />
+						<p>Drag 'n' drop some files here, or click to select files</p>
 					</div>
+					<aside style={thumbsContainer}>{thumbs}</aside>
+					<button onClick={imgSubmit}>Upload</button>
 				</div>
 			</Rodal>
 			<Rodal

@@ -17,6 +17,7 @@ const mongoose = require('./db/mongoose')
 const passport = require('passport')
 const socketio = require('socket.io')
 const http = require('http')
+const fileUpload = require('express-fileupload')
 
 const server = http.createServer(app)
 const io = socketio(server)
@@ -50,6 +51,7 @@ const PORT = process.env.PORT || 5000
 const usersRouter = require('./routes/user-routes')
 const ideaBoardRouter = require('./routes/idea-board-routes')
 const collaboratorsRouter = require('./routes/collaborator-routes')
+const cloudRouter = require('./routes/cloud-routes')
 const authRouter = require('./routes/social-login-routes')
 
 // Middlewares
@@ -57,12 +59,14 @@ app.use(
 	express.json(),
 	cookieParser(),
 	cors(corsOptions),
-	passport.initialize()
+	passport.initialize(),
+	fileUpload()
 )
 app.use('/api/user', usersRouter)
 app.use('/api/idea-board', ideaBoardRouter)
 app.use('/api/collaborators', collaboratorsRouter)
 app.use('/auth', authRouter)
+app.use('/api/cloud-storage', cloudRouter)
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -75,9 +79,6 @@ if (process.env.NODE_ENV === 'production') {
 		)
 	})
 }
-
-// const users = {}
-// const socketToRoom = {}
 
 const socketModule = require('./socket-module/socket-module')
 

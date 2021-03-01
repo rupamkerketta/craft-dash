@@ -8,5 +8,8 @@ const { verifyToken: auth } = require('../helpers/jwt-helper')
 const { uploadFile } = require('../controllers/cloud.controllers')
 
 router.post('/uploads', auth, uploadFile)
+router.get('/uploads', auth, (req, res) => {
+	res.send('[uploads]')
+})
 
 module.exports = router

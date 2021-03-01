@@ -1,6 +1,7 @@
 const fs = require('fs')
 const file_path = './key.json'
 const path = require('path')
+const base64 = require('base-64')
 const { Storage } = require('@google-cloud/storage')
 
 // Environment Variables Configuration
@@ -10,15 +11,14 @@ if (process.env.NODE_ENV == 'production') {
 			//file exists
 			console.log('File already exists!!!')
 		} else {
-			// writeFile function with filename, content and callback function
-			fs.writeFile(
-				'key.json',
-				process.env.GOOGLE_CS_PROJECT_CREDENTIALS,
-				function (err) {
-					if (err) throw err
-					console.log('File is created successfully.')
-				}
+			const google_cs_key = base64.decode(
+				process.env.GOOGLE_CS_PROJECT_CREDENTIALS
 			)
+			// writeFile function with filename, content and callback function
+			fs.writeFile('key.json', google_cs_key, function (err) {
+				if (err) throw err
+				console.log('File is created successfully.')
+			})
 		}
 	} catch (err) {
 		console.error(err)

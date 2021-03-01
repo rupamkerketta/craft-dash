@@ -4,5 +4,5 @@
 # Environment variables
 .env
 
-# Social login
-keys.js
+# 
+key.json

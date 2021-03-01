@@ -52,7 +52,7 @@ const reducer = (state = initialState, action) => {
 			}
 
 		case TYPE.IBS_SUCCESS:
-			console.log(action.payload)
+			// console.log(action.payload)
 			return {
 				...state,
 				boards: {

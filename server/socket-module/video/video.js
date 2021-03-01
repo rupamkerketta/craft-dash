@@ -5,7 +5,7 @@ const video = (socket, io) => {
 	// Video Operations
 
 	socket.on('join-room', (data) => {
-		console.log(`[video-join-room] ${JSON.stringify(users)}`)
+		// console.log(`[video-join-room] ${JSON.stringify(users)}`)
 		// This is for when a room already exists in the users object
 		// and a new user tries to join the room
 		if (users[data.roomId]) {
@@ -46,7 +46,7 @@ const video = (socket, io) => {
 			(user) => user.socketId !== socket.id
 		)
 
-		console.log(`[usersInThisRoom] ${usersInThisRoom}`)
+		// console.log(`[usersInThisRoom on join] ${JSON.stringify(users)}`)
 
 		// Socket emit the user list
 		socket.emit('all-users', { usersInThisRoom })
@@ -73,7 +73,7 @@ const video = (socket, io) => {
 	})
 }
 
-const cleanRoom = (socketId) => {
+const cleanRoom = (socketId, io) => {
 	const roomId = socketToRoom[socketId]
 	delete socketToRoom[socketId]
 
@@ -82,10 +82,8 @@ const cleanRoom = (socketId) => {
 		delete users[roomId]
 	} else {
 		users[roomId] = users[roomId].filter((user) => user.socketId !== socketId)
+		// console.log(`[cleanRoom (video)] ${JSON.stringify(users[roomId])}`)
 	}
-
-	console.log(users)
-	console.log(socketToRoom)
 }
 
 module.exports = { video, cleanRoom }

@@ -13,10 +13,6 @@ import './landing-page.scss'
 import './about.scss'
 
 function LandingPage({ match, auth }) {
-	React.useEffect(() => {
-		console.log('[useEffect]')
-		console.log(match)
-	}, [])
 	return (
 		<div className='landing-page'>
 			{!auth.isAuthenticated && auth.loading ? (

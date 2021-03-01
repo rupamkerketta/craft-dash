@@ -17,7 +17,7 @@ export const loadUser = () => async (dispatch) => {
 		const thumbnail = res.data.thumbnail || ''
 
 		dispatch(setUser(username, email, thumbnail, avatar_id))
-		console.log(res)
+		// console.log(res)
 	} catch (e) {
 		dispatch(loadCheckFail())
 		console.log(e.message)

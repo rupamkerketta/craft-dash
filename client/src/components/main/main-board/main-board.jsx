@@ -26,6 +26,7 @@ import * as ELEMENTS from '../../../redux/elements/elementsActions'
 // Focus - Elements
 import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
 import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions'
+import { color } from 'd3'
 
 const MainBoard = ({
 	room,
@@ -47,79 +48,43 @@ const MainBoard = ({
 	onConnectReceive_Main,
 	deSelectAll_Main
 }) => {
-	const username = useSelector((state) => state.user.username)
-	const email = useSelector((state) => state.user.email)
-
+	// Label for the Node
 	const [name, setName] = useState('')
+
+	// Current User's username
+	const username = useSelector((state) => state.user.username)
 
 	// Current User's email
 	const user_email = user.email
 
 	// Getting the current room
-	const current_room = data.find((idea_board) => idea_board._id === room)
-	console.log(`[current_room] ${JSON.stringify(current_room)}`)
+	// const current_room = data.find((idea_board) => idea_board._id === room)
 
-	// Collaborators (except the owner)
-	const collaborators = current_room.collaborators
+	const pointers = [Pointer1, Pointer2, Pointer3, Pointer4]
+	const colors = ['#FF2D92', '#3FDE9C', '#2FDAE4', '#C521FF']
 
-	console.log(JSON.stringify(collaborators))
+	const color_codes = useRef([])
+	const email_indexes = useRef([])
 
-	const list = [
-		{ i: 1, pointer: Pointer1, color: '#FF2D92' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' },
-		{ i: 2, pointer: Pointer2, color: '#3FDE9C' },
-		{ i: 3, pointer: Pointer3, color: '#2FDAE4' },
-		{ i: 4, pointer: Pointer4, color: '#C521FF' }
-	]
+	const onUserJoin = (email) => {
+		const length = color_codes.current.length
 
-	const users_list = () => {
-		if (collaborators.length !== 0) {
-			if (collaborators.find((user) => user.email !== user_email)) {
-				// For other collaborators
-				return [
-					current_room.owner_email,
-					...collaborators.map((user) => {
-						if (user.email !== user_email) {
-							return user.email
-						}
-					})
-				]
-			} else {
-				// For the owner
-				return collaborators
-			}
-		} else {
-			return []
+		if (!email_indexes.current.includes(email)) {
+			email_indexes.current.push(email)
+
+			color_codes.current.push({
+				email,
+				color: colors[length],
+				pointer: pointers[length]
+			})
 		}
 	}
 
-	console.log(`[users_list] ${JSON.stringify(users_list())}`)
-
-	// const [pointers, setPointers] = useState(users_list())
-
-	const [pos_updates, setPosUpdates] = useState(
-		users_list().map((user) => {
-			console.log(user)
-			const obj = {
-				email: user.email,
-				username: user.username,
-				pos: {
-					x: -50,
-					y: -50
-				}
-			}
-			return obj
-		})
-	)
+	const [pos_updates, setPosUpdates] = useState([])
 
 	useEffect(() => {
 		// [Sends Data] - Sends a join request
-		socket.emit('joinRoom', { username, room, email })
+		socket.emit('joinRoom', { username, room, user_email })
 
 		//[Receives Data] When a use joins the session - Shows a notification
 		socket.on('user-connected', (data) => {
@@ -141,7 +106,7 @@ const MainBoard = ({
 
 		// [Receives Data] Handler for getting the current users present in the session
 		socket.on('room-users', (data) => {
-			console.log(`[room-users] ${JSON.stringify(data.users)}`)
+			// console.log(`[room-users] ${JSON.stringify(data.users)}`)
 			addUsersRoom(data.users)
 		})
 
@@ -174,20 +139,21 @@ const MainBoard = ({
 		// FIXME: Fix/Update the mouse pointer feature
 		socket.on('user-pointer-updates', (data) => {
 			console.log(JSON.stringify(data))
+			onUserJoin(data.email)
 			setPosUpdates((preVal) => {
-				// let list = []
-				// let updated_list = []
-				// if (preVal.length > 1) {
 				const list = [...preVal.filter((preVal) => preVal.email !== data.email)]
 
-				let updated_list = [...list, { ...data }]
+				const user_data = preVal.find((preVal) => preVal.email === data.email)
+
+				const modified_data = { ...user_data, ...data }
+
+				let updated_list = [...list, { ...modified_data }]
 
 				updated_list = updated_list.filter(
 					(item) => typeof item.email !== 'undefined'
 				)
-				// } else {
-				// 	updated_list = [{ ...data }]
-				// }
+
+				// console.log(updated_list)
 				return updated_list
 			})
 		})
@@ -262,7 +228,7 @@ const MainBoard = ({
 	}
 
 	const onLoad = (reactFlowInstance) => {
-		console.log('flow loaded:', reactFlowInstance)
+		// console.log('flow loaded:', reactFlowInstance)
 		reactFlowInstance.fitView({ padding: 6 })
 	}
 
@@ -306,7 +272,7 @@ const MainBoard = ({
 			y: e.nativeEvent.offsetY,
 			room,
 			username,
-			email
+			user_email
 		})
 	}
 
@@ -334,6 +300,7 @@ const MainBoard = ({
 
 	return (
 		<div className='main-board'>
+			{console.log(JSON.stringify(color_codes.current))}
 			<ReactFlow
 				className='react-flow-main'
 				onMouseMove={onMouseMove}
@@ -352,11 +319,16 @@ const MainBoard = ({
 				snapToGrid={false}>
 				<Background color='#888' gap={50} variant='dots' />
 
-				{console.log(pos_updates)}
+				{/* {console.log(pos_updates)} */}
 
 				{pos_updates
 					? pos_updates.map((item, index) => {
 							console.log(item, index)
+
+							const s = color_codes.current.find((i) => i.email === item.email)
+							const pointer = s['pointer']
+							const color = s['color']
+
 							return (
 								<div
 									key={index}
@@ -367,14 +339,12 @@ const MainBoard = ({
 										left: `${item.pos.x}px`
 									}}>
 									<img
-										src={list[index].pointer}
+										src={pointer}
 										alt={`${item.email}`}
 										className='peer-pointer'
 									/>
 									{/* <h2 className='peer-email'>{item.email}</h2> */}
-									<h2
-										className='peer-email'
-										style={{ backgroundColor: list[index].color }}>
+									<h2 className='peer-email' style={{ backgroundColor: color }}>
 										{item.username}
 									</h2>
 								</div>

@@ -1,29 +1,29 @@
 const fs = require('fs')
-const file_path = './key.json'
+// const file_path = './key.json'
 const path = require('path')
-const base64 = require('base-64')
+// const base64 = require('base-64')
 const { Storage } = require('@google-cloud/storage')
 
 // Environment Variables Configuration
-if (process.env.NODE_ENV == 'production') {
-	try {
-		if (fs.existsSync(file_path)) {
-			//file exists
-			console.log('File already exists!!!')
-		} else {
-			const google_cs_key = base64.decode(
-				process.env.GOOGLE_CS_PROJECT_CREDENTIALS
-			)
-			// writeFile function with filename, content and callback function
-			fs.writeFile('key.json', google_cs_key, function (err) {
-				if (err) throw err
-				console.log('File is created successfully.')
-			})
-		}
-	} catch (err) {
-		console.error(err)
-	}
-}
+// if (process.env.NODE_ENV == 'production') {
+// 	try {
+// 		if (fs.existsSync(file_path)) {
+// 			//file exists
+// 			console.log('File already exists!!!')
+// 		} else {
+// 			const google_cs_key = base64.decode(
+// 				process.env.GOOGLE_CS_PROJECT_CREDENTIALS
+// 			)
+// 			// writeFile function with filename, content and callback function
+// 			fs.writeFile('key.json', google_cs_key, function (err) {
+// 				if (err) throw err
+// 				console.log('File is created successfully.')
+// 			})
+// 		}
+// 	} catch (err) {
+// 		console.error(err)
+// 	}
+// }
 
 const file_name = path.join(__dirname, 'key.json')
 console.log(file_name)

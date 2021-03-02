@@ -5,11 +5,16 @@ const router = express.Router()
 const { verifyToken: auth } = require('../helpers/jwt-helper')
 
 // Cloud Controllers
-const { uploadFile } = require('../controllers/cloud.controllers')
+const {
+	uploadFile,
+	getFilesInfo,
+	getFile
+} = require('../controllers/cloud.controllers')
 
 router.post('/uploads', auth, uploadFile)
-router.get('/uploads', auth, (req, res) => {
-	res.send('[uploads]')
-})
+
+router.post('/get-files-info', auth, getFilesInfo)
+
+router.get('/get-file/:id', auth, getFile)
 
 module.exports = router

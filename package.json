@@ -28,6 +28,7 @@
 		"mongoose": "^5.10.7",
 		"passport": "^0.4.1",
 		"passport-google-oauth2": "^0.2.0",
+		"querystring": "^0.2.1",
 		"socket.io": "^2.3.0",
 		"validator": "^13.1.17"
 	},

@@ -56,5 +56,54 @@ module.exports = {
 			console.log(e)
 			res.status(500).send({ msg: 'Internal Server Error' })
 		}
+	},
+
+	getFilesInfo: async (req, res) => {
+		try {
+			const idea_board_id = req.body.idea_board_id
+			console.log(`[idea_board_id] ${idea_board_id}`)
+			const files = await File.find({ idea_board_id })
+
+			console.log(files)
+
+			if (!files) {
+				// NRF - No Records Found
+				res.status(400).send({ msg: 'NRF' })
+				return
+			}
+
+			const files_info = files.map((file) => {
+				return {
+					file_name: file.file_name,
+					file_type: file.type
+				}
+			})
+
+			res.send({ files_info })
+		} catch (err) {
+			console.log(err)
+			res.status(500).send({ msg: 'Internal Server Error!!!' })
+		}
+	},
+
+	getFile: async (req, res) => {
+		try {
+			const file_name = req.params.id
+			const remoteFile = cloud_bucket.file(file_name)
+
+			remoteFile
+				.createReadStream()
+				.on('error', function (err) {})
+				.on('response', function (response) {
+					// Server connected and responded with the specified status and headers.
+				})
+				.on('end', function () {
+					// The file is fully downloaded.
+				})
+				.pipe(res)
+		} catch (err) {
+			console.log(err)
+			res.status(500).send({ msg: 'Internal Server Error!!!' })
+		}
 	}
 }

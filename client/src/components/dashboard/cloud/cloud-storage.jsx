@@ -22,6 +22,10 @@ import 'rodal/lib/rodal.css'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
 import FileAddIcon from '../../../img/folder-add.png'
 
+import ImageIcon from '../../../img/image-icon.svg'
+import SvgIcon from '../../../img/svg-icon.svg'
+import PdfIcon from '../../../img/pdf-icon.svg'
+
 const thumbsContainer = {
 	display: 'flex',
 	flexDirection: 'row',
@@ -57,6 +61,13 @@ const img = {
 	height: '100%'
 }
 
+const style = (url) => {
+	return {
+		background: `url('${url}') no-repeat center`,
+		backgroundSize: 'cover'
+	}
+}
+
 function CloudStorage({ match, idea_boards }) {
 	const [files, setFiles] = useState([])
 	// const [remote_files, setRemoteFiles] = useState([])
@@ -76,7 +87,6 @@ function CloudStorage({ match, idea_boards }) {
 	const [ideaBoardName, setIdeaBoardName] = useState('')
 
 	const { getRootProps, getInputProps } = useDropzone({
-		accept: 'image/*',
 		onDrop: (acceptedFiles) => {
 			setFiles(
 				acceptedFiles.map((file) =>
@@ -101,7 +111,7 @@ function CloudStorage({ match, idea_boards }) {
 		setIdeaBoardId(match.params.id)
 
 		const idb = idea_boards.find(
-			(idea_board) => idea_board._id === match.params.id
+			(idea_board) => idea_board._id == match.params.id
 		)
 
 		setIdeaBoardName(idb.idea_board_name)
@@ -198,13 +208,59 @@ function CloudStorage({ match, idea_boards }) {
 			{/* {console.log(files_info.files_info)} */}
 			<div className='remote-files-wrapper'>
 				{files_info.files_info
-					? files_info.files_info.map((file) => {
+					? files_info.files_info.map((file, index) => {
 							return (
-								<div className='remote-file' key={file.file_name}>
-									<img
-										src={`${server}/api/cloud-storage/get-file/${file.file_name}`}
-										alt={file.file_name}
-									/>
+								<div
+									className='remote-file-wrapper'
+									key={file.file_name}
+									style={{ marginTop: index > 3 ? '90px' : '' }}>
+									<div
+										className='remote-file'
+										style={
+											file.file_type.split('/')[0] === 'image'
+												? style(
+														`${server}/api/cloud-storage/get-file/${file.file_name}`
+												  )
+												: {}
+										}>
+										{/* SVG preview */}
+										{file.file_type === 'image/svg+xml' ? (
+											<object
+												className='svg-preview'
+												type='image/svg+xml'
+												data={`${server}/api/cloud-storage/get-file/${file.file_name}`}>
+												Svg Preview
+											</object>
+										) : (
+											''
+										)}
+
+										{/* PDF */}
+										{file.file_type === 'application/pdf' ? (
+											<img className='pdf-bg' src={PdfIcon} alt='i' />
+										) : (
+											''
+										)}
+									</div>
+									<div className='file-icon'>
+										{file.file_type.split('/')[0] === 'image' ? (
+											file.file_type.split('/')[1] === 'svg+xml' ? (
+												<img className='image-icon' src={SvgIcon} alt='i' />
+											) : (
+												<img className='image-icon' src={ImageIcon} alt='i' />
+											)
+										) : (
+											''
+										)}
+										{file.file_type.split('/')[1] === 'pdf' ? (
+											<img className='image-icon' src={PdfIcon} alt='i' />
+										) : (
+											''
+										)}
+									</div>
+									<div className='file-name'>
+										<h3>{file.original_file_name}</h3>
+									</div>
 								</div>
 							)
 					  })
@@ -280,7 +336,7 @@ function CloudStorage({ match, idea_boards }) {
 						<span>
 							<input type='file' id='browse-file' />
 							<img src={FileAddIcon} alt='' />
-							<label htmlFor='browse-file'>Browse Files</label>
+							<label for='browse-file'>Browse Files</label>
 						</span>
 					</div>
 					<div className='label-row-2'>

@@ -4,6 +4,7 @@ import './main.scss'
 // Components
 import Messaging from './messaging/messaging'
 import Edit from './edit/edit'
+import IdbFiles from './idb-files/idb-files'
 import TopNavMain from './top-nav-main/top-nav-main'
 import MainBoard from './main-board/main-board'
 import VideoChat from './video-chat/video-chat'
@@ -14,13 +15,15 @@ import { server } from '../../utils/api'
 // Logos
 import MessagingIcon from '../../img/messaging-icon.svg'
 import EditTool from '../../img/edit-tool.svg'
+import FilesFolderIcon from '../../img/folder-icon.svg'
 
 function Main({ match }) {
 	const [socket, setSocket] = useState(null)
 
 	const [sidebar_focus, set_sidebar_focus] = useState({
 		chat: true,
-		edit: false
+		edit: false,
+		files: false
 	})
 
 	useEffect(() => {
@@ -29,13 +32,17 @@ function Main({ match }) {
 		setSocket(s)
 	}, [])
 
-	const onChatClick = React.useCallback(() => {
-		set_sidebar_focus({ chat: true, edit: false })
-	})
+	const onChatClick = () => {
+		set_sidebar_focus({ chat: true, edit: false, files: false })
+	}
 
-	const onEditClick = React.useCallback(() => {
-		set_sidebar_focus({ chat: false, edit: true })
-	})
+	const onEditClick = () => {
+		set_sidebar_focus({ chat: false, edit: true, files: false })
+	}
+
+	const onFilesClick = () => {
+		set_sidebar_focus({ chat: false, edit: false, files: true })
+	}
 
 	return (
 		<div className='main'>
@@ -60,6 +67,11 @@ function Main({ match }) {
 								handler={onEditClick}
 								visibility={sidebar_focus.edit}
 							/>
+							<FilesAddNav
+								idea_board_id={match.params.id}
+								handler={onFilesClick}
+								visibility={sidebar_focus.files}
+							/>
 						</div>
 						<div className='sidebar-body' />
 					</div>
@@ -72,6 +84,11 @@ function Main({ match }) {
 						style={{ display: sidebar_focus.edit ? 'block' : 'none' }}
 						className='edit-wrapper'>
 						<Edit room={match.params.id} socket={socket} />
+					</div>
+					<div
+						style={{ display: sidebar_focus.files ? 'block' : 'none' }}
+						className='files-wrapper'>
+						<IdbFiles room={match.params.id} socket={socket} />
 					</div>
 				</Fragment>
 			) : null}
@@ -105,6 +122,21 @@ const EditToolNav = (props) => {
 			}}
 			onClick={() => props.handler()}>
 			<img src={EditTool} alt='' />
+		</div>
+	)
+}
+
+const FilesAddNav = (props) => {
+	return (
+		<div
+			className='files-folder-nav-wrapper'
+			style={{
+				borderBottom: props.visibility
+					? '2px solid #08E789'
+					: '2px solid transparent'
+			}}
+			onClick={() => props.handler()}>
+			<img src={FilesFolderIcon} alt='' />
 		</div>
 	)
 }

@@ -45,7 +45,8 @@
 			justify-content: space-around;
 
 			.message-nav-wrapper,
-			.edit-tool-nav-wrapper {
+			.edit-tool-nav-wrapper,
+			.files-folder-nav-wrapper {
 				padding-right: 12px;
 				padding-left: 12px;
 				border: 1px solid transparent;
@@ -70,6 +71,17 @@
 			}
 
 			.edit-tool-nav-wrapper {
+				width: fit-content;
+				height: 7vh;
+				cursor: pointer;
+
+				img {
+					background-color: #212429;
+					padding: 5px;
+				}
+			}
+
+			.files-folder-nav-wrapper {
 				width: fit-content;
 				height: 7vh;
 				cursor: pointer;

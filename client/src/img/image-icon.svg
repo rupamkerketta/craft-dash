@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <svg width="564" height="564" viewBox="0 0 564 564" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0)">
 <path d="M84.0276 0H479.971C523.085 0 558.28 35.195 558.28 78.3089V485.691C558.28 528.805 523.085 564 479.971 564H84.0276C40.9138 564 5.71875 528.805 5.71875 485.691V77.429C5.71875 35.195 40.9138 0 84.0276 0Z" fill="url(#paint0_linear)"/>
@@ -57,47 +56,4 @@
 <rect width="564" height="564" fill="white"/>
 </clipPath>
 </defs>
-=======
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 256.4 256.4" style="enable-background:new 0 0 256.4 256.4;" xml:space="preserve">
-<g>
-	<path style="fill:#4A566E;" d="M38.2,0h180c19.6,0,35.6,16,35.6,35.6v185.2c0,19.6-16,35.6-35.6,35.6h-180
-		c-19.6,0-35.6-16-35.6-35.6V35.2C2.6,16,18.6,0,38.2,0z"/>
-	<path style="fill:#00B594;" d="M118.6,167.6l-52.4-52.8L2.6,178.4V192v28.8c0,19.6,16,35.6,35.6,35.6h180c19.6,0,35.6-16,35.6-35.6
-		V192v-39.6l-59.6-60L118.6,167.6z"/>
-	<circle style="fill:#FFCC03;" cx="117.4" cy="84.8" r="22.4"/>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
->>>>>>> upstream/development
 </svg>

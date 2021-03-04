@@ -1,77 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { useDropzone } from 'react-dropzone'
-import BrandLogo from '../../brand-logo/brand-logo'
-import User from '../../user/user'
-import api from '../../../utils/api'
-import { server } from '../../../utils/api'
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
+import BrandLogo from "../../brand-logo/brand-logo";
+import User from "../../user/user";
+import api from "../../../utils/api";
+import { server } from "../../../utils/api";
 
-import notify from '../../../utils/notifications/notify'
-import * as NOTIFICATION_TYPE from '../../../utils/notifications/notifyTypes'
+import notify from "../../../utils/notifications/notify";
+import * as NOTIFICATION_TYPE from "../../../utils/notifications/notifyTypes";
 
-import './cloud-storage.scss'
+import "./cloud-storage.scss";
 
-import AddFilesButton from '../../../img/AddFilesButton.png'
+import AddFilesButton from "../../../img/AddFilesButton.png";
 
-import FilesButton from '../../../img/Files.png'
-import AudioButton from '../../../img/Audio.png'
-import NotesButton from '../../../img/Notes.png'
-import Rodal from 'rodal'
-import 'rodal/lib/rodal.css'
-import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
-import FileAddIcon from '../../../img/folder-add.png'
-
-import ImageIcon from '../../../img/image-icon.svg'
-import SvgIcon from '../../../img/svg-icon.svg'
-import PdfIcon from '../../../img/pdf-icon.svg'
+import FilesButton from "../../../img/Files.png";
+import AudioButton from "../../../img/Audio.png";
+import NotesButton from "../../../img/Notes.png";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
+import CraftDashCloudLogo from "../../../img/CraftDashCloudLogo.png";
+import FileAddIcon from "../../../img/folder-add.png";
 
 import ImageIcon from "../../../img/image-icon.svg";
 import SvgIcon from "../../../img/svg-icon.svg";
 import PdfIcon from "../../../img/pdf-icon.svg";
 
-import DownloadIcon from "../../../img/download-icon.png";
 const thumbsContainer = {
-	display: 'flex',
-	flexDirection: 'row',
-	flexWrap: 'wrap',
-	width: 'fit-content',
-	margin: 'auto',
-	marginTop: 20
-}
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  width: "fit-content",
+  margin: "auto",
+  marginTop: 20,
+};
 
 const thumb = {
-	display: 'inline-flex',
-	borderRadius: 10,
-	//   border: "1px solid #eaeaea",
-	width: 'fit-content',
-	margin: 'auto',
-	marginBottom: 8,
-	//   marginRight: 8,
-	width: 150,
-	height: 150,
-	padding: 5,
-	boxSizing: 'border-box'
-}
+  display: "inline-flex",
+  borderRadius: 10,
+  //   border: "1px solid #eaeaea",
+  width: "fit-content",
+  margin: "auto",
+  marginBottom: 8,
+  //   marginRight: 8,
+  width: 150,
+  height: 150,
+  padding: 5,
+  boxSizing: "border-box",
+};
 
 const thumbInner = {
-	display: 'flex',
-	minWidth: 0,
-	overflow: 'hidden'
-}
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden",
+};
 
 const img = {
-	display: 'block',
-	width: 'auto',
-	height: '100%'
-}
-
-const style = (url) => {
-	return {
-		background: `url('${url}') no-repeat center`,
-		backgroundSize: 'cover'
-	}
-}
+  display: "block",
+  width: "auto",
+  height: "100%",
+};
 
 const style = (url) => {
   return {
@@ -89,7 +77,6 @@ function CloudStorage({ match, idea_boards }) {
 
   const [showButtons, setButtonVisibility] = useState(false);
   const [showFilesModal, setFilesModalVisibility] = useState(false);
-  const [showAudioModal, setAudioModalVisibility] = useState(false);
 
   const handleImageModal = () => {
     setFilesModalVisibility(false);
@@ -315,122 +302,75 @@ function CloudStorage({ match, idea_boards }) {
 					<div className='label-row-2'>
 						<p>All documents and images are supported</p>
 					</div> */}
-					<div {...getRootProps({ className: 'dropzone' })}>
-						<input {...getInputProps()} />
-						<p className='label-row-1'>
-							Drag and Drop Files Here or Click to Browse
-						</p>
-						<aside style={thumbsContainer}>{thumbs}</aside>
-					</div>
-					<div className='upload-button-wrapper'>
-						<button className='upload-button' onClick={imgSubmit}>
-							Upload
-						</button>
-					</div>
-					<div className='label-row-2'>
-						<p>All documents and images are supported</p>
-					</div>
-				</div>
-			</Rodal>
-			<Rodal
-				visible={showAudioModal}
-				animation='fade'
-				width={1000}
-				height={700}
-				onClose={() => setAudioModalVisibility(false)}
-				className='rodal-cloud-bg'
-				customStyles={customStyles.wrapper}>
-				<div className='cdc-logo-wrapper'>
-					<img
-						src={CraftDashCloudLogo}
-						alt='Craft Dash Cloud'
-						title='Craft Dash Cloud'
-					/>
-				</div>
-				<div className='files-field-wrapper'>
-					<div className='label-row-1'>
-						<p>Upload Your Audio Files Here</p>
-					</div>
-					<div className='upload-button'>
-						<span>
-							<input type='file' id='browse-file' />
-							<img src={FileAddIcon} alt='' />
-							<label for='browse-file'>Browse Files</label>
-						</span>
-					</div>
-					<div className='label-row-2'>
-						<p>Supported Files are mp3, aac, m4a</p>
-					</div>
-				</div>
-			</Rodal>
-			<div className='add-button-wrapper'>
-				<div className='add-button-base'>
-					<div
-						className='notes-button'
-						style={{ opacity: 0 }}
-						// style={{
-						//   transform: showButtons
-						//     ? "scale(1) rotate(0deg)"
-						//     : "scale(0) rotate(-180deg)",
-						//   transition: "0.5s ease-in-out",
-						// }}
-					>
-						<img src={NotesButton} alt='Add Notes' title='Add Notes' />
-					</div>
-					<div
-						className='audio-button'
-						style={{ opacity: 0 }}
-						// style={{
-						//   transform: showButtons
-						//     ? "scale(1) rotate(0deg)"
-						//     : "scale(0) rotate(-180deg)",
-						//   transition: "0.5s ease-in-out",
-						// }}
-					>
-						<img
-							src={AudioButton}
-							alt='Add Audio Files'
-							title='Add Audio Files'
-							onClick={() => setAudioModalVisibility(true)}
-						/>
-					</div>
-					<div
-						className='files-button'
-						style={{
-							transform: showButtons
-								? 'scale(1) rotate(0deg)'
-								: 'scale(0) rotate(-180deg)',
-							transition: '0.5s ease-in-out'
-						}}>
-						<img
-							src={FilesButton}
-							alt='Add New Files'
-							title='Add New Files'
-							onClick={() => setFilesModalVisibility(true)}
-						/>
-					</div>
-					<div className='add-button'>
-						<img
-							src={AddFilesButton}
-							alt='Add to Cloud'
-							title='Add to Cloud'
-							style={{
-								transform: showButtons ? 'rotate(135deg)' : 'rotate(0deg)',
-								transition: '0.5s ease-in-out'
-							}}
-							onClick={() => setButtonVisibility(!showButtons)}
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
-	)
+          <div {...getRootProps({ className: "dropzone" })}>
+            <input {...getInputProps()} />
+            <p className="label-row-1">
+              Drag and Drop Files Here or Click to Browse
+            </p>
+            <aside style={thumbsContainer}>{thumbs}</aside>
+          </div>
+          <div className="upload-button-wrapper">
+            <button className="upload-button" onClick={imgSubmit}>
+              Upload
+            </button>
+          </div>
+          <div className="label-row-2">
+            <p>All documents and images are supported</p>
+          </div>
+        </div>
+      </Rodal>
+      <div className="add-button-wrapper">
+        <div className="add-button-base">
+          <div
+            className="notes-button"
+            // style={{ opacity: 0 }}
+            style={{
+              transform: showButtons
+                ? "scale(1) rotate(0deg)"
+                : "scale(0) rotate(-180deg)",
+              transition: "0.5s ease-in-out",
+            }}
+          >
+            <img src={NotesButton} alt="Add Notes" title="Add Notes" />
+          </div>
+          <div
+            className="files-button"
+            style={{
+              transform: showButtons
+                ? "scale(1) rotate(0deg)"
+                : "scale(0) rotate(-180deg)",
+              transition: "0.5s ease-in-out",
+            }}
+          >
+            <img
+              src={FilesButton}
+              alt="Add New Files"
+              title="Add New Files"
+              onClick={() => setFilesModalVisibility(true)}
+            />
+          </div>
+          <div className="add-button">
+            <img
+              src={AddFilesButton}
+              alt="Add to Cloud"
+              title="Add to Cloud"
+              style={{
+                transform: showButtons ? "rotate(135deg)" : "rotate(0deg)",
+                transition: "0.5s ease-in-out",
+              }}
+              onClick={() => setButtonVisibility(!showButtons)}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {
-	return {
-		idea_boards: state.idea_boards.boards.data
-	}
-}
+  return {
+    idea_boards: state.idea_boards.boards.data,
+  };
+};
 
-export default connect(mapStateToProps, {})(CloudStorage)
+export default connect(mapStateToProps, {})(CloudStorage);

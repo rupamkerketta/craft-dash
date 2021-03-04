@@ -1,0 +1,102 @@
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
+
+.idb-files {
+	// border: 1px solid white;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: absolute;
+	width: 20vw;
+	top: 7vh;
+	height: 93vh;
+	right: 0;
+	background-color: $theme-color;
+	font-family: $theme-font;
+
+	.remote-files-wrapper {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+
+		overflow-y: scroll;
+
+		padding-top: 30px;
+		padding-bottom: 30px;
+		.remote-file-wrapper {
+			position: relative;
+			// margin-left: 40px;
+			width: fit-content;
+			padding: 2px;
+			height: fit-content;
+			// background-color: white;
+			border-radius: 10px;
+			background-color: rgb(34, 34, 34);
+			border: 1px solid rgb(34, 34, 34);
+			border: 2px solid transparent;
+
+			.remote-file {
+				position: relative;
+				width: 100px;
+				height: 70px;
+				border-radius: 10px;
+				background-color: white;
+				overflow: hidden;
+
+				.svg-preview,
+				.pdf-bg {
+					width: 100px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+
+			.file-icon {
+				position: relative;
+				img {
+					position: absolute;
+					width: 20px;
+					left: 10px;
+					top: -10px;
+				}
+			}
+
+			.file-name {
+				position: absolute;
+				bottom: -45px;
+				h3 {
+					font-family: $theme-font;
+					font-weight: 200;
+					font-size: 0.7em;
+					color: rgb(185, 185, 185);
+				}
+			}
+
+			transition: 0.4s all ease;
+
+			&:hover {
+				border: 2px solid white;
+			}
+		}
+	}
+
+	.remote-files-wrapper::-webkit-scrollbar {
+		width: 1px;
+		border-radius: 10px;
+	}
+
+	.remote-files-wrapper::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+
+	.remote-files-wrapper::-webkit-scrollbar-thumb {
+		background-color: $craft-dash-green;
+		outline: 1px solid $craft-dash-green;
+		border-radius: 10px;
+	}
+}

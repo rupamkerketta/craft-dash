@@ -15,12 +15,19 @@ module.exports = {
 			let blobStream = null
 			let file_extension = ''
 			let og_name = ''
+			let temp = null
 
 			let obj_length = Object.keys(req.files).length
 
 			Object.keys(req.files).forEach((file) => {
 				// Extracting the file extension
-				file_extension = req.files[file].mimetype.split('/')[1]
+				// file_extension = req.files[file].mimetype.split('/')[1]
+
+				// Temporary array
+				temp = req.files[file].name.split('.')
+
+				// Extracting the file extension
+				file_extension = temp[temp.length - 1]
 
 				// Original File Name
 				og_name = req.files[file].name
@@ -74,6 +81,7 @@ module.exports = {
 
 			const files_info = files.map((file) => {
 				return {
+					original_file_name: file.original_file_name,
 					file_name: file.file_name,
 					file_type: file.type
 				}

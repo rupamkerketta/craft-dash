@@ -100,21 +100,25 @@
 
 					.sign-up-btn {
 						border-color: $signup-btn-color;
-						color: $signup-btn-color;
-
+						color: $theme-color;
+						background-color: $signup-btn-color;
+						
 						&:hover {
 							background-color: $signup-btn-color;
-							color: $theme-color;
+							color: $signup-btn-color;
+							background-color: rgba(255,45,146, 0.2);
 						}
 					}
-
+					
 					.login-btn {
 						border-color: $login-btn-color;
-						color: $login-btn-color;
-
+						color: $theme-color;
+						background-color: $login-btn-color;
+						
 						&:hover {
 							background-color: $login-btn-color;
-							color: $theme-color;
+							color: $login-btn-color;
+							background-color: rgba(63,222,156, 0.2);
 						}
 					}
 				}

@@ -1,148 +1,149 @@
-@import '../../../sass/utils/colors';
-@import '../../../sass/utils/fonts';
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
 
 .idb-files {
-	// border: 1px solid white;
-	overflow-y: hidden;
+  // border: 1px solid white;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  position: absolute;
+  width: 20vw;
+  top: 7vh;
+  height: 93vh;
+  right: 0;
+  background-color: $theme-color;
+  font-family: $theme-font;
+
+  .remote-files-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    overflow-y: scroll;
 	overflow-x: hidden;
-	position: absolute;
-	width: 20vw;
-	top: 7vh;
-	height: 93vh;
-	right: 0;
-	background-color: $theme-color;
-	font-family: $theme-font;
 
-	.remote-files-wrapper {
-		width: 100%;
-		height: 100%;
+    padding-top: 30px;
+    padding-bottom: 130px;
 
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		flex-wrap: wrap;
+    .remote-file-wrapper {
+      position: relative;
+      // margin-left: 40px;
+      width: fit-content;
+      padding: 2px;
+      height: fit-content;
+      // background-color: white;
+      border-radius: 10px;
+      background-color: rgb(34, 34, 34);
+      border: 3px solid transparent;
 
-		overflow-y: scroll;
+      .remote-file {
+        position: relative;
+        width: 100px;
+        height: 70px;
+        border-radius: 10px;
+        background-color: white;
+        overflow: hidden;
 
-		padding-top: 30px;
-		padding-bottom: 130px;
+        .svg-preview,
+        .pdf-bg {
+          width: 100px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
 
-		.remote-file-wrapper {
-			position: relative;
-			// margin-left: 40px;
-			width: fit-content;
-			padding: 2px;
-			height: fit-content;
-			// background-color: white;
-			border-radius: 10px;
-			background-color: rgb(34, 34, 34);
-			border: 3px solid transparent;
+        .svg-preview {
+          border: 1px solid white;
+          position: absolute;
+          padding: 10px;
+        }
+      }
 
-			.remote-file {
-				position: relative;
-				width: 100px;
-				height: 70px;
-				border-radius: 10px;
-				background-color: white;
-				overflow: hidden;
+      .file-icon {
+        position: relative;
+        img {
+          position: absolute;
+          width: 20px;
+          left: 10px;
+          top: -10px;
+        }
+      }
 
-				.svg-preview,
-				.pdf-bg {
-					width: 100px;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-				}
+      .file-name {
+        position: absolute;
+        bottom: -45px;
+        h3 {
+          font-family: $theme-font;
+          font-weight: 200;
+          font-size: 0.7em;
+          color: rgb(185, 185, 185);
+        }
+      }
 
-				.svg-preview {
-					border: 1px solid white;
-					position: absolute;
-					padding: 10px;
-				}
-			}
+      // transition: 0.4s all ease;
 
-			.file-icon {
-				position: relative;
-				img {
-					position: absolute;
-					width: 20px;
-					left: 10px;
-					top: -10px;
-				}
-			}
+      &:hover {
+        border: 2px solid white;
+      }
+    }
 
-			.file-name {
-				position: absolute;
-				bottom: -45px;
-				h3 {
-					font-family: $theme-font;
-					font-weight: 200;
-					font-size: 0.7em;
-					color: rgb(185, 185, 185);
-				}
-			}
+    .file-selected {
+      border: 3px solid white;
+    }
+  }
 
-			// transition: 0.4s all ease;
+  .remote-files-wrapper::-webkit-scrollbar {
+    width: 1px;
+    border-radius: 10px;
+  }
 
-			&:hover {
-				border: 2px solid white;
-			}
-		}
+  .remote-files-wrapper::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
 
-		.file-selected {
-			border: 3px solid white;
-		}
-	}
+  .remote-files-wrapper::-webkit-scrollbar-thumb {
+    background-color: $craft-dash-green;
+    outline: 1px solid $craft-dash-green;
+    border-radius: 10px;
+  }
 
-	.remote-files-wrapper::-webkit-scrollbar {
-		width: 1px;
-		border-radius: 10px;
-	}
+  .add-files-idb {
+    position: absolute;
+    // border: 1px solid white;
+    width: 100%;
+    bottom: 0;
+    height: 70px;
+    background-color: $theme-color;
+    overflow-y: hidden;
+    color: white;
+    display: flex;
+    // display: none;
+    justify-content: space-around;
+    align-items: center;
 
-	.remote-files-wrapper::-webkit-scrollbar-track {
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
+    // background: linear-gradient(
+    //   103.23deg,
+    //   rgba(108, 134, 144, 0.1) 0%,
+    //   rgba(108, 134, 145, 0.04) 49.27%,
+    //   rgba(108, 134, 144, 0.06) 100%
+    // );
+    // backdrop-filter: blur(4px);
 
-	.remote-files-wrapper::-webkit-scrollbar-thumb {
-		background-color: $craft-dash-green;
-		outline: 1px solid $craft-dash-green;
-		border-radius: 10px;
-	}
-
-	.add-files-idb {
-		position: absolute;
-		// border: 1px solid white;
-		width: 100%;
-		bottom: 0;
-		height: 70px;
-		background-color: $theme-color;
-
-		color: white;
-
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-
-		background: linear-gradient(
-			103.23deg,
-			rgba(108, 134, 144, 0.1) 0%,
-			rgba(108, 134, 145, 0.04) 49.27%,
-			rgba(108, 134, 144, 0.06) 100%
-		);
-		backdrop-filter: blur(4px);
-
-		.add-file-btn {
-			cursor: pointer;
-			outline: none;
-			border: 0;
-			width: 210px;
-			height: 40px;
-			font-family: $theme-font;
-			font-size: 1em;
-			background-color: $craft-dash-green;
-			color: $theme-color;
-			border-radius: 4px;
-		}
-	}
+    .add-file-btn {
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      width: 210px;
+      height: 40px;
+      font-family: $theme-font;
+      font-size: 1em;
+      background-color: $craft-dash-green;
+      color: $theme-color;
+      border-radius: 4px;
+    }
+  }
 }

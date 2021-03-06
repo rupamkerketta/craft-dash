@@ -3,7 +3,7 @@
 
 .idb-files {
 	// border: 1px solid white;
-	overflow-y: auto;
+	overflow-y: hidden;
 	overflow-x: hidden;
 	position: absolute;
 	width: 20vw;
@@ -25,7 +25,8 @@
 		overflow-y: scroll;
 
 		padding-top: 30px;
-		padding-bottom: 30px;
+		padding-bottom: 130px;
+
 		.remote-file-wrapper {
 			position: relative;
 			// margin-left: 40px;
@@ -35,8 +36,7 @@
 			// background-color: white;
 			border-radius: 10px;
 			background-color: rgb(34, 34, 34);
-			border: 1px solid rgb(34, 34, 34);
-			border: 2px solid transparent;
+			border: 3px solid transparent;
 
 			.remote-file {
 				position: relative;
@@ -53,6 +53,12 @@
 					top: 50%;
 					left: 50%;
 					transform: translate(-50%, -50%);
+				}
+
+				.svg-preview {
+					border: 1px solid white;
+					position: absolute;
+					padding: 10px;
 				}
 			}
 
@@ -77,11 +83,15 @@
 				}
 			}
 
-			transition: 0.4s all ease;
+			// transition: 0.4s all ease;
 
 			&:hover {
 				border: 2px solid white;
 			}
+		}
+
+		.file-selected {
+			border: 3px solid white;
 		}
 	}
 
@@ -98,5 +108,41 @@
 		background-color: $craft-dash-green;
 		outline: 1px solid $craft-dash-green;
 		border-radius: 10px;
+	}
+
+	.add-files-idb {
+		position: absolute;
+		// border: 1px solid white;
+		width: 100%;
+		bottom: 0;
+		height: 70px;
+		background-color: $theme-color;
+
+		color: white;
+
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		background: linear-gradient(
+			103.23deg,
+			rgba(108, 134, 144, 0.1) 0%,
+			rgba(108, 134, 145, 0.04) 49.27%,
+			rgba(108, 134, 144, 0.06) 100%
+		);
+		backdrop-filter: blur(4px);
+
+		.add-file-btn {
+			cursor: pointer;
+			outline: none;
+			border: 0;
+			width: 210px;
+			height: 40px;
+			font-family: $theme-font;
+			font-size: 1em;
+			background-color: $craft-dash-green;
+			color: $theme-color;
+			border-radius: 4px;
+		}
 	}
 }

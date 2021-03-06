@@ -68,10 +68,10 @@ module.exports = {
 	getFilesInfo: async (req, res) => {
 		try {
 			const idea_board_id = req.body.idea_board_id
-			console.log(`[idea_board_id] ${idea_board_id}`)
+			// console.log(`[idea_board_id] ${idea_board_id}`)
 			const files = await File.find({ idea_board_id })
 
-			console.log(files)
+			// console.log(files)
 
 			if (!files) {
 				// NRF - No Records Found

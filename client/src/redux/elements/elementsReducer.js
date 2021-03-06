@@ -13,7 +13,9 @@ const initialState = [
 					<div className='img-wrapper' style={{ width: '400px' }}>
 						<img
 							style={{ width: '100%' }}
-							src='http://localhost:5000/api/cloud-storage/get-file/1614621965116.jpeg'
+							src={
+								'http://localhost:5000/api/cloud-storage/get-file/1614766057143.svg'
+							}
 							alt='123'
 						/>
 					</div>
@@ -27,6 +29,7 @@ const initialState = [
 			fontFamily: 'Poppins',
 			fontWeight: '400',
 			minWidth: '500px',
+			maxWidth: '800px',
 			maxHeight: '700px',
 			wordBreak: 'break-word'
 		},

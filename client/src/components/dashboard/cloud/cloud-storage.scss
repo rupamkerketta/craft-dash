@@ -454,10 +454,9 @@
     width: fit-content;
     margin: auto;
     margin-top: 20px;
-    p {
-      color: $label-color;
-      font-family: $theme-font;
-    }
+   img{
+     width: 250px;
+   }
   }
   .notes-field-wrapper {
     width: fit-content;

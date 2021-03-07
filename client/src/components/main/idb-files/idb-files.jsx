@@ -115,12 +115,12 @@ function IdbFiles({ room, idea_boards, addNode_Main }) {
 	return (
 		<div className='idb-files'>
 			{console.log(selectedFile)}
-			<div className='remote-files-wrapper'>
+			<div className='idb-remote-files-wrapper'>
 				{files_info.files_info
 					? files_info.files_info.map((file, index) => {
 							return (
 								<div
-									className={`remote-file-wrapper ${
+									className={`idb-remote-file-wrapper ${
 										selectedFile.file_name === file.file_name
 											? 'file-selected'
 											: ''
@@ -128,7 +128,7 @@ function IdbFiles({ room, idea_boards, addNode_Main }) {
 									key={file.file_name}
 									style={{ marginTop: index > 1 ? '80px' : '' }}>
 									<div
-										className='remote-file'
+										className='idb-remote-file'
 										onClick={() => fileSelectHandler(file)}
 										style={
 											file.file_type.split('/')[0] === 'image'

@@ -26,6 +26,8 @@ import ImageIcon from "../../../img/image-icon.svg";
 import SvgIcon from "../../../img/svg-icon.svg";
 import PdfIcon from "../../../img/pdf-icon.svg";
 
+import CraftDashNotes from "../../../img/CraftDashNotesLogo.png";
+
 const thumbsContainer = {
   display: "flex",
   flexDirection: "row",
@@ -76,6 +78,7 @@ function CloudStorage({ match, idea_boards }) {
   // const [isUploading, setIsUploading] = useState(false);
 
   const [showButtons, setButtonVisibility] = useState(false);
+  const [showNotesModal, setNotesModalVisibility] = useState(false);
   const [showFilesModal, setFilesModalVisibility] = useState(false);
 
   const handleImageModal = () => {
@@ -272,6 +275,19 @@ function CloudStorage({ match, idea_boards }) {
           : ""}
       </div>
       <Rodal
+        visible={showNotesModal}
+        animation="fade"
+        width={800}
+        height={700}
+        onClose={() => setNotesModalVisibility(false)}
+        className="rodal-cloud-bg"
+        customStyles={customStyles.wrapper}
+      >
+        <div className="notes-header">
+          <img src={CraftDashNotes} />
+        </div>
+      </Rodal>
+      <Rodal
         visible={showFilesModal}
         animation="fade"
         width={1000}
@@ -289,19 +305,6 @@ function CloudStorage({ match, idea_boards }) {
         </div>
 
         <div className="files-field-wrapper">
-          {/* <div className='label-row-1'>
-						<p>Upload Your Files Here</p>
-					</div>
-					<div className='upload-button'>
-          <span>
-              <input type="file" id="browse-file" />
-              <img src={FileAddIcon} alt="" />
-              <label for="browse-file">Browse Files</label>
-            </span>
-					</div>
-					<div className='label-row-2'>
-						<p>All documents and images are supported</p>
-					</div> */}
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
             <p className="label-row-1">
@@ -330,6 +333,7 @@ function CloudStorage({ match, idea_boards }) {
                 : "scale(0) rotate(-180deg)",
               transition: "0.5s ease-in-out",
             }}
+            onClick={() => setNotesModalVisibility(true)}
           >
             <img src={NotesButton} alt="Add Notes" title="Add Notes" />
           </div>

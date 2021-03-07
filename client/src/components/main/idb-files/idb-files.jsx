@@ -27,7 +27,7 @@ const style = (url) => {
 	}
 }
 
-function IdbFiles({ room, idea_boards, addNode_Main }) {
+function IdbFiles({ selectedFileHandler, room, idea_boards, addNode_Main }) {
 	const [files_info, setFilesInfo] = useState([])
 
 	const [selectedFile, setSelectedFile] = useState({
@@ -64,6 +64,7 @@ function IdbFiles({ room, idea_boards, addNode_Main }) {
 							file_name={selectedFile.file_name}
 							file_type={selectedFile.file_type}
 							original_file_name={selectedFile.original_file_name}
+							selectedFileHandler={selectedFileHandler}
 						/>
 					</>
 				)
@@ -73,9 +74,8 @@ function IdbFiles({ room, idea_boards, addNode_Main }) {
 				padding: '0',
 				boxSizing: 'border-box',
 				backgroundColor: '#ffffff',
-				width: 'fit-content',
+				width: '300px',
 				height: '170px',
-				overflow: 'hidden',
 				borderRadius: '7px'
 			},
 			position: {

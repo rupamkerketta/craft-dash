@@ -1,0 +1,2 @@
+export const VIEW_FILE_INFO = 'VIEW_FILE_INFO'
+export const HIDE_FILE_INFO = 'HIDE_FILE_INFO'

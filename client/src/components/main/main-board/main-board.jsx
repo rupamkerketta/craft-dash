@@ -3,6 +3,18 @@ import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
 import { v4 as uuid4 } from 'uuid'
 
+// Server (url)
+import { server } from '../../../utils/api'
+
+// Rodal
+import Rodal from 'rodal'
+
+// Redux Dispatches
+import {
+	hideFileInfo,
+	viewFileInfo
+} from '../../../redux/view-file/viewFilesActions'
+
 // Pointer - 1
 import Pointer1 from '../../../img/pointer-1.png'
 import Pointer2 from '../../../img/pointer-2.png'
@@ -26,13 +38,12 @@ import * as ELEMENTS from '../../../redux/elements/elementsActions'
 // Focus - Elements
 import * as FOCUS from '../../../redux/elements/focus-elements/focusElementsActions'
 import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions'
-import { color } from 'd3'
 
 const MainBoard = ({
 	room,
 	socket,
 	user,
-	data,
+	viewFile,
 	addNewUserRoom,
 	removeUserRoom,
 	addUsersRoom,
@@ -46,7 +57,8 @@ const MainBoard = ({
 	updatePos_Main,
 	onConnectSend_Main,
 	onConnectReceive_Main,
-	deSelectAll_Main
+	deSelectAll_Main,
+	hideFileInfo
 }) => {
 	// Label for the Node
 	const [name, setName] = useState('')
@@ -298,9 +310,17 @@ const MainBoard = ({
 		console.log('onPaneClick', event)
 	}
 
+	const customStyles = {
+		wrapper: {
+			backgroundColor: '#1F2023',
+			borderRadius: '5px'
+		}
+	}
+
 	return (
 		<div className='main-board'>
 			{console.log(JSON.stringify(color_codes.current))}
+
 			<ReactFlow
 				className='react-flow-main'
 				onMouseMove={onMouseMove}
@@ -311,13 +331,23 @@ const MainBoard = ({
 				onPaneClick={onPaneClick}
 				onConnect={onConnect}
 				onConnectEnd={onConnectEnd}
-				onLoad={onLoad}
 				onSelectionChange={onSelectionChange}
 				connectionLineStyle={{ stroke: '#ddd', strokeWidth: 3 }}
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={false}>
 				<Background color='#888' gap={50} variant='dots' />
+
+				<Rodal
+					className='rodal-bg-blur'
+					visible={viewFile.viewFile}
+					onClose={() => hideFileInfo()}
+					animation='fade'
+					width={900}
+					height={700}
+					customStyles={customStyles.wrapper}>
+					<ViewFileInfoModal file_name={viewFile.file_name}></ViewFileInfoModal>
+				</Rodal>
 
 				{/* {console.log(pos_updates)} */}
 
@@ -392,11 +422,12 @@ const mapStateToProps = (state) => {
 		elements: state.elements,
 		focus_element: state.focus.focus_element,
 		data: state.idea_boards.boards.data,
-		user: state.user
+		user: state.user,
+		viewFile: state.viewFile
 	}
 }
 
-const dispatches = {
+const mapDispatchToProps = {
 	addNewUserRoom,
 	removeUserRoom,
 	addUsersRoom,
@@ -409,7 +440,16 @@ const dispatches = {
 	setFocusElement_Main: (data) => FOCUS.setFocusElement_Main(data),
 	removeElements_Main: (data) => ELEMENTS.removeElements_Main(data),
 	setFocusText_Main: (data) => FOCUS_TEXT.setFocusText_Main(data),
-	deSelectAll_Main: FOCUS.deSelectAll_Main
+	deSelectAll_Main: FOCUS.deSelectAll_Main,
+	hideFileInfo
 }
 
-export default connect(mapStateToProps, { ...dispatches })(MainBoard)
+const ViewFileInfoModal = (props) => {
+	return (
+		<div className='view-file-info-modal'>
+			<div className='file-preview'></div>
+		</div>
+	)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainBoard)

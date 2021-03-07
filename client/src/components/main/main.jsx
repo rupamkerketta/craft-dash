@@ -1,4 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react'
+
+// Styles
 import './main.scss'
 
 // Components
@@ -17,7 +19,7 @@ import MessagingIcon from '../../img/messaging-icon.svg'
 import EditTool from '../../img/edit-tool.svg'
 import FilesFolderIcon from '../../img/folder-icon.svg'
 
-function Main({ match }) {
+function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 	const [socket, setSocket] = useState(null)
 
 	const [sidebar_focus, set_sidebar_focus] = useState({

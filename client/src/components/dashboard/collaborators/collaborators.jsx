@@ -99,7 +99,7 @@ function Collaborators({
 										<LoadingSpinner color='#0087cc' />
 									) : (
 										<button type='submit'>
-											<span>Check & Add</span>
+											<span>CHECK & ADD</span>
 										</button>
 									)}
 								</div>

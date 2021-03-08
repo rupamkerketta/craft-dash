@@ -21,13 +21,13 @@
   }
   .logout-button {
     background-color: $craft-dash-pink;
-    border: 1px solid $craft-dash-pink;
+    border: 2px solid $craft-dash-pink;
     width: 121px;
     height: 40px;
     color: $theme-color;
     padding-top: 5px;
     font-family: $theme-font;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
     padding-right: 20px;
@@ -35,7 +35,7 @@
     outline: none;
   }
   .logout-button:hover {
-    border: 3px solid $craft-dash-pink;
+    border: 2px solid $craft-dash-pink;
     background-color: rgba(255, 45, 146, 0.2);
     color: $craft-dash-pink;
     // font-weight: 800;

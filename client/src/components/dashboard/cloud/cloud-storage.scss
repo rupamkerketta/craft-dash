@@ -437,7 +437,8 @@
         padding-right: 10px;
         border-radius: 5px;
         font-weight: 500;
-        background-color: rgba(63, 222, 156, 0.8);
+        background-color: rgba(63, 222, 156, 1);
+        border: 1PX solid $craft-dash-green;
         font-family: $theme-font;
         color: $theme-color;
         cursor: pointer;
@@ -445,6 +446,7 @@
       .upload-button:hover {
         background-color: rgba(63, 222, 156, 0.5);
         color: rgba(63, 222, 156, 0.8);
+        border: 1px solid $craft-dash-green;
       }
     }
   }

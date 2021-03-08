@@ -314,7 +314,7 @@ function CloudStorage({ match, idea_boards }) {
           </div>
           <div className="upload-button-wrapper">
             <button className="upload-button" onClick={imgSubmit}>
-              Upload
+              UPLOAD
             </button>
           </div>
           <div className="label-row-2">

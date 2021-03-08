@@ -172,14 +172,21 @@
     .add-file-btn {
       cursor: pointer;
       outline: none;
-      border: 0;
+      border: 1px solid $craft-dash-green;
       width: 210px;
       height: 40px;
       font-family: $theme-font;
       font-size: 1em;
       background-color: $craft-dash-green;
+      font-weight: 600;
       color: $theme-color;
       border-radius: 4px;
+      &:hover {
+        background-color: rgba(63, 222, 156, 0.5);
+        border: 1px solid $craft-dash-green;
+        color: $craft-dash-green;
+        font-weight: 600;
+      }
     }
   }
 }

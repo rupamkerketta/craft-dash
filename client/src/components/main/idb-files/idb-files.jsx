@@ -185,7 +185,7 @@ function IdbFiles({ selectedFileHandler, room, idea_boards, addNode_Main }) {
 
 			<div className='add-files-idb'>
 				<button className='add-file-btn' onClick={addNode}>
-					Add File
+					ADD FILE
 				</button>
 			</div>
 		</div>

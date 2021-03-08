@@ -189,7 +189,7 @@ const Edit = ({
 				</div>
 
 				<div className='edit-remove-btn'>
-					<button onClick={removeHandler}>Remove</button>
+					<button onClick={removeHandler}>REMOVE</button>
 				</div>
 			</div>
 		</div>

@@ -107,12 +107,12 @@
           font-family: $theme-font;
           font-size: 1em;
           font-weight: 500;
-          background-color: $login-btn-color;
+          background-color: $craft-dash-green;
           color: $theme-color;
           padding: 6px;
           padding-top: 8px;
           padding-bottom: 8px;
-          border: 3px solid $login-btn-color;
+          border: 2px solid $craft-dash-green;
           border-radius: 5px;
           cursor: pointer;
           outline: none;
@@ -121,11 +121,11 @@
         }
 
         button:hover {
-          color: $theme-color;
+          color: $craft-dash-green;
           font-weight: 500;
-          background-color: rgba(63, 222, 156, 0.6);
+          background-color: rgba(63, 222, 156, 0.2);
           backdrop-filter: blur(10px);
-          border: 3px solid $login-btn-color;
+          border: 2px solid $craft-dash-green;
           border-radius: 5px;
         }
       }

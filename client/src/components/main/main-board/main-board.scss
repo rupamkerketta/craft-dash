@@ -56,8 +56,13 @@
   }
 
   .main-controls-plugin {
+    width: fit-content;
+    // border: 1px solid red;
     transform: scale(1.5);
     margin-bottom: 30px;
+    position: absolute;
+    left: 1000px;
+    bottom: 20px;
   }
 
   .main-node-controls {

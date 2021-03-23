@@ -14,6 +14,7 @@ import sideBarReducer from './sidebar/sideBarReducer'
 import focusTextReducer from './elements/focus-text/focusTextReducer'
 import videoReducer from './video/videoReducer'
 import viewFileReducer from './view-file/viewFilesReducer'
+import voiceNoteReducer from './voice-note/voiceNoteReducer'
 
 const rootReducer = combineReducers({
 	auth: loginReducer,
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
 	sidebar_focus: sideBarReducer,
 	focus_text: focusTextReducer,
 	video: videoReducer,
-	viewFile: viewFileReducer
+	viewFile: viewFileReducer,
+	voiceNote: voiceNoteReducer
 })
 
 export default rootReducer

@@ -246,10 +246,19 @@
       padding-right: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
-      color: $theme-color;
-      background-color: $craft-dash-green;
+      color: $label-color;
       border-radius: 5px;
-      border: 2px solid $craft-dash-green;
+      border-top: 2px solid $craft-dash-pink;
+      border-left: 2px solid $craft-dash-blue;
+      border-right: 2px solid $craft-dash-green;
+      border-bottom: 2px solid $craft-dash-purple;
+      background: linear-gradient(
+        103.23deg,
+        rgba(108, 134, 144, 0.1) 0%,
+        rgba(108, 134, 145, 0.04) 49.27%,
+        rgba(108, 134, 144, 0.06) 100%
+      );
+      backdrop-filter: blur(50px);
       transition: 0.1s ease-in-out;
     }
   }

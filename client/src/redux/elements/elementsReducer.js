@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
 		case TYPE.UPDATE_POS:
 			for (let i = 0; i < state.length; i++) {
 				if (state[i].id === action.payload.id) {
-					state[i] = action.payload
+					state[i].position = action.payload.position
 					break
 				}
 			}

@@ -27,7 +27,13 @@ const style = (url) => {
 	}
 }
 
-function IdbFiles({ selectedFileHandler, room, idea_boards, addNode_Main }) {
+function IdbFiles({
+	socket,
+	selectedFileHandler,
+	room,
+	idea_boards,
+	addNode_Main
+}) {
 	const [files_info, setFilesInfo] = useState([])
 
 	const [selectedFile, setSelectedFile] = useState({
@@ -64,7 +70,7 @@ function IdbFiles({ selectedFileHandler, room, idea_boards, addNode_Main }) {
 							file_name={selectedFile.file_name}
 							file_type={selectedFile.file_type}
 							original_file_name={selectedFile.original_file_name}
-							selectedFileHandler={selectedFileHandler}
+							// selectedFileHandler={selectedFileHandler}
 						/>
 					</>
 				)
@@ -85,6 +91,20 @@ function IdbFiles({ selectedFileHandler, room, idea_boards, addNode_Main }) {
 		}
 
 		addNode_Main(node)
+
+		const modified_node = { ...node, data: { label: '' } }
+		const file_info = {
+			file_name: selectedFile.file_name,
+			file_type: selectedFile.file_type,
+			original_file_name: selectedFile.original_file_name
+		}
+
+		// Broadcast this to others 🤘
+		socket.emit('broadcast-node-file-added', {
+			room,
+			node: modified_node,
+			file_info
+		})
 	}
 
 	useEffect(() => {

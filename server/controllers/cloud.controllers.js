@@ -20,6 +20,7 @@ module.exports = {
 			let obj_length = Object.keys(req.files).length
 
 			Object.keys(req.files).forEach((file) => {
+				console.log(req.files[file])
 				// Extracting the file extension
 				// file_extension = req.files[file].mimetype.split('/')[1]
 
@@ -80,6 +81,11 @@ module.exports = {
 			}
 
 			const files_info = files.map((file) => {
+				// const [meta_data] = await cloud_bucket
+				// 	.file(file.file_name)
+				// 	.getMetadata()
+
+				// console.log(meta_data)
 				return {
 					original_file_name: file.original_file_name,
 					file_name: file.file_name,
@@ -97,9 +103,9 @@ module.exports = {
 	getFile: async (req, res) => {
 		try {
 			const file_name = req.params.id
-			const remoteFile = cloud_bucket.file(file_name)
+			const remote_file = cloud_bucket.file(file_name)
 
-			remoteFile
+			remote_file
 				.createReadStream()
 				.on('error', function (err) {})
 				.on('response', function (response) {

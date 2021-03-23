@@ -10,6 +10,20 @@ const nodes = (socket) => {
 		}
 	})
 
+	// Listen for node changes (file - nodes)
+	socket.on('broadcast-node-file-added', (data) => {
+		try {
+			socket.broadcast
+				.to(data.room)
+				.emit('new-node-file-broadcast', {
+					node: data.node,
+					file_info: data.file_info
+				})
+		} catch (e) {
+			console.log(e)
+		}
+	})
+
 	// Position Update
 	socket.on('broadcast-node-pos', (data) => {
 		try {

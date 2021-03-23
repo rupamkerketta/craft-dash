@@ -51,7 +51,8 @@ module.exports = {
 				message: 'Logged-In Successfully'
 			})
 		} catch (e) {
-			res.status(400).send()
+			console.log(e)
+			res.status(400).send(e)
 		}
 	},
 

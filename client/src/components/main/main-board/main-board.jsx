@@ -3,8 +3,7 @@ import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
 import { v4 as uuid4 } from 'uuid'
 
-// Server (url)
-import { server } from '../../../utils/api'
+import { ReactMediaRecorder } from 'react-media-recorder'
 
 // Rodal
 import Rodal from 'rodal'
@@ -14,6 +13,9 @@ import { hideFileInfo } from '../../../redux/view-file/viewFilesActions'
 
 // My-File-Node
 import MyFileNode from '../idb-files/my-file-node/my-file-node'
+
+// Recording Icon
+import Recording from '../../../img/recording.svg'
 
 // Pointer - 1
 import Pointer1 from '../../../img/pointer-1.png'
@@ -31,6 +33,10 @@ import ReactFlow, {
 
 import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
 import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
+import {
+	viewVNModal,
+	hideVNModal
+} from '../../../redux/voice-note/voiceNoteActions'
 
 // Elements
 import * as ELEMENTS from '../../../redux/elements/elementsActions'
@@ -44,6 +50,9 @@ const MainBoard = ({
 	socket,
 	user,
 	viewFile,
+	show_vn_modal,
+	viewVNModal,
+	hideVNModal,
 	addNewUserRoom,
 	removeUserRoom,
 	addUsersRoom,
@@ -144,15 +153,7 @@ const MainBoard = ({
 					)
 				}
 			}
-			// data.node.data.label = (
-			// 	<>
-			// 		<MyFileNode
-			// 			file_name={data.file_info.file_name}
-			// 			file_type={data.file_info.file_type}
-			// 			original_file_name={data.file_info.original_file_name}
-			// 		/>
-			// 	</>
-			// )
+
 			addNodeBroadcast(node)
 		})
 
@@ -353,8 +354,6 @@ const MainBoard = ({
 
 	return (
 		<div className='main-board'>
-			{console.log(JSON.stringify(color_codes.current))}
-
 			<ReactFlow
 				className='react-flow-main'
 				onMouseMove={onMouseMove}
@@ -383,7 +382,33 @@ const MainBoard = ({
 					<ViewFileInfoModal file_name={viewFile.file_name}></ViewFileInfoModal>
 				</Rodal>
 
-				{/* {console.log(pos_updates)} */}
+				<Rodal
+					className='main-rodal-bg-blur'
+					visible={show_vn_modal}
+					onClose={() => hideVNModal()}
+					animation='fade'
+					width={900}
+					height={600}
+					customStyles={customStyles.wrapper}>
+					<div>
+						<ReactMediaRecorder
+							audio
+							render={({
+								status,
+								startRecording,
+								stopRecording,
+								mediaBlobUrl
+							}) => (
+								<div>
+									<p style={{ color: 'white' }}>{status}</p>
+									<button onClick={startRecording}>Start Recording</button>
+									<button onClick={stopRecording}>Stop Recording</button>
+									<audio src={mediaBlobUrl} controls autoplay />
+								</div>
+							)}
+						/>
+					</div>
+				</Rodal>
 
 				{pos_updates
 					? pos_updates.map((item, index) => {
@@ -407,7 +432,6 @@ const MainBoard = ({
 										alt={`${item.email}`}
 										className='peer-pointer'
 									/>
-									{/* <h2 className='peer-email'>{item.email}</h2> */}
 									<h2 className='peer-email' style={{ backgroundColor: color }}>
 										{item.username}
 									</h2>
@@ -446,6 +470,12 @@ const MainBoard = ({
 				<button className='add-node' type='button' onClick={addNode}>
 					Add
 				</button>
+				<img
+					className='voice-note'
+					src={Recording}
+					alt='Voice Note'
+					onClick={() => viewVNModal()}
+				/>
 			</div>
 		</div>
 	)
@@ -457,7 +487,8 @@ const mapStateToProps = (state) => {
 		focus_element: state.focus.focus_element,
 		data: state.idea_boards.boards.data,
 		user: state.user,
-		viewFile: state.viewFile
+		viewFile: state.viewFile,
+		show_vn_modal: state.voiceNote.show_vn_modal
 	}
 }
 
@@ -466,6 +497,8 @@ const mapDispatchToProps = {
 	removeUserRoom,
 	addUsersRoom,
 	setIdRoom,
+	viewVNModal,
+	hideVNModal,
 	addNode_Main: (data) => ELEMENTS.addNode_Main(data),
 	addNodeBroadcast_Main: (data) => ELEMENTS.addNodeBroadcast_Main(data),
 	updatePos_Main: (data) => ELEMENTS.updatePos_Main(data),
@@ -499,7 +532,6 @@ const ViewFileInfoModal = (props) => {
 				<div className='file-info-modal-buttons'>
 					<div className='download-button'>
 						<div className='download-button-content'>
-							<img />
 							<p>DOWNLOAD</p>
 						</div>
 					</div>

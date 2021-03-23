@@ -15,12 +15,12 @@ import './cloud-storage.scss'
 import AddFilesButton from '../../../img/AddFilesButton.png'
 
 import FilesButton from '../../../img/Files.png'
-import AudioButton from '../../../img/Audio.png'
+// import AudioButton from '../../../img/Audio.png'
 import NotesButton from '../../../img/Notes.png'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
-import FileAddIcon from '../../../img/folder-add.png'
+// import FileAddIcon from '../../../img/folder-add.png'
 
 import ImageIcon from '../../../img/image-icon.svg'
 import SvgIcon from '../../../img/svg-icon.svg'
@@ -40,12 +40,9 @@ const thumbsContainer = {
 const thumb = {
 	display: 'inline-flex',
 	borderRadius: 10,
-	//   border: "1px solid #eaeaea",
 	width: 'fit-content',
 	margin: 'auto',
 	marginBottom: 8,
-	//   marginRight: 8,
-	width: 150,
 	height: 150,
 	padding: 5,
 	boxSizing: 'border-box'
@@ -88,6 +85,7 @@ function CloudStorage({ match, idea_boards }) {
 	const [ideaBoardId, setIdeaBoardId] = useState('')
 	const [ideaBoardName, setIdeaBoardName] = useState('')
 
+	// DropZone
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop: (acceptedFiles) => {
 			setFiles(
@@ -113,7 +111,7 @@ function CloudStorage({ match, idea_boards }) {
 		setIdeaBoardId(match.params.id)
 
 		const idb = idea_boards.find(
-			(idea_board) => idea_board._id == match.params.id
+			(idea_board) => idea_board._id === match.params.id
 		)
 
 		setIdeaBoardName(idb.idea_board_name)
@@ -280,7 +278,7 @@ function CloudStorage({ match, idea_boards }) {
 				className='rodal-cloud-bg'
 				customStyles={customStyles.wrapper}>
 				<div className='notes-header'>
-					<img src={CraftDashNotes} />
+					<img src={CraftDashNotes} alt='Craft Dash Notes' />
 				</div>
 			</Rodal>
 			<Rodal
@@ -321,7 +319,6 @@ function CloudStorage({ match, idea_boards }) {
 				<div className='add-button-base'>
 					<div
 						className='notes-button'
-						// style={{ opacity: 0 }}
 						style={{
 							transform: showButtons
 								? 'scale(1) rotate(0deg)'

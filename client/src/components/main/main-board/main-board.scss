@@ -1,324 +1,333 @@
-@import "../../../sass/utils/colors";
-@import "../../../sass/utils/fonts";
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
 
 .main-board {
-  background: linear-gradient(
-    179.33deg,
-    #121317 0.6%,
-    #121317 7.19%,
-    #121318 13.79%,
-    #121318 20.38%,
-    #111319 26.97%,
-    #11141b 33.56%,
-    #11141c 40.15%,
-    #10141e 46.74%,
-    #10151f 53.33%,
-    #0f1521 59.92%,
-    #0f1523 66.51%,
-    #0f1624 73.1%,
-    #0f1625 79.69%,
-    #0e1626 86.28%,
-    #0e1626 92.87%,
-    #0e1626 99.46%
-  );
-  position: absolute;
-  top: 7vh;
-  left: 0;
-  width: 80vw;
-  height: 93vh;
+	background: linear-gradient(
+		179.33deg,
+		#121317 0.6%,
+		#121317 7.19%,
+		#121318 13.79%,
+		#121318 20.38%,
+		#111319 26.97%,
+		#11141b 33.56%,
+		#11141c 40.15%,
+		#10141e 46.74%,
+		#10151f 53.33%,
+		#0f1521 59.92%,
+		#0f1523 66.51%,
+		#0f1624 73.1%,
+		#0f1625 79.69%,
+		#0e1626 86.28%,
+		#0e1626 92.87%,
+		#0e1626 99.46%
+	);
+	position: absolute;
+	top: 7vh;
+	left: 0;
+	width: 80vw;
+	height: 93vh;
 
-  overflow: hidden;
+	overflow: hidden;
 
-  .react-flow-main {
-    .circle-pointer {
-      border: 2px solid white;
-      width: 10px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: white;
-      position: absolute;
-    }
-    // border: 1px solid white;
-  }
+	.react-flow-main {
+		.circle-pointer {
+			border: 2px solid white;
+			width: 10px;
+			height: 10px;
+			border-radius: 10px;
+			background-color: white;
+			position: absolute;
+		}
+		// border: 1px solid white;
+	}
 
-  background-color: $main-board-color;
+	background-color: $main-board-color;
 
-  .circle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-  }
+	.circle {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: red;
+	}
 
-  .mini-map {
-    opacity: 0.4;
-    transform: scale(0.8);
-  }
+	.mini-map {
+		opacity: 0.4;
+		transform: scale(0.8);
+	}
 
-  .main-controls-plugin {
-    transform: scale(1.5);
-    margin-bottom: 30px;
-  }
+	.main-controls-plugin {
+		transform: scale(1.5);
+		margin-bottom: 30px;
+	}
 
-  .main-node-controls {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    transform: translateX(-50%);
-    z-index: 99;
+	.main-node-controls {
+		position: absolute;
+		bottom: 5px;
+		left: 50%;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		transform: translateX(-50%);
+		z-index: 99;
 
-    .node-text-input {
-      margin-bottom: 10px;
-      border: 0;
-      border: 2px solid $charcoal;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      padding-left: 4px;
-      padding-right: 4px;
-      width: 300px;
-      font-family: $theme-font;
-      font-size: 1em;
-      border-radius: 3px;
-      margin-left: 35px;
-      outline: none;
-      color: white;
-      background-color: $theme-color;
-    }
+		.node-text-input {
+			margin-bottom: 10px;
+			border: 0;
+			border: 2px solid $charcoal;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 4px;
+			padding-right: 4px;
+			width: 300px;
+			font-family: $theme-font;
+			font-size: 1em;
+			border-radius: 3px;
+			margin-left: 35px;
+			outline: none;
+			color: white;
+			background-color: $theme-color;
+		}
 
-    .add-node {
-      margin-left: 20px;
-      margin-bottom: 10px;
-      border: 0;
-      font-family: $theme-font;
-      font-size: 1em;
-      font-weight: 800;
-      width: 100px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: $theme-color;
-      background-color: $login-btn-color;
-    }
-  }
+		.add-node {
+			margin-left: 20px;
+			margin-bottom: 10px;
+			border: 0;
+			font-family: $theme-font;
+			font-size: 1em;
+			font-weight: 800;
+			width: 100px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+			color: $theme-color;
+			background-color: $login-btn-color;
+		}
+
+		.voice-note {
+			// border: 1px solid white;
+			height: 100%;
+			width: 40px;
+			margin-bottom: 10px;
+			margin-left: 20px;
+			cursor: pointer;
+		}
+	}
 }
 
 .peer-pointer {
-  width: fit-content;
-  img {
-    width: 20px;
-  }
+	width: fit-content;
+	img {
+		width: 20px;
+	}
 
-  .peer-email {
-    // border: 1px solid white;
-    margin: auto;
-    margin-left: 15px;
-    font-family: $theme-font;
-    border-radius: 5px;
-    font-size: 0.6em;
-    padding: 5px;
-    font-weight: 500;
-    color: $label-color;
-    width: fit-content;
-    color: $theme-color;
-    font-weight: 600;
-  }
+	.peer-email {
+		// border: 1px solid white;
+		margin: auto;
+		margin-left: 15px;
+		font-family: $theme-font;
+		border-radius: 5px;
+		font-size: 0.6em;
+		padding: 5px;
+		font-weight: 500;
+		color: $label-color;
+		width: fit-content;
+		color: $theme-color;
+		font-weight: 600;
+	}
 }
 
 .main-rodal-bg-blur {
-  background: linear-gradient(
-    103.23deg,
-    rgba(108, 134, 144, 0.1) 0%,
-    rgba(108, 134, 145, 0.04) 49.27%,
-    rgba(108, 134, 144, 0.06) 100%
-  );
-  backdrop-filter: blur(10px);
+	background: linear-gradient(
+		103.23deg,
+		rgba(108, 134, 144, 0.1) 0%,
+		rgba(108, 134, 145, 0.04) 49.27%,
+		rgba(108, 134, 144, 0.06) 100%
+	);
+	backdrop-filter: blur(10px);
 }
 
 .view-file-info-modal {
-  .file-preview {
-    background-color: $gunmetal;
-    width: 600px;
-    position: absolute;
-    left: 15px;
-    height: 500px;
-    top: 60px;
-    border: 2px solid $charcoal;
-    border-radius: 10px;
-    // bottom: 100px;
+	.file-preview {
+		background-color: $gunmetal;
+		width: 600px;
+		position: absolute;
+		left: 15px;
+		height: 500px;
+		top: 60px;
+		border: 2px solid $charcoal;
+		border-radius: 10px;
+		// bottom: 100px;
 
-    p {
-      width: fit-content;
-      margin: auto;
-      color: gray;
-    }
-  }
-  .file-modal-details-wrapper {
-    width: fit-content;
-    margin: auto;
-    position: absolute;
-    width: 250px;
-    top: 65px;
-    height: 495px;
-    right: 15px;
-    // border: 1px solid white;
+		p {
+			width: fit-content;
+			margin: auto;
+			color: gray;
+		}
+	}
+	.file-modal-details-wrapper {
+		width: fit-content;
+		margin: auto;
+		position: absolute;
+		width: 250px;
+		top: 65px;
+		height: 495px;
+		right: 15px;
+		// border: 1px solid white;
 
-    .file-name-modal {
-      position: absolute;
-      width: fit-content;
-      margin: auto;
-      width: 250px;
-      padding: 10px;
-      align-items: center;
-      background: linear-gradient(
-        96.2deg,
-        rgba(228, 228, 228, 0.22) 0%,
-        rgba(227, 228, 228, 0.22) 6.67%,
-        rgba(222, 228, 228, 0.22) 13.33%,
-        rgba(214, 228, 228, 0.22) 20%,
-        rgba(202, 227, 228, 0.22) 26.67%,
-        rgba(186, 226, 228, 0.22) 33.33%,
-        rgba(168, 225, 228, 0.22) 40%,
-        rgba(148, 224, 228, 0.22) 46.67%,
-        rgba(127, 223, 228, 0.22) 53.33%,
-        rgba(107, 221, 228, 0.22) 60%,
-        rgba(89, 220, 228, 0.22) 66.67%,
-        rgba(74, 220, 228, 0.22) 73.33%,
-        rgba(62, 219, 228, 0.22) 80%,
-        rgba(53, 218, 228, 0.22) 86.67%,
-        rgba(49, 218, 228, 0.22) 93.33%,
-        rgba(47, 218, 228, 0.22) 100%
-      );
-      border-radius: 5px;
-      backdrop-filter: blur(50px);
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      p {
-        margin: auto;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: $label-color;
-        font-family: $theme-font;
-        font-weight: 200;
-      }
-    }
-    .file-info-details {
-      width: 250px;
-      margin-top: 150px;
-      border: 1px solid $charcoal;
-      border-radius: 5px;
-      background-color: $gunmetal;
-      height: 150px;
-      .details-wrapper {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        p {
-          align-items: center;
-          text-align: center;
-          font-family: $theme-font;
-          font-weight: 200;
-          color: $label-color;
-          font-size: 0.8em;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin-bottom: 20px;
-        }
-      }
-    }
-    .file-info-modal-buttons {
-      margin-top: 100px;
-      .download-button {
-        width: fit-content;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        background-color: $craft-dash-green;
-        border: 1px solid $craft-dash-green;
-        width: 250px;
-        height: 40px;
-        border-radius: 5px;
-        .download-button-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: fit-content;
-          margin: auto;
-          img {
-            content: url("../../../img/download-button-icon.svg");
-            width: 20px;
-            margin-right: 10px;
-          }
-          p {
-            cursor: pointer;
-            font-family: $theme-font;
-            color: $theme-color;
-            font-weight: 700;
-            font-size: 1em;
-          }
-        }
-        &:hover {
-          background-color: rgba(63, 222, 156, 0.4);
-          border: 1px solid $craft-dash-green;
-          img {
-            content: url("../../../img/download-button-icon-hover.svg");
-            width: 20px;
-            margin-right: 10px;
-          }
-          p {
-            cursor: pointer;
-            font-family: $theme-font;
-            color: $craft-dash-green;
-            font-weight: 700;
-            font-size: 1em;
-          }
-        }
-      }
-      .remove-node-button {
-        width: fit-content;
-        margin: auto;
-        display: flex;
-        margin-top: 10px;
-        align-items: center;
-        background-color: $craft-dash-red;
-        border: 1px solid $craft-dash-red;
-        width: 250px;
-        height: 40px;
-        border-radius: 5px;
-        .remove-node-button-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: fit-content;
-          margin: auto;
+		.file-name-modal {
+			position: absolute;
+			width: fit-content;
+			margin: auto;
+			width: 250px;
+			padding: 10px;
+			align-items: center;
+			background: linear-gradient(
+				96.2deg,
+				rgba(228, 228, 228, 0.22) 0%,
+				rgba(227, 228, 228, 0.22) 6.67%,
+				rgba(222, 228, 228, 0.22) 13.33%,
+				rgba(214, 228, 228, 0.22) 20%,
+				rgba(202, 227, 228, 0.22) 26.67%,
+				rgba(186, 226, 228, 0.22) 33.33%,
+				rgba(168, 225, 228, 0.22) 40%,
+				rgba(148, 224, 228, 0.22) 46.67%,
+				rgba(127, 223, 228, 0.22) 53.33%,
+				rgba(107, 221, 228, 0.22) 60%,
+				rgba(89, 220, 228, 0.22) 66.67%,
+				rgba(74, 220, 228, 0.22) 73.33%,
+				rgba(62, 219, 228, 0.22) 80%,
+				rgba(53, 218, 228, 0.22) 86.67%,
+				rgba(49, 218, 228, 0.22) 93.33%,
+				rgba(47, 218, 228, 0.22) 100%
+			);
+			border-radius: 5px;
+			backdrop-filter: blur(50px);
+			border-left: 1px solid rgba(255, 255, 255, 0.2);
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			border-right: 1px solid rgba(255, 255, 255, 0.2);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+			p {
+				margin: auto;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: $label-color;
+				font-family: $theme-font;
+				font-weight: 200;
+			}
+		}
+		.file-info-details {
+			width: 250px;
+			margin-top: 150px;
+			border: 1px solid $charcoal;
+			border-radius: 5px;
+			background-color: $gunmetal;
+			height: 150px;
+			.details-wrapper {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				p {
+					align-items: center;
+					text-align: center;
+					font-family: $theme-font;
+					font-weight: 200;
+					color: $label-color;
+					font-size: 0.8em;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					margin-bottom: 20px;
+				}
+			}
+		}
+		.file-info-modal-buttons {
+			margin-top: 100px;
+			.download-button {
+				width: fit-content;
+				margin: auto;
+				display: flex;
+				align-items: center;
+				background-color: $craft-dash-green;
+				border: 1px solid $craft-dash-green;
+				width: 250px;
+				height: 40px;
+				border-radius: 5px;
+				.download-button-content {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: fit-content;
+					margin: auto;
+					img {
+						content: url('../../../img/download-button-icon.svg');
+						width: 20px;
+						margin-right: 10px;
+					}
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $theme-color;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+				&:hover {
+					background-color: rgba(63, 222, 156, 0.4);
+					border: 1px solid $craft-dash-green;
+					img {
+						content: url('../../../img/download-button-icon-hover.svg');
+						width: 20px;
+						margin-right: 10px;
+					}
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $craft-dash-green;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+			}
+			.remove-node-button {
+				width: fit-content;
+				margin: auto;
+				display: flex;
+				margin-top: 10px;
+				align-items: center;
+				background-color: $craft-dash-red;
+				border: 1px solid $craft-dash-red;
+				width: 250px;
+				height: 40px;
+				border-radius: 5px;
+				.remove-node-button-content {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: fit-content;
+					margin: auto;
 
-          p {
-            cursor: pointer;
-            font-family: $theme-font;
-            color: $theme-color;
-            font-weight: 700;
-            font-size: 1em;
-          }
-        }
-        &:hover {
-          background-color: rgba(252, 83, 100, 0.4);
-          border: 1px solid $craft-dash-red;
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $theme-color;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+				&:hover {
+					background-color: rgba(252, 83, 100, 0.4);
+					border: 1px solid $craft-dash-red;
 
-          p {
-            cursor: pointer;
-            font-family: $theme-font;
-            color: $craft-dash-red;
-            font-weight: 700;
-            font-size: 1em;
-          }
-        }
-      }
-    }
-  }
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $craft-dash-red;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+			}
+		}
+	}
 }

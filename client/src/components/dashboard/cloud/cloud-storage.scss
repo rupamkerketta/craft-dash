@@ -12,28 +12,12 @@
     // border: 1px solid white;
     display: flex;
     align-items: center;
-    // align-items: initial;
-    // justify-content: space-around;
-    // align-items: center;
     flex-wrap: wrap;
     overflow-y: auto;
-    // padding: 10px;
     width: 1000px;
     height: 560px;
     margin: auto;
     margin-top: 50px;
-    // background: linear-gradient(
-    // 	103.23deg,
-    // 	rgba(108, 134, 144, 0.1) 0%,
-    // 	rgba(108, 134, 145, 0.04) 49.27%,
-    // 	rgba(108, 134, 144, 0.06) 100%
-    // );
-    // backdrop-filter: blur(10px);
-    // border-left: 1px solid rgba(234, 236, 239, 0.3);
-    // border-top: 1px solid rgba(234, 236, 239, 0.3);
-    // border-right: 1px solid rgba(234, 236, 239, 0.2);
-    // border-bottom: 1px solid rgba(234, 236, 239, 0.2);
-    // border-radius: 10px;
 
     p {
       font-family: $theme-font;
@@ -43,7 +27,7 @@
       //   margin-top: 80px;
       position: relative;
       margin-left: 30px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       width: fit-content;
       padding: 2px;
       height: fit-content;
@@ -262,10 +246,19 @@
       padding-right: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
-      color: $theme-color;
-      background-color: $craft-dash-green;
+      color: $label-color;
       border-radius: 5px;
-      border: 2px solid $craft-dash-green;
+      border-top: 2px solid $craft-dash-pink;
+      border-left: 2px solid $craft-dash-blue;
+      border-right: 2px solid $craft-dash-green;
+      border-bottom: 2px solid $craft-dash-purple;
+      background: linear-gradient(
+        103.23deg,
+        rgba(108, 134, 144, 0.1) 0%,
+        rgba(108, 134, 145, 0.04) 49.27%,
+        rgba(108, 134, 144, 0.06) 100%
+      );
+      backdrop-filter: blur(50px);
       transition: 0.1s ease-in-out;
     }
   }
@@ -438,7 +431,7 @@
         border-radius: 5px;
         font-weight: 500;
         background-color: rgba(63, 222, 156, 1);
-        border: 1PX solid $craft-dash-green;
+        border: 1px solid $craft-dash-green;
         font-family: $theme-font;
         color: $theme-color;
         cursor: pointer;
@@ -456,9 +449,9 @@
     width: fit-content;
     margin: auto;
     margin-top: 20px;
-   img{
-     width: 250px;
-   }
+    img {
+      width: 250px;
+    }
   }
   .notes-field-wrapper {
     width: fit-content;

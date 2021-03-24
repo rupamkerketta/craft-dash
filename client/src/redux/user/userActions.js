@@ -7,6 +7,8 @@ import {
 } from '../login/loginTypes'
 import { SET_USER } from './userTypes'
 
+import * as TYPE from '../theme/themeTypes'
+
 export const loadUser = () => async (dispatch) => {
 	dispatch(loadRequest())
 	try {
@@ -17,7 +19,21 @@ export const loadUser = () => async (dispatch) => {
 		const thumbnail = res.data.thumbnail || ''
 
 		dispatch(setUser(username, email, thumbnail, avatar_id))
-		// console.log(res)
+
+		// Theme Dark or Light
+		const theme = localStorage.getItem('theme')
+
+		switch (theme) {
+			case 'light':
+				dispatch({ type: TYPE.SET_LIGHT_THEME })
+				break
+			case 'dark':
+				// Do nothing as the default redux state for the is 'dark'
+				break
+			default:
+				// If the item is not set, theme is set to 'dark' (default)
+				localStorage.setItem('theme', 'dark')
+		}
 	} catch (e) {
 		dispatch(loadCheckFail())
 		console.log(e.message)

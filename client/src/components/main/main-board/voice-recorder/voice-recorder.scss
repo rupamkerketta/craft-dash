@@ -1,15 +1,83 @@
-@import '../../../../sass/utils/colors';
-@import '../../../../sass/utils/fonts';
+@import "../../../../sass/utils/colors";
+@import "../../../../sass/utils/fonts";
 
 .voice-recorder {
-	// border: 1px solid white;
-	width: 500px;
+  border: 1px solid $charcoal;
+  width: 500px;
+  background-color: $gunmetal;
+  border-radius: 10px;
 
-	._1lB9c {
-		border: 2px solid white;
-		display: none;
-	}
+  ._1lB9c {
+    border: 2px solid white;
+    display: none;
+  }
 
-	._3bC73 {
-	}
+  ._3bC73 {
+    background-color: $gunmetal;
+  }
+  ._1YOWG {
+    // border: 1px solid white;
+    audio {
+      outline: none;
+      margin-bottom: 30px;
+    }
+    ._f2DT8 {
+      span {
+        color: $craft-dash-red;
+      }
+    }
+  }
+  ._eV_dK {
+    width: fit-content;
+    margin: auto;
+    align-items: center;
+    font-size: 0.8em;
+    font-family: $theme-font;
+    font-weight: 400;
+  }
+  ._1ceqH ._1YOWG ._eV_dK{
+    color: $label-color;
+  }
+  ._1dpop {
+    border: 1px solid $craft-dash-red;
+    background-color: $craft-dash-red;
+    &:hover {
+      background-color: rgba(252, 83, 100, 0.4);
+    }
+  }
+  ._1Yplu {
+    width: fit-content;
+    margin: auto;
+  }
+  ._1Yplu ._1Pz2d {
+    background-color: $craft-dash-green;
+    color: $theme-color;
+    font-family: $theme-font;
+    border: 2px solid $craft-dash-green;
+    font-weight: 600;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+
+    &:hover {
+      background-color: rgba(63, 222, 156, 0.4);
+      color: $craft-dash-green;
+    }
+
+    &:nth-child(2) {
+      background-color: $craft-dash-red;
+      color: $theme-color;
+      font-family: $theme-font;
+      border: 2px solid $craft-dash-red;
+      font-weight: 600;
+      border-radius: 10px;
+      width: 200px;
+      height: 50px;
+
+      &:hover {
+        background-color: rgba(252, 83, 100, 0.4);
+        color: $craft-dash-red;
+      }
+    }
+  }
 }

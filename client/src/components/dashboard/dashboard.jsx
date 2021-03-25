@@ -286,7 +286,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
 											{idea_boards.new_board.isLoading ? (
 												<LoadingSpinner color='#0087cc' />
 											) : (
-												<button type='submit'>Create</button>
+												<button type='submit'>CREATE</button>
 											)}
 										</div>
 									</Form>

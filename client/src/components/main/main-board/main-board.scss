@@ -161,8 +161,9 @@
     // border: 1px solid white;
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
     img {
+      align-items: center;
       width: 60px;
     }
     h2 {

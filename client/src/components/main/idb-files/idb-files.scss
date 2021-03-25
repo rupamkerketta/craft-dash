@@ -173,14 +173,15 @@
       cursor: pointer;
       outline: none;
       border: 1px solid $craft-dash-green;
-      width: 210px;
-      height: 40px;
+      // width: 250px;
+      width: 100%;
+      height: 45px;
       font-family: $theme-font;
       font-size: 1em;
       background-color: $craft-dash-green;
       font-weight: 600;
       color: $theme-color;
-      border-radius: 4px;
+      border-radius: 5px;
       &:hover {
         background-color: rgba(63, 222, 156, 0.5);
         border: 1px solid $craft-dash-green;

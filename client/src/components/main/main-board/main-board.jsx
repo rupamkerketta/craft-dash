@@ -374,7 +374,7 @@ const MainBoard = ({
 					onClose={() => hideVNModal()}
 					animation='fade'
 					width={550}
-					height={570}
+					height={600}
 					customStyles={customStyles.wrapper}>
 					<div className='recorder-header'>
 						<img src={Recording} alt='Recording' />

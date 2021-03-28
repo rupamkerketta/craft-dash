@@ -118,7 +118,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			margin-top: -80px;
+			margin-top: -0px;
 			// border: 1px solid white;
 			img {
 				padding: 5px;
@@ -521,21 +521,21 @@
 	}
 }
 
-.select-avatars-header {
+.select-avatars-header-light {
 	width: fit-content;
 	margin: auto;
 	p {
-		color: $label-color;
+		color: $theme-color;
 		font-family: $theme-font;
 		font-size: 1.5em;
 	}
 }
 
-.select-avatars-content {
+.select-avatars-content-light {
 	margin: auto;
 	width: fit-content;
 	margin-top: 30px;
-	.select-avatars-row1 {
+	.select-avatars-row1-light {
 		display: flex;
 		img {
 			margin-left: 20px;
@@ -553,7 +553,7 @@
 			transform: scale(1.2);
 		}
 	}
-	.select-avatars-row2 {
+	.select-avatars-row2-light {
 		margin-top: 10px;
 		display: flex;
 		img {
@@ -574,12 +574,12 @@
 	}
 }
 
-.select-avatars-button {
+.select-avatars-button-light {
 	position: absolute;
 	right: 20px;
 	bottom: 10px;
 
-	.cancel-button {
+	.cancel-button-light {
 		border: 1px solid rgba(252, 83, 100, 1);
 		background-color: rgba(252, 83, 100, 1);
 		color: $theme-color;
@@ -592,13 +592,13 @@
 		outline: none;
 	}
 
-	.cancel-button:hover {
+	.cancel-button-light:hover {
 		border: 1px solid rgba(252, 83, 100, 1);
-		background-color: rgba(252, 83, 100, 0.2);
-		color: rgba(252, 83, 100, 1);
+		background-color: rgba(252, 83, 100, 0.5);
+		color: $theme-color;
 	}
 
-	.select-button {
+	.select-button-light {
 		border: 1px solid rgba(63, 222, 156, 1);
 		background-color: rgba(63, 222, 156, 1);
 		color: $theme-color;
@@ -609,9 +609,19 @@
 		border-radius: 5px;
 		outline: none;
 	}
-	.select-button:hover {
+	.select-button-light:hover {
 		border: 1px solid rgba(63, 222, 156, 1);
-		background-color: rgba(63, 222, 156, 0.2);
-		color: rgba(63, 222, 156, 1);
+		background-color: rgba(63, 222, 156, 0.4);
+		color: $theme-color;
 	}
 }
+
+.rodal-bg{
+	background: linear-gradient(
+		103.23deg,
+		rgba(108, 134, 144, 0.1) 0%,
+		rgba(108, 134, 145, 0.04) 49.27%,
+		rgba(108, 134, 144, 0.06) 100%
+	  );
+	  backdrop-filter: blur(50px);
+  }

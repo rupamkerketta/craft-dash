@@ -1,14 +1,14 @@
 @import "../../../sass/utils/colors";
 @import "../../../sass/utils/fonts";
 
-.collaborators {
+.collaborators-light {
   padding-left: 30px;
   padding-right: 30px;
 
   width: 700px;
   // background-color:$theme-color;
 
-  .collaborators-header {
+  .collaborators-header-light {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -17,21 +17,21 @@
     margin-top: 0px;
 
     img {
-      content: url("../../../img/idea.svg");
+      content: url("../../../img/idea-light.svg");
       width: 30px;
       margin-right: 10px;
     }
 
-    .collaborators-title {
+    .collaborators-title-light {
       margin-left: 4px;
       font-family: $theme-font;
-      color: $label-color;
+      color: $theme-color;
       font-weight: 300;
       font-size: 1.6em;
     }
   }
 
-  .collaborators-form {
+  .collaborators-form-light {
     margin-top: 0px;
 
     form {
@@ -40,7 +40,7 @@
       align-items: center;
       justify-content: space-around;
 
-      .input-group {
+      .input-group-light {
         width: 50%;
         height: 100px;
         position: relative;
@@ -49,13 +49,13 @@
           display: block;
           width: 100%;
           font-family: $theme-font;
-          font-weight: 300;
+          font-weight: 500;
           font-size: 1em;
           padding-top: 2px;
           padding-bottom: 2px;
-          color: $label-color;
+          color: $theme-color;
 
-          .asterisk {
+          .asterisk-light {
             color: $danger;
             font-weight: 300;
           }
@@ -65,11 +65,11 @@
           width: 400px;
           border: 0;
           border-radius: 4px;
-          background: $theme-color;
+          background: $label-color;
           font-family: $theme-font;
           font-size: 1.2em;
           color: $label-color;
-          border: 2px solid $charcoal;
+          border: 3px solid $theme-color;
           font-weight: 300;
           outline: none;
         }
@@ -78,12 +78,12 @@
           padding: 7px;
         }
 
-        .error-msg-wrapper {
+        .error-msg-wrapper-light {
           width: fit-content;
           height: 30px;
           margin-top: 5px;
 
-          .error-msg {
+          .error-msg-light {
             padding-left: 7px;
             padding-right: 7px;
             border-radius: 3px;
@@ -96,7 +96,7 @@
         }
       }
 
-      .check-and-add {
+      .check-and-add-light {
         height: 100px;
         display: flex;
         align-items: center;
@@ -123,9 +123,9 @@
         }
 
         button:hover {
-          color: $craft-dash-green;
+          color: $theme-color;
           font-weight: 500;
-          background-color: rgba(63, 222, 156, 0.2);
+          background-color: rgba(63, 222, 156, 0.4);
           backdrop-filter: blur(10px);
           border: 2px solid $craft-dash-green;
           border-radius: 5px;
@@ -134,14 +134,14 @@
     }
   }
 
-  .owner-details-wrapper {
+  .owner-details-wrapper-light {
     // border: 1px solid white;
     margin-top: 10px;
     padding-left: 35px;
     padding-right: 30px;
     // width: fit-content;
 
-    .owner-detail-header {
+    .owner-detail-header-light {
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -150,30 +150,30 @@
     h2 {
       font-family: $theme-font;
       font-size: 1em;
-      font-weight: 200;
-      color: $label-color;
+      font-weight: 600;
+      color: $theme-color;
     }
   }
 
-  .collaborators-list-wrapper {
+  .collaborators-list-wrapper-light {
     padding-left: 35px;
     padding-right: 30px;
     margin-top: 10px;
     // border: 1px solid red;
 
-    .collaborators-list-header {
+    .collaborators-list-header-light {
       h2 {
         font-family: $theme-font;
         font-size: 1em;
-        font-weight: 200;
+        font-weight: 600;
         margin-bottom: 7px;
-        color: $label-color;
+        color: $theme-color;
       }
     }
   }
 }
 
-.ideaboard-header-wrapper {
+.ideaboard-header-wrapper-light {
   width: fit-content;
   margin: auto;
   margin-top: 30px;
@@ -208,8 +208,8 @@
   backdrop-filter: blur(5px);
   border-radius: 10px;
 
-  .ideaboard-header-title {
-    color: $label-color;
+  .ideaboard-header-title-light {
+    color: $theme-color;
     font-family: $theme-font;
     font-size: 1em;
     font-weight: 300;

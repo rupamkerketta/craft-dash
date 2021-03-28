@@ -1,0 +1,63 @@
+@import '../../../../sass/utils/colors';
+@import '../../../../sass/utils/fonts';
+
+.collaborator-light:not(:first-child){
+	margin-top: 5px;
+}
+.collaborator-light {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: $label-color;
+	border: 2px solid $theme-color;
+
+	.collaborator-pic-light {
+		img {
+			margin-top: 3px;
+			width: 35px;
+		}
+	}
+
+	.collaborator-name-light {
+		width: fit-content;
+		margin: auto;
+		h2 {
+		  font-family: $theme-font;
+		  font-size: 1em;
+		  font-weight: 500;
+		  color: $theme-color;
+		}
+	  }
+	  .collaborator-email-light {
+		width: fit-content;
+		margin: auto;
+		// position: relative;
+		// margin: auto;
+		// width: fit-content;
+		// right: 20%;
+		h2 {
+		  font-family: $theme-font;
+		  font-size: 0.7em;
+		  font-weight: 300;
+		  color: $theme-color;
+		}
+	  }
+
+	.collaborator-remove-user-light {
+		img {
+			width: 40px;
+			padding: 7px;
+			cursor: pointer;
+			transition: 0.4s all ease;
+			border-radius: 4px;
+		}
+
+		img:hover {
+			background-color: #eb1f6d50;
+		}
+	}
+}

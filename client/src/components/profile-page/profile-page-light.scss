@@ -1,38 +1,17 @@
 @import '../../sass/utils/colors';
 @import '../../sass/utils/fonts';
 
-.profile-page {
-	background: url('../../img/landing-page-bg.svg') fixed center repeat;
-	background-size: cover;
-	height: 95vh;
+.profile-page-light {
+	background: url('../../img/landing-page-bg-light.svg') fixed center repeat;
 }
-.app-bar {
+.app-bar-light {
 	ul {
-		margin-top: 20px;
-		margin-left: 80px;
-		margin-right: 0px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: transparent;
 		color: $label-color;
-		font-family: $theme-font;
-		list-style: none;
 	}
 	.logout-button {
 		background-color: $craft-dash-pink;
-		border: 2px solid $craft-dash-pink;
-		width: 121px;
-		height: 40px;
+		border-color: $craft-dash-pink;
 		color: $theme-color;
-		padding-top: 5px;
-		font-family: $theme-font;
-		border-radius: 5px;
-		padding-bottom: 5px;
-		padding-left: 20px;
-		padding-right: 20px;
-		margin-right: 20px;
-		outline: none;
 	}
 	.logout-button:hover {
 		border: 2px solid $craft-dash-pink;
@@ -42,113 +21,41 @@
 	}
 }
 
-.profile-card {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-direction: column;
-	// padding-right: 10px;
-
-	margin-top: 100px;
-	-webkit-backdrop-filter: blur(8px);
+.profile-card-light {
 	/* Safari 9+ */
 	background: linear-gradient(
 		100.5deg,
 		rgba(255, 255, 255, 0.05) 10%,
 		rgba(255, 255, 255, 0.04) 100%
 	);
-	backdrop-filter: blur(8px);
-	width: 600px;
-	height: 170px;
 
 	border-left: 1px solid rgba(255, 255, 255, 0.2);
 	border-top: 1px solid rgba(255, 255, 255, 0.2);
 	border-right: 1px solid rgba(255, 255, 255, 0.2);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-	border-radius: 15px;
-	position: absolute;
-	top: 100px;
-	left: 50%;
-
-	transform: translate(-55%);
-	transition: 0.2s all linear;
 
 	.profile-text-content {
-		padding: 10px 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		width: 70%;
-		// width: 50%;
-		// border: 1px solid white;
-
-		.username,
-		.email {
+		.username-light,
+		.email-light {
 			font-family: $theme-font;
 			color: $label-color;
 		}
 
-		.username {
+		.username-light {
 			font-size: 1.8em;
 		}
 
-		.email {
+		.email-light {
 			font-size: 0.8em;
 			font-weight: 200;
 		}
 	}
 
-	.user-image-wrapper {
-		width: 30%;
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		margin-top: -80px;
-		// border: 1px solid white;
-		img {
-			padding: 5px;
-			border-radius: 50%;
-			border-top: 4px solid $craft-dash-pink;
-			border-bottom: 4px solid $craft-dash-purple;
-			border-right: 4px solid $craft-dash-green;
-			border-left: 4px solid $craft-dash-blue;
-			width: 145px;
-		}
+	.user-image-wrapper-light {
 		.user-image {
 			// position: absolute;
-			left: 20px;
-			top: 25px;
-			bottom: 20px;
-			// width: 145px;
-			border-radius: 50%;
-			border-top: 3px solid $craft-dash-pink;
-			border-bottom: 3px solid $craft-dash-purple;
-			border-right: 3px solid $craft-dash-green;
-			border-left: 3px solid $craft-dash-blue;
-			padding: 5px;
 		}
 	}
-
-	// 	.edit-profile-button {
-	// 		display: none;
-	// 		position: absolute;
-	// 		top: 240px;
-	// 		left: 420px;
-	// 		border: 3px solid $craft-dash-blue;
-	// 		border-radius: 10px;
-	// 		background-color: transparent;
-	// 		color: $label-color;
-	// 		width: 150px;
-	// 		height: 45px;
-	// 		font-family: $theme-font;
-	// 		font-weight: 800;
-	// 	}
-	// 	.edit-profile-button:hover {
-	// 		color: $modal-background-color;
-	// 		background-color: $craft-dash-blue;
-	// 		border: 3px solid $craft-dash-blue;
-	// 	}
 }
 .profile-card:hover {
 	-webkit-backdrop-filter: blur(10px);
@@ -166,115 +73,6 @@
 	backdrop-filter: blur(25px);
 	transition: 0.3s all linear;
 }
-
-.appearance-wrapper {
-	border: 1px solid white;
-	right: 200px;
-	position: absolute;
-	width: fit-content;
-	margin: auto;
-	align-items: center;
-	.appearance-header-light {
-		width: fit-content;
-		margin: auto;
-		margin-top: 20px;
-		font-family: $theme-font;
-		font-weight: 500;
-		font-size: 1.2em;
-	}
-	.appearance-buttons-wrapper-light {
-		display: flex;
-		width: fit-content;
-		margin: auto;
-		margin-top: 20px;
-		.light-theme-button-light {
-			width: fit-content;
-			margin: auto;
-			// margin-right: 50px;
-			p {
-				width: fit-content;
-				margin: auto;
-				font-family: $theme-font;
-				color: $theme-color;
-				font-weight: 800;
-			}
-		}
-
-		.appearance-switch {
-			width: fit-content;
-			margin: auto;
-			// width: 50px;
-			margin-left: 10px;
-			margin-right: 10px;
-			.switch {
-				position: relative;
-				display: inline-block;
-				width: 70px;
-				height: 30px;
-				// background: linear-gradient(
-				//   180deg,
-				//   rgba(44, 62, 80, 0.38) 0%,
-				//   rgba(44, 62, 80, 0.3) 100%
-				// );
-				border: 3px solid #343434;
-				border-radius: 15px;
-			}
-			.switch input {
-				opacity: 0;
-				width: 0;
-				height: 0;
-			}
-			.slider {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background: linear-gradient(
-					180deg,
-					rgba(44, 62, 80, 0.38) 0%,
-					rgba(44, 62, 80, 0.3) 100%
-				);
-				border-radius: 15px;
-				transition: 0.6s ease;
-			}
-			.slider::before {
-				align-items: center;
-				position: absolute;
-				content: '';
-				height: 35px;
-				width: 35px;
-				border-radius: 50%;
-				left: -6px;
-				bottom: -6px;
-				background-color: $theme-color-light;
-				background-image: url('../../img/light-switch.png');
-				background-size: 100%;
-			}
-
-			input:checked + .slider:before {
-				background-image: url('../../img/dark-switch.png');
-				background-size: 100%;
-				background-color: $theme-color;
-				transform: translateX(40px);
-			}
-		}
-
-		.dark-theme-button-light {
-			width: fit-content;
-			margin: auto;
-
-			p {
-				width: fit-content;
-				margin: auto;
-				font-family: $theme-font;
-				color: $theme-color;
-				font-weight: 800;
-			}
-		}
-	}
-}
-
 .subscription-card {
 	display: none;
 	margin-top: 50px;

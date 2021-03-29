@@ -27,155 +27,163 @@
 }
 
 .edit-sidebar-light {
-    // border: 1px solid white;
-    overflow: hidden;
-    position: absolute;
-    width: 20vw;
-    top: 7vh;
-    height: 93vh;
-    right: 0;
-    background-color: $label-color;
-    font-family: $theme-font;
-  
-    .edit-sidebar-wrapper-light {
-      // border: 1px solid green;
-      width: 90%;
-      margin: auto;
-      margin-top: 20px;
-      height: 100%;
-  
-      .edit-group-light {
-        // border: 1px solid yellow;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        color: $theme-color;
-  
-        .field-label-light {
-          // border: 1px solid #0087cc;
-          font-size: 1em;
-          font-weight: 500;
-        }
-  
-        .field-content-wrapper-light {
-          background-color: $theme-color-light;
-          border-radius: 4px;
-          border: 2px solid $charcoal;
-  
-          .field-content-light {
-            width: fit-content;
-            height: 30px;
-            margin: auto;
-            font-size: 1em;
-            font-weight: 400;
-            color: $theme-color;
-          }
-  
-          .field-content-textarea-light {
-            padding: 5px;
-            height: 120px;
-            font-family: $theme-font;
-            font-size: 1em;
-            font-weight: 400;
-            color: $theme-color;
-            background-color: transparent;
-            resize: none;
-            border: none;
-            outline: none;
-            width: 100%;
-          }
-        }
-  
-        .field-label-light,
-        .field-content-wrapper-light {
-          padding: 3px;
-        }
+  // border: 1px solid white;
+  overflow: hidden;
+  position: absolute;
+  width: 20vw;
+  top: 7vh;
+  height: 93vh;
+  right: 0;
+  background-color: $label-color;
+  font-family: $theme-font;
+
+  .edit-sidebar-wrapper-light {
+    // border: 1px solid green;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    height: 100%;
+
+    .edit-group-light {
+      // border: 1px solid yellow;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      color: $theme-color;
+
+      .field-label-light {
+        // border: 1px solid #0087cc;
+        font-size: 1em;
+        font-weight: 500;
       }
-  
-      .el-id-light {
-        .edit-group-light {
-          .field-content-wrapper-light {
-            .field-content-light {
-              display: flex;
-              align-items: center;
-              font-size: 0.64em;
-            }
-          }
-        }
-      }
-  
-      .co-light {
-        @include flex-center("row");
-        margin-top: 50px;
-  
-        .x-co-light,
-        .y-co-light {
-          width: 50%;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-  
-      .fg-bg-light {
-        height: 80px;
-        margin-top: 50px;
-  
-        .edit-group-light:nth-child(2) {
-          margin-top: 10px;
-        }
-      }
-  
-      .text-light {
-        margin-top: 20px;
-  
-        .edit-group-light {
-          flex-direction: column;
-  
-          .field-content-light {
-            width: 100%;
-            height: 100%;
-            padding: 4px;
-            height: 70px;
-          }
-        }
-      }
-  
-      .edit-update-btn-light {
-        margin-top: 5px;
-        width: 100%;
-  
-        button {
+
+      .field-content-wrapper-light {
+        background-color: $theme-color-light;
+        border-radius: 4px;
+        border: 2px solid $charcoal;
+
+        .field-content-light {
           width: fit-content;
-          border: 0;
-          background-color: transparent;
-          margin-top: 5px;
+          height: 30px;
+          margin: auto;
           font-size: 1em;
-          border: 3px solid $craft-dash-green;
-          padding: 4px;
-          border-radius: 5px;
+          font-weight: 400;
+          color: $theme-color;
+        }
+
+        .field-content-textarea-light {
+          padding: 5px;
+          height: 120px;
+          font-family: $theme-font;
+          font-size: 1em;
+          font-weight: 400;
+          color: $theme-color;
+          background-color: transparent;
+          resize: none;
+          border: none;
           outline: none;
+          width: 100%;
         }
       }
-  
-      .emoji-picker-light {
-        margin-top: 5px;
-        width: 280px;
-        height: 440px;
-        position: absolute;
-        z-index: 199;
+
+      .field-label-light,
+      .field-content-wrapper-light {
+        padding: 3px;
       }
-  
-      .edit-remove-btn-light {
-        margin-top: 30px;
-  
-        button {
-          @include button-style($craft-dash-red);
-          border: 3px solid;
-          border-radius: 5px;
-          font-family: $theme-font;
-          font-weight: 300;
-          color: $craft-dash-red;
+    }
+
+    .el-id-light {
+      .edit-group-light {
+        .field-content-wrapper-light {
+          .field-content-light {
+            display: flex;
+            align-items: center;
+            font-size: 0.64em;
+          }
+        }
+      }
+    }
+
+    .co-light {
+      @include flex-center("row");
+      margin-top: 50px;
+
+      .x-co-light,
+      .y-co-light {
+        width: 50%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    .fg-bg-light {
+      height: 80px;
+      margin-top: 50px;
+
+      .edit-group-light:nth-child(2) {
+        margin-top: 10px;
+      }
+    }
+
+    .text-light {
+      margin-top: 20px;
+
+      .edit-group-light {
+        flex-direction: column;
+
+        .field-content-light {
+          width: 100%;
+          height: 100%;
+          padding: 4px;
+          height: 70px;
+        }
+      }
+    }
+
+    .edit-update-btn-light {
+      margin-top: 5px;
+      width: 100%;
+
+      button {
+        width: fit-content;
+        border: 0;
+        background-color: transparent;
+        margin-top: 5px;
+        font-size: 1em;
+        border: 3px solid $craft-dash-green;
+        padding: 4px;
+        border-radius: 5px;
+        outline: none;
+      }
+    }
+
+    .emoji-picker-light {
+      margin-top: 5px;
+      width: 280px;
+      height: 440px;
+      position: absolute;
+      z-index: 199;
+    }
+
+    .edit-remove-btn-light {
+      margin-top: 30px;
+
+      button {
+        @include button-style($craft-dash-red);
+        border: 1px solid $craft-dash-red;
+        border-radius: 5px;
+        font-family: $theme-font;
+        color: $theme-color;
+        background-color: $craft-dash-red;
+        font-weight: 600;
+        height: 45px;
+        &:hover{
+          background-color: rgba(252, 83, 100, 0.6);
+          border: 1px solid $craft-dash-red;
+          color: $theme-color;
+          font-weight: 600;
         }
       }
     }
   }
+}

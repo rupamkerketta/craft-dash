@@ -218,7 +218,7 @@ const MainBoard = ({
 			},
 			type: 'default',
 			style: {
-				backgroundColor: '#000000',
+				backgroundColor: '#ffffff',
 				color: 'black',
 				fontFamily: 'Poppins',
 				fontWeight: '400',
@@ -371,7 +371,8 @@ const MainBoard = ({
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={false}>
-				<Background color='#000000' gap={50} variant='dots' />
+				{dark? <Background color='#E0E0E0' gap={50} variant='dots' />:<Background color='#000000' gap={50} variant='dots' />}
+				
 
 				<Rodal
 					className={`main-rodal-bg-blur ${dark ? "":"main-rodal-bg-blur-light"}`}

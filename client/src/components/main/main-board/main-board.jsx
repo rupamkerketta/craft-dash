@@ -218,7 +218,7 @@ const MainBoard = ({
 			},
 			type: 'default',
 			style: {
-				backgroundColor: '#ffffff',
+				backgroundColor: '#000000',
 				color: 'black',
 				fontFamily: 'Poppins',
 				fontWeight: '400',
@@ -371,7 +371,7 @@ const MainBoard = ({
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={false}>
-				<Background color='#888' gap={50} variant='dots' />
+				<Background color='#000000' gap={50} variant='dots' />
 
 				<Rodal
 					className={`main-rodal-bg-blur ${dark ? "":"main-rodal-bg-blur-light"}`}
@@ -380,7 +380,7 @@ const MainBoard = ({
 					animation='fade'
 					width={900}
 					height={600}
-					customStyles={customStyles.wrapper}>
+					customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}>
 					<ViewFileInfoModal file_name={viewFile.file_name}></ViewFileInfoModal>
 				</Rodal>
 
@@ -391,7 +391,7 @@ const MainBoard = ({
 					animation='fade'
 					width={550}
 					height={600}
-					customStyles={customStyles.wrapper}>
+					customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}>
 					<div className={`recorder-header ${dark ? "":"recorder-header-light"}`}>
 						<img src={Recording} alt='Recording' />
 						<h2>Record your Audio</h2>

@@ -21,7 +21,7 @@
   //   #0e1626 92.87%,
   //   #0e1626 99.46%
   // );
-  background-color: $label-color;
+  // background-color: $label-color;
   position: absolute;
   top: 7vh;
   left: 0;
@@ -31,17 +31,17 @@
 
   .react-flow-main-light {
     .circle-pointer-light {
-      border: 2px solid white;
+      border: 2px solid black;
       width: 10px;
       height: 10px;
       border-radius: 10px;
-      background-color: white;
+      background-color: black;
       position: absolute;
     }
     // border: 1px solid white;
+    background-color: $label-color;
   }
 
-  background-color: $label-color;
 
   .circle-light {
     position: absolute;
@@ -141,7 +141,7 @@
     font-weight: 500;
     color: $label-color;
     width: fit-content;
-    color: $theme-color;
+    // color: $theme-color;
     font-weight: 600;
   }
 }
@@ -166,7 +166,7 @@
       width: 60px;
     }
     h2 {
-      color: $label-color;
+      color: $theme-color;
       font-family: $theme-font;
       font-weight: 500;
     }
@@ -276,13 +276,13 @@
 
   .view-file-info-modal-light {
     .file-preview-light {
-      background-color: $gunmetal;
+      background-color: $theme-color-light;
       width: 600px;
       position: absolute;
       left: 15px;
       height: 500px;
       top: 60px;
-      border: 2px solid $charcoal;
+      border: 2px solid $theme-color;
       border-radius: 10px;
       // bottom: 100px;
 
@@ -339,17 +339,17 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          color: $label-color;
+          color: $theme-color;
           font-family: $theme-font;
-          font-weight: 200;
+          font-weight: 400;
         }
       }
       .file-info-details-light {
         width: 250px;
         margin-top: 150px;
-        border: 1px solid $charcoal;
+        border: 2px solid $theme-color;
         border-radius: 5px;
-        background-color: $gunmetal;
+        background-color: $theme-color-light;
         height: 150px;
         .details-wrapper-light {
           margin-top: 20px;
@@ -358,8 +358,8 @@
             align-items: center;
             text-align: center;
             font-family: $theme-font;
-            font-weight: 200;
-            color: $label-color;
+            font-weight: 400;
+            color: $theme-color;
             font-size: 0.8em;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -410,7 +410,7 @@
             p {
               cursor: pointer;
               font-family: $theme-font;
-              color: $craft-dash-green;
+              color: $theme-color;
               font-weight: 700;
               font-size: 1em;
             }
@@ -449,7 +449,7 @@
             p {
               cursor: pointer;
               font-family: $theme-font;
-              color: $craft-dash-red;
+              color: $theme-color;
               font-weight: 700;
               font-size: 1em;
             }

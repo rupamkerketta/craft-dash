@@ -94,7 +94,7 @@ const Edit = ({
 					/>
 				</div>
 
-				<div className={`el-id ${dark ? "":"el-id-light"}`} style={{ display: showEmojiPicker ? 'none' : '' }}>
+				<div className={`co ${dark ? "":"co-light"}`} style={{ display: showEmojiPicker ? 'none' : '' }}>
 					<div className={`x-co ${dark ? "":"x-co-light"}`}>
 						<ElementGroup
 							data={{

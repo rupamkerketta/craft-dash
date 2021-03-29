@@ -4,8 +4,9 @@
 .cloud-storage-light {
   width: 100%;
   position: absolute;
-  background: url("../../../img/landing-page-bg.svg");
+  background: url("../../../img//landing-page-bg-light.svg");
   background-size: cover;
+  background-color: $theme-color-light;
   height: 100vh;
 
   .remote-files-wrapper-light {
@@ -15,13 +16,13 @@
     flex-wrap: wrap;
     overflow-y: auto;
     width: 1000px;
-    height: 560px;
+    height: 569px;
     margin: auto;
-    margin-top: 50px;
-
+    margin-top: 40px;
+    margin-bottom: 250px;
     p {
       font-family: $theme-font;
-      color: $label-color;
+      color: $theme-color;
     }
     .remote-file-wrapper-light {
       //   margin-top: 80px;
@@ -33,15 +34,16 @@
       height: fit-content;
       // background-color: white;
       border-radius: 10px;
-      background-color: $theme-color;
+      background-color: $label-color;
       border: 2px solid $charcoal;
+      
 
       .remote-file-light {
         position: relative;
         width: 200px;
         height: 150px;
         border-radius: 10px;
-        background-color: $theme-color;
+        background-color: $label-color;
         overflow: hidden;
 
         .svg-preview-light,
@@ -55,7 +57,7 @@
         }
         .svg-preview-light {
           width: 200px;
-          color: $label-color;
+          color: $theme-color;
           background-color: $label-color;
         }
         .svg-preview-light::-webkit-scrollbar {
@@ -122,9 +124,9 @@
           overflow: hidden;
           text-overflow: ellipsis;
           font-family: $theme-font;
-          font-weight: 300;
+          font-weight: 500;
           font-size: 0.7em;
-          color: $label-color;
+          color: $theme-color;
         }
       }
       .download-icon-wrapper-light {
@@ -246,19 +248,19 @@
       padding-right: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
-      color: $label-color;
+      color: $theme-color;
       border-radius: 5px;
-      border-top: 2px solid $craft-dash-pink;
-      border-left: 2px solid $craft-dash-blue;
-      border-right: 2px solid $craft-dash-green;
-      border-bottom: 2px solid $craft-dash-purple;
-      background: linear-gradient(
-        103.23deg,
-        rgba(108, 134, 144, 0.1) 0%,
-        rgba(108, 134, 145, 0.04) 49.27%,
-        rgba(108, 134, 144, 0.06) 100%
-      );
-      backdrop-filter: blur(50px);
+      border-top: 3px solid $craft-dash-pink;
+      border-left: 3px solid $craft-dash-blue;
+      border-right: 3px solid $craft-dash-green;
+      border-bottom: 3px solid $craft-dash-purple;
+      // background: linear-gradient(
+      //   103.23deg,
+      //   rgba(108, 134, 144, 0.1) 0%,
+      //   rgba(108, 134, 145, 0.04) 49.27%,
+      //   rgba(108, 134, 144, 0.06) 100%
+      // );
+      // backdrop-filter: blur(50px);
       transition: 0.1s ease-in-out;
     }
   }
@@ -360,15 +362,15 @@
     }
   }
   .files-field-wrapper-light {
-    background-color: $gunmetal;
+    background-color: $label-color;
     width: 900px;
     height: 450px;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 50px;
     border-radius: 5px;
-    border: 2px solid $charcoal;
-    .dropzone-light {
+    border: 3px solid $theme-color;
+    .dropzone{
       position: absolute;
       // border: 1px solid white;
       // outline: 1px solid $craft-dash-green;
@@ -383,9 +385,9 @@
       margin: auto;
       margin-top: 150px;
       font-family: $theme-font;
-      color: #797a7a;
+      color: $theme-color;
       font-size: 1.2em;
-      font-weight: 300;
+      font-weight: 500;
       letter-spacing: 2px;
       // p {
       // }
@@ -400,9 +402,9 @@
       transform: translate(-50%, -50%);
       p {
         font-family: $theme-font;
-        color: #797a7a;
+        color: $theme-color;
         font-size: 0.8em;
-        font-weight: 300;
+        font-weight: 400;
         letter-spacing: 2px;
       }
     }
@@ -431,15 +433,15 @@
         border-radius: 5px;
         font-weight: 500;
         background-color: rgba(63, 222, 156, 1);
-        border: 1px solid $craft-dash-green;
+        border: 2px solid $craft-dash-green;
         font-family: $theme-font;
         color: $theme-color;
         cursor: pointer;
       }
       .upload-button-light:hover {
-        background-color: rgba(63, 222, 156, 0.5);
-        color: rgba(63, 222, 156, 0.8);
-        border: 1px solid $craft-dash-green;
+        background-color: rgba(63, 222, 156, 0.6);
+        color: $theme-color;
+        border: 2px solid $craft-dash-green;
       }
     }
   }

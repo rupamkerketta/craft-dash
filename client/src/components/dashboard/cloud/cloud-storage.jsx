@@ -25,6 +25,8 @@ import NotesButton from "../../../img/Notes.png";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import CraftDashCloudLogo from "../../../img/CraftDashCloudLogo.png";
+import CraftDashCloudLogoLight from "../../../img/CraftDashCloudLogoLight.png";
+
 // import FileAddIcon from '../../../img/folder-add.png'
 
 import ImageIcon from "../../../img/image-icon.svg";
@@ -195,36 +197,68 @@ function CloudStorage({ match, idea_boards }) {
       borderRadius: "5px",
     },
   };
+
+  const customStylesLight = {
+    wrapper: {
+      backgroundColor: "#1F2023",
+      background:
+        "linear-gradient(103.23deg, rgba(164, 238, 254, 0.2) 0%, rgba(165, 238, 254, 0.199654) 6.67%, rgba(166, 238, 254, 0.19858) 13.33%, rgba(169, 239, 254, 0.196734) 20%, rgba(173, 239, 254, 0.194104) 26.67%, rgba(178, 240, 254, 0.190729) 33.33%, rgba(184, 241, 254, 0.186725) 40%, rgba(190, 242, 254, 0.182292) 46.67%, rgba(197, 244, 254, 0.177708) 53.33%, rgba(203, 245, 254, 0.173275) 60%, rgba(209, 246, 254, 0.169271) 66.67%, rgba(214, 247, 254, 0.165896) 73.33%, rgba(218, 247, 254, 0.163266) 80%, rgba(221, 248, 254, 0.16142) 86.67%, rgba(222, 248, 254, 0.160346) 93.33%, rgba(223, 248, 254, 0.16) 100%)",
+
+      borderLeft: "1px solid rgba(234,236,239, 0.3)",
+      borderTop: "1px solid rgba(234,236,239, 0.3)",
+      borderRight: "1px solid rgba(234,236,239, 0.2)",
+      borderBottom: "1px solid rgba(234,236,239, 0.2)",
+      borderRadius: "5px",
+    },
+  };
+
   return (
-    <div className="cloud-storage">
-      <div className="top-nav">
-        <div className="brand-logo-wrapper">
+    <div className={`cloud-storage ${dark ? "" : "cloud-storage-light"}`}>
+      <div className={`top-nav ${dark ? "" : "top-nav-light"}`}>
+        <div
+          className={`brand-logo-wrapper ${
+            dark ? "" : "brand-logo-wrapper-light"
+          }`}
+        >
           <NavLink to="/dashboard">
-            <BrandLogo
-              fontStyles={{ fontSize: "1.4em", marginLeft: "10px" }}
-              logoStyles={{ width: "30px" }}
-            />
+            {dark ? (
+              <BrandLogo
+                fontStyles={{ fontSize: "1.4em", marginLeft: "10px" }}
+                logoStyles={{ width: "30px" }}
+              />
+            ) : (
+              <BrandLogoLight
+                fontStyles={{ fontSize: "1.4em", marginLeft: "10px" }}
+                logoStyles={{ width: "30px" }}
+              />
+            )}
           </NavLink>
         </div>
-        <div className="user-wrapper">
+        <div className={`user-wrapper ${dark ? "" : "user-wrapper-light"}`}>
           <User />
         </div>
       </div>
-      <div className="ideaboard-name">
+      <div className={`ideaboard-name ${dark ? "" : "ideaboard-name-light"}`}>
         <h1>{ideaBoardName}</h1>
       </div>
       {/* {console.log(files_info.files_info)} */}
-      <div className="remote-files-wrapper">
+      <div
+        className={`remote-files-wrapper ${
+          dark ? "" : "remote-files-wrapper-light"
+        }`}
+      >
         {files_info.files_info
           ? files_info.files_info.map((file, index) => {
               return (
                 <div
-                  className="remote-file-wrapper"
+                  className={`remote-file-wrapper ${
+                    dark ? "" : "remote-file-wrapper-light"
+                  }`}
                   key={file.file_name}
                   style={{ marginTop: index > 3 ? "90px" : "" }}
                 >
                   <div
-                    className="remote-file"
+                    className={`remote-file ${dark ? "" : "remote-file-light"}`}
                     style={
                       file.file_type.split("/")[0] === "image"
                         ? style(
@@ -236,7 +270,9 @@ function CloudStorage({ match, idea_boards }) {
                     {/* SVG preview */}
                     {file.file_type === "image/svg+xml" ? (
                       <object
-                        className="svg-preview"
+                        className={`svg-preview ${
+                          dark ? "" : "svg-preview-light"
+                        }`}
                         type="image/svg+xml"
                         data={`${server}/api/cloud-storage/get-file/${file.file_name}`}
                       >
@@ -248,31 +284,57 @@ function CloudStorage({ match, idea_boards }) {
 
                     {/* PDF */}
                     {file.file_type === "application/pdf" ? (
-                      <img className="pdf-bg" src={PdfIcon} alt="i" />
+                      <img
+                        className={`pdf-bg ${dark ? "" : "pdf-bg-light"}`}
+                        src={PdfIcon}
+                        alt="i"
+                      />
                     ) : (
                       ""
                     )}
                   </div>
-                  <div className="file-icon">
+                  <div className={`file-icon ${dark ? "" : "file-icon-light"}`}>
                     {file.file_type.split("/")[0] === "image" ? (
                       file.file_type.split("/")[1] === "svg+xml" ? (
-                        <img className="image-icon" src={SvgIcon} alt="i" />
+                        <img
+                          className={`image-icon ${
+                            dark ? "" : "image-icon-light"
+                          }`}
+                          src={SvgIcon}
+                          alt="i"
+                        />
                       ) : (
-                        <img className="image-icon" src={ImageIcon} alt="i" />
+                        <img
+                          className={`image-icon ${
+                            dark ? "" : "image-icon-light"
+                          }`}
+                          src={ImageIcon}
+                          alt="i"
+                        />
                       )
                     ) : (
                       ""
                     )}
                     {file.file_type.split("/")[1] === "pdf" ? (
-                      <img className="image-icon" src={PdfIcon} alt="i" />
+                      <img
+                        className={`image-icon ${
+                          dark ? "" : "image-icon-light"
+                        }`}
+                        src={PdfIcon}
+                        alt="i"
+                      />
                     ) : (
                       ""
                     )}
                   </div>
-                  <div className="file-name">
+                  <div className={`file-name ${dark ? "" : "file-name-light"}`}>
                     <h3>{file.original_file_name}</h3>
                   </div>
-                  <div className="download-icon-wrapper">
+                  <div
+                    className={`download-icon-wrapper ${
+                      dark ? "" : "download-icon-wrapper-light"
+                    }`}
+                  >
                     <img alt="Download File" name="Download File" />
                   </div>
                 </div>
@@ -286,10 +348,10 @@ function CloudStorage({ match, idea_boards }) {
         width={800}
         height={700}
         onClose={() => setNotesModalVisibility(false)}
-        className="rodal-cloud-bg"
-        customStyles={customStyles.wrapper}
+        className={`rodal-cloud-bg ${dark ? "" : "rodal-cloud-bg-light"}`}
+        customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}
       >
-        <div className="notes-header">
+        <div className={`notes-header ${dark ? "" : "notes-header-light"}`}>
           <img src={CraftDashNotes} alt="Craft Dash Notes" />
         </div>
       </Rodal>
@@ -299,39 +361,64 @@ function CloudStorage({ match, idea_boards }) {
         width={1000}
         height={700}
         onClose={() => handleImageModal()}
-        className="rodal-cloud-bg"
-        customStyles={customStyles.wrapper}
+        className={`rodal-cloud-bg ${dark ? "" : "rodal-cloud-bg-light"}`}
+        customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}
       >
-        <div className="cdc-logo-wrapper">
-          <img
-            src={CraftDashCloudLogo}
-            alt="Craft Dash Cloud"
-            title="Craft Dash Cloud"
-          />
+        <div
+          className={`cdc-logo-wrapper ${dark ? "" : "cdc-logo-wrapper-light"}`}
+        >
+          {dark ? (
+            <img
+              src={CraftDashCloudLogo}
+              alt="Craft Dash Cloud"
+              title="Craft Dash Cloud"
+            />
+          ) : (
+            <img
+              src={CraftDashCloudLogoLight}
+              alt="Craft Dash Cloud"
+              title="Craft Dash Cloud"
+            />
+          )}
         </div>
 
-        <div className="files-field-wrapper">
+        <div
+          className={`files-field-wrapper ${dark ? "" : "files-field-wrapper-light"}`}
+        >
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
-            <p className="label-row-1">
+            <p className={`label-row-1 ${dark ? "" : "label-row-1-light"}`}>
               Drag and Drop Files Here or Click to Browse
             </p>
             <aside style={thumbsContainer}>{thumbs}</aside>
           </div>
-          <div className="upload-button-wrapper">
-            <button className="upload-button" onClick={imgSubmit}>
+          <div
+            className={`upload-button-wrapper ${
+              dark ? "" : "upload-button-wrapper-light"
+            }`}
+          >
+            <button
+              className={`upload-button ${dark ? "" : "upload-button-light"}`}
+              onClick={imgSubmit}
+            >
               UPLOAD
             </button>
           </div>
-          <div className="label-row-2">
+          <div className={`label-row-2 ${dark ? "" : "label-row-2-light"}`}>
             <p>All documents and images are supported</p>
           </div>
         </div>
       </Rodal>
-      <div className="add-button-wrapper">
-        <div className="add-button-base">
+      <div
+        className={`add-button-wrapper ${
+          dark ? "" : "add-button-wrapper-light"
+        }`}
+      >
+        <div
+          className={`add-button-base ${dark ? "" : "add-button-base-light"}`}
+        >
           <div
-            className="notes-button"
+            className={`notes-button ${dark ? "" : "notes-button-light"}`}
             style={{
               transform: showButtons
                 ? "scale(1) rotate(0deg)"
@@ -343,7 +430,7 @@ function CloudStorage({ match, idea_boards }) {
             <img src={NotesButton} alt="Add Notes" title="Add Notes" />
           </div>
           <div
-            className="files-button"
+            className={`files-button ${dark ? "" : "files-button-light"}`}
             style={{
               transform: showButtons
                 ? "scale(1) rotate(0deg)"
@@ -358,7 +445,7 @@ function CloudStorage({ match, idea_boards }) {
               onClick={() => setFilesModalVisibility(true)}
             />
           </div>
-          <div className="add-button">
+          <div className={`add-button ${dark ? "" : "add-button-light"}`}>
             <img
               src={AddFilesButton}
               alt="Add to Cloud"

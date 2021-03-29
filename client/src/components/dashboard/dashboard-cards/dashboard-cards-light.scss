@@ -1,0 +1,213 @@
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
+
+.dashboard-cards-light {
+    .cards-light {
+      margin-top: 40px;
+      height: 100%;
+      width: 100%;
+      margin-bottom: 40px;
+  
+      .card-light {
+        position: relative;
+        border-radius: 10px;
+        width: 300px;
+        height: 180px;
+        // cursor: pointer;
+        margin-left: 30px;
+  
+        .main-bg-light {
+          position: absolute;
+          top: 0;
+          height: 70%;
+          width: 100%;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+          background-color: $label-color;
+  
+          .logo-wrapper-light {
+            position: relative;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border: 1px solid $reg-input-box-color;
+            width: 100%;
+            height: 100%;
+            //   background-color: $theme-color;
+            background: url("../../../img/landing-page-bg-light.svg") center
+              repeat;
+            background-size: 1000px;
+            transition: 0.6s all ease;
+  
+            img {
+              position: absolute;
+              width: 50px;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              transition: 0.6s all ease;
+            }
+          }
+        }
+  
+        .footer-light {
+          position: absolute;
+          width: 100%;
+          height: 30%;
+          bottom: 0;
+          border-bottom: 1px solid $reg-input-box-color;
+          border-left: 1px solid $reg-input-box-color;
+          border-right: 1px solid $reg-input-box-color;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          background-color: $charcoal;
+  
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+  
+          .idea-board-title-light {
+            width: 80%;
+            height: 100%;
+  
+            h1 {
+              padding-left: 10px;
+              font-family: $theme-font;
+              font-weight: 300;
+              font-size: 1em;
+              color: $label-color;
+              height: 100%;
+  
+              display: flex;
+              align-items: center;
+            }
+  
+            .actions-light {
+              position: relative;
+              padding-left: 10px;
+              padding-right: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              height: 50%;
+  
+              margin-top: 7px;
+  
+              .delete-light,
+              .edit-light,
+              .rocket-light, .cloud-storage-icon-wrapper {
+                width: 30px;
+                padding: 4px;
+                border-radius: 4px;
+                transition: 0.4s all ease;
+                cursor: pointer;
+              }
+              .delete-light {
+                background-color: rgba(255, 72, 90, 0.2);
+              }
+              .edit-light {
+                background-color: rgba(63, 222, 156, 0.2);
+              }
+              .rocket-light {
+                position: absolute;
+                padding: 2px;
+                top: 4px;
+                background-color: rgba(197, 33, 255, 0.1);
+                right: -50px;
+  
+                &:hover {
+                  background-color: rgba(197, 33, 255, 0.4);
+                }
+              }
+  
+              .edit-light {
+                margin-left: 10px;
+              }
+  
+              .delete-light:hover {
+                background-color: #eb1f6d79;
+              }
+  
+              .edit-light:hover {
+                background-color: #22d18562;
+              }
+              .cloud-storage-icon-wrapper {
+                // border: 1px solid white;
+                .cloud-storage-icon {
+                  padding: 5px;
+                  position: absolute;
+                  right: -10px;
+                  bottom: -4px;
+                  width: 35px;
+                  border-radius: 5px;
+                }
+                .cloud-storage-icon:hover {
+                  background: linear-gradient(
+                    180deg,
+                    rgba(255, 45, 146, 0.2) 12%,
+                    rgba(253, 46, 147, 0.198703) 12.67%,
+                    rgba(248, 51, 149, 0.194674) 13.33%,
+                    rgba(238, 59, 153, 0.187751) 20%,
+                    rgba(224, 71, 158, 0.177888) 26.67%,
+                    rgba(207, 85, 165, 0.165234) 33.33%,
+                    rgba(186, 102, 173, 0.150217) 40%,
+                    rgba(163, 122, 182, 0.133596) 46.67%,
+                    rgba(139, 141, 192, 0.116404) 53.33%,
+                    rgba(116, 161, 201, 0.0997826) 60%,
+                    rgba(95, 178, 209, 0.0847662) 66.67%,
+                    rgba(78, 192, 216, 0.0721117) 73.33%,
+                    rgba(64, 204, 221, 0.062249) 80%,
+                    rgba(54, 212, 225, 0.0553265) 86.67%,
+                    rgba(49, 217, 227, 0.0512971) 93.33%,
+                    rgba(47, 218, 228, 0.05) 100%
+                  );
+                }
+              }
+            }
+          }
+  
+          .idea-board-members-light {
+            margin-right: 10px;
+            width: fit-content;
+            display: flex;
+            justify-content: space-around;
+            .idea-board-owner-light {
+              height: 100%;
+              // width: 20%;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+  
+              img {
+                border: 3px solid rgba(255, 255, 0, 0.8);
+                width: 30px;
+                border-radius: 50%;
+              }
+            }
+            .idea-board-others-light {
+              height: 100%;
+              // width: 20%;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              img {
+                margin-right: 5px;
+                // border: 3px solid rgba(255, 255, 0, 0.5);
+                width: 30px;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+      }
+  
+      .card-light:hover {
+        .logo-wrapper-light {
+          background: none;
+          img {
+            width: 20px;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }

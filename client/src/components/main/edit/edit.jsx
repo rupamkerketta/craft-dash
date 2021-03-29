@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 
 import './edit.scss'
+import './edit-light.scss'
+
 
 import { deSelectAll_Main } from '../../../redux/elements/focus-elements/focusElementsActions'
 import { setFocusText_Main } from '../../../redux/elements/focus-text/focusTextActions'
@@ -58,6 +60,9 @@ const Edit = ({
 	const focus_text = useSelector((state) => state.focus_text)
 	const dispatch = useDispatch()
 
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
+
 	const addEmoji = (emoji) => {
 		if (focus_element.id !== undefined) {
 			dispatch({
@@ -76,9 +81,9 @@ const Edit = ({
 	const [showEmojiPicker, setShowEmojiPicker] = useState(false)
 
 	return (
-		<div className='edit-sidebar'>
-			<div className='edit-sidebar-wrapper'>
-				<div className='el-id'>
+		<div className={`edit-sidebar ${dark ? "":"edit-sidebar-light"}`}>
+			<div className={`edit-sidebar-wrapper ${dark ? "":"edit-sidebar-wrapper-light"}`}>
+				<div className={`el-id ${dark ? "":"el-id-light"}`}>
 					<ElementGroup
 						data={{
 							label: '#id',
@@ -89,8 +94,8 @@ const Edit = ({
 					/>
 				</div>
 
-				<div className='co' style={{ display: showEmojiPicker ? 'none' : '' }}>
-					<div className='x-co'>
+				<div className={`co ${dark ? "":"co-light"}`} style={{ display: showEmojiPicker ? 'none' : '' }}>
+					<div className={`x-co ${dark ? "":"x-co-light"}`}>
 						<ElementGroup
 							data={{
 								label: 'x :',
@@ -103,7 +108,7 @@ const Edit = ({
 							}}
 						/>
 					</div>
-					<div className='y-co'>
+					<div className={`y-co ${dark ? "":"y-co-light"}`}>
 						<ElementGroup
 							data={{
 								label: 'y :',
@@ -119,7 +124,7 @@ const Edit = ({
 				</div>
 
 				<div
-					className='fg-bg'
+					className={`fg-bg ${dark ? "":"fg-bg-light"}`}
 					style={{ display: showEmojiPicker ? 'none' : '' }}>
 					<ElementGroup
 						data={{
@@ -139,7 +144,7 @@ const Edit = ({
 					/>
 				</div>
 
-				<div className='text'>
+				<div className={`text ${dark ? "":"text-light"}`}>
 					<ElementGroup
 						data={{
 							label: 'text',
@@ -156,7 +161,7 @@ const Edit = ({
 					/>
 				</div>
 
-				<div className='edit-update-btn'>
+				<div className={`edit-update-btn ${dark ? "":"edit-update-btn-light"}`}>
 					<button
 						style={{
 							backgroundColor: showEmojiPicker ? '#08E789' : 'transparent'
@@ -172,7 +177,7 @@ const Edit = ({
 				</div>
 
 				<div
-					className='emoji-picker'
+					className={`emoji-picker ${dark ? "":"emoji-picker-light"}`}
 					style={{
 						display: showEmojiPicker ? 'block' : 'none'
 					}}>
@@ -188,7 +193,7 @@ const Edit = ({
 					/>
 				</div>
 
-				<div className='edit-remove-btn'>
+				<div className={`edit-remove-btn ${dark ? "":"edit-remove-btn-light"}`}>
 					<button onClick={removeHandler}>REMOVE</button>
 				</div>
 			</div>
@@ -210,26 +215,27 @@ const ElementGroup = (props) => {
 		})
 		props.textChangeHandler(e.target.value)
 	}
-
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
 	return (
-		<div className='edit-group'>
-			<h3 className='field-label' style={{ width: props.data.label_width }}>
+		<div className={`edit-group ${dark ? "":"edit-group-light"}`}>
+			<h3 className={`field-label ${dark ? "":"field-label-light"}`} style={{ width: props.data.label_width }}>
 				{props.data.label}
 			</h3>
 			<div
-				className='field-content-wrapper'
+				className={`field-content-wrapper ${dark ? "":"field-content-wrapper-light"}`}
 				style={{ width: props.data.content_width }}>
 				{props.data.label === 'text' ? (
 					<textarea
 						disabled={focus_element.data === undefined ? true : false}
-						className='field-content-textarea'
+						className={`field-content-textarea ${dark ? "":"field-content-textarea-light"}`}
 						rows='4'
 						cols='20'
 						value={focus_text}
 						onChange={textChangeHandler}
 					/>
 				) : (
-					<h3 className='field-content'>{props.data.content}</h3>
+					<h3 className={`field-content ${dark ? "":"field-content-light"}`}>{props.data.content}</h3>
 				)}
 			</div>
 		</div>

@@ -155,27 +155,27 @@
 	);
 	backdrop-filter: blur(10px);
 
-	.recorder-header {
-		width: fit-content;
-		margin: auto;
-		// border: 1px solid white;
-		display: flex;
-		align-items: center;
+	// .recorder-header {
+	// 	width: fit-content;
+	// 	margin: auto;
+	// 	// border: 1px solid white;
+	// 	display: flex;
+	// 	align-items: center;
 
-		img {
-			width: 60px;
-		}
-		h2 {
-			color: $label-color;
-			font-family: $theme-font;
-			font-weight: 500;
-		}
-	}
-	.react-media-recorder-wrapper {
-		// border: 1px solid white;
-		width: fit-content;
-		margin: auto;
-		margin-top: 20px;
+	// 	img {
+	// 		width: 60px;
+	// 	}
+	// 	h2 {
+	// 		color: $label-color;
+	// 		font-family: $theme-font;
+	// 		font-weight: 500;
+	// 	}
+	// }
+	// .react-media-recorder-wrapper {
+	// 	// border: 1px solid white;
+	// 	width: fit-content;
+	// 	margin: auto;
+	// 	margin-top: 20px;
 
 		.recording-status-wrapper {
 			// border: 1px solid white;
@@ -272,7 +272,6 @@
 				}
 			}
 		}
-	}
 }
 
 .view-file-info-modal {
@@ -348,7 +347,7 @@
 		.file-info-details {
 			width: 250px;
 			margin-top: 150px;
-			border: 1px solid $charcoal;
+			border: 2px solid $charcoal;
 			border-radius: 5px;
 			background-color: $gunmetal;
 			height: 150px;

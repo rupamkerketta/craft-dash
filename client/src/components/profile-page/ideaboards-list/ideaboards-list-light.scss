@@ -1,0 +1,71 @@
+@import "../../../sass/utils/colors";
+@import "../../../sass/utils/fonts";
+
+.active-ideaboards-list-light {
+  // border: 1px solid yellow;
+  width: 100%;
+  height: 120px;
+  // height: 200px;
+  position: absolute;
+  top: 60px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 7px;
+
+  // justify-content: flex-start;
+
+  // left: 20px;
+  .active-ideaboards-list-wrapper-light {
+    margin: auto;
+    // border: 1px solid white;
+    background: linear-gradient(
+      96.2deg,
+      rgba(228, 228, 228, 0.22) 0%,
+      rgba(227, 228, 228, 0.22) 6.67%,
+      rgba(222, 228, 228, 0.22) 13.33%,
+      rgba(214, 228, 228, 0.22) 20%,
+      rgba(202, 227, 228, 0.22) 26.67%,
+      rgba(186, 226, 228, 0.22) 33.33%,
+      rgba(168, 225, 228, 0.22) 40%,
+      rgba(148, 224, 228, 0.22) 46.67%,
+      rgba(127, 223, 228, 0.22) 53.33%,
+      rgba(107, 221, 228, 0.22) 60%,
+      rgba(89, 220, 228, 0.22) 66.67%,
+      rgba(74, 220, 228, 0.22) 73.33%,
+      rgba(62, 219, 228, 0.22) 80%,
+      rgba(53, 218, 228, 0.22) 86.67%,
+      rgba(49, 218, 228, 0.22) 93.33%,
+      rgba(47, 218, 228, 0.22) 100%
+    );
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(50px);
+    border-radius: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    .color-circle {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background: $craft-dash-pink;
+    }
+    .ideaboard-title-light {
+      margin-left: 10px;
+      font-family: $theme-font;
+      font-size: 1em;
+      font-weight: 300;
+      color: $theme-color;
+    }
+  }
+}
+

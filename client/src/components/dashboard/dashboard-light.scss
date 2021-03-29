@@ -1,31 +1,33 @@
 @import "../../sass/utils/colors";
 @import "../../sass/utils/fonts";
 
-.dashboard {
+.dashboard-light {
   // border: 1px solid white;
   position: absolute;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: url("../../img/dash-board-bg-pattern.svg") fixed center no-repeat;
+  background: url("../../img/dash-board-bg-pattern-light.svg") fixed center
+    no-repeat;
+  background-color: $theme-color-light;
   background-size: cover;
-  .top-nav {
+  .top-nav-light {
     position: absolute;
     width: 1000px;
     height: 10vh;
     top: 10px;
     left: 50%;
     transform: translate(-50%);
-    border-bottom: 2px solid #323232;
+    border-bottom: 2px solid $theme-color;
     display: flex;
     align-items: center;
     justify-content: space-around;
 
-    .brand-logo-wrapper {
+    .brand-logo-wrapper-light {
       width: 170px;
     }
 
-    .add-btn {
+    .add-btn-light {
       width: 170px;
       height: 50px;
 
@@ -44,13 +46,13 @@
       transition: 0.4s all ease;
     }
 
-    .add-btn:hover {
+    .add-btn-light:hover {
       img {
-        background-color: $charcoal;
+        background-color: rgba(255, 45, 146, 0.2);
       }
     }
 
-    .user-wrapper {
+    .user-wrapper-light {
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -59,7 +61,7 @@
     }
   }
 
-  .dashboard-title {
+  .dashboard-title-light {
     position: absolute;
     width: 1000px;
     top: 15vh;
@@ -70,18 +72,20 @@
     h1 {
       width: fit-content;
       font-family: $theme-font;
-      font-weight: 200;
+      font-weight: 500;
       font-size: 1em;
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 5px;
       padding-bottom: 5px;
-      color: $label-color;
+      color: $theme-color;
+      backdrop-filter: blur(5px);
       border: 3px solid $craft-dash-pink;
+      cursor: pointer;
     }
   }
 
-  .dashboard-cards-wrapper {
+  .dashboard-cards-wrapper-light {
     // border: 1px solid white;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -118,14 +122,14 @@
     // 	border-radius: 10px;
   }
 
-  .rodal-bg-blur {
+  .rodal-bg-blur-light {
     background: linear-gradient(
       103.23deg,
       rgba(108, 134, 144, 0.1) 0%,
       rgba(108, 134, 145, 0.04) 49.27%,
       rgba(108, 134, 144, 0.06) 100%
     );
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
   }
 
   // .collaborators-modal {
@@ -136,33 +140,33 @@
   // .dashboard-cards-wrapper
 
   /* width */
-  .dashboard-cards-wrapper::-webkit-scrollbar {
+  .dashboard-cards-wrapper-light::-webkit-scrollbar {
     width: 4px;
   }
 
   /* Track */
-  .dashboard-cards-wrapper::-webkit-scrollbar-track {
+  .dashboard-cards-wrapper-light::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0.123);
     border-radius: 10px;
   }
 
   /* Handle */
-  .dashboard-cards-wrapper::-webkit-scrollbar-thumb {
+  .dashboard-cards-wrapper-light::-webkit-scrollbar-thumb {
     background: #29e4968e;
     // background: $charcoal;
     border-radius: 10px;
   }
 
   /* Handle on hover */
-  .dashboard-cards-wrapper::-webkit-scrollbar-thumb:hover {
+  .dashboard-cards-wrapper-light::-webkit-scrollbar-thumb:hover {
     // background: #0cff9a;
     background: $craft-dash-green;
   }
 
   // 💄  Styles for 'Create New IdeaBoard'
-  .ideaboard-modal {
+  .ideaboard-modal-light {
     // background-color: #1F2023;
-    .ideaboard-header {
+    .ideaboard-header-light {
       width: fit-content;
       display: flex;
       align-items: center;
@@ -171,21 +175,21 @@
       margin-top: 20px;
 
       img {
-        content: url("../../img/idea.svg");
+        content: url("../../img/idea-light.svg");
         width: 30px;
         margin-right: 10px;
       }
 
-      .ideaboard-title {
+      .ideaboard-title-light {
         margin-left: 4px;
         font-family: $theme-font;
-        color: $label-color;
-        font-weight: 300;
+        color: $theme-color;
+        font-weight: 500;
         font-size: 1.2em;
       }
     }
 
-    .input-group {
+    .input-group-light {
       width: fit-content;
       margin: auto;
       position: relative;
@@ -195,11 +199,11 @@
         display: block;
         width: 100%;
         font-family: $theme-font;
-        font-weight: 300;
+        font-weight: 500;
         font-size: 1em;
         padding-top: 2px;
         padding-bottom: 2px;
-        color: $label-color;
+        color: $theme-color;
         margin-bottom: 5px;
         .asterisk {
           color: $danger;
@@ -212,11 +216,11 @@
         width: 300px;
         border: 0;
         border-radius: 4px;
-        background: $theme-color;
+        background: $label-color;
         font-family: $theme-font;
         font-size: 1.2em;
-        color: $label-color;
-        border: 2px solid $charcoal;
+        color: $theme-color;
+        border: 3px solid $theme-color;
         font-weight: 300;
         outline: none;
       }
@@ -236,12 +240,12 @@
         resize: none;
       }
 
-      .error-msg-wrapper {
+      .error-msg-wrapper-light {
         width: fit-content;
         height: 30px;
         margin-top: 5px;
 
-        .error-msg {
+        .error-msg-light {
           padding-left: 7px;
           padding-right: 7px;
           border-radius: 3px;
@@ -254,12 +258,12 @@
       }
     }
 
-    .create-btn {
+    .create-btn-light {
       width: fit-content;
       margin: auto;
-      margin-top: 10px;
+      margin-top: 20px;
 
-      .create-success-msg {
+      .create-success-msg-light {
         font-family: $theme-font;
         width: fit-content;
         margin: auto;
@@ -271,47 +275,47 @@
         border: 3px solid $login-btn-color;
         border-radius: 5px;
         width: 300px;
-        height: 50px;
         font-family: $theme-font;
         font-size: 1em;
         font-weight: 600;
+        // letter-spacing: 3;
         padding-top: 5px;
         padding-bottom: 5px;
         background-color: $login-btn-color;
         color: $theme-color;
         cursor: pointer;
         outline: none;
-        transition: 0.4s all ease;
+        transition: 0.2s all ease;
       }
 
       button:hover {
-        border: 3px solid $login-btn-color;
+        border: 3px solid $craft-dash-green;
         background-color: rgba(63, 222, 156, 0.4);
-        color: $login-btn-color;
+        color: $theme-color;
       }
     }
   }
 
-  .delete-modal {
+  .delete-modal-light {
     width: 100%;
-
+ 
     h2 {
       width: 90%;
       margin: auto;
       font-family: $theme-font;
       font-size: 1.3em;
-      font-weight: 300;
-      color: $label-color;
+      font-weight: 500;
+      color: $theme-color;
       margin-top: 20px;
     }
 
-    .post-delete {
+    .post-delete-light {
       width: fit-content;
       margin: auto;
       margin-top: 70px;
     }
 
-    .yn {
+    .yn-light {
       margin-top: 30px;
 
       div {
@@ -335,32 +339,32 @@
           outline: none;
         }
 
-        .yes {
-          background-color: $craft-dash-red;
+        .yes-light {
+          background-color: rgba(255, 46, 66, 1);
           backdrop-filter: blur(10px);
-          border: 2px solid $craft-dash-red;
+          border: 3px solid $danger;
           font-weight: 600;
           border-radius: 5px;
           color: $theme-color;
         }
 
-        .no {
-          background-color: $craft-dash-green;
+        .no-light {
+          background-color: rgba(63, 222, 156, 1);
           backdrop-filter: blur(10px);
-          border: 2px solid $craft-dash-green;
+          border: 3px solid $login-btn-color;
           font-weight: 600;
           border-radius: 5px;
           color: $theme-color;
         }
 
-        .yes:hover {
-          color: $craft-dash-red;
-          background-color: rgba(252, 83, 100, 0.2);
+        .yes-light:hover {
+          color: $theme-color;
+          background-color: rgba(255, 46, 66, 0.4);
         }
 
-        .no:hover {
-          color: $craft-dash-green;
-          background-color: rgba(63, 222, 156, 0.2);
+        .no-light:hover {
+          color: $theme-color;
+          background-color: rgba(63, 222, 156, 0.4);
         }
       }
     }

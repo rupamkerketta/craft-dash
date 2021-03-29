@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
+import './main-board-light.scss'
 import { v4 as uuid4 } from 'uuid'
 
 // Rodal
@@ -8,6 +9,7 @@ import Rodal from 'rodal'
 
 // Redux Dispatches
 import { hideFileInfo } from '../../../redux/view-file/viewFilesActions'
+
 
 // My-File-Node
 import MyFileNode from '../idb-files/my-file-node/my-file-node'
@@ -216,7 +218,7 @@ const MainBoard = ({
 			},
 			type: 'default',
 			style: {
-				backgroundColor: '#ffffff',
+				backgroundColor: '#000000',
 				color: 'black',
 				fontFamily: 'Poppins',
 				fontWeight: '400',
@@ -336,12 +338,26 @@ const MainBoard = ({
 			borderBottom: '1px solid rgba(234,236,239, 0.2)',
 			borderRadius: '5px'
 		}
-	}
-
+	};
+	const customStylesLight = {
+		wrapper: {
+		  backgroundColor: "#1F2023",
+		  background:
+			"linear-gradient(103.23deg, rgba(164, 238, 254, 0.2) 0%, rgba(165, 238, 254, 0.199654) 6.67%, rgba(166, 238, 254, 0.19858) 13.33%, rgba(169, 239, 254, 0.196734) 20%, rgba(173, 239, 254, 0.194104) 26.67%, rgba(178, 240, 254, 0.190729) 33.33%, rgba(184, 241, 254, 0.186725) 40%, rgba(190, 242, 254, 0.182292) 46.67%, rgba(197, 244, 254, 0.177708) 53.33%, rgba(203, 245, 254, 0.173275) 60%, rgba(209, 246, 254, 0.169271) 66.67%, rgba(214, 247, 254, 0.165896) 73.33%, rgba(218, 247, 254, 0.163266) 80%, rgba(221, 248, 254, 0.16142) 86.67%, rgba(222, 248, 254, 0.160346) 93.33%, rgba(223, 248, 254, 0.16) 100%)",
+	
+		  borderLeft: "1px solid rgba(234,236,239, 0.3)",
+		  borderTop: "1px solid rgba(234,236,239, 0.3)",
+		  borderRight: "1px solid rgba(234,236,239, 0.2)",
+		  borderBottom: "1px solid rgba(234,236,239, 0.2)",
+		  borderRadius: "5px",
+		},
+	  };
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
 	return (
-		<div className='main-board'>
+		<div className={`main-board ${dark ? "":"main-board-light"}`}>
 			<ReactFlow
-				className='react-flow-main'
+				className={`react-flow-main ${dark ? "":"react-flow-main-light"}`}
 				onMouseMove={onMouseMove}
 				elements={elements}
 				onLoad={onLoad}
@@ -355,33 +371,33 @@ const MainBoard = ({
 				onNodeDragStart={onNodeDragStart}
 				onNodeDragStop={onNodeDragStop}
 				snapToGrid={false}>
-				<Background color='#888' gap={50} variant='dots' />
+				<Background color='#000000' gap={50} variant='dots' />
 
 				<Rodal
-					className='main-rodal-bg-blur'
+					className={`main-rodal-bg-blur ${dark ? "":"main-rodal-bg-blur-light"}`}
 					visible={viewFile.viewFile}
 					onClose={() => hideFileInfo()}
 					animation='fade'
 					width={900}
 					height={600}
-					customStyles={customStyles.wrapper}>
+					customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}>
 					<ViewFileInfoModal file_name={viewFile.file_name}></ViewFileInfoModal>
 				</Rodal>
 
 				<Rodal
-					className='main-rodal-bg-blur'
+					className={`main-rodal-bg-blur ${dark ? "":"main-rodal-bg-blur-light"}`}
 					visible={show_vn_modal}
 					onClose={() => hideVNModal()}
 					animation='fade'
 					width={550}
 					height={600}
-					customStyles={customStyles.wrapper}>
-					<div className='recorder-header'>
+					customStyles={dark ? customStyles.wrapper : customStylesLight.wrapper}>
+					<div className={`recorder-header ${dark ? "":"recorder-header-light"}`}>
 						<img src={Recording} alt='Recording' />
 						<h2>Record your Audio</h2>
 					</div>
 					<div>
-						<div className='react-media-recorder-wrapper'>
+						<div className={`react-media-recorder-wrapper ${dark ? "":"react-media-recorder-wrapper-light"}`}>
 							<VoiceRecorder />
 						</div>
 					</div>
@@ -398,7 +414,7 @@ const MainBoard = ({
 							return (
 								<div
 									key={index}
-									className='peer-pointer'
+									className={`peer-pointer ${dark ? "":"peer-pointer-light"}`}
 									style={{
 										position: 'absolute',
 										top: `${item.pos.y}px`,
@@ -407,9 +423,9 @@ const MainBoard = ({
 									<img
 										src={pointer}
 										alt={`${item.email}`}
-										className='peer-pointer'
+										className={`peer-pointer ${dark ? "":"peer-pointer-light"}`}
 									/>
-									<h2 className='peer-email' style={{ backgroundColor: color }}>
+									<h2 className={`peer-email ${dark ? "":"peer-email-light"}`} style={{ backgroundColor: color }}>
 										{item.username}
 									</h2>
 								</div>
@@ -418,7 +434,7 @@ const MainBoard = ({
 					: ''}
 
 				<MiniMap
-					className='mini-map'
+					className={`mini-map ${dark ? "":"mini-map-light"}`}
 					nodeColor={(node) => {
 						switch (node.type) {
 							case 'input':
@@ -433,22 +449,22 @@ const MainBoard = ({
 					}}
 				/>
 
-				<Controls className='main-controls-plugin' />
+				<Controls className={`main-controls-plugin ${dark ? "":"main-controls-plugin-light"}`} />
 			</ReactFlow>
 
-			<div className='main-node-controls'>
+			<div className={`main-node-controls ${dark ? "":"main-node-controls-light"}`}>
 				<input
 					type='text'
-					className='node-text-input'
+					className={`node-text-input ${dark ? "":"node-text-input-light"}`}
 					onChange={(e) => setName(e.target.value)}
 					value={name}
 					name='title'
 				/>
-				<button className='add-node' type='button' onClick={addNode}>
+				<button className={`add-node ${dark ? "":"add-node-light"}`} type='button' onClick={addNode}>
 					Add
 				</button>
 				<img
-					className='voice-note'
+					className={`voice-note ${dark ? "":"voice-note-light"}`}
 					src={Recording}
 					alt='Voice Note'
 					onClick={() => viewVNModal()}
@@ -489,31 +505,33 @@ const mapDispatchToProps = {
 }
 
 const ViewFileInfoModal = (props) => {
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
 	return (
-		<div className='view-file-info-modal'>
-			<div className='file-preview'>
+		<div className={`view-file-info-modal ${dark ? "":"view-file-info-modal-light"}`}>
+			<div className={`file-preview ${dark ? "":"file-preview-light"}`}>
 				<p>Image Here</p>
 				{/* <img src={`${server}/api/cloud-storage/get-file/${props.file_name}`} /> */}
 			</div>
-			<div className='file-modal-details-wrapper'>
-				<div className='file-name-modal'>
+			<div className={`file-modal-details-wrapper ${dark ? "":"file-modal-details-wrapper-light"}`}>
+				<div className={`file-name-modal ${dark ? "":"file-name-modal-light"}`}>
 					<p>file_name.jpg</p>
 				</div>
-				<div className='file-info-details'>
-					<div className='details-wrapper'>
+				<div className={`file-info-details ${dark ? "":"file-info-details-light"}`}>
+					<div className={`details-wrapper ${dark ? "":"details-wrapper-light"}`}>
 						<p>Type: type here</p>
 						<p>Size: size here</p>
 						<p>Date Added: Abc 00 0000, 00:00:00</p>
 					</div>
 				</div>
-				<div className='file-info-modal-buttons'>
-					<div className='download-button'>
-						<div className='download-button-content'>
+				<div className={`file-info-modal-buttons ${dark ? "":"file-info-modal-buttons-light"}`}>
+					<div className={`download-button ${dark ? "":"download-button-light"}`}>
+						<div className={`download-button-content ${dark ? "":"download-button-content-light"}`}>
 							<p>DOWNLOAD</p>
 						</div>
 					</div>
-					<div className='remove-node-button'>
-						<div className='remove-node-button-content'>
+					<div className={`remove-node-button ${dark ? "":"remove-node-button-light"}`}>
+						<div className={`remove-node-button-content ${dark ? "":"remove-node-button-content-light"}`}>
 							<p>REMOVE FROM NODE</p>
 						</div>
 					</div>

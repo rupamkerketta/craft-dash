@@ -4,6 +4,8 @@ import { v4 as uuid4 } from 'uuid'
 
 // Styles
 import './idb-files.scss'
+import './idb-files-light.scss'
+
 
 // API
 import api from '../../../utils/api'
@@ -19,6 +21,9 @@ import * as ELEMENTS from '../../../redux/elements/elementsActions'
 
 // My-File-Node (Component)
 import MyFileNode from './my-file-node/my-file-node'
+
+import { useSelector } from "react-redux";
+
 
 const style = (url) => {
 	return {
@@ -132,10 +137,13 @@ function IdbFiles({
 		}
 	}, [])
 
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
+
 	return (
-		<div className='idb-files'>
+		<div className={` idb-files ${dark ? "" : "idb-files-light"}`}>
 			{console.log(selectedFile)}
-			<div className='idb-remote-files-wrapper'>
+			<div className={` idb-remote-files-wrapper ${dark ? "" : "idb-remote-files-wrapper-light"}`}>
 				{files_info.files_info
 					? files_info.files_info.map((file, index) => {
 							return (
@@ -143,12 +151,12 @@ function IdbFiles({
 									className={`idb-remote-file-wrapper ${
 										selectedFile.file_name === file.file_name
 											? 'file-selected'
-											: ''
+											: '', dark? "":"idb-remote-file-wrapper-light"
 									}`}
 									key={file.file_name}
 									style={{ marginTop: index > 1 ? '80px' : '' }}>
 									<div
-										className='idb-remote-file'
+										className={` idb-remote-file ${dark ? "" : "idb-remote-file-light"}`}
 										onClick={() => fileSelectHandler(file)}
 										style={
 											file.file_type.split('/')[0] === 'image'
@@ -159,7 +167,7 @@ function IdbFiles({
 										}>
 										{/* SVG preview */}
 										{file.file_type === 'image/svg+xml' ? (
-											<div className='svg-preview'>
+											<div className={` svg-preview ${dark ? "" : "svg-preview-light"}`}>
 												{/* <object
 													className='svg-preview'
 													type='image/svg+xml'
@@ -173,28 +181,28 @@ function IdbFiles({
 
 										{/* PDF */}
 										{file.file_type === 'application/pdf' ? (
-											<img className='pdf-bg' src={PdfIcon} alt='i' />
+											<img className={` pdf-bg ${dark ? "" : "pdf-bg-light"}`} src={PdfIcon} alt='i' />
 										) : (
 											''
 										)}
 									</div>
-									<div className='file-icon'>
+									<div className={` file-icon ${dark ? "" : "file-icon-light"}`}>
 										{file.file_type.split('/')[0] === 'image' ? (
 											file.file_type.split('/')[1] === 'svg+xml' ? (
-												<img className='image-icon' src={SvgIcon} alt='i' />
+												<img className={` image-icon ${dark ? "" : "image-icon-light"}`} src={SvgIcon} alt='i' />
 											) : (
-												<img className='image-icon' src={ImageIcon} alt='i' />
+												<img className={` image-icon ${dark ? "" : "image-icon-light"}`} src={ImageIcon} alt='i' />
 											)
 										) : (
 											''
 										)}
 										{file.file_type.split('/')[1] === 'pdf' ? (
-											<img className='image-icon' src={PdfIcon} alt='i' />
+											<img className={` image-icon ${dark ? "" : "image-icon-light"}`} src={PdfIcon} alt='i' />
 										) : (
 											''
 										)}
 									</div>
-									<div className='file-name'>
+									<div className={` file-name ${dark ? "" : "file-name-light"}`}>
 										<h3>{file.original_file_name}</h3>
 									</div>
 								</div>
@@ -203,8 +211,8 @@ function IdbFiles({
 					: ''}
 			</div>
 
-			<div className='add-files-idb'>
-				<button className='add-file-btn' onClick={addNode}>
+			<div className={` add-files-idb ${dark ? "" : "add-files-idb-light"}`}>
+				<button className={` add-file-btn ${dark ? "" : "add-file-btn-light"}`} onClick={addNode}>
 					ADD FILE
 				</button>
 			</div>

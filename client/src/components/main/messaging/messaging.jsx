@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./messaging.scss";
+import "./messaging-light.scss";
+
 import { connect, useSelector, useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
 
@@ -69,6 +71,9 @@ const Messaging = ({
   // Reset Form Reference
   const resetForm = React.useRef(null);
 
+  const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
+
   const onSubmit = (values, { resetForm }) => {
     resetForm();
     console.log(values, room, username);
@@ -92,10 +97,10 @@ const Messaging = ({
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   return (
-    <div className="messaging">
+    <div className={`messaging ${dark ? "":"messaging-light"}`}>
       <Chats messages={messages} />
 
-      <div className="chat-input">
+      <div className={`chat-input ${dark ? "":"chat-input-light"}`}>
         <Formik
           initialValues={initialValues}
           validate={validate}
@@ -107,7 +112,7 @@ const Messaging = ({
             return (
               <Form>
                 <div
-                  className="emoji-picker-messaging"
+                  className={`emoji-picker-messaging ${dark ? "":"emoji-picker-messaging-light"}`}
                   style={{
                     display: showEmojiPicker ? "block" : "none",
                   }}
@@ -123,7 +128,7 @@ const Messaging = ({
                     emoji="point_up"
                   />
                 </div>
-                <div className="input-group">
+                <div className={`input-group ${dark ? "":"input-group-light"}`}>
                   <Field
                     type="text"
                     name="message"
@@ -132,7 +137,7 @@ const Messaging = ({
                     placeholder="Type Something"
                   />
                   <button
-                    className="emoji-icon"
+                    className={`emoji-icon ${dark ? "":"emoji-icon-light"}`}
                     title="Select Emoji"
                     onClick={() => setShowEmojiPicker((e) => !e)}
                   >
@@ -140,7 +145,7 @@ const Messaging = ({
                   </button>
                   <img
                     src={SendIcon}
-                    className="send-icon"
+                    className={`send-icon ${dark ? "":"send-icon-light"}`}
                     onClick={() => {
                       if (formik.isValid) {
                         sendMsgOnClick(formik.values);
@@ -160,8 +165,10 @@ const Messaging = ({
 };
 
 const Chats = (props) => {
+  const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
   return (
-    <div className="chat-messages">
+    <div className={`chat-messages ${dark ? "":"chat-messages-light"}`}>
       {props.messages.map((obj, index) => {
         return <Message key={index} data={obj} />;
       })}
@@ -170,13 +177,15 @@ const Chats = (props) => {
 };
 
 const Message = (props) => {
+  const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
   return (
-    <div className="message">
-      <p className="chat-meta">
-        {props.data.username} <span className="time">{props.data.time}</span>
+    <div className={`message ${dark ? "":"message-light"}`}>
+      <p className={`chat-meta ${dark ? "":"chat-meta-light"}`}>
+        {props.data.username} <span className={`time ${dark ? "":"time-light"}`}>{props.data.time}</span>
       </p>
-      <div className="chat-content-wrapper">
-        <p className="chat-content">{ReactEmoji.emojify(props.data.message)}</p>
+      <div className={`chat-content-wrapper ${dark ? "":"chat-content-wrapper-light"}`}>
+        <p className={`chat-content ${dark ? "":"chat-content-light"}`}>{ReactEmoji.emojify(props.data.message)}</p>
       </div>
     </div>
   );

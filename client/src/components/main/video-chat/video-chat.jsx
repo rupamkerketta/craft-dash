@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, } from 'react'
+import { useSelector } from "react-redux";
 import { connect } from 'react-redux'
 
 // Utility Modules
@@ -9,6 +10,8 @@ import Peer from 'simple-peer'
 
 // Sass
 import './video-chat.scss'
+import './video-chat-light.scss'
+
 
 const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 	// Slef video
@@ -18,6 +21,8 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 	// Peers
 	const peersRef = useRef([])
 	const [peers, setPeers] = useState([])
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
 
 	useEffect(() => {
 		// console.log(videoFullMode)
@@ -169,23 +174,23 @@ const VideoChat = ({ socket, roomId, videoFullMode, room, user }) => {
 
 	return (
 		<div
-			className={`video-chat`}
+			className={`video-chat ${dark?"":"video-chat-light"}`}
 			style={videoFullMode ? { ...videoChatFullOn } : { ...videoChatFullOff }}>
 			<div
-				className='my-peers'
+				className={`my-peers ${dark?"":"my-peers-light"}`}
 				style={{
 					paddingBottom: videoFullMode ? '20px' : '5px',
 					paddingTop: videoFullMode ? '20px' : ''
 				}}>
-				<div className='my-video-wrapper'>
+				<div className={`my-video-wrapper ${dark?"":"my-video-wrapper-light"}`}>
 					<video
-						className='my-video'
+						className={`my-video ${dark?"":"my-video-light"}`}
 						ref={myVideo}
 						style={videoFullMode ? { ...videoChatOn } : { ...videoChatOff }}
 						autoPlay
 						muted
 					/>
-					<div className='my-name'>
+					<div className={`my-name ${dark?"":"my-name-light"}`}>
 						<p>You</p>
 					</div>
 				</div>
@@ -219,9 +224,11 @@ const Video = (props) => {
 			ref.current.srcObject = stream
 		})
 	}, [])
+	const theme = useSelector((state) => state.theme);
+	const dark = theme === "dark";
 
 	return (
-		<div className='video-wrapper'>
+		<div className={`video-wrapper ${dark?"":"video-wrapper-light"}`}>
 			<video
 				ref={ref}
 				style={
@@ -231,7 +238,7 @@ const Video = (props) => {
 				}
 				autoPlay
 			/>
-			<div className='peer-name'>
+			<div className={`peer-name ${dark?"":"peer-name-light"}`}>
 				<p
 					style={
 						props.videoFullMode ? { fontSize: '0.9em' } : { fontSize: '0.7em' }

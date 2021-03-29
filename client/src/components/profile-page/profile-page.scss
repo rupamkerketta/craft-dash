@@ -109,7 +109,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      margin-top: -80px;
+      margin-top: -0px;
       // border: 1px solid white;
       img {
         padding: 5px;
@@ -123,7 +123,7 @@
       .user-image {
         // position: absolute;
         left: 20px;
-        top: 25px;
+        top: 30px;
         bottom: 20px;
         // width: 145px;
         border-radius: 50%;
@@ -541,4 +541,14 @@
     background-color: rgba(63, 222, 156, 0.2);
     color: rgba(63, 222, 156, 1);
   }
+}
+
+.rodal-bg{
+  background: linear-gradient(
+      103.23deg,
+      rgba(108, 134, 144, 0.1) 0%,
+      rgba(108, 134, 145, 0.04) 49.27%,
+      rgba(108, 134, 144, 0.06) 100%
+    );
+    backdrop-filter: blur(10px);
 }

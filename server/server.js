@@ -17,7 +17,7 @@ const mongoose = require('./db/mongoose')
 const passport = require('passport')
 const socketio = require('socket.io')
 const http = require('http')
-const fileUpload = require('express-fileupload')
+// const fileUpload = require('express-fileupload')
 
 const server = http.createServer(app)
 const io = socketio(server)
@@ -27,15 +27,6 @@ require('./db/mongoose')
 
 // Social Login config
 require('./auth/social-login')
-
-// JOIN, LEAVE, LOG operations on the room (chat and main)
-// Video room operations excluded !!!
-const {
-	userJoin,
-	getCurrentUser,
-	userLeaves,
-	getRoomUsers
-} = require('./chat-module/user')
 
 const origin =
 	process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000'
@@ -59,8 +50,7 @@ app.use(
 	express.json(),
 	cookieParser(),
 	cors(corsOptions),
-	passport.initialize(),
-	fileUpload()
+	passport.initialize()
 )
 app.use('/api/user', usersRouter)
 app.use('/api/idea-board', ideaBoardRouter)

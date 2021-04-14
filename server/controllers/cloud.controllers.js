@@ -3,62 +3,96 @@ const { cloud_bucket } = require('../cloud-module/cloud-module')
 // File Model
 const File = require('../models/file')
 
+// # - Sharp
+const sharp = require('sharp')
+
+// UUID
+const { v4: uuid } = require('uuid')
+
 module.exports = {
-	uploadFile: (req, res) => {
+	uploadFile: async (req, res) => {
 		try {
-			console.log(req.files)
 			const idea_board_id = req.body.idea_board_id
+			const files_info = []
 
-			let file_meta = []
+			// Counter
+			let c = 0
 
-			let blob = null
-			let blobStream = null
+			// File Info
+			let original_file_name = ''
+			let new_file_name = ''
 			let file_extension = ''
-			let og_name = ''
-			let temp = null
+			let thumbnail = ''
+			let mimetype = ''
 
-			let obj_length = Object.keys(req.files).length
+			// Processing file info (first)
+			req.files.map((file) => {
+				mimetype = file.mimetype
 
-			Object.keys(req.files).forEach((file) => {
-				console.log(req.files[file])
-				// Extracting the file extension
-				// file_extension = req.files[file].mimetype.split('/')[1]
+				file_extension = file.originalname.split('.')
+				file_extension = file_extension[file_extension.length - 1]
 
-				// Temporary array
-				temp = req.files[file].name.split('.')
+				// UUID for the file
+				file_uuid = uuid()
 
-				// Extracting the file extension
-				file_extension = temp[temp.length - 1]
+				original_file_name = file.originalname
+				new_file_name = file_uuid + '.' + file_extension
 
-				// Original File Name
-				og_name = req.files[file].name
+				if (mimetype.startsWith('image/')) {
+					thumbnail = file_uuid + '-thumbnail.' + file_extension
+				} else {
+					thumbnail = ''
+				}
 
-				// Renaming the file
-				req.files[file].name = Date.now() + `.${file_extension}`
-
-				blob = cloud_bucket.file(req.files[file].name)
-				blobStream = blob.createWriteStream()
-
-				blobStream.end(req.files[file].data)
-
-				file_meta.push({
+				files_info.push({
 					idea_board_id,
-					file_name: req.files[file].name,
-					original_file_name: og_name,
-					type: req.files[file].mimetype
+					file_name: new_file_name,
+					original_file_name,
+					thumbnail,
+					type: mimetype
 				})
 			})
 
-			blobStream.on('finish', async () => {
-				let i = 0
-				console.log(obj_length)
-				while (i < obj_length) {
-					console.log(file_meta[i])
-					const file = new File({ ...file_meta[i] })
-					await file.save()
-					i = i + 1
-				}
-				res.status(200).send({ msg: 'Files uploaded!!!' })
+			// Uploading Files to GCS
+			files_info.map((file, index) => {
+				const blob = cloud_bucket.file(file.file_name)
+				const blobStream = blob.createWriteStream()
+
+				blobStream.end(req.files[index].buffer)
+
+				blobStream.on('finish', async () => {
+					c += 1
+
+					console.log(`File Uploaded : ${req.files[index].originalname}`)
+
+					if (file.type.startsWith('image/')) {
+						const blob_th = cloud_bucket.file(file.thumbnail)
+						const blobStream_th = blob_th.createWriteStream()
+
+						await sharp(req.files[index].buffer)
+							.resize({
+								width: 200,
+								height: 200,
+								fit: sharp.fit.cover
+							})
+							.toBuffer()
+							.then((data) => {
+								blobStream_th.end(data)
+							})
+					}
+
+					if (c === files_info.length) {
+						console.log('Files uploaded successfully!!!!')
+
+						// Updating files_info in the database
+						const response = await File.insertMany(files_info)
+
+						res.send({
+							message: 'Files uploaded successfully',
+							files_info: response
+						})
+					}
+				})
 			})
 		} catch (e) {
 			console.log(e)
@@ -69,10 +103,7 @@ module.exports = {
 	getFilesInfo: async (req, res) => {
 		try {
 			const idea_board_id = req.body.idea_board_id
-			// console.log(`[idea_board_id] ${idea_board_id}`)
 			const files = await File.find({ idea_board_id })
-
-			// console.log(files)
 
 			if (!files) {
 				// NRF - No Records Found
@@ -81,15 +112,11 @@ module.exports = {
 			}
 
 			const files_info = files.map((file) => {
-				// const [meta_data] = await cloud_bucket
-				// 	.file(file.file_name)
-				// 	.getMetadata()
-
-				// console.log(meta_data)
 				return {
 					original_file_name: file.original_file_name,
 					file_name: file.file_name,
-					file_type: file.type
+					file_type: file.type,
+					file_thumbnail: file.thumbnail
 				}
 			})
 

@@ -9,6 +9,11 @@ const fileSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	thumbnail: {
+		type: String,
+		default: '',
+		required: 'false'
+	},
 	original_file_name: {
 		type: String,
 		required: true

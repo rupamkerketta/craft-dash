@@ -1,0 +1,8 @@
+export const docx = '#docx'
+export const xls = '#xls'
+export const html = '#html'
+export const css = '#css'
+export const scss = '#scss'
+export const txt = '#txt'
+export const pdf = '#pds'
+export const svg = '#svg'

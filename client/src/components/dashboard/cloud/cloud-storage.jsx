@@ -2,37 +2,40 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
+
+// Brand Logo bor both light and dark theme
 import BrandLogo from '../../brand-logo/brand-logo'
 import BrandLogoLight from '../../brand-logo-light/brand-logo-light'
 
+// User Component for TopNav
 import User from '../../user/user'
-import api from '../../../utils/api'
-import { server } from '../../../utils/api'
 
+// API
+import api from '../../../utils/api'
+
+// Notification Utility
 import notify from '../../../utils/notifications/notify'
 import * as NOTIFICATION_TYPE from '../../../utils/notifications/notifyTypes'
 
+// Styles
 import './cloud-storage.scss'
 import './cloud-storage-light.scss'
 
+// Redux hook
 import { useSelector } from 'react-redux'
 
-import AddFilesButton from '../../../img/AddFilesButton.png'
-
-import FilesButton from '../../../img/Files.png'
-// import AudioButton from '../../../img/Audio.png'
-import NotesButton from '../../../img/Notes.png'
+// Modal Utility
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
+
+// Thumbnail Provider Component
+import ProvideThumbnail from './provide-thumbnail/provide-thumbnail'
+
+import AddFilesButton from '../../../img/AddFilesButton.png'
+import FilesButton from '../../../img/Files.png'
+import NotesButton from '../../../img/Notes.png'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
 import CraftDashCloudLogoLight from '../../../img/CraftDashCloudLogoLight.png'
-
-// import FileAddIcon from '../../../img/folder-add.png'
-
-import ImageIcon from '../../../img/image-icon.svg'
-import SvgIcon from '../../../img/svg-icon.svg'
-import PdfIcon from '../../../img/pdf-icon.svg'
-
 import CraftDashNotes from '../../../img/CraftDashNotesLogo.png'
 
 const thumbsContainer = {
@@ -67,19 +70,9 @@ const img = {
 	height: '100%'
 }
 
-const style = (url) => {
-	return {
-		background: `url('${url}') no-repeat center`,
-		backgroundSize: 'cover'
-	}
-}
-
 function CloudStorage({ match, idea_boards }) {
 	const [files, setFiles] = useState([])
-	// const [remote_files, setRemoteFiles] = useState([])
 	const [files_info, setFilesInfo] = useState([])
-
-	// const [isUploading, setIsUploading] = useState(false);
 
 	const [showButtons, setButtonVisibility] = useState(false)
 	const [showNotesModal, setNotesModalVisibility] = useState(false)
@@ -117,13 +110,11 @@ function CloudStorage({ match, idea_boards }) {
 	))
 
 	useEffect(() => {
-		console.log(server)
 		setIdeaBoardId(match.params.id)
 
 		const idb = idea_boards.find(
 			(idea_board) => idea_board._id === match.params.id
 		)
-
 		setIdeaBoardName(idb.idea_board_name)
 
 		async function getFilesInfo(id) {
@@ -134,7 +125,6 @@ function CloudStorage({ match, idea_boards }) {
 				})
 
 				setFilesInfo(files_info.data)
-				console.log(files_info.data)
 			} catch (err) {
 				console.log(err)
 			}
@@ -242,102 +232,31 @@ function CloudStorage({ match, idea_boards }) {
 			<div className={`ideaboard-name ${dark ? '' : 'ideaboard-name-light'}`}>
 				<h1>{ideaBoardName}</h1>
 			</div>
-			{/* {console.log(files_info.files_info)} */}
 			<div
 				className={`remote-files-wrapper ${
 					dark ? '' : 'remote-files-wrapper-light'
 				}`}>
-				{files_info.files_info
-					? files_info.files_info.map((file, index) => {
-							console.log(file)
-							return (
-								<div
-									className={`remote-file-wrapper ${
-										dark ? '' : 'remote-file-wrapper-light'
-									}`}
-									key={file.file_name}
-									style={{ marginTop: index > 3 ? '90px' : '' }}>
-									<div
-										className={`remote-file ${dark ? '' : 'remote-file-light'}`}
-										style={
-											file.file_type.split('/')[0] === 'image'
-												? style(
-														`${server}/api/cloud-storage/get-file/${file.file_thumbnail}`
-												  )
-												: {}
-										}>
-										{/* SVG preview */}
-										{file.file_type === 'image/svg+xml' ? (
-											<object
-												className={`svg-preview ${
-													dark ? '' : 'svg-preview-light'
-												}`}
-												type='image/svg+xml'
-												data={`${server}/api/cloud-storage/get-file/${file.file_name}`}>
-												Svg Preview
-											</object>
-										) : (
-											''
-										)}
-
-										{/* PDF */}
-										{file.file_type === 'application/pdf' ? (
-											<img
-												className={`pdf-bg ${dark ? '' : 'pdf-bg-light'}`}
-												src={PdfIcon}
-												alt='i'
-											/>
-										) : (
-											''
-										)}
-									</div>
-									<div className={`file-icon ${dark ? '' : 'file-icon-light'}`}>
-										{file.file_type.split('/')[0] === 'image' ? (
-											file.file_type.split('/')[1] === 'svg+xml' ? (
-												<img
-													className={`image-icon ${
-														dark ? '' : 'image-icon-light'
-													}`}
-													src={SvgIcon}
-													alt='i'
-												/>
-											) : (
-												<img
-													className={`image-icon ${
-														dark ? '' : 'image-icon-light'
-													}`}
-													src={ImageIcon}
-													alt='i'
-												/>
-											)
-										) : (
-											''
-										)}
-										{file.file_type.split('/')[1] === 'pdf' ? (
-											<img
-												className={`image-icon ${
-													dark ? '' : 'image-icon-light'
-												}`}
-												src={PdfIcon}
-												alt='i'
-											/>
-										) : (
-											''
-										)}
-									</div>
-									<div className={`file-name ${dark ? '' : 'file-name-light'}`}>
-										<h3>{file.original_file_name}</h3>
-									</div>
-									<div
-										className={`download-icon-wrapper ${
-											dark ? '' : 'download-icon-wrapper-light'
-										}`}>
-										<img alt='Download File' name='Download File' />
-									</div>
-								</div>
-							)
-					  })
-					: ''}
+				{files_info.map((file) => {
+					return (
+						<div className='remote-file-wrapper' key={file.file_name}>
+							<div className='remote-file'>
+								<ProvideThumbnail
+									file_thumbnail={file.file_thumbnail}
+									original_file_name={file.original_file_name}
+								/>
+							</div>
+							<div className={`file-name ${dark ? '' : 'file-name-light'}`}>
+								<h3>{file.original_file_name}</h3>
+							</div>
+							<div
+								className={`download-icon-wrapper ${
+									dark ? '' : 'download-icon-wrapper-light'
+								}`}>
+								<img alt='Download File' name='Download File' />
+							</div>
+						</div>
+					)
+				})}
 			</div>
 			<Rodal
 				visible={showNotesModal}

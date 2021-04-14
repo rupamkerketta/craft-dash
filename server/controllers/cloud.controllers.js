@@ -120,7 +120,7 @@ module.exports = {
 				}
 			})
 
-			res.send({ files_info })
+			res.send(files_info)
 		} catch (err) {
 			console.log(err)
 			res.status(500).send({ msg: 'Internal Server Error!!!' })

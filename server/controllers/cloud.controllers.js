@@ -43,6 +43,8 @@ module.exports = {
 				} else {
 					if (file_extension === 'sass' || file_extension === 'scss') {
 						thumbnail = '#scss'
+					} else if (file_extension === 'pdf') {
+						thumbnail = '#pdf'
 					} else {
 						thumbnail = determineTag(mimetype)
 					}
@@ -149,6 +151,30 @@ module.exports = {
 		} catch (err) {
 			console.log(err)
 			res.status(500).send({ msg: 'Internal Server Error!!!' })
+		}
+	},
+
+	// Get MetaData
+	fileMetaData: async (req, res) => {
+		try {
+			if (req.query.name) {
+				const remote_file = cloud_bucket.file(req.query.name)
+				const file_meta_res = await remote_file.getMetadata()
+
+				const [metadata] = file_meta_res
+
+				res.send({
+					file_name: metadata.name,
+					file_size: metadata.size,
+					time_created: new Date(metadata.timeCreated)
+				})
+				return
+			}
+
+			res.status(400).send({ message: 'Bad Request!!!' })
+		} catch (error) {
+			console.error(error)
+			res.status(500).send({ message: 'Internal Server Error!!!' })
 		}
 	}
 }

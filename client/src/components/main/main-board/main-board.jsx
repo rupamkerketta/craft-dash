@@ -317,9 +317,10 @@ const MainBoard = ({
 	// When a node or an edge is clicked
 	const onElementClick = (event, element) => {
 		setFocusElement_Main(element)
-		setFocusText_Main(element.data.label)
 
-		// console.log('click', element)
+		if (element.data !== undefined) {
+			setFocusText_Main(element.data.label)
+		}
 	}
 
 	// When the pane is clicked / deselect-operation

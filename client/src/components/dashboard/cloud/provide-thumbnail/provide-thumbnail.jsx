@@ -26,6 +26,7 @@ import genericIcon from '../../../../img/file-icons/generic-icon.svg'
 function ProvideThumbnail(props) {
 	const [file_icon, set_file_icon] = React.useState('')
 	const [is_loading, set_is_loading] = React.useState(true)
+	const [icon, isIcon] = React.useState(true)
 
 	React.useEffect(() => {
 		set_file_icon(pickIcon(props.file_thumbnail))
@@ -75,7 +76,7 @@ function ProvideThumbnail(props) {
 				alt={props.file_thumbnail}
 				ref={image}
 				style={{
-					opacity: is_loading ? 0 : 1
+					opacity: is_loading ? 0 : 1 ,
 				}}
 			/>
 			<img

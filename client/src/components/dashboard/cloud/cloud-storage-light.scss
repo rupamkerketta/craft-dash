@@ -12,7 +12,7 @@
   .remote-files-wrapper-light {
     // border: 1px solid white;
     display: flex;
-    align-items: center;
+    // align-items: center;
     flex-wrap: wrap;
     overflow-y: auto;
     width: 1000px;
@@ -36,7 +36,7 @@
       border-radius: 10px;
       background-color: $label-color;
       border: 2px solid $charcoal;
-      
+      color: $theme-color;
 
       .remote-file-light {
         position: relative;
@@ -45,35 +45,6 @@
         border-radius: 10px;
         background-color: $label-color;
         overflow: hidden;
-
-        .svg-preview-light,
-        .pdf-bg-light {
-          background-color: transparent;
-          width: 100px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-        .svg-preview-light {
-          width: 200px;
-          color: $theme-color;
-          background-color: $label-color;
-        }
-        .svg-preview-light::-webkit-scrollbar {
-          width: 1px;
-          border-radius: 10px;
-        }
-
-        .svg-preview-light::-webkit-scrollbar-track {
-          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .svg-preview-light::-webkit-scrollbar-thumb {
-          background-color: darkgrey;
-          outline: 1px solid slategrey;
-          border-radius: 10px;
-        }
       }
 
       .file-icon-light {
@@ -88,11 +59,11 @@
 
       .file-name-light {
         position: absolute;
-        left: 35px;
+        left: 0;
         bottom: -41px;
         width: fit-content;
         margin: auto;
-        width: 130px;
+        width: 170px;
         background: linear-gradient(
           96.2deg,
           rgba(228, 228, 228, 0.22) 0%,
@@ -142,7 +113,6 @@
         margin: auto;
         transition: 0.2s ease-in-out;
         img {
-          content: url("../../../img/download-icon.png");
           position: absolute;
           width: fit-content;
           margin: auto;
@@ -159,7 +129,6 @@
         border: 1px solid $craft-dash-green;
         backdrop-filter: blur(10px);
         img {
-          content: url("../../../img/download-icon-hover.png");
           position: absolute;
           width: fit-content;
           margin: auto;
@@ -370,7 +339,7 @@
     margin-bottom: 50px;
     border-radius: 5px;
     border: 3px solid $theme-color;
-    .dropzone{
+    .dropzone {
       position: absolute;
       // border: 1px solid white;
       // outline: 1px solid $craft-dash-green;

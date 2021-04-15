@@ -1,13 +1,17 @@
 import * as TYPE from './viewFileTypes'
 
-export const viewFileInfo = ({ file_name, file_type, original_file_name }) => (
-	dispatch
-) => {
+export const viewFileInfo = ({
+	file_name,
+	file_type,
+	file_thumbnail,
+	original_file_name
+}) => (dispatch) => {
 	dispatch({
 		type: TYPE.VIEW_FILE_INFO,
 		payload: {
 			file_name,
 			file_type,
+			file_thumbnail,
 			original_file_name
 		}
 	})

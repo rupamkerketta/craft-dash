@@ -10,17 +10,20 @@ import OpenFileIcon from '../../../../img/open_file.svg'
 
 // Styles
 import './my-file-node.scss'
+import ProvideThumbnail from '../../../dashboard/cloud/provide-thumbnail/provide-thumbnail'
 
 function MyFileNode({
 	file_name,
 	file_type,
 	original_file_name,
+	file_thumbnail,
 	viewFileInfo
 }) {
 	const viewFileHandler = () => {
 		viewFileInfo({
 			file_name,
 			file_type,
+			file_thumbnail,
 			original_file_name
 		})
 	}
@@ -30,6 +33,7 @@ function MyFileNode({
 			<DisplayContent
 				file_name={file_name}
 				file_type={file_type}
+				file_thumbnail={file_thumbnail}
 				original_file_name={original_file_name}
 				viewFileHandler={viewFileHandler}
 			/>
@@ -40,6 +44,7 @@ function MyFileNode({
 const DisplayContent = ({
 	file_name,
 	file_type,
+	file_thumbnail,
 	original_file_name,
 	viewFileHandler
 }) => {
@@ -48,6 +53,7 @@ const DisplayContent = ({
 			<FileTypeHandler
 				file_name={file_name}
 				file_type={file_type}
+				file_thumbnail={file_thumbnail}
 				original_file_name={original_file_name}
 			/>
 			<div className='icon-wrapper'>
@@ -57,31 +63,26 @@ const DisplayContent = ({
 					onClick={() => viewFileHandler()}
 				/>
 			</div>
+
+			<div className='file-name'>
+				<h3>{original_file_name}</h3>
+			</div>
 		</div>
 	)
 }
 
-const FileTypeHandler = ({ file_name, file_type, original_file_name }) => {
+const FileTypeHandler = ({
+	file_name,
+	file_type,
+	file_thumbnail,
+	original_file_name
+}) => {
 	// Splitting the MIME type
 	const type_arr = file_type.split('/')
 
 	const type_p1 = type_arr[0]
-	const type_p2 = type_arr[1]
 
-	if (type_p1 === 'image') {
-		if (type_p2 !== 'svg+xml') {
-			return (
-				<div
-					className='image-file'
-					style={{
-						background: `url('${server}/api/cloud-storage/get-file/${file_name}') center no-repeat`,
-						backgroundSize: 'cover'
-					}}>
-					{/* <h1>Dummy Text</h1> */}
-				</div>
-			)
-		}
-	} else if (type_p1 === 'audio') {
+	if (type_p1 === 'audio') {
 		return (
 			<div className='audio'>
 				<audio controls>
@@ -91,6 +92,15 @@ const FileTypeHandler = ({ file_name, file_type, original_file_name }) => {
 					/>
 				</audio>
 				<h2>{original_file_name}</h2>
+			</div>
+		)
+	} else {
+		return (
+			<div className='doc'>
+				<ProvideThumbnail
+					file_thumbnail={file_thumbnail}
+					original_file_name={original_file_name}
+				/>
 			</div>
 		)
 	}

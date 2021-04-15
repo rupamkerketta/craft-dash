@@ -3,6 +3,7 @@ import * as TYPE from './viewFileTypes'
 const initialState = {
 	file_name: '',
 	file_type: '',
+	file_thumbnail: '',
 	original_file_name: '',
 	viewFile: false
 }

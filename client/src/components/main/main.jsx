@@ -4,7 +4,6 @@ import React, { useEffect, useState, Fragment } from 'react'
 import './main.scss'
 import './main-light.scss'
 
-
 // Components
 import Messaging from './messaging/messaging'
 import Edit from './edit/edit'
@@ -21,8 +20,7 @@ import MessagingIcon from '../../img/messaging-icon.svg'
 import EditTool from '../../img/edit-tool.svg'
 import FilesFolderIcon from '../../img/folder-icon.svg'
 
-import { useSelector } from "react-redux";
-
+import { useSelector } from 'react-redux'
 
 function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 	const [socket, setSocket] = useState(null)
@@ -33,8 +31,8 @@ function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 		files: false
 	})
 
-	const theme = useSelector((state) => state.theme);
-	const dark = theme === "dark";
+	const theme = useSelector((state) => state.theme)
+	const dark = theme === 'dark'
 
 	useEffect(() => {
 		// console.log('[Main]')
@@ -55,20 +53,29 @@ function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 	}
 
 	return (
-		<div className={`main ${dark? "":"main-light"}`}>
-			<div className={`top-nav-wrapper ${dark? "":"top-nav-wrapper-light"}`}>
+		<div className={`main ${dark ? '' : 'main-light'}`}>
+			<div className={`top-nav-wrapper ${dark ? '' : 'top-nav-wrapper-light'}`}>
 				<TopNavMain />
 			</div>
 			{socket ? (
 				<Fragment>
-					<div className={`main-board-wrapper ${dark? "":"main-board-wrapper-light"}`}>
+					<div
+						className={`main-board-wrapper ${
+							dark ? '' : 'main-board-wrapper-light'
+						}`}>
 						<MainBoard room={match.params.id} socket={socket} />
 					</div>
-					<div className={`video-chat-wrapper ${dark? "":"video-chat-wrapper-light"}`}>
+					<div
+						className={`video-chat-wrapper ${
+							dark ? '' : 'video-chat-wrapper-light'
+						}`}>
 						<VideoChat socket={socket} roomId={match.params.id} />
 					</div>
-					<div className={`sidebar-main ${dark? "":"sidebar-main-light"}`}>
-						<div className={`sidebar-top-nav ${dark? "":"sidebar-top-nav-light"}`}>
+					<div className={`sidebar-main ${dark ? '' : 'sidebar-main-light'}`}>
+						<div
+							className={`sidebar-top-nav ${
+								dark ? '' : 'sidebar-top-nav-light'
+							}`}>
 							<MessageNav
 								handler={onChatClick}
 								visibility={sidebar_focus.chat}
@@ -83,21 +90,25 @@ function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 								visibility={sidebar_focus.files}
 							/>
 						</div>
-						<div className={`sidebar-body ${dark? "":"sidebar-body-light"}`} />
+						<div
+							className={`sidebar-body ${dark ? '' : 'sidebar-body-light'}`}
+						/>
 					</div>
 					<div
 						style={{ display: sidebar_focus.chat ? 'block' : 'none' }}
-						className={`messaging-wrapper ${dark? "":"messaging-wrapper-light"}`}>
+						className={`messaging-wrapper ${
+							dark ? '' : 'messaging-wrapper-light'
+						}`}>
 						<Messaging room={match.params.id} socket={socket} />
 					</div>
 					<div
 						style={{ display: sidebar_focus.edit ? 'block' : 'none' }}
-						className={`edit-wrapper ${dark? "":"edit-wrapper-light"}`}>
+						className={`edit-wrapper ${dark ? '' : 'edit-wrapper-light'}`}>
 						<Edit room={match.params.id} socket={socket} />
 					</div>
 					<div
 						style={{ display: sidebar_focus.files ? 'block' : 'none' }}
-						className={`files-wrapper ${dark? "":"files-wrapper-light"}`}>
+						className={`files-wrapper ${dark ? '' : 'files-wrapper-light'}`}>
 						<IdbFiles room={match.params.id} socket={socket} />
 					</div>
 				</Fragment>
@@ -107,28 +118,32 @@ function Main({ match, viewFile, viewFileInfo, hideFileInfo }) {
 }
 
 const MessageNav = (props) => {
-	const theme = useSelector((state) => state.theme);
-	const dark = theme === "dark";
+	const theme = useSelector((state) => state.theme)
+	const dark = theme === 'dark'
 	return (
 		<div
-			className={`message-nav-wrapper ${dark? "":"message-nav-wrapper-light"}`}
+			className={`message-nav-wrapper ${
+				dark ? '' : 'message-nav-wrapper-light'
+			}`}
 			style={{
 				borderBottom: props.visibility
 					? '2px solid #08E789'
 					: '2px solid transparent'
 			}}
 			onClick={() => props.handler()}>
-			<img src={MessagingIcon} alt='' />
+			<img src={MessagingIcon} alt='Message Icon' />
 		</div>
 	)
 }
 
 const EditToolNav = (props) => {
-	const theme = useSelector((state) => state.theme);
-	const dark = theme === "dark";
+	const theme = useSelector((state) => state.theme)
+	const dark = theme === 'dark'
 	return (
 		<div
-			className={`edit-tool-nav-wrapper ${dark? "":"edit-tool-nav-wrapper-light"}`}
+			className={`edit-tool-nav-wrapper ${
+				dark ? '' : 'edit-tool-nav-wrapper-light'
+			}`}
 			style={{
 				borderBottom: props.visibility
 					? '2px solid #08E789'
@@ -141,11 +156,13 @@ const EditToolNav = (props) => {
 }
 
 const FilesAddNav = (props) => {
-	const theme = useSelector((state) => state.theme);
-	const dark = theme === "dark";
+	const theme = useSelector((state) => state.theme)
+	const dark = theme === 'dark'
 	return (
 		<div
-			className={`files-folder-nav-wrapper ${dark? "":"files-folder-nav-wrapper-light"}`}
+			className={`files-folder-nav-wrapper ${
+				dark ? '' : 'files-folder-nav-wrapper-light'
+			}`}
 			style={{
 				borderBottom: props.visibility
 					? '2px solid #08E789'

@@ -1,193 +1,188 @@
-@import "../../../sass/utils/colors";
-@import "../../../sass/utils/fonts";
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
 
 .idb-files {
-  // border: 1px solid white;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  position: absolute;
-  width: 20vw;
-  top: 7vh;
-  height: 93vh;
-  right: 0;
-  background-color: $theme-color;
-  font-family: $theme-font;
+	// border: 1px solid white;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	position: absolute;
+	width: 20vw;
+	top: 7vh;
+	height: 93vh;
+	right: 0;
+	background-color: $theme-color;
+	font-family: $theme-font;
 
-  .idb-remote-files-wrapper {
-    width: 100%;
-    height: 100%;
+	.idb-remote-files-wrapper {
+		width: 100%;
+		height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
+		overflow-y: scroll;
+		overflow-x: hidden;
 
-    padding-top: 30px;
-    padding-bottom: 130px;
+		padding-top: 30px;
+		padding-bottom: 130px;
 
-    .idb-remote-file-wrapper {
-      position: relative;
-      // margin-left: 40px;
-      width: fit-content;
-      padding: 2px;
-      height: fit-content;
-      // background-color: white;
-      border-radius: 10px;
-      background-color: $theme-color;
-      border: 3px solid transparent;
+		.idb-remote-file-wrapper {
+			position: relative;
+			width: fit-content;
+			padding: 2px;
+			height: fit-content;
+			border-radius: 10px;
+			background-color: $theme-color;
+			border: 3px solid transparent;
+			margin-left: 30px;
 
-      .idb-remote-file {
-        position: relative;
-        width: 100px;
-        height: 70px;
-        border-radius: 10px;
-        background-color: $gunmetal;
-        overflow: hidden;
+			.idb-remote-file {
+				position: relative;
+				width: 100px;
+				height: 70px;
+				border-radius: 10px;
+				background-color: $gunmetal;
+				overflow: hidden;
 
-        .svg-preview,
-        .pdf-bg {
-          width: 100px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
+				.svg-preview,
+				.pdf-bg {
+					width: 100px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
 
-        .svg-preview {
-          // border: 1px solid white;
-          // background: url("../../../img/CraftDashCloudLogo.png");
-          // background-size: contain;
-          // width: 200px;
-          position: absolute;
-          padding: 10px;
-        }
-      }
+				.svg-preview {
+					position: absolute;
+					padding: 10px;
+				}
+			}
 
-      .file-icon {
-        position: relative;
-        img {
-          position: absolute;
-          width: 20px;
-          left: 10px;
-          top: -10px;
-        }
-      }
+			.file-icon {
+				position: relative;
+				img {
+					position: absolute;
+					width: 20px;
+					left: 10px;
+					top: -10px;
+				}
+			}
 
-      .file-name {
-        position: absolute;
-        bottom: -45px;
-        // border: 1px solid white;
-        width: 100px;
-        justify-items: center;
-        align-items: center;
-        h3 {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          font-family: $theme-font;
-          font-weight: 500;
-          font-size: 0.5em;
-          color: $label-color;
-          background: linear-gradient(
-            96.2deg,
-            rgba(228, 228, 228, 0.22) 0%,
-            rgba(227, 228, 228, 0.22) 6.67%,
-            rgba(222, 228, 228, 0.22) 13.33%,
-            rgba(214, 228, 228, 0.22) 20%,
-            rgba(202, 227, 228, 0.22) 26.67%,
-            rgba(186, 226, 228, 0.22) 33.33%,
-            rgba(168, 225, 228, 0.22) 40%,
-            rgba(148, 224, 228, 0.22) 46.67%,
-            rgba(127, 223, 228, 0.22) 53.33%,
-            rgba(107, 221, 228, 0.22) 60%,
-            rgba(89, 220, 228, 0.22) 66.67%,
-            rgba(74, 220, 228, 0.22) 73.33%,
-            rgba(62, 219, 228, 0.22) 80%,
-            rgba(53, 218, 228, 0.22) 86.67%,
-            rgba(49, 218, 228, 0.22) 93.33%,
-            rgba(47, 218, 228, 0.22) 100%
-          );
-          backdrop-filter: blur(5px);
-          padding: 5px;
-          border-radius: 5px;
-          border-left: 1px solid rgba(255, 255, 255, 0.2);
-          border-top: 1px solid rgba(255, 255, 255, 0.2);
-          border-right: 1px solid rgba(255, 255, 255, 0.2);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-      }
+			.file-name {
+				position: absolute;
+				bottom: -45px;
+				// border: 1px solid white;
+				width: 100px;
+				justify-items: center;
+				align-items: center;
+				h3 {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					font-family: $theme-font;
+					font-weight: 500;
+					font-size: 0.5em;
+					color: $label-color;
+					background: linear-gradient(
+						96.2deg,
+						rgba(228, 228, 228, 0.22) 0%,
+						rgba(227, 228, 228, 0.22) 6.67%,
+						rgba(222, 228, 228, 0.22) 13.33%,
+						rgba(214, 228, 228, 0.22) 20%,
+						rgba(202, 227, 228, 0.22) 26.67%,
+						rgba(186, 226, 228, 0.22) 33.33%,
+						rgba(168, 225, 228, 0.22) 40%,
+						rgba(148, 224, 228, 0.22) 46.67%,
+						rgba(127, 223, 228, 0.22) 53.33%,
+						rgba(107, 221, 228, 0.22) 60%,
+						rgba(89, 220, 228, 0.22) 66.67%,
+						rgba(74, 220, 228, 0.22) 73.33%,
+						rgba(62, 219, 228, 0.22) 80%,
+						rgba(53, 218, 228, 0.22) 86.67%,
+						rgba(49, 218, 228, 0.22) 93.33%,
+						rgba(47, 218, 228, 0.22) 100%
+					);
+					backdrop-filter: blur(5px);
+					padding: 5px;
+					border-radius: 5px;
+					border-left: 1px solid rgba(255, 255, 255, 0.2);
+					border-top: 1px solid rgba(255, 255, 255, 0.2);
+					border-right: 1px solid rgba(255, 255, 255, 0.2);
+					border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+				}
+			}
 
-      // transition: 0.4s all ease;
+			// transition: 0.4s all ease;
 
-      &:hover {
-        border: 3px solid $craft-dash-green;
-      }
-    }
+			&:hover {
+				border: 3px solid $craft-dash-green;
+			}
+		}
 
-    .file-selected {
-      border: 3px solid white;
-    }
-  }
+		.file-selected {
+			border: 3px solid white;
+		}
+	}
 
-  .idb-remote-files-wrapper::-webkit-scrollbar {
-    width: 1px;
-    border-radius: 10px;
-  }
+	.idb-remote-files-wrapper::-webkit-scrollbar {
+		width: 1px;
+		border-radius: 10px;
+	}
 
-  .idb-remote-files-wrapper::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  }
+	.idb-remote-files-wrapper::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
 
-  .idb-remote-files-wrapper::-webkit-scrollbar-thumb {
-    background-color: $craft-dash-green;
-    outline: 1px solid $craft-dash-green;
-    border-radius: 10px;
-  }
+	.idb-remote-files-wrapper::-webkit-scrollbar-thumb {
+		background-color: $craft-dash-green;
+		outline: 1px solid $craft-dash-green;
+		border-radius: 10px;
+	}
 
-  .add-files-idb {
-    position: absolute;
-    // border: 1px solid white;
-    width: 100%;
-    bottom: 0;
-    height: 70px;
-    background-color: $theme-color;
-    overflow-y: hidden;
-    color: white;
-    display: flex;
-    // display: none;
-    justify-content: space-around;
-    align-items: center;
+	.add-files-idb {
+		position: absolute;
+		// border: 1px solid white;
+		width: 100%;
+		bottom: 0;
+		height: 70px;
+		background-color: $theme-color;
+		overflow-y: hidden;
+		color: white;
+		display: flex;
+		// display: none;
+		justify-content: space-around;
+		align-items: center;
 
-    // background: linear-gradient(
-    //   103.23deg,
-    //   rgba(108, 134, 144, 0.1) 0%,
-    //   rgba(108, 134, 145, 0.04) 49.27%,
-    //   rgba(108, 134, 144, 0.06) 100%
-    // );
-    // backdrop-filter: blur(4px);
+		// background: linear-gradient(
+		//   103.23deg,
+		//   rgba(108, 134, 144, 0.1) 0%,
+		//   rgba(108, 134, 145, 0.04) 49.27%,
+		//   rgba(108, 134, 144, 0.06) 100%
+		// );
+		// backdrop-filter: blur(4px);
 
-    .add-file-btn {
-      cursor: pointer;
-      outline: none;
-      border: 1px solid $craft-dash-green;
-      // width: 250px;
-      width: 80%;
-      height: 45px;
-      font-family: $theme-font;
-      font-size: 1em;
-      background-color: $craft-dash-green;
-      font-weight: 600;
-      color: $theme-color;
-      border-radius: 5px;
-      &:hover {
-        background-color: rgba(63, 222, 156, 0.5);
-        border: 1px solid $craft-dash-green;
-        color: $craft-dash-green;
-        font-weight: 600;
-      }
-    }
-  }
+		.add-file-btn {
+			cursor: pointer;
+			outline: none;
+			border: 1px solid $craft-dash-green;
+			// width: 250px;
+			width: 80%;
+			height: 45px;
+			font-family: $theme-font;
+			font-size: 1em;
+			background-color: $craft-dash-green;
+			font-weight: 600;
+			color: $theme-color;
+			border-radius: 5px;
+			&:hover {
+				background-color: rgba(63, 222, 156, 0.5);
+				border: 1px solid $craft-dash-green;
+				color: $craft-dash-green;
+				font-weight: 600;
+			}
+		}
+	}
 }

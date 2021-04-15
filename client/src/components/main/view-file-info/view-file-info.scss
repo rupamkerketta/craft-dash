@@ -1,0 +1,186 @@
+@import '../../../sass/utils/colors';
+@import '../../../sass/utils/fonts';
+
+.view-file-info-modal {
+	.file-preview {
+		background-color: $gunmetal;
+		width: 600px;
+		position: absolute;
+		left: 15px;
+		height: 500px;
+		top: 60px;
+		border: 2px solid $charcoal;
+		border-radius: 10px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+	.file-modal-details-wrapper {
+		width: fit-content;
+		margin: auto;
+		position: absolute;
+		width: 250px;
+		top: 65px;
+		height: 495px;
+		right: 15px;
+		// border: 1px solid white;
+
+		.file-name-modal {
+			position: absolute;
+			width: fit-content;
+			margin: auto;
+			width: 250px;
+			padding: 10px;
+			align-items: center;
+			background: linear-gradient(
+				96.2deg,
+				rgba(228, 228, 228, 0.22) 0%,
+				rgba(227, 228, 228, 0.22) 6.67%,
+				rgba(222, 228, 228, 0.22) 13.33%,
+				rgba(214, 228, 228, 0.22) 20%,
+				rgba(202, 227, 228, 0.22) 26.67%,
+				rgba(186, 226, 228, 0.22) 33.33%,
+				rgba(168, 225, 228, 0.22) 40%,
+				rgba(148, 224, 228, 0.22) 46.67%,
+				rgba(127, 223, 228, 0.22) 53.33%,
+				rgba(107, 221, 228, 0.22) 60%,
+				rgba(89, 220, 228, 0.22) 66.67%,
+				rgba(74, 220, 228, 0.22) 73.33%,
+				rgba(62, 219, 228, 0.22) 80%,
+				rgba(53, 218, 228, 0.22) 86.67%,
+				rgba(49, 218, 228, 0.22) 93.33%,
+				rgba(47, 218, 228, 0.22) 100%
+			);
+			border-radius: 5px;
+			backdrop-filter: blur(50px);
+			border-left: 1px solid rgba(255, 255, 255, 0.2);
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			border-right: 1px solid rgba(255, 255, 255, 0.2);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+			p {
+				margin: auto;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: $label-color;
+				font-family: $theme-font;
+				font-weight: 200;
+			}
+		}
+		.file-info-details {
+			width: 250px;
+			margin-top: 150px;
+			border: 2px solid $charcoal;
+			border-radius: 5px;
+			background-color: $gunmetal;
+			height: 150px;
+			.details-wrapper {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				p {
+					align-items: center;
+					text-align: center;
+					font-family: $theme-font;
+					font-weight: 200;
+					color: $label-color;
+					font-size: 0.8em;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					margin-bottom: 20px;
+				}
+			}
+		}
+		.file-info-modal-buttons {
+			margin-top: 100px;
+			.download-button {
+				width: fit-content;
+				margin: auto;
+				display: flex;
+				align-items: center;
+				background-color: $craft-dash-green;
+				border: 1px solid $craft-dash-green;
+				width: 250px;
+				height: 40px;
+				border-radius: 5px;
+				.download-button-content {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: fit-content;
+					margin: auto;
+					img {
+						content: url('../../../img/download-button-icon.svg');
+						width: 20px;
+						margin-right: 10px;
+					}
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $theme-color;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+				&:hover {
+					background-color: rgba(63, 222, 156, 0.4);
+					border: 1px solid $craft-dash-green;
+					img {
+						content: url('../../../img/download-button-icon-hover.svg');
+						width: 20px;
+						margin-right: 10px;
+					}
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $craft-dash-green;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+			}
+			.remove-node-button {
+				width: fit-content;
+				margin: auto;
+				display: flex;
+				margin-top: 10px;
+				align-items: center;
+				background-color: $craft-dash-red;
+				border: 1px solid $craft-dash-red;
+				width: 250px;
+				height: 40px;
+				border-radius: 5px;
+				.remove-node-button-content {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: fit-content;
+					margin: auto;
+
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $theme-color;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+				&:hover {
+					background-color: rgba(252, 83, 100, 0.4);
+					border: 1px solid $craft-dash-red;
+
+					p {
+						cursor: pointer;
+						font-family: $theme-font;
+						color: $craft-dash-red;
+						font-weight: 700;
+						font-size: 1em;
+					}
+				}
+			}
+		}
+	}
+}

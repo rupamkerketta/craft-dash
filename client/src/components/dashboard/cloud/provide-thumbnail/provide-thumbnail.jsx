@@ -29,7 +29,7 @@ function ProvideThumbnail(props) {
 
 	React.useEffect(() => {
 		set_file_icon(pickIcon(props.file_thumbnail))
-	}, [props.file_thumbnail])
+	}, [])
 
 	const image = React.useRef(null)
 

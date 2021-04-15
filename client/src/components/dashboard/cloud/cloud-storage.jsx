@@ -238,8 +238,8 @@ function CloudStorage({ match, idea_boards }) {
 				}`}>
 				{files_info.map((file) => {
 					return (
-						<div className='remote-file-wrapper' key={file.file_name}>
-							<div className='remote-file'>
+						<div className={`remote-file-wrapper ${dark ? '':'remote-file-wrapper-light'}`} key={file.file_name}>
+							<div className={`remote-file ${dark ? '' : 'remote-file-light'}`}>
 								<ProvideThumbnail
 									file_thumbnail={file.file_thumbnail}
 									original_file_name={file.original_file_name}

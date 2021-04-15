@@ -44,6 +44,8 @@ function ProvideThumbnail(props) {
 			return `${server}/api/cloud-storage/get-file/${tag}`
 		}
 
+		set_is_loading(false)
+
 		switch (tag) {
 			case FILE_TYPE.docx:
 				return docxIcon
@@ -72,12 +74,14 @@ function ProvideThumbnail(props) {
 				src={file_icon}
 				alt={props.file_thumbnail}
 				ref={image}
-				style={{ zIndex: is_loading ? 1 : 2 }}
+				style={{
+					opacity: is_loading ? 0 : 1
+				}}
 			/>
 			<img
 				src={ImgLazyLoading}
 				alt={props.file_thumbnail}
-				style={{ zIndex: is_loading ? 2 : 1, transform: 'scale(2)' }}
+				style={{ opacity: is_loading ? 1 : 0 }}
 			/>
 		</div>
 	)

@@ -41,7 +41,11 @@ module.exports = {
 				if (mimetype.startsWith('image/')) {
 					thumbnail = file_uuid + '-thumbnail.' + file_extension
 				} else {
-					thumbnail = ''
+					if (file_extension === 'sass' || file_extension === 'scss') {
+						thumbnail = '#scss'
+					} else {
+						thumbnail = determineTag(mimetype)
+					}
 				}
 
 				files_info.push({
@@ -145,6 +149,38 @@ module.exports = {
 		} catch (err) {
 			console.log(err)
 			res.status(500).send({ msg: 'Internal Server Error!!!' })
+		}
+	}
+}
+
+const determineTag = (mimetype) => {
+	const [type, sub_type] = mimetype.split('/')
+	console.log(type, ' ', sub_type)
+
+	const tag_dict = {
+		text: [
+			['html', '#html'],
+			['css', '#css'],
+			['x-sass', '#scss'],
+			['x-scss', '$scss'],
+			['plain', '#txt']
+		],
+		application: [
+			[' pdf', '#pdf'],
+			['vnd.openxmlformats-officedocument.wordprocessingml.document', '#docx']
+		]
+	}
+
+	const v1 = tag_dict[type]
+
+	if (v1 === undefined) {
+		return '#generic'
+	} else {
+		const v2 = v1.find((sub_type_dict) => sub_type_dict[0] === sub_type)
+		if (v2 !== undefined) {
+			return v2[1]
+		} else {
+			return '#generic'
 		}
 	}
 }

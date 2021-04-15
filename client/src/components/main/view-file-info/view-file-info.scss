@@ -97,32 +97,43 @@
 		.file-info-modal-buttons {
 			margin-top: 100px;
 			.download-button {
-				width: fit-content;
 				margin: auto;
 				display: flex;
 				align-items: center;
-				background-color: $craft-dash-green;
+				// background-color: $craft-dash-green;
 				border: 1px solid $craft-dash-green;
 				width: 250px;
 				height: 40px;
 				border-radius: 5px;
+				cursor: pointer;
+
 				.download-button-content {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					width: fit-content;
-					margin: auto;
-					img {
-						content: url('../../../img/download-button-icon.svg');
-						width: 20px;
-						margin-right: 10px;
+					width: 100%;
+					height: 100%;
+					.progress-bar {
+						position: absolute;
+						left: 0;
+						border-radius: 5px;
+						height: 39px;
+						width: 100%;
+						background-color: $craft-dash-green;
+						z-index: -1;
 					}
+
 					p {
+						z-index: 2;
 						cursor: pointer;
 						font-family: $theme-font;
 						color: $theme-color;
-						font-weight: 700;
+						color: rgb(255, 255, 255);
+						font-weight: 300;
 						font-size: 1em;
+						margin: auto;
+						width: 100%;
+						height: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: space-around;
 					}
 				}
 				&:hover {
@@ -134,11 +145,8 @@
 						margin-right: 10px;
 					}
 					p {
-						cursor: pointer;
 						font-family: $theme-font;
 						color: $craft-dash-green;
-						font-weight: 700;
-						font-size: 1em;
 					}
 				}
 			}
@@ -164,7 +172,7 @@
 						cursor: pointer;
 						font-family: $theme-font;
 						color: $theme-color;
-						font-weight: 700;
+						font-weight: 300;
 						font-size: 1em;
 					}
 				}
@@ -173,11 +181,8 @@
 					border: 1px solid $craft-dash-red;
 
 					p {
-						cursor: pointer;
 						font-family: $theme-font;
 						color: $craft-dash-red;
-						font-weight: 700;
-						font-size: 1em;
 					}
 				}
 			}

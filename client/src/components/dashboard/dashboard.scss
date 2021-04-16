@@ -226,14 +226,14 @@
 				margin-top: 5px;
 
 				.error-msg {
-					padding-left: 7px;
-					padding-right: 7px;
-					border-radius: 3px;
-					background-color: #f52d7a31;
-					color: $danger;
-					font-family: $theme-font;
-					font-weight: 400;
-					font-size: 0.9em;
+          padding-left: 7px;
+          padding-right: 7px;
+          border-radius: 3px;
+          background-color: rgba(159, 0, 0, 0.2);
+          color: rgb(196, 0, 0);
+          font-family: $theme-font;
+          font-weight: 400;
+          font-size: 0.9em;
 				}
 			}
 		}

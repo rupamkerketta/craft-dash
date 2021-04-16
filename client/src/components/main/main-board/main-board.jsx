@@ -249,11 +249,6 @@ const MainBoard = ({
 		addNodeBroadcast_Main(node)
 	}
 
-	// // Updating Node/Idea position (x,y)
-	// const updatePos = (node) => {
-	// 	updatePos_Main(node)
-	// }
-
 	const onNodeDragStart = (event, node) => {
 		setFocusElement_Main(node)
 		if (node.data !== undefined && typeof node.data.label !== 'object') {
@@ -303,8 +298,6 @@ const MainBoard = ({
 	}
 
 	const onMouseMove = (e) => {
-		// myPointer.current = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY }
-		// setMyPointerS({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY })
 		socket.emit('mouse-pointer-broadcast', {
 			x: e.nativeEvent.offsetX,
 			y: e.nativeEvent.offsetY,

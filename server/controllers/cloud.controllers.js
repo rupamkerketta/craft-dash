@@ -10,6 +10,7 @@ const sharp = require('sharp')
 const { v4: uuid } = require('uuid')
 
 module.exports = {
+	// File(s) Upload
 	uploadFile: async (req, res) => {
 		try {
 			const idea_board_id = req.body.idea_board_id
@@ -26,7 +27,7 @@ module.exports = {
 			let mimetype = ''
 
 			// Processing file info (first)
-			req.files.map((file) => {
+			req.files.map(async (file) => {
 				mimetype = file.mimetype
 
 				file_extension = file.originalname.split('.')
@@ -41,13 +42,7 @@ module.exports = {
 				if (mimetype.startsWith('image/')) {
 					thumbnail = file_uuid + '-thumbnail.' + file_extension
 				} else {
-					if (file_extension === 'sass' || file_extension === 'scss') {
-						thumbnail = '#scss'
-					} else if (file_extension === 'pdf') {
-						thumbnail = '#pdf'
-					} else {
-						thumbnail = determineTag(mimetype)
-					}
+					thumbnail = ''
 				}
 
 				files_info.push({
@@ -70,6 +65,25 @@ module.exports = {
 					c += 1
 
 					console.log(`File Uploaded : ${req.files[index].originalname}`)
+
+					const [metadata] = await cloud_bucket
+						.file(file.file_name)
+						.getMetadata()
+					const mime_type = metadata.contentType
+					console.log(mime_type)
+
+					// Allocating the Mimetype and Thumbnail
+					if (files_info[index.type !== mime_type]) {
+						console.log('[File-Type] changed!!!')
+						files_info[index].type = mime_type
+					}
+
+					if (files_info[index].thumbnail === '') {
+						console.log('[Thumbnail] updated!!!')
+						files_info[index].thumbnail = determineTag(mime_type)
+						console.log(mime_type)
+						console.log(files_info[index].thumbnail)
+					}
 
 					if (file.type.startsWith('image/')) {
 						const blob_th = cloud_bucket.file(file.thumbnail)
@@ -106,6 +120,7 @@ module.exports = {
 		}
 	},
 
+	// Retrieving files info from the DB
 	getFilesInfo: async (req, res) => {
 		try {
 			const idea_board_id = req.body.idea_board_id
@@ -133,6 +148,7 @@ module.exports = {
 		}
 	},
 
+	// File Stream
 	getFile: async (req, res) => {
 		try {
 			const file_name = req.params.id
@@ -192,7 +208,7 @@ const determineTag = (mimetype) => {
 			['plain', '#txt']
 		],
 		application: [
-			[' pdf', '#pdf'],
+			['pdf', '#pdf'],
 			['vnd.openxmlformats-officedocument.wordprocessingml.document', '#docx']
 		]
 	}

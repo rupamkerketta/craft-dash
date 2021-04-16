@@ -22,6 +22,7 @@
 			font-family: $theme-font;
 			color: $label-color;
 		}
+
 		.remote-file-wrapper {
 			position: relative;
 			margin-left: 30px;
@@ -32,6 +33,15 @@
 			border-radius: 10px;
 			background-color: $theme-color;
 			border: 2px solid $charcoal;
+
+			margin-top: 60px;
+
+			&:nth-child(1),
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4) {
+				margin-top: 0;
+			}
 
 			.remote-file {
 				position: relative;

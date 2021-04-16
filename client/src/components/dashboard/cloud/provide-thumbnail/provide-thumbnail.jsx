@@ -26,7 +26,7 @@ import genericIcon from '../../../../img/file-icons/generic-icon.svg'
 function ProvideThumbnail(props) {
 	const [file_icon, set_file_icon] = React.useState('')
 	const [is_loading, set_is_loading] = React.useState(true)
-	const [icon, isIcon] = React.useState(true)
+	// const [icon, isIcon] = React.useState(true)
 
 	React.useEffect(() => {
 		set_file_icon(pickIcon(props.file_thumbnail))
@@ -37,6 +37,11 @@ function ProvideThumbnail(props) {
 	// Determine the icon
 	const pickIcon = (tag) => {
 		if (!tag.startsWith('#')) {
+			// For Svg Files
+			if (tag.substr(tag.length - 3) === 'svg') {
+				set_is_loading(false)
+				return svgIcon
+			}
 			image.current.src = `${server}/api/cloud-storage/get-file/${tag}`
 			image.current.onload = () => {
 				console.log('[provide-thumbnail] Image Loaded!!! ', Date.now())
@@ -62,8 +67,6 @@ function ProvideThumbnail(props) {
 				return txtIcon
 			case FILE_TYPE.pdf:
 				return pdfIcon
-			case FILE_TYPE.svg:
-				return svgIcon
 			default:
 				return genericIcon
 		}
@@ -76,7 +79,7 @@ function ProvideThumbnail(props) {
 				alt={props.file_thumbnail}
 				ref={image}
 				style={{
-					opacity: is_loading ? 0 : 1 ,
+					opacity: is_loading ? 0 : 1
 				}}
 			/>
 			<img

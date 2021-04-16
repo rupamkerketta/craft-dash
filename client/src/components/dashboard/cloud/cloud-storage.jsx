@@ -136,7 +136,7 @@ function CloudStorage({ match, idea_boards }) {
 		}
 	}, [])
 
-	const imgSubmit = React.useCallback(async () => {
+	const docSubmit = React.useCallback(async () => {
 		try {
 			const formData = new FormData()
 
@@ -323,7 +323,7 @@ function CloudStorage({ match, idea_boards }) {
 						}`}>
 						<button
 							className={`upload-button ${dark ? '' : 'upload-button-light'}`}
-							onClick={imgSubmit}>
+							onClick={docSubmit}>
 							UPLOAD
 						</button>
 					</div>

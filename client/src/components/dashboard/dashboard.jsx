@@ -90,11 +90,10 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
       backgroundColor: "#1F2023",
       background:
         "linear-gradient(103.23deg, rgba(164, 238, 254, 0.2) 0%, rgba(165, 238, 254, 0.199654) 6.67%, rgba(166, 238, 254, 0.19858) 13.33%, rgba(169, 239, 254, 0.196734) 20%, rgba(173, 239, 254, 0.194104) 26.67%, rgba(178, 240, 254, 0.190729) 33.33%, rgba(184, 241, 254, 0.186725) 40%, rgba(190, 242, 254, 0.182292) 46.67%, rgba(197, 244, 254, 0.177708) 53.33%, rgba(203, 245, 254, 0.173275) 60%, rgba(209, 246, 254, 0.169271) 66.67%, rgba(214, 247, 254, 0.165896) 73.33%, rgba(218, 247, 254, 0.163266) 80%, rgba(221, 248, 254, 0.16142) 86.67%, rgba(222, 248, 254, 0.160346) 93.33%, rgba(223, 248, 254, 0.16) 100%)",
-
-      borderLeft: "1px solid rgba(234,236,239, 0.3)",
-      borderTop: "1px solid rgba(234,236,239, 0.3)",
-      borderRight: "1px solid rgba(234,236,239, 0.2)",
-      borderBottom: "1px solid rgba(234,236,239, 0.2)",
+      borderLeft: "1px solid rgba(52, 52, 52, 0.3)",
+      borderTop: "1px solid rgba(52, 52, 52, 0.3)",
+      borderRight: "1px solid rgba(52, 52, 52, 0.2)",
+      borderBottom: "1px solid rgba(52, 52, 52, 0.2)",
       borderRadius: "5px",
     },
   };
@@ -249,7 +248,10 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
                 >
                   YES
                 </button>
-                <button className={` no ${dark ? "" : "no-light"}`} onClick={() => optionsBtnHandler("NO")}>
+                <button
+                  className={` no ${dark ? "" : "no-light"}`}
+                  onClick={() => optionsBtnHandler("NO")}
+                >
                   NO
                 </button>
               </div>
@@ -280,7 +282,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
               dark ? "" : "ideaboard-header-light"
             }`}
           >
-            <img  alt="Idea" />
+            <img alt="Idea" />
             <h1
               className={` ideaboard-title ${
                 dark ? "" : "ideaboard-title-light"
@@ -319,9 +321,7 @@ function Dashboard({ user, idea_boards, loadIBS, createIBS, deleteIBS }) {
                         disabled={idea_boards.new_board.isLoading}
                       />
                       <div
-                        className={` error-msg-wrapper ${
-                          dark ? "" : "error-msg-wrapper-light"
-                        }`}
+                        className="error-msg-wrapper"
                       >
                         <ErrorMessage
                           name="idea_board_name"

@@ -35,7 +35,7 @@
       padding: 2px;
       height: fit-content;
       // background-color: white;
-      border-radius: 10px;
+      border-radius: 5px;
       background-color: $theme-color-light;
       border: 3px solid $theme-color;
 
@@ -43,7 +43,7 @@
         position: relative;
         width: 100px;
         height: 70px;
-        border-radius: 10px;
+        border-radius: 5px;
         background-color: $theme-color-light;
         overflow: hidden;
 
@@ -123,12 +123,12 @@
       // transition: 0.4s all ease;
 
       &:hover {
-        border: 3px solid $craft-dash-green;
+        border: 3px solid rgba(50, 165, 117, 1);
       }
     }
 
-    .file-selected-light {
-      border: 3px solid black;
+    .file-selected-light{
+      background-color: rgba(50, 165, 117, 1);
     }
   }
 

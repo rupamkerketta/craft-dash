@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useSelector } from 'react'
 import { connect } from 'react-redux'
 import { server } from '../../../../utils/api'
 
@@ -10,6 +10,9 @@ import OpenFileIcon from '../../../../img/open_file.svg'
 
 // Styles
 import './my-file-node.scss'
+import './my-file-node-light.scss'
+
+
 import ProvideThumbnail from '../../../dashboard/cloud/provide-thumbnail/provide-thumbnail'
 
 function MyFileNode({
@@ -48,6 +51,7 @@ const DisplayContent = ({
 	original_file_name,
 	viewFileHandler
 }) => {
+
 	return (
 		<div className='display-content'>
 			<FileTypeHandler

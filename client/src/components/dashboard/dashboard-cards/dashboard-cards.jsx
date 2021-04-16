@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./dashboard-cards.scss";
 import "./dashboard-cards-light.scss";
 
-
 import { useSelector } from "react-redux";
 
 // Craft Dash Logo
@@ -98,12 +97,7 @@ function DashboardCards(props) {
                 className={`idea-board-others ${
                   dark ? "" : "idea-board-others-light"
                 }`}
-              >
-                {/* TODO Conditional Rendering of Users in the IdeaBoard  */}
-                {/* <Avatars index="1"/> */}
-                {/* <Avatars index="2"/> */}
-                {/* <Avatars index="11"/> */}
-              </div>
+              ></div>
               <div
                 className={`idea-board-owner ${
                   dark ? "" : "idea-board-owner-light"

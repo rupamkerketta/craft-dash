@@ -77,7 +77,14 @@ const ViewFileInfoModal = ({ file_info: file }) => {
 				{file.file_type === 'application/pdf' ? (
 					<PDFReaderHandler file_name={file.file_name} />
 				) : (
+					''
+				)}
+
+				{file.file_type.startsWith('image/') &&
+				file.file_type !== 'image/svg+xml' ? (
 					<ProvideThumbnail file_thumbnail={file.file_name} />
+				) : (
+					<ProvideThumbnail file_thumbnail={file.file_thumbnail} />
 				)}
 			</div>
 			<a
@@ -187,7 +194,6 @@ function PDFReaderHandler({ file_name }) {
 
 	return (
 		<div className='pdf-viewer' style={{ overflow: 'auto', height: '100%' }}>
-			{console.log(download_url)}
 			{download_url !== '' ? (
 				<PDFReader url={download_url} scale={1} showAllPage={true} />
 			) : (

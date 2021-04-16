@@ -88,6 +88,7 @@ function CloudStorage({ match, idea_boards }) {
 	const [ideaBoardId, setIdeaBoardId] = useState('')
 	const [ideaBoardName, setIdeaBoardName] = useState('')
 	const [upload_progress, setUploadProgress] = useState(0)
+	const [is_uploading, setIsUploading] = useState(false)
 
 	// DropZone
 	const { getRootProps, getInputProps } = useDropzone({
@@ -138,47 +139,56 @@ function CloudStorage({ match, idea_boards }) {
 
 	const docSubmit = React.useCallback(async () => {
 		try {
-			const formData = new FormData()
+			if (upload_progress === 0 && is_uploading === false) {
+				console.log(upload_progress + ' ' + is_uploading)
+				const formData = new FormData()
 
-			files.forEach((file, index) => {
-				formData.append('docs', files[index])
-			})
+				files.forEach((file, index) => {
+					formData.append('docs', files[index])
+				})
 
-			// formData.append('docs', files[0])
+				formData.append('nf', files.length)
+				formData.append('idea_board_id', ideaBoardId)
 
-			formData.append('nf', files.length)
-			formData.append('idea_board_id', ideaBoardId)
+				notify(
+					{ message: 'Uploading Files...' },
+					NOTIFICATION_TYPE.INFO,
+					'zoom',
+					{
+						autoClose: 2000,
+						position: 'bottom-left'
+					}
+				)
 
-			notify(
-				{ message: 'Uploading Files...' },
-				NOTIFICATION_TYPE.INFO,
-				'zoom',
-				{
-					position: 'bottom-left'
-				}
-			)
+				setIsUploading(true)
+				const res = await api.post('/cloud-storage/uploads', formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					},
+					onUploadProgress: (progressEvent) => {
+						let uploaded = progressEvent.loaded / progressEvent.total
+						console.log(uploaded * 100)
+						setUploadProgress(uploaded * 100)
+					}
+				})
 
-			const res = await api.post('/cloud-storage/uploads', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data'
-				},
-				onUploadProgress: (progressEvent) => {
-					let uploaded = progressEvent.loaded / progressEvent.total
-					console.log(uploaded * 100)
-					setUploadProgress(uploaded * 100)
-				}
-			})
-
-			notify(
-				{ username: '', enter: true, message: 'Files Uploaded Successfully' },
-				NOTIFICATION_TYPE.DARK,
-				'zoom',
-				{
-					autoClose: 3000,
-					position: 'bottom-left'
-				}
-			)
-			console.log(res)
+				setUploadProgress(0)
+				setIsUploading(false)
+				notify(
+					{
+						username: '',
+						enter: true,
+						message: 'File(s) Uploaded Successfully'
+					},
+					NOTIFICATION_TYPE.DARK,
+					'zoom',
+					{
+						autoClose: 3000,
+						position: 'bottom-left'
+					}
+				)
+				console.log(res)
+			}
 		} catch (err) {}
 	}, [files])
 
@@ -307,6 +317,11 @@ function CloudStorage({ match, idea_boards }) {
 				</div>
 
 				<div
+					style={{
+						pointerEvents: `${
+							upload_progress === 0 && is_uploading === false ? 'all' : 'none'
+						}`
+					}}
 					className={`files-field-wrapper ${
 						dark ? '' : 'files-field-wrapper-light'
 					}`}>
@@ -320,12 +335,21 @@ function CloudStorage({ match, idea_boards }) {
 					<div
 						className={`upload-button-wrapper ${
 							dark ? '' : 'upload-button-wrapper-light'
-						}`}>
-						<button
-							className={`upload-button ${dark ? '' : 'upload-button-light'}`}
-							onClick={docSubmit}>
-							UPLOAD
-						</button>
+						}`}
+						onClick={docSubmit}>
+						<p className={`upload-button ${dark ? '' : 'upload-button-light'}`}>
+							{upload_progress === 0
+								? 'UPLOAD'
+								: upload_progress === 100
+								? 'PROCESSING FILE(S)...'
+								: `UPLOADING (${upload_progress})%`}
+						</p>
+						<div
+							className='upload-progress'
+							style={{
+								display: !is_uploading ? 'block' : 'none',
+								width: `${upload_progress}%`
+							}}></div>
 					</div>
 					<div className={`label-row-2 ${dark ? '' : 'label-row-2-light'}`}>
 						<p>All documents and images are supported</p>

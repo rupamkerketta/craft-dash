@@ -342,12 +342,12 @@ function CloudStorage({ match, idea_boards }) {
 								? 'UPLOAD'
 								: upload_progress === 100
 								? 'PROCESSING FILE(S)...'
-								: `UPLOADING (${upload_progress})%`}
+								: `UPLOADING (${upload_progress.toPrecision(3)})%`}
 						</p>
 						<div
 							className='upload-progress'
 							style={{
-								display: !is_uploading ? 'block' : 'none',
+								display: is_uploading ? 'block' : 'none',
 								width: `${upload_progress}%`
 							}}></div>
 					</div>

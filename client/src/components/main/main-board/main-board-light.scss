@@ -376,8 +376,8 @@
           margin: auto;
           display: flex;
           align-items: center;
-          background-color: $craft-dash-green;
-          border: 1px solid $craft-dash-green;
+          // background-color: $craft-dash-green;
+          border: 2px solid rgba(50, 165, 117, 1);
           width: 250px;
           height: 40px;
           border-radius: 5px;
@@ -401,7 +401,7 @@
             }
           }
           &:hover {
-            background-color: rgba(63, 222, 156, 0.4);
+            background-color: rgba(50, 165, 117, 0.4);
             border: 1px solid $craft-dash-green;
             img {
               content: url("../../../img/download-button-icon-hover.svg");

@@ -131,11 +131,10 @@ function IdbFiles({
 					? files_info.map((file, index) => {
 							return (
 								<div
-									className={`idb-remote-file-wrapper ${
+									className={`idb-remote-file-wrapper  ${dark ? `` : `idb-remote-file-wrapper-light`} ${
 										selectedFile.file_name === file.file_name
-											? 'file-selected'
-											: ''
-									} ${dark ? '' : 'idb-remote-file-wrapper-light'}`}
+											? dark ? 'file-selected': 'file-selected-light' : ""
+									}`}
 									onClick={() => fileSelectHandler(file)}
 									key={file.file_name}
 									style={{ marginTop: index > 1 ? '80px' : '' }}>

@@ -112,7 +112,6 @@
 			.download-icon-wrapper {
 				border-radius: 50%;
 				background-color: $craft-dash-green;
-				border: 1px solid $craft-dash-green;
 				position: absolute;
 				bottom: -40px;
 				right: 0px;
@@ -135,9 +134,8 @@
 				}
 			}
 			.download-icon-wrapper:hover {
-				background-color: rgba(63, 222, 156, 0.5);
-				border: 1px solid $craft-dash-green;
-				backdrop-filter: blur(10px);
+				background-color: rgba(63, 222, 156, 0.2);
+				backdrop-filter: blur(20px);
 				img {
 					content: url('../../../img/download-icon-hover.png');
 					position: absolute;

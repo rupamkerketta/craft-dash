@@ -189,7 +189,7 @@ function PDFReaderHandler({ file_name }) {
 		<div className='pdf-viewer' style={{ overflow: 'auto', height: '100%' }}>
 			{console.log(download_url)}
 			{download_url !== '' ? (
-				<PDFReader url={download_url} scale={1.2} showAllPage={true} />
+				<PDFReader url={download_url} scale={1} showAllPage={true} />
 			) : (
 				<img src={ImgLazyLoading} alt='Loading...' />
 			)}

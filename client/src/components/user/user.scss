@@ -17,10 +17,11 @@
 		}
 
 		img:hover {
-			border-top: 2px solid $craft-dash-pink;
-			border-bottom: 2px solid $craft-dash-purple;
-			border-right: 2px solid $craft-dash-green;
-			border-left: 2px solid $craft-dash-blue;
+			border-top: 3px solid $craft-dash-pink;
+			border-bottom: 3px solid $craft-dash-purple;
+			border-right: 3px solid $craft-dash-green;
+			border-left: 3px solid $craft-dash-blue;
+			backdrop-filter: blur(10px);
 		}
 
 		h5 {

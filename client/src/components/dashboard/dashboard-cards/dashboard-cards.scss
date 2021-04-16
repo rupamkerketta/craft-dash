@@ -104,7 +104,7 @@
 
             .rocket {
               position: absolute;
-              padding: 2px;
+              padding: 3px;
               top: 4px;
               right: -50px;
 
@@ -171,8 +171,11 @@
             justify-content: space-around;
 
             img {
-              border: 2px solid rgba(255, 255, 0, 0.8);
-              width: 24px;
+              // border: 2px solid rgba(197, 197, 12, 0.8);
+              margin-top: 5px;
+              margin-bottom: 2px;
+              border: 3px solid $craft-dash-green;
+              width: 35px;
               border-radius: 50%;
             }
           }

@@ -5,9 +5,6 @@ import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
 import './main-board-light.scss'
 
-// Server Address
-import { server } from '../../../utils/api'
-
 // UUID
 import { v4 as uuid4 } from 'uuid'
 

@@ -87,6 +87,7 @@ function CloudStorage({ match, idea_boards }) {
 	}
 	const [ideaBoardId, setIdeaBoardId] = useState('')
 	const [ideaBoardName, setIdeaBoardName] = useState('')
+	const [upload_progress, setUploadProgress] = useState(0)
 
 	// DropZone
 	const { getRootProps, getInputProps } = useDropzone({
@@ -153,7 +154,6 @@ function CloudStorage({ match, idea_boards }) {
 				NOTIFICATION_TYPE.INFO,
 				'zoom',
 				{
-					autoClose: 3000,
 					position: 'bottom-left'
 				}
 			)
@@ -161,6 +161,11 @@ function CloudStorage({ match, idea_boards }) {
 			const res = await api.post('/cloud-storage/uploads', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
+				},
+				onUploadProgress: (progressEvent) => {
+					let uploaded = progressEvent.loaded / progressEvent.total
+					console.log(uploaded * 100)
+					setUploadProgress(uploaded * 100)
 				}
 			})
 
@@ -238,7 +243,11 @@ function CloudStorage({ match, idea_boards }) {
 				}`}>
 				{files_info.map((file) => {
 					return (
-						<div className={`remote-file-wrapper ${dark ? '':'remote-file-wrapper-light'}`} key={file.file_name}>
+						<div
+							className={`remote-file-wrapper ${
+								dark ? '' : 'remote-file-wrapper-light'
+							}`}
+							key={file.file_name}>
 							<div className={`remote-file ${dark ? '' : 'remote-file-light'}`}>
 								<ProvideThumbnail
 									file_thumbnail={file.file_thumbnail}

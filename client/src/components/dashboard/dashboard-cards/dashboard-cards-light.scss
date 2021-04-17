@@ -23,7 +23,7 @@
         width: 100%;
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
-        background-color: $label-color;
+        background-color: $theme-color-light;
 
         .logo-wrapper-light {
           position: relative;
@@ -76,7 +76,6 @@
             font-size: 1em;
             color: $theme-color;
             height: 100%;
-
             display: flex;
             align-items: center;
           }

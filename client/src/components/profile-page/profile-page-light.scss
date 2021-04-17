@@ -22,22 +22,27 @@
 			list-style: none;
 		}
 		.logout-button-light {
-			background-color: transparent;
+			outline: none;
+			background-color: $craft-dash-pink;
 			border: 3px solid $craft-dash-pink;
-			width: 121px;
+			width: 120px;
+			height: 40px;
 			color: $theme-color;
+			font-weight: 600;
 			padding-top: 5px;
 			font-family: $theme-font;
-			border-radius: 10px;
+			border-radius: 5px;
 			padding-bottom: 5px;
 			padding-left: 20px;
 			padding-right: 20px;
 			margin-right: 20px;
+			transition: 0.4s ease-in-out;
 		}
 		.logout-button-light:hover {
-			background-color: $craft-dash-pink;
-			color: $theme-color;
+			background-color: rgba(255, 45, 146, 0.2);
+			color: rgba(255, 45, 146, 1);
 			font-weight: 800;
+			border-radius: 10px;
 		}
 	}
 

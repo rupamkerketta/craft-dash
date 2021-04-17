@@ -25,16 +25,16 @@
 
 		.remote-file-wrapper {
 			position: relative;
-			margin-left: 30px;
-			margin-bottom: 10px;
 			width: fit-content;
-			padding: 2px;
 			height: fit-content;
+			border: 2px solid $charcoal;
 			border-radius: 10px;
 			background-color: $theme-color;
-			border: 2px solid $charcoal;
 
+			padding: 2px;
 			margin-top: 60px;
+			margin-bottom: 10px;
+			margin-left: 30px;
 
 			&:nth-child(1),
 			&:nth-child(2),
@@ -48,8 +48,8 @@
 				width: 200px;
 				height: 150px;
 				border-radius: 10px;
-				background-color: $theme-color;
 				overflow: hidden;
+				background-color: $theme-color;
 
 				display: flex;
 				align-items: center;
@@ -70,9 +70,8 @@
 				position: absolute;
 				left: 0;
 				bottom: -41px;
-				width: fit-content;
 				margin: auto;
-				width: 200px;
+				width: 135px;
 				background: linear-gradient(
 					96.2deg,
 					rgba(228, 228, 228, 0.22) 0%,
@@ -109,86 +108,77 @@
 					color: $label-color;
 				}
 			}
-			.download-icon-wrapper {
-				border-radius: 50%;
-				background-color: $craft-dash-green;
+
+			.file-name-light {
+				h3 {
+					color: $theme-color;
+				}
+			}
+
+			.buttons-wrapper {
 				position: absolute;
-				bottom: -80px;	
-				left: 0px;
-				width: 25px;
-				height: 25px;
+				right: 0;
+				bottom: -41px;
+				width: 65px;
+				height: 30px;
+				display: flex;
 				align-items: center;
-				margin: auto;
-				transition: 0.2s ease-in-out;
-				img {
-					content: url('../../../img/download-icon.png');
-					position: absolute;
+				justify-content: space-around;
+
+				.download-icon-wrapper,
+				.delete-icon-wrapper {
 					width: fit-content;
-					margin: auto;
-					width: 14px;
-					height: 14px;
-					top: 3px;
-					left: 3px;
-					bottom: 3px;
-					right: 3px;
+					height: fit-content;
+					display: flex;
+					align-items: center;
+					justify-content: space-around;
+					img {
+						width: 25px;
+						height: 25px;
+					}
 				}
-			}
-			.download-icon-wrapper:hover {
-				background-color: rgba(63, 222, 156, 0.2);
-				backdrop-filter: blur(20px);
-				img {
-					content: url('../../../img/download-icon-hover.png');
+
+				.download-icon-wrapper {
 				}
-			}
-			.delete-icon-wrapper{
-				// border: 1px solid black;
-				width: 24px;
-				height: 24px;
-				border-radius:50%;
-				background-color: $craft-dash-red;
-				position: absolute;
-				bottom: -80px;
-				right: 0px;
-				width: 25px;
-				height: 25px;
-				align-items: center;
-				margin: auto;
-				transition: 0.2s ease-in-out;
-				img{
-					content: url("../../../img/trash-black.svg");
-					position: absolute;
-					width: fit-content;
-					margin: auto;
-					width: 14px;
-					height: 14px;
-					top: 3px;
-					left: 3px;
-					bottom: 3px;
-					right: 3px;
+				.download-icon-wrapper:hover {
+					// background-color: rgba(63, 222, 156, 0.2);
+					// backdrop-filter: blur(20px);
+					img {
+						content: url('../../../img/download-icon-hover.png');
+					}
 				}
-			}
-			.delete-icon-wrapper:hover{
-				background-color: rgba(252, 83, 100, 0.2);
-				backdrop-filter: blur(20px);
-				img{
-					content: url("../../../img/trash.svg");
+				.delete-icon-wrapper {
+				}
+				.delete-icon-wrapper:hover {
+					// background-color: rgba(252, 83, 100, 0.2);
+					// backdrop-filter: blur(20px);
+					// img {
+					// 	content: url('../../../img/trash.svg');
+					// }
 				}
 			}
 		}
-	}
-	.remote-files-wrapper::-webkit-scrollbar {
-		width: 1px;
-		border-radius: 10px;
-	}
 
-	.remote-files-wrapper::-webkit-scrollbar-track {
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
+		.remote-file-wrapper-light {
+			background-color: $label-color;
+			border: 2px solid $charcoal;
+			color: $theme-color;
+		}
 
-	.remote-files-wrapper::-webkit-scrollbar-thumb {
-		background-color: darkgrey;
-		outline: 1px solid slategrey;
-		border-radius: 10px;
+		&::-webkit-scrollbar {
+			width: 1px;
+			border-radius: 10px;
+		}
+
+		&::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: darkgrey;
+			outline: 1px solid slategrey;
+			border-radius: 10px;
+		}
 	}
 
 	.top-nav {
@@ -265,6 +255,12 @@
 			);
 			backdrop-filter: blur(50px);
 			transition: 0.1s ease-in-out;
+		}
+	}
+
+	.ideaboard-name-light {
+		h1 {
+			color: $theme-color;
 		}
 	}
 
@@ -614,6 +610,7 @@
 			border-bottom: 1px solid rgba(234, 236, 239, 0.2);
 		}
 		.files-wrapper {
+			// border: 1px solid white;
 			position: absolute;
 			width: fit-content;
 			margin: auto;

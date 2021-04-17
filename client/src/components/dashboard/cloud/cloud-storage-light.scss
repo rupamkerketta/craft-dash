@@ -59,11 +59,11 @@
 
       .file-name-light {
         position: absolute;
-        left: 0;
-        bottom: -41px;
-        width: fit-content;
-        margin: auto;
-        width: 170px;
+				left: 0;
+				bottom: -41px;
+				width: fit-content;
+				margin: auto;
+				width: 200px;
         background: linear-gradient(
           96.2deg,
           rgba(228, 228, 228, 0.22) 0%,
@@ -102,15 +102,15 @@
       }
       .download-icon-wrapper-light {
         border-radius: 50%;
-        background-color: $craft-dash-green;
-        position: absolute;
-        bottom: -40px;
-        right: 0px;
-        width: 25px;
-        height: 25px;
-        align-items: center;
-        margin: auto;
-        transition: 0.2s ease-in-out;
+				background-color: $craft-dash-green;
+				position: absolute;
+				bottom: -80px;	
+				left: 0px;
+				width: 25px;
+				height: 25px;
+				align-items: center;
+				margin: auto;
+				transition: 0.2s ease-in-out;
         img {
           position: absolute;
           width: fit-content;
@@ -124,19 +124,46 @@
         }
       }
       .download-icon-wrapper-light:hover {
-        background-color: rgba(63, 222, 156, 0.5);
+        background-color: rgba(63, 222, 156, 0.2);
         backdrop-filter: blur(20px);
         img {
           content: url('../../../img/download-icon-hover-light.png');
+          
+        }
+
+        .delete-icon-wrapper-light{
+          // border: 1px solid black;
+          width: 24px;
+          height: 24px;
+          border-radius:50%;
+          background-color: $craft-dash-red;
           position: absolute;
-          width: fit-content;
+          bottom: -80px;
+          right: 0px;
+          width: 25px;
+          height: 25px;
+          align-items: center;
           margin: auto;
-          width: 13px;
-          height: 13px;
-          top: 5px;
-          left: 5px;
-          bottom: 5px;
-          right: 5px;
+          transition: 0.2s ease-in-out;
+          img{
+            content: url("../../../img/trash-black.svg");
+            position: absolute;
+            width: fit-content;
+            margin: auto;
+            width: 14px;
+            height: 14px;
+            top: 3px;
+            left: 3px;
+            bottom: 3px;
+            right: 3px;
+          }
+        }
+        .delete-icon-wrapper-light:hover{
+          background-color: rgba(222, 0, 22, 0.2);
+          backdrop-filter: blur(20px);
+          img{
+            content: url("../../../img/trash-light.svg");
+          }
         }
       }
     }
@@ -377,41 +404,44 @@
       }
     }
     .upload-button-wrapper-light {
-      // border: 1px solid white;
-      position: absolute;
-      width: fit-content;
-      margin: auto;
-      bottom: 70px;
-      right: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      .upload-button-light {
-        // border: 1px solid white;
-        outline: none;
-        border: none;
-        width: fit-content;
-        margin: auto;
-        margin-top: 10px;
-        align-items: center;
-        width: 150px;
-        height: 40px;
-        padding: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 5px;
-        font-weight: 500;
-        background-color: rgba(63, 222, 156, 1);
-        border: 2px solid $craft-dash-green;
-        font-family: $theme-font;
-        color: $theme-color;
-        cursor: pointer;
-      }
-      .upload-button-light:hover {
-        background-color: rgba(63, 222, 156, 0.6);
-        color: $theme-color;
-        border: 2px solid $craft-dash-green;
-      }
-    }
+			position: relative;
+			width: 350px;
+			height: 50px;
+			margin: auto;
+			margin-top: 52%;
+			cursor: pointer;
+
+			.upload-progress,
+			.upload-button {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+
+			.upload-progress-light {
+				background-color: rgba(63, 222, 156, 0.377);
+			}
+
+			.upload-button-light {
+				z-index: 99;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				font-family: $theme-font;
+				font-weight: 500;
+				font-size: 1em;
+				color: $theme-color;
+        // color: rgba(50, 165, 117, 1);
+				border: 3px solid $craft-dash-green;
+				user-select: none;
+			}
+			.upload-button-light:hover {
+				background-color: rgba(50, 165, 117, 0.253);
+				// color: rgba(63, 222, 156, 0.8);
+				border: 3px solid $craft-dash-green;
+			}
+		}
   }
 
   .notes-header-light {

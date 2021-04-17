@@ -254,7 +254,7 @@ function ProfilePage({
               }`}
             >
               <label className={`switch ${dark ? "" : "switch"}`}>
-                <input type="checkbox" checked={dark} onChange={handleTheme} />
+                <input type="checkbox" checked={dark} onChange={handleTheme} title="Switch Themes" name="Switch Themes"/>
                 <span className={`slider ${dark ? "" : "slider"}`} />
               </label>
             </div>

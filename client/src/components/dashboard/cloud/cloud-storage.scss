@@ -139,22 +139,83 @@
 				}
 
 				.download-icon-wrapper {
+					background-color: $craft-dash-green;
+					border-radius: 50%;
+					padding: 5px;
+					width: 25px;
+					height: 25px;
+					img{
+						content: url("../../../img/download-icon.png");
+						width: 14px;
+						height: 14px;
+					}
 				}
 				.download-icon-wrapper:hover {
-					// background-color: rgba(63, 222, 156, 0.2);
-					// backdrop-filter: blur(20px);
+					background-color: rgba(50, 165, 117, 0.2);
+					backdrop-filter: blur(20px);
 					img {
 						content: url('../../../img/download-icon-hover.png');
 					}
 				}
 				.delete-icon-wrapper {
+					background-color: rgba(222, 0, 22, 1);
+					border-radius: 50%;
+					padding: 5px;
+					width: 25px;
+					height: 25px;
+					img{
+						content: url("../../../img/trash-black.svg");
+						width: 15px;
+						height: 15px;
+					}
+					
 				}
 				.delete-icon-wrapper:hover {
-					// background-color: rgba(252, 83, 100, 0.2);
-					// backdrop-filter: blur(20px);
-					// img {
-					// 	content: url('../../../img/trash.svg');
-					// }
+					background-color: rgba(222, 0, 22, 0.2);
+					backdrop-filter: blur(20px);
+					img {
+						content: url('../../../img/trash.svg');
+					}
+				}
+
+				.download-icon-wrapper-light {
+					background-color: rgba(50, 165, 117, 1);
+					border-radius: 50%;
+					padding: 5px;
+					width: 25px;
+					height: 25px;
+					img{
+						content: url("../../../img/download-icon.png");
+						width: 14px;
+						height: 14px;
+					}
+				}
+				.download-icon-wrapper-light:hover {
+					background-color: rgba(50, 165, 117, 0.2);
+					backdrop-filter: blur(20px);
+					img {
+						content: url('../../../img/download-icon-hover-light.png');
+					}
+				}
+				.delete-icon-wrapper-light {
+					background-color: rgba(255, 102, 117, 1);
+					border-radius: 50%;
+					padding: 5px;
+					width: 25px;
+					height: 25px;
+					img{
+						content: url("../../../img/trash-black.svg");
+						width: 15px;
+						height: 15px;
+					}
+					
+				}
+				.delete-icon-wrapper-light:hover {
+					background-color: rgba(255, 102, 117, 0.2);
+					backdrop-filter: blur(20px);
+					img {
+						content: url('../../../img/trash-light.svg');
+					}
 				}
 			}
 		}
@@ -259,7 +320,9 @@
 	}
 
 	.ideaboard-name-light {
+		background-color: $theme-color-light;
 		h1 {
+			backdrop-filter: blur(0px);
 			color: $theme-color;
 		}
 	}
@@ -276,7 +339,7 @@
 				// background-color: $craft-dash-green;
 				border-radius: 50%;
 				img {
-					width: 55px;
+					width: 66px;
 				}
 			}
 			.files-button {
@@ -377,6 +440,7 @@
 			border-radius: 5px;
 			height: 450px;
 			width: 900px;
+			color: $label-color;
 		}
 		.label-row-1 {
 			// border: 1px solid white;
@@ -388,8 +452,9 @@
 			font-size: 1.2em;
 			font-weight: 300;
 			letter-spacing: 2px;
-			// p {
-			// }
+			p {
+				color: $label-color;
+			}
 		}
 		.label-row-2 {
 			position: absolute;
@@ -446,7 +511,93 @@
 			}
 		}
 	}
-
+	.files-field-wrapper-light {
+		background-color: $label-color;
+		width: 900px;
+		height: 450px;
+		margin: auto;
+		margin-top: 20px;
+		margin-bottom: 50px;
+		border-radius: 5px;
+		border: 3px solid $theme-color;
+		.dropzone {
+		  position: absolute;
+		  // border: 1px solid white;
+		  // outline: 1px solid $craft-dash-green;
+		  outline: none;
+		  border-radius: 5px;
+		  height: 450px;
+		  width: 900px;
+		}
+		.label-row-1-light {
+		  // border: 1px solid white;
+		  width: fit-content;
+		  margin: auto;
+		  margin-top: 150px;
+		  font-family: $theme-font;
+		  color: $theme-color;
+		  font-size: 1.2em;
+		  font-weight: 500;
+		  letter-spacing: 2px;
+		  // p {
+		  // }
+		}
+		.label-row-2-light {
+		  position: absolute;
+		  width: fit-content;
+		  margin: auto;
+		  bottom: 50px;
+		  right: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		  p {
+			font-family: $theme-font;
+			color: $theme-color;
+			font-size: 0.8em;
+			font-weight: 400;
+			letter-spacing: 2px;
+		  }
+		}
+		.upload-button-wrapper-light {
+				position: relative;
+				width: 350px;
+				height: 50px;
+				margin: auto;
+				margin-top: 52%;
+				cursor: pointer;
+	
+				.upload-progress,
+				.upload-button {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					border-radius: 5px;
+				}
+	
+				.upload-progress-light {
+					background-color: rgba(63, 222, 156, 0.377);
+				}
+	
+				.upload-button-light {
+					z-index: 99;
+					display: flex;
+					align-items: center;
+					justify-content: space-around;
+					font-family: $theme-font;
+					font-weight: 500;
+					font-size: 1em;
+					color: $theme-color;
+			// color: rgba(50, 165, 117, 1);
+					border: 3px solid $craft-dash-green;
+					user-select: none;
+				}
+				.upload-button-light:hover {
+					background-color: rgba(50, 165, 117, 0.253);
+					// color: rgba(63, 222, 156, 0.8);
+					border: 3px solid $craft-dash-green;
+				}
+			}
+	  }
 	.notes-header {
 		// border: 1px solid white;
 		width: fit-content;

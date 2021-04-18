@@ -31,13 +31,8 @@ import 'rodal/lib/rodal.css'
 // Thumbnail Provider Component
 import ProvideThumbnail from './provide-thumbnail/provide-thumbnail'
 
-// Download Button
-import DownloadBtn from '../../../img/download-button-icon.svg'
-import DeleteBtn from '../../../img/trash-black.svg'
-
 import AddFilesButton from '../../../img/AddFilesButton.png'
-import FilesButton from '../../../img/Files.png'
-import NotesButton from '../../../img/Notes.png'
+import AddFilesButtonLight from '../../../img/AddFilesButtonLight.png'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
 import CraftDashCloudLogoLight from '../../../img/CraftDashCloudLogoLight.png'
 import CraftDashNotes from '../../../img/CraftDashNotesLogo.png'
@@ -78,7 +73,6 @@ function CloudStorage({ match, idea_boards }) {
 	const [files, setFiles] = useState([])
 	const [files_info, setFilesInfo] = useState([])
 
-	const [showButtons, setButtonVisibility] = useState(false)
 	const [showNotesModal, setNotesModalVisibility] = useState(false)
 	const [showFilesModal, setFilesModalVisibility] = useState(false)
 
@@ -148,7 +142,6 @@ function CloudStorage({ match, idea_boards }) {
 				const formData = new FormData()
 
 				files.forEach((file, index) => {
-					console.log(file)
 					formData.append('docs', files[index])
 				})
 
@@ -277,17 +270,13 @@ function CloudStorage({ match, idea_boards }) {
 									className={`download-icon-wrapper ${
 										dark ? '' : 'download-icon-wrapper-light'
 									}`}>
-									<img
-										src={DownloadBtn}
-										alt='Download File'
-										title='Download File'
-									/>
+									<img alt='Download File' title='Download File' />
 								</div>
 								<div
 									className={`delete-icon-wrapper ${
 										dark ? '' : 'delete-icon-wrapper-light'
 									}`}>
-									<img src={DeleteBtn} alt='Delete File' title='Delete File' />
+									<img alt='Delete File' title='Delete File' />
 								</div>
 							</div>
 						</div>
@@ -381,42 +370,12 @@ function CloudStorage({ match, idea_boards }) {
 				}`}>
 				<div
 					className={`add-button-base ${dark ? '' : 'add-button-base-light'}`}>
-					<div
-						className={`notes-button ${dark ? '' : 'notes-button-light'}`}
-						style={{
-							transform: showButtons
-								? 'scale(1) rotate(0deg)'
-								: 'scale(0) rotate(-180deg)',
-							transition: '0.5s ease-in-out'
-						}}
-						onClick={() => setNotesModalVisibility(true)}>
-						<img src={NotesButton} alt='Add Notes' title='Add Notes' />
-					</div>
-					<div
-						className={`files-button ${dark ? '' : 'files-button-light'}`}
-						style={{
-							transform: showButtons
-								? 'scale(1) rotate(0deg)'
-								: 'scale(0) rotate(-180deg)',
-							transition: '0.5s ease-in-out'
-						}}>
-						<img
-							src={FilesButton}
-							alt='Add New Files'
-							title='Add New Files'
-							onClick={() => setFilesModalVisibility(true)}
-						/>
-					</div>
 					<div className={`add-button ${dark ? '' : 'add-button-light'}`}>
 						<img
-							src={AddFilesButton}
-							alt='Add to Cloud'
-							title='Add to Cloud'
-							style={{
-								transform: showButtons ? 'rotate(135deg)' : 'rotate(0deg)',
-								transition: '0.5s ease-in-out'
-							}}
-							onClick={() => setButtonVisibility(!showButtons)}
+							src={dark ? AddFilesButtonLight : AddFilesButton}
+							alt='Upload to Cloud'
+							title='Upload to Cloud'
+							onClick={() => setFilesModalVisibility(true)}
 						/>
 					</div>
 				</div>

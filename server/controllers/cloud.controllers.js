@@ -30,6 +30,12 @@ module.exports = {
 			req.files.map(async (file) => {
 				mimetype = file.mimetype
 
+				console.log(file)
+
+				if (file.originalname === 'blob' && file.mimetype === 'audio/*') {
+					file.originalname = `file-${Date.now()}.mp3`
+					file.mimetype = 'audio/mp3'
+				}
 				file_extension = file.originalname.split('.')
 				file_extension = file_extension[file_extension.length - 1]
 
@@ -80,9 +86,8 @@ module.exports = {
 
 					if (files_info[index].thumbnail === '') {
 						console.log('[Thumbnail] updated!!!')
-						files_info[index].thumbnail = determineTag(mime_type)
 						console.log(mime_type)
-						console.log(files_info[index].thumbnail)
+						files_info[index].thumbnail = determineTag(mime_type)
 					}
 
 					if (file.type.startsWith('image/')) {

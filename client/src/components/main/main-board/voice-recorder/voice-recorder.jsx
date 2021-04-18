@@ -6,7 +6,13 @@ import './voice-recorder.scss'
 
 import { Recorder } from 'react-voice-recorder'
 
-function VoiceRecorder() {
+// API
+import api from '../../../../utils/api'
+
+function VoiceRecorder({ idea_board_id }) {
+	const [is_uploading, setIsUploading] = React.useState(false)
+	const [upload_progress, setUploadProgress] = React.useState(0)
+
 	const [recorderState, setRecorderState] = React.useState({
 		audioDetails: {
 			url: null,
@@ -25,10 +31,34 @@ function VoiceRecorder() {
 		setRecorderState({ audioDetails: data })
 	}
 
-	const handleAudioUpload = (file) => {
-		console.log(file)
+	const handleAudioUpload = async (file) => {
+		try {
+			if (upload_progress === 0 && is_uploading === false) {
+				console.log(upload_progress + ' ' + is_uploading)
+				const formData = new FormData()
+
+				formData.append('docs', file)
+				formData.append('idea_board_id', idea_board_id)
+
+				setIsUploading(true)
+				const res = await api.post('/cloud-storage/uploads', formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					},
+					onUploadProgress: (progressEvent) => {
+						let uploaded = progressEvent.loaded / progressEvent.total
+						console.log(uploaded * 100)
+						setUploadProgress(uploaded * 100)
+					}
+				})
+
+				setUploadProgress(0)
+				setIsUploading(false)
+				console.log(res)
+			}
+		} catch (err) {}
 	}
-	const handleRest = () => {
+	const handleReset = () => {
 		const reset = {
 			url: null,
 			blob: null,
@@ -51,7 +81,7 @@ function VoiceRecorder() {
 				showUIAudio
 				handleAudioStop={(data) => handleAudioStop(data)}
 				handleAudioUpload={(data) => handleAudioUpload(data)}
-				handleRest={() => handleRest()}
+				handleReset={() => handleReset()}
 			/>
 		</div>
 	)

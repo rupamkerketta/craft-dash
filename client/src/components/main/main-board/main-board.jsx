@@ -414,7 +414,7 @@ const MainBoard = ({
 							className={`react-media-recorder-wrapper ${
 								dark ? '' : 'react-media-recorder-wrapper-light'
 							}`}>
-							<VoiceRecorder />
+							<VoiceRecorder idea_board_id={room} />
 						</div>
 					</div>
 				</Rodal>

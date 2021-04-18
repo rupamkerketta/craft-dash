@@ -148,6 +148,7 @@ function CloudStorage({ match, idea_boards }) {
 				const formData = new FormData()
 
 				files.forEach((file, index) => {
+					console.log(file)
 					formData.append('docs', files[index])
 				})
 

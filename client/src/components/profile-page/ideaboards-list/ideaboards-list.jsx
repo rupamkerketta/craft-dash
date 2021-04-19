@@ -2,7 +2,6 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import "../ideaboards-list/ideaboards-list.scss";
-import "../ideaboards-list/ideaboards-list-light.scss";
 
 function IdeaBoardsList(props) {
   const theme = useSelector((state) => state.theme);

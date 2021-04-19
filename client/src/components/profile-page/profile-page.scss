@@ -24,26 +24,30 @@
     .logout-button {
       outline: none;
       background-color: $craft-dash-pink;
-			border: 3px solid $craft-dash-pink;
-			width: 120px;
-			height: 40px;
-			color: $theme-color;
-			font-weight: 600;
-			padding-top: 5px;
-			font-family: $theme-font;
-			border-radius: 5px;
-			padding-bottom: 5px;
-			padding-left: 20px;
-			padding-right: 20px;
-			margin-right: 20px;
-			transition: 0.4s ease-in-out;
+      border: 3px solid $craft-dash-pink;
+      width: 120px;
+      height: 40px;
+      color: $theme-color;
+      font-weight: 600;
+      padding-top: 5px;
+      font-family: $theme-font;
+      border-radius: 5px;
+      padding-bottom: 5px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-right: 20px;
+      transition: 0.4s ease-in-out;
     }
     .logout-button:hover {
       background-color: rgba(255, 45, 146, 0.2);
-			color: rgba(255, 45, 146, 1);
-			font-weight: 800;
-			border-radius: 10px;
+      color: rgba(255, 45, 146, 1);
+      font-weight: 800;
+      border-radius: 10px;
     }
+  }
+
+  .app-bar-light {
+    color: $theme-color;
   }
 
   .profile-card {
@@ -64,7 +68,6 @@
     backdrop-filter: blur(8px);
     width: 400px;
     height: 270px;
-
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -175,6 +178,71 @@
     );
     backdrop-filter: blur(25px);
     transition: 0.3s all linear;
+  }
+
+  .profile-card-light {
+    background: linear-gradient(
+      103.23deg,
+      rgba(164, 238, 254, 0.2) 0%,
+      rgba(165, 238, 254, 0.199654) 6.67%,
+      rgba(166, 238, 254, 0.19858) 13.33%,
+      rgba(169, 239, 254, 0.196734) 20%,
+      rgba(173, 239, 254, 0.194104) 26.67%,
+      rgba(178, 240, 254, 0.190729) 33.33%,
+      rgba(184, 241, 254, 0.186725) 40%,
+      rgba(190, 242, 254, 0.182292) 46.67%,
+      rgba(197, 244, 254, 0.177708) 53.33%,
+      rgba(203, 245, 254, 0.173275) 60%,
+      rgba(209, 246, 254, 0.169271) 66.67%,
+      rgba(214, 247, 254, 0.165896) 73.33%,
+      rgba(218, 247, 254, 0.163266) 80%,
+      rgba(221, 248, 254, 0.16142) 86.67%,
+      rgba(222, 248, 254, 0.160346) 93.33%,
+      rgba(223, 248, 254, 0.16) 100%
+    );
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
+
+    .profile-text-content-light {
+      .username-light,
+      .email-light {
+        color: $theme-color;
+      }
+
+      .email-light {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .profile-card-light:hover {
+    background: linear-gradient(
+      103.23deg,
+      rgba(164, 238, 254, 0.2) 0%,
+      rgba(165, 238, 254, 0.199654) 6.67%,
+      rgba(166, 238, 254, 0.19858) 13.33%,
+      rgba(169, 239, 254, 0.196734) 20%,
+      rgba(173, 239, 254, 0.194104) 26.67%,
+      rgba(178, 240, 254, 0.190729) 33.33%,
+      rgba(184, 241, 254, 0.186725) 40%,
+      rgba(190, 242, 254, 0.182292) 46.67%,
+      rgba(197, 244, 254, 0.177708) 53.33%,
+      rgba(203, 245, 254, 0.173275) 60%,
+      rgba(209, 246, 254, 0.169271) 66.67%,
+      rgba(214, 247, 254, 0.165896) 73.33%,
+      rgba(218, 247, 254, 0.163266) 80%,
+      rgba(221, 248, 254, 0.16142) 86.67%,
+      rgba(222, 248, 254, 0.160346) 93.33%,
+      rgba(223, 248, 254, 0.16) 100%
+    );
+    backdrop-filter: blur(25px);
+    transition: 0.3s all linear;
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
   }
   .subscription-card {
     // display: none;
@@ -371,36 +439,80 @@
     backdrop-filter: blur(25px);
     transition: 0.3s all linear;
   }
-  .active-time-card {
-    display: none;
-    background-color: $modal-background-color;
-    border-radius: 15px;
-    position: absolute;
-    width: 600px;
-    height: 200px;
-    margin-top: 50px;
-    margin-left: 120px;
-    top: 450px;
-    left: 40px;
-    .active-time-header {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: $label-color;
-      font-family: $theme-font;
-      font-size: 1.2em;
-      font-weight: 800;
-    }
-    .active-time-month {
-      position: absolute;
-      top: 20px;
-      left: 380px;
-      color: $label-color;
-      font-family: $theme-font;
-      font-size: 1.2em;
-      font-weight: 300;
+
+  .subscription-card-light {
+    background: linear-gradient(
+      103.23deg,
+      rgba(164, 238, 254, 0.2) 0%,
+      rgba(165, 238, 254, 0.199654) 6.67%,
+      rgba(166, 238, 254, 0.19858) 13.33%,
+      rgba(169, 239, 254, 0.196734) 20%,
+      rgba(173, 239, 254, 0.194104) 26.67%,
+      rgba(178, 240, 254, 0.190729) 33.33%,
+      rgba(184, 241, 254, 0.186725) 40%,
+      rgba(190, 242, 254, 0.182292) 46.67%,
+      rgba(197, 244, 254, 0.177708) 53.33%,
+      rgba(203, 245, 254, 0.173275) 60%,
+      rgba(209, 246, 254, 0.169271) 66.67%,
+      rgba(214, 247, 254, 0.165896) 73.33%,
+      rgba(218, 247, 254, 0.163266) 80%,
+      rgba(221, 248, 254, 0.16142) 86.67%,
+      rgba(222, 248, 254, 0.160346) 93.33%,
+      rgba(223, 248, 254, 0.16) 100%
+    );
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
+
+    .appearance-wrapper-light{
+      .appearance-header-light{
+        color: $theme-color;
+      }
+      .appearance-buttons-wrapper-light{
+        .light-theme-button-light{
+          p{
+            color: $theme-color;
+          }
+        }
+        .dark-theme-button-light{
+          p{
+            color: $theme-color;
+          }
+        }
+      }
     }
   }
+
+  .subscription-card-light:hover{
+    background: linear-gradient(
+			103.23deg,
+			rgba(164, 238, 254, 0.2) 0%,
+			rgba(165, 238, 254, 0.199654) 6.67%,
+			rgba(166, 238, 254, 0.19858) 13.33%,
+			rgba(169, 239, 254, 0.196734) 20%,
+			rgba(173, 239, 254, 0.194104) 26.67%,
+			rgba(178, 240, 254, 0.190729) 33.33%,
+			rgba(184, 241, 254, 0.186725) 40%,
+			rgba(190, 242, 254, 0.182292) 46.67%,
+			rgba(197, 244, 254, 0.177708) 53.33%,
+			rgba(203, 245, 254, 0.173275) 60%,
+			rgba(209, 246, 254, 0.169271) 66.67%,
+			rgba(214, 247, 254, 0.165896) 73.33%,
+			rgba(218, 247, 254, 0.163266) 80%,
+			rgba(221, 248, 254, 0.16142) 86.67%,
+			rgba(222, 248, 254, 0.160346) 93.33%,
+			rgba(223, 248, 254, 0.16) 100%
+		);
+		backdrop-filter: blur(25px);
+		transition: 0.3s all linear;
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
+  }
+
+  
 
   .active-ideaboards-card {
     margin-top: 50px;
@@ -452,7 +564,69 @@
     backdrop-filter: blur(25px);
     transition: 0.3s all linear;
   }
+
+  .active-ideaboards-card-light{
+    background: linear-gradient(
+      103.23deg,
+      rgba(164, 238, 254, 0.2) 0%,
+      rgba(165, 238, 254, 0.199654) 6.67%,
+      rgba(166, 238, 254, 0.19858) 13.33%,
+      rgba(169, 239, 254, 0.196734) 20%,
+      rgba(173, 239, 254, 0.194104) 26.67%,
+      rgba(178, 240, 254, 0.190729) 33.33%,
+      rgba(184, 241, 254, 0.186725) 40%,
+      rgba(190, 242, 254, 0.182292) 46.67%,
+      rgba(197, 244, 254, 0.177708) 53.33%,
+      rgba(203, 245, 254, 0.173275) 60%,
+      rgba(209, 246, 254, 0.169271) 66.67%,
+      rgba(214, 247, 254, 0.165896) 73.33%,
+      rgba(218, 247, 254, 0.163266) 80%,
+      rgba(221, 248, 254, 0.16142) 86.67%,
+      rgba(222, 248, 254, 0.160346) 93.33%,
+      rgba(223, 248, 254, 0.16) 100%
+    );
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
+
+    .active-ideaboards-header-light{
+      color: $theme-color;
+    }
+
+  }
+  .active-ideaboards-card-light:hover{
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari 9+ */
+    border-left: 2px solid rgba(18, 19, 23, 0.4);
+    border-top: 2px solid rgba(18, 19, 23, 0.4);
+    border-right: 2px solid rgba(18, 19, 23, 0.3);
+    border-bottom: 2px solid rgba(18, 19, 23, 0.3);
+    border-radius: 15px;
+    background: linear-gradient(
+      103.23deg,
+      rgba(164, 238, 254, 0.2) 0%,
+      rgba(165, 238, 254, 0.199654) 6.67%,
+      rgba(166, 238, 254, 0.19858) 13.33%,
+      rgba(169, 239, 254, 0.196734) 20%,
+      rgba(173, 239, 254, 0.194104) 26.67%,
+      rgba(178, 240, 254, 0.190729) 33.33%,
+      rgba(184, 241, 254, 0.186725) 40%,
+      rgba(190, 242, 254, 0.182292) 46.67%,
+      rgba(197, 244, 254, 0.177708) 53.33%,
+      rgba(203, 245, 254, 0.173275) 60%,
+      rgba(209, 246, 254, 0.169271) 66.67%,
+      rgba(214, 247, 254, 0.165896) 73.33%,
+      rgba(218, 247, 254, 0.163266) 80%,
+      rgba(221, 248, 254, 0.16142) 86.67%,
+      rgba(222, 248, 254, 0.160346) 93.33%,
+      rgba(223, 248, 254, 0.16) 100%
+    );
+    backdrop-filter: blur(25px);
+    transition: 0.3s all linear;
+  }
 }
+
 .select-avatars-header {
   width: fit-content;
   margin: auto;
@@ -460,6 +634,12 @@
     color: $label-color;
     font-family: $theme-font;
     font-size: 1.5em;
+  }
+}
+
+.select-avatars-header-light{
+  p{
+    color: $theme-color;
   }
 }
 
@@ -548,12 +728,31 @@
   }
 }
 
-.rodal-bg{
+.rodal-bg {
+  background: linear-gradient(
+    103.23deg,
+    rgba(108, 134, 144, 0.1) 0%,
+    rgba(108, 134, 145, 0.04) 49.27%,
+    rgba(108, 134, 144, 0.06) 100%
+  );
+  backdrop-filter: blur(4px);
+}
+
+.rodal-bg-light{
   background: linear-gradient(
       103.23deg,
-      rgba(108, 134, 144, 0.1) 0%,
-      rgba(108, 134, 145, 0.04) 49.27%,
-      rgba(108, 134, 144, 0.06) 100%
+      rgba(98, 113, 119, 0.1) 0%,
+      rgba(78, 88, 92, 0.04) 49.27%,
+      rgba(39, 41, 43, 0.06) 100%
     );
     backdrop-filter: blur(10px);
+}
+
+.profile-page-light {
+  position: absolute;
+  width: 100%;
+  background: url("../../img/landing-page-bg-light.svg") fixed center repeat;
+  background-color: $theme-color-light;
+  background-size: cover;
+  height: 100vh;
 }

@@ -4,7 +4,6 @@ import BrandLogoLight from "../../components/brand-logo-light/brand-logo-light";
 
 // Styles
 import "./profile-page.scss";
-import "./profile-page-light.scss";
 
 // Redux
 import { useSelector } from "react-redux";
@@ -99,7 +98,8 @@ function ProfilePage({
             </li>
             <li>
               <button
-                className={`logout-button ${dark ? "" : "logout-button-light"}`}
+                // className={`logout-button ${dark ? "" : "logout-button-light"}`}
+                className="logout-button"
                 onClick={() => logout()}
               >
                 Logout
@@ -145,7 +145,7 @@ function ProfilePage({
         {/* <button className='edit-profile-button'>Edit Profile</button> */}
       </div>
       <Rodal
-        className={`rodal-bg ${dark ? "" : "rodal-bg-light"}`}
+        className={`rodal-bg ${dark ? '' : 'rodal-bg-light'}`}
         visible={avatarModel}
         onClose={() => avatarModalVisibility(false)}
         animation="fade"
@@ -161,14 +161,10 @@ function ProfilePage({
           <p>Select Avatar</p>
         </div>
         <div
-          className={`select-avatars-content ${
-            dark ? "" : "select-avatars-content-light"
-          }`}
+          className="select-avatars-content"
         >
           <div
-            className={`select-avatars-row1 ${
-              dark ? "" : "select-avatars-row1-light"
-            }`}
+            className="select-avatars-row1"
           >
             {avatars1.map((avatar) => {
               return (
@@ -182,9 +178,7 @@ function ProfilePage({
             })}
           </div>
           <div
-            className={`select-avatars-row2 ${
-              dark ? "" : "select-avatars-row2-light"
-            }`}
+            className="select-avatars-row2"
           >
             {avatars2.map((avatar) => {
               return (
@@ -199,18 +193,16 @@ function ProfilePage({
           </div>
         </div>
         <div
-          className={`select-avatars-button ${
-            dark ? "" : "select-avatars-button-light"
-          }`}
+          className="select-avatars-button"
         >
           <button
-            className={`cancel-button ${dark ? "" : "cancel-button-light"}`}
+            className="cancel-button"
             onClick={() => avatarModalVisibility(false)}
           >
             Cancel
           </button>
           <button
-            className={`select-button ${dark ? "" : "select-button-light"}`}
+            className="select-button"
           >
             Select
           </button>
@@ -254,7 +246,13 @@ function ProfilePage({
               }`}
             >
               <label className={`switch ${dark ? "" : "switch"}`}>
-                <input type="checkbox" checked={dark} onChange={handleTheme} title="Switch Themes" name="Switch Themes"/>
+                <input
+                  type="checkbox"
+                  checked={dark}
+                  onChange={handleTheme}
+                  title="Switch Themes"
+                  name="Switch Themes"
+                />
                 <span className={`slider ${dark ? "" : "slider"}`} />
               </label>
             </div>
@@ -275,17 +273,6 @@ function ProfilePage({
 					Renew Subscription
 				</button> */}
       </div>
-      <div className="active-time-card">
-        <p
-          className={`active-time-header ${
-            dark ? "" : "active-time-header-light"
-          }`}
-        >
-          Active Time
-        </p>
-        <p className="active-time-month">Month of September</p>
-      </div>
-
       <div
         className={`active-ideaboards-card ${
           dark ? "" : "active-ideaboards-card-light"

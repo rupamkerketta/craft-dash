@@ -12,7 +12,6 @@ import OpenFileIcon from '../../../../img/open_file.svg'
 import './my-file-node.scss'
 import './my-file-node-light.scss'
 
-
 import ProvideThumbnail from '../../../dashboard/cloud/provide-thumbnail/provide-thumbnail'
 
 function MyFileNode({
@@ -51,7 +50,6 @@ const DisplayContent = ({
 	original_file_name,
 	viewFileHandler
 }) => {
-
 	return (
 		<div className='display-content'>
 			<FileTypeHandler
@@ -92,7 +90,7 @@ const FileTypeHandler = ({
 				<audio controls>
 					<source
 						src={`${server}/api/cloud-storage/get-file/${file_name}`}
-						type={file_type}
+						type={'audio/mpeg'}
 					/>
 				</audio>
 				<h2>{original_file_name}</h2>

@@ -74,15 +74,26 @@ function VoiceRecorder({ idea_board_id }) {
 
 	return (
 		<div className='voice-recorder'>
-			<Recorder
-				record={true}
-				title={'New recording'}
-				audioURL={recorderState.audioDetails.url}
-				showUIAudio
-				handleAudioStop={(data) => handleAudioStop(data)}
-				handleAudioUpload={(data) => handleAudioUpload(data)}
-				handleReset={() => handleReset()}
-			/>
+			{is_uploading ? (
+				<div className='upload-progress-wrapper'>
+					<div className='upload-progress-bar'></div>
+					<h3 className='upload-label'>
+						{upload_progress === 100
+							? 'PROCESSING FILE(S)...'
+							: `UPLOADING (${upload_progress}%)`}
+					</h3>
+				</div>
+			) : (
+				<Recorder
+					record={true}
+					title={'New recording'}
+					audioURL={recorderState.audioDetails.url}
+					showUIAudio
+					handleAudioStop={(data) => handleAudioStop(data)}
+					handleAudioUpload={(data) => handleAudioUpload(data)}
+					handleReset={() => handleReset()}
+				/>
+			)}
 		</div>
 	)
 }

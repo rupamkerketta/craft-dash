@@ -16,6 +16,7 @@ import videoReducer from './video/videoReducer'
 import viewFileReducer from './view-file/viewFilesReducer'
 import voiceNoteReducer from './voice-note/voiceNoteReducer'
 import themeReducer from './theme/themeReducer'
+import updateListReducer from './update-list/updateListReducer'
 
 const rootReducer = combineReducers({
 	auth: loginReducer,
@@ -32,8 +33,9 @@ const rootReducer = combineReducers({
 	focus_text: focusTextReducer,
 	video: videoReducer,
 	viewFile: viewFileReducer,
-	voiceNote: voiceNoteReducer,
-	theme: themeReducer
+	vn_fu: voiceNoteReducer,
+	theme: themeReducer,
+	file_list: updateListReducer
 })
 
 export default rootReducer

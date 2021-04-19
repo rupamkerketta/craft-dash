@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 // Styles
 import 'react-voice-recorder/dist/index.css'
@@ -6,10 +7,13 @@ import './voice-recorder.scss'
 
 import { Recorder } from 'react-voice-recorder'
 
+// Update List - Action
+import { updateList } from '../../../../redux/update-list/updateListActions'
+
 // API
 import api from '../../../../utils/api'
 
-function VoiceRecorder({ idea_board_id }) {
+function VoiceRecorder({ idea_board_id, updateList }) {
 	const [is_uploading, setIsUploading] = React.useState(false)
 	const [upload_progress, setUploadProgress] = React.useState(0)
 
@@ -55,6 +59,7 @@ function VoiceRecorder({ idea_board_id }) {
 				setUploadProgress(0)
 				setIsUploading(false)
 				console.log(res)
+				updateList(idea_board_id)
 			}
 		} catch (err) {}
 	}
@@ -76,7 +81,9 @@ function VoiceRecorder({ idea_board_id }) {
 		<div className='voice-recorder'>
 			{is_uploading ? (
 				<div className='upload-progress-wrapper'>
-					<div className='upload-progress-bar'></div>
+					<div
+						className='upload-progress-bar'
+						style={{ width: `${upload_progress}%` }}></div>
 					<h3 className='upload-label'>
 						{upload_progress === 100
 							? 'PROCESSING FILE(S)...'
@@ -98,4 +105,12 @@ function VoiceRecorder({ idea_board_id }) {
 	)
 }
 
-export default VoiceRecorder
+const mapStateToProps = (state) => {
+	return {}
+}
+
+const mapDispatchToProps = {
+	updateList
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VoiceRecorder)

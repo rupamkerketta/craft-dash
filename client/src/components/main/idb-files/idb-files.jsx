@@ -20,12 +20,17 @@ import { useSelector } from 'react-redux'
 // Thumbnail Provider
 import ProvideThumbnail from '../../dashboard/cloud/provide-thumbnail/provide-thumbnail'
 
+// Update Files Info - Action
+import { updateList } from '../../../redux/update-list/updateListActions'
+
 function IdbFiles({
 	socket,
 	selectedFileHandler,
 	room,
 	idea_boards,
-	addNode_Main
+	addNode_Main,
+	updateList,
+	file_list
 }) {
 	const [files_info, setFilesInfo] = useState([])
 
@@ -101,24 +106,24 @@ function IdbFiles({
 	useEffect(() => {
 		const idb = idea_boards.find((idea_board) => idea_board._id === room)
 
-		getFilesInfo()
+		// getFilesInfo()
 
 		if (idb) {
-			getFilesInfo(idb._id)
+			updateList(idb._id)
 		}
 	}, [])
 
-	const getFilesInfo = async (id) => {
-		try {
-			const files_info = await api.post('/cloud-storage/get-files-info', {
-				idea_board_id: id
-			})
-			console.log(files_info)
-			setFilesInfo(files_info.data)
-		} catch (err) {
-			console.log(err)
-		}
-	}
+	// const getFilesInfo = async (id) => {
+	// 	try {
+	// 		const files_info = await api.post('/cloud-storage/get-files-info', {
+	// 			idea_board_id: id
+	// 		})
+	// 		console.log(files_info)
+	// 		setFilesInfo(files_info.data)
+	// 	} catch (err) {
+	// 		console.log(err)
+	// 	}
+	// }
 
 	const theme = useSelector((state) => state.theme)
 	const dark = theme === 'dark'
@@ -129,8 +134,8 @@ function IdbFiles({
 				className={` idb-remote-files-wrapper ${
 					dark ? '' : 'idb-remote-files-wrapper-light'
 				}`}>
-				{files_info
-					? files_info.map((file, index) => {
+				{file_list.length !== 0
+					? file_list.map((file, index) => {
 							return (
 								<div
 									className={`idb-remote-file-wrapper  ${
@@ -174,12 +179,14 @@ function IdbFiles({
 
 const mapStateToProps = (state) => {
 	return {
-		idea_boards: state.idea_boards.boards.data
+		idea_boards: state.idea_boards.boards.data,
+		file_list: state.file_list
 	}
 }
 
 const mapDispatchToProps = {
-	addNode_Main: (data) => ELEMENTS.addNode_Main(data)
+	addNode_Main: (data) => ELEMENTS.addNode_Main(data),
+	updateList
 }
 
 export default connect(mapStateToProps, { ...mapDispatchToProps })(IdbFiles)

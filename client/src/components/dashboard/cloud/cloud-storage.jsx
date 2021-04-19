@@ -34,11 +34,16 @@ import { updateList } from '../../../redux/update-list/updateListActions'
 // Thumbnail Provider Component
 import ProvideThumbnail from './provide-thumbnail/provide-thumbnail'
 
+import { server } from '../../../utils/api'
+
 import AddFilesButton from '../../../img/AddFilesButton.png'
 import AddFilesButtonLight from '../../../img/AddFilesButtonLight.png'
 import CraftDashCloudLogo from '../../../img/CraftDashCloudLogo.png'
 import CraftDashCloudLogoLight from '../../../img/CraftDashCloudLogoLight.png'
 import CraftDashNotes from '../../../img/CraftDashNotesLogo.png'
+
+// Generic Icon
+import GenericIcon from '../../../img/file-icons/generic-icon.svg'
 
 const thumbsContainer = {
 	display: 'flex',
@@ -50,9 +55,10 @@ const thumbsContainer = {
 }
 
 const thumb = {
-	display: 'inline-flex',
+	display: 'flex',
+	width: '180px',
 	borderRadius: 10,
-	width: 'fit-content',
+	// width: 'fit-content',
 	margin: 'auto',
 	marginBottom: 8,
 	height: 150,
@@ -116,6 +122,8 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 		setFuModalVisibility(visibility)
 	}
 
+	const [files, setFiles] = useState([])
+
 	useEffect(() => {
 		setIdeaBoardId(match.params.id)
 
@@ -128,6 +136,24 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 			updateList(idb._id)
 		}
 	}, [])
+
+	useEffect(() => {
+		let temp_files = [...files]
+		Object.assign(temp_files, file_list)
+		setFiles(temp_files)
+	}, [file_list])
+
+	const deleteFile = async (file_name) => {
+		try {
+			const res = await api.delete(
+				`${server}/api/cloud-storage/delete-file/${file_name}`
+			)
+			console.log(res)
+			updateList(match.params.id)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
 		<div className={`cloud-storage ${dark ? '' : 'cloud-storage-light'}`}>
@@ -161,15 +187,16 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 				className={`remote-files-wrapper ${
 					dark ? '' : 'remote-files-wrapper-light'
 				}`}>
-				{file_list.map((file) => {
+				{files.map((file, index) => {
 					return (
 						<div
 							className={`remote-file-wrapper ${
 								dark ? '' : 'remote-file-wrapper-light'
 							}`}
-							key={file.file_name}>
+							key={Math.random()}>
 							<div className={`remote-file ${dark ? '' : 'remote-file-light'}`}>
 								<ProvideThumbnail
+									myKey={index}
 									file_thumbnail={file.file_thumbnail}
 									original_file_name={file.original_file_name}
 								/>
@@ -185,6 +212,7 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 									<img alt='Download File' title='Download File' />
 								</div>
 								<div
+									onClick={() => deleteFile(file.file_name)}
 									className={`delete-icon-wrapper ${
 										dark ? '' : 'delete-icon-wrapper-light'
 									}`}>
@@ -255,20 +283,20 @@ export const FilesUploadModal = ({
 	// DropZone
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop: (acceptedFiles) => {
+			console.log(acceptedFiles)
 			setFiles(
-				acceptedFiles.map((file) =>
-					Object.assign(file, {
-						preview: URL.createObjectURL(file)
-					})
-				)
+				acceptedFiles.map((file) => {
+					return file
+				})
 			)
 		}
 	})
 
 	const thumbs = files.map((file) => (
-		<div style={thumb} key={file.name}>
-			<div style={thumbInner}>
-				<img src={file.preview} style={img} alt='rdz' />
+		<div key={file.name} className='dz-thumbnail'>
+			<div className='dz-thumbnail-inner'>
+				<img src={GenericIcon} alt='rdz' />
+				<h3>{file.name}</h3>
 			</div>
 		</div>
 	))

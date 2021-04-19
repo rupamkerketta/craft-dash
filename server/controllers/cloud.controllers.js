@@ -175,6 +175,27 @@ module.exports = {
 		}
 	},
 
+	// Delete File
+	deleteFile: async (req, res) => {
+		try {
+			const result = await File.deleteOne({ file_name: req.params.id })
+			if (result.deletedCount === 0) {
+				res.status(400).send({ message: 'File could not be deleted!!!' })
+				return
+			}
+			console.log(result)
+
+			const file_name = req.params.id
+			const remote_file = cloud_bucket.file(file_name)
+
+			await remote_file.delete()
+			res.send({ file_name })
+		} catch (error) {
+			console.log(error)
+			res.status(500).send({ msg: 'Internal Server Error!!!' })
+		}
+	},
+
 	// Get MetaData
 	fileMetaData: async (req, res) => {
 		try {

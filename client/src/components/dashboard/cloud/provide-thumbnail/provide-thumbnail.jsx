@@ -25,32 +25,34 @@ import genericIcon from '../../../../img/file-icons/generic-icon.svg'
 
 function ProvideThumbnail(props) {
 	const [file_icon, set_file_icon] = React.useState('')
-	const [is_loading, set_is_loading] = React.useState(true)
+	// const [is_loading, set_is_loading] = React.useState(true)
+	// const [timestamp, setTimestamp] = React.useState(Date.now())
 	// const [icon, isIcon] = React.useState(true)
 
 	React.useEffect(() => {
+		// setTimestamp(Date.now())
 		set_file_icon(pickIcon(props.file_thumbnail))
 	}, [])
 
-	const image = React.useRef(null)
+	// const image = React.useRef(null)
 
 	// Determine the icon
 	const pickIcon = (tag) => {
 		if (!tag.startsWith('#')) {
 			// For Svg Files
 			if (tag.substr(tag.length - 3) === 'svg') {
-				set_is_loading(false)
+				// set_is_loading(false)
 				return svgIcon
 			}
-			image.current.src = `${server}/api/cloud-storage/get-file/${tag}`
-			image.current.onload = () => {
-				console.log('[provide-thumbnail] Image Loaded!!! ', Date.now())
-				set_is_loading(false)
-			}
+			// image.current.src = `${server}/api/cloud-storage/get-file/${tag}`
+			// image.current.onload = () => {
+			// 	console.log('[provide-thumbnail] Image Loaded!!! ', Date.now())
+			// 	set_is_loading(false)
+			// }
 			return `${server}/api/cloud-storage/get-file/${tag}`
 		}
 
-		set_is_loading(false)
+		// set_is_loading(false)
 
 		switch (tag) {
 			case FILE_TYPE.docx:
@@ -74,7 +76,13 @@ function ProvideThumbnail(props) {
 
 	return (
 		<div className='provide-thumbnail'>
-			<img
+			{file_icon !== '' ? (
+				<img src={`${file_icon}?${props.myKey}`} alt={file_icon} />
+			) : (
+				<img src={ImgLazyLoading} alt={props.file_thumbnail} />
+			)}
+			{/* <img
+				key={props.key}
 				src={file_icon}
 				alt={props.file_thumbnail}
 				ref={image}
@@ -86,7 +94,7 @@ function ProvideThumbnail(props) {
 				src={ImgLazyLoading}
 				alt={props.file_thumbnail}
 				style={{ opacity: is_loading ? 1 : 0 }}
-			/>
+			/> */}
 		</div>
 	)
 }

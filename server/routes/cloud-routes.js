@@ -18,6 +18,8 @@ router.post('/get-files-info', auth, cloudCTRL.getFilesInfo)
 
 router.get('/get-file/:id', auth, cloudCTRL.getFile)
 
+router.delete('/delete-file/:id', auth, cloudCTRL.deleteFile)
+
 router.get('/file-meta', auth, cloudCTRL.fileMetaData)
 
 module.exports = router

@@ -122,7 +122,12 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 		setFuModalVisibility(visibility)
 	}
 
-	const [files, setFiles] = useState([])
+	// const [files, setFiles] = useState([])
+
+	// useEffect(() => {
+	// 	setFiles([])
+	// 	setFiles(Object.assign([], file_list))
+	// }, [file_list])
 
 	useEffect(() => {
 		setIdeaBoardId(match.params.id)
@@ -137,12 +142,6 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 		}
 	}, [])
 
-	useEffect(() => {
-		let temp_files = [...files]
-		Object.assign(temp_files, file_list)
-		setFiles(temp_files)
-	}, [file_list])
-
 	const deleteFile = async (file_name) => {
 		try {
 			const res = await api.delete(
@@ -150,6 +149,25 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 			)
 			console.log(res)
 			updateList(match.params.id)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	const [download_url, setDownloadUrl] = React.useState('')
+	const download_el = React.useRef(null)
+
+	const downloadFile = async (file_name) => {
+		try {
+			// setIsDownloading(true)
+
+			const url = `/cloud-storage/get-file/${file_name}`
+			const response = await api.get(url, {
+				responseType: 'blob'
+			})
+			const downloadUrl = window.URL.createObjectURL(new Blob([response.data]))
+			setDownloadUrl(downloadUrl)
+			download_el.current.click()
 		} catch (error) {
 			console.log(error)
 		}
@@ -187,13 +205,26 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 				className={`remote-files-wrapper ${
 					dark ? '' : 'remote-files-wrapper-light'
 				}`}>
-				{files.map((file, index) => {
+				{file_list.map((file, index) => {
 					return (
 						<div
 							className={`remote-file-wrapper ${
 								dark ? '' : 'remote-file-wrapper-light'
 							}`}
-							key={Math.random()}>
+							key={index}>
+							<a
+								href={download_url}
+								download={file.original_file_name}
+								ref={download_el}
+								style={{
+									position: 'absolute',
+									opacity: 0,
+									pointerEvents: 'none',
+									width: '1px',
+									height: '1px'
+								}}>
+								.
+							</a>
 							<div className={`remote-file ${dark ? '' : 'remote-file-light'}`}>
 								<ProvideThumbnail
 									myKey={index}
@@ -208,7 +239,8 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 								<div
 									className={`download-icon-wrapper ${
 										dark ? '' : 'download-icon-wrapper-light'
-									}`}>
+									}`}
+									onClick={() => downloadFile(file.file_name)}>
 									<img alt='Download File' title='Download File' />
 								</div>
 								<div

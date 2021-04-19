@@ -101,22 +101,24 @@ function IdbFiles({
 	useEffect(() => {
 		const idb = idea_boards.find((idea_board) => idea_board._id === room)
 
-		async function getFilesInfo(id) {
-			try {
-				const files_info = await api.post('/cloud-storage/get-files-info', {
-					idea_board_id: id
-				})
-				console.log(files_info)
-				setFilesInfo(files_info.data)
-			} catch (err) {
-				console.log(err)
-			}
-		}
+		getFilesInfo()
 
 		if (idb) {
 			getFilesInfo(idb._id)
 		}
 	}, [])
+
+	const getFilesInfo = async (id) => {
+		try {
+			const files_info = await api.post('/cloud-storage/get-files-info', {
+				idea_board_id: id
+			})
+			console.log(files_info)
+			setFilesInfo(files_info.data)
+		} catch (err) {
+			console.log(err)
+		}
+	}
 
 	const theme = useSelector((state) => state.theme)
 	const dark = theme === 'dark'
@@ -131,9 +133,14 @@ function IdbFiles({
 					? files_info.map((file, index) => {
 							return (
 								<div
-									className={`idb-remote-file-wrapper  ${dark ? `` : `idb-remote-file-wrapper-light`} ${
+									className={`idb-remote-file-wrapper  ${
+										dark ? `` : `idb-remote-file-wrapper-light`
+									} ${
 										selectedFile.file_name === file.file_name
-											? dark ? 'file-selected': 'file-selected-light' : ""
+											? dark
+												? 'file-selected'
+												: 'file-selected-light'
+											: ''
 									}`}
 									onClick={() => fileSelectHandler(file)}
 									key={file.file_name}

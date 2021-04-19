@@ -93,7 +93,7 @@ const FileTypeHandler = ({
 						type={'audio/mpeg'}
 					/>
 				</audio>
-				<h2>{original_file_name}</h2>
+				{/* <h2>{original_file_name}</h2> */}
 			</div>
 		)
 	} else {

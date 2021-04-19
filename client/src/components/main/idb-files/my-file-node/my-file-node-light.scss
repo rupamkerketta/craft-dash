@@ -65,7 +65,7 @@
 
 		.audio {
 			// border: 1px solid blue;
-			background-color: $theme-color;
+			// background-color: $theme-color;
 			border-radius: 7px;
 			display: flex;
 			flex-direction: column;
@@ -82,7 +82,7 @@
 				color: white;
 				font-family: $theme-font;
 				font-weight: 200;
-				color: $craft-dash-green;
+				color: $theme-color
 			}
 		}
 

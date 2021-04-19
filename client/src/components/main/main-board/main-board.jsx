@@ -5,6 +5,9 @@ import { useSelector, connect } from 'react-redux'
 import './main-board.scss'
 import './main-board-light.scss'
 
+import AddFilesButton from '../../../img/AddFilesButton.png'
+import AddFilesButtonLight from '../../../img/AddFilesButtonLight.png'
+
 // UUID
 import { v4 as uuid4 } from 'uuid'
 
@@ -22,6 +25,9 @@ import VoiceRecorder from './voice-recorder/voice-recorder'
 
 // Recording Icon
 import Recording from '../../../img/recording.svg'
+
+// Files Upload Modal
+import { FilesUploadModal } from '../../dashboard/cloud/cloud-storage'
 
 // Pointer - 1
 import Pointer1 from '../../../img/pointer-1.png'
@@ -41,7 +47,9 @@ import { addNewUserRoom, removeUserRoom } from '../../../redux/room/roomActions'
 import { addUsersRoom, setIdRoom } from '../../../redux/room/roomActions'
 import {
 	viewVNModal,
-	hideVNModal
+	hideVNModal,
+	viewFUModal,
+	hideFUModal
 } from '../../../redux/voice-note/voiceNoteActions'
 
 // Elements
@@ -54,14 +62,20 @@ import * as FOCUS_TEXT from '../../../redux/elements/focus-text/focusTextActions
 // File Info Modal
 import ViewFileInfoModal from '../view-file-info/view-file-info'
 
+// Update List - Action
+import { updateList } from '../../../redux/update-list/updateListActions'
+
 const MainBoard = ({
 	room,
 	socket,
 	user,
 	viewFile,
 	show_vn_modal,
+	show_fu_modal,
 	viewVNModal,
 	hideVNModal,
+	viewFUModal,
+	hideFUModal,
 	addNewUserRoom,
 	removeUserRoom,
 	addUsersRoom,
@@ -76,7 +90,8 @@ const MainBoard = ({
 	onConnectSend_Main,
 	onConnectReceive_Main,
 	deSelectAll_Main,
-	hideFileInfo
+	hideFileInfo,
+	updateList
 }) => {
 	// Label for the Node
 	const [name, setName] = useState('')
@@ -348,6 +363,15 @@ const MainBoard = ({
 	}
 	const theme = useSelector((state) => state.theme)
 	const dark = theme === 'dark'
+
+	const fileUploadVisibilityHandler = (visibility) => {
+		if (visibility) {
+			viewFUModal()
+		} else {
+			hideFUModal()
+		}
+	}
+
 	return (
 		<div className={`main-board ${dark ? '' : 'main-board-light'}`}>
 			<ReactFlow
@@ -418,6 +442,14 @@ const MainBoard = ({
 						</div>
 					</div>
 				</Rodal>
+
+				<FilesUploadModal
+					idea_board_id={room}
+					fu_modal_visibility={show_fu_modal}
+					fuSetModalVisibility={fileUploadVisibilityHandler}
+					dark={dark}
+					updateList={updateList}
+				/>
 
 				{pos_updates
 					? pos_updates.map((item, index) => {
@@ -499,6 +531,12 @@ const MainBoard = ({
 					alt='Voice Note'
 					onClick={() => viewVNModal()}
 				/>
+				<img
+					className='add-files-btn'
+					src={dark ? AddFilesButton : AddFilesButtonLight}
+					alt='Add Files'
+					onClick={() => viewFUModal()}
+				/>
 			</div>
 		</div>
 	)
@@ -511,7 +549,8 @@ const mapStateToProps = (state) => {
 		data: state.idea_boards.boards.data,
 		user: state.user,
 		viewFile: state.viewFile,
-		show_vn_modal: state.voiceNote.show_vn_modal
+		show_vn_modal: state.vn_fu.show_vn_modal,
+		show_fu_modal: state.vn_fu.show_fu_modal
 	}
 }
 
@@ -522,6 +561,9 @@ const mapDispatchToProps = {
 	setIdRoom,
 	viewVNModal,
 	hideVNModal,
+	viewFUModal,
+	hideFUModal,
+	updateList,
 	addNode_Main: (data) => ELEMENTS.addNode_Main(data),
 	addNodeBroadcast_Main: (data) => ELEMENTS.addNodeBroadcast_Main(data),
 	updatePos_Main: (data) => ELEMENTS.updatePos_Main(data),

@@ -156,7 +156,7 @@ const ViewFileInfoModal = ({ file_info: file }) => {
 							</p>
 						</div>
 					</div>
-					<div
+					{/* <div
 						className={`remove-node-button ${
 							dark ? '' : 'remove-node-button-light'
 						}`}>
@@ -166,7 +166,7 @@ const ViewFileInfoModal = ({ file_info: file }) => {
 							}`}>
 							<p>REMOVE FROM NODE</p>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

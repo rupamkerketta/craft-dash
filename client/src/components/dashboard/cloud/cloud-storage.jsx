@@ -157,10 +157,13 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 	const [download_url, setDownloadUrl] = React.useState('')
 	const download_el = React.useRef(null)
 
-	const downloadFile = async (file_name) => {
+	const [file_name, setFileName] = React.useState('')
+
+	const downloadFile = async (file_name, original_file_name) => {
 		try {
 			// setIsDownloading(true)
 
+			setFileName(original_file_name)
 			const url = `/cloud-storage/get-file/${file_name}`
 			const response = await api.get(url, {
 				responseType: 'blob'
@@ -214,7 +217,7 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 							key={index}>
 							<a
 								href={download_url}
-								download={file_list.original_file_name}
+								download={file_name}
 								ref={download_el}
 								style={{
 									position: 'absolute',
@@ -240,7 +243,9 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 									className={`download-icon-wrapper ${
 										dark ? '' : 'download-icon-wrapper-light'
 									}`}
-									onClick={() => downloadFile(file.file_name)}>
+									onClick={() =>
+										downloadFile(file.file_name, file.original_file_name)
+									}>
 									<img alt='Download File' title='Download File' />
 								</div>
 								<div

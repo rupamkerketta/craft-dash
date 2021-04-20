@@ -214,7 +214,7 @@ function CloudStorage({ match, idea_boards, file_list, updateList }) {
 							key={index}>
 							<a
 								href={download_url}
-								download={file.original_file_name}
+								download={file_list.original_file_name}
 								ref={download_el}
 								style={{
 									position: 'absolute',

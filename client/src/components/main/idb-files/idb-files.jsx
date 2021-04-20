@@ -92,6 +92,7 @@ function IdbFiles({
 		const file_info = {
 			file_name: selectedFile.file_name,
 			file_type: selectedFile.file_type,
+			file_thumbnail: selectedFile.file_thumbnail,
 			original_file_name: selectedFile.original_file_name
 		}
 

@@ -171,6 +171,7 @@ const MainBoard = ({
 							<MyFileNode
 								file_name={data.file_info.file_name}
 								file_type={data.file_info.file_type}
+								file_thumbnail={data.file_info.file_thumbnail}
 								original_file_name={data.file_info.original_file_name}
 							/>
 						</>
